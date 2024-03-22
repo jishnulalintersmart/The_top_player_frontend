@@ -1,0 +1,229 @@
+import styles from "@/styles/Footer.module.css";
+// import { GoLocation } from "react-icons/go";
+// import { BsWhatsapp } from "react-icons/bs";
+// import { HiOutlineMail } from "react-icons/hi";
+// import { AiFillInstagram } from "react-icons/ai";
+import { FaTiktok, FaStripe, FaGooglePay, FaApplePay } from "react-icons/fa";
+import { SiVisa } from "react-icons/si";
+import Link from "next/link";
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { subscribeReducer } from "@/store/AuthSlice";
+import { Toast } from "primereact/toast";
+import LangWrap from "./LangWarp";
+// import Image from "next/legacy/image";
+const Footer = () => {
+  const { t } = useTranslation();
+  // const [email, setEmail] = useState("");
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validate: (data) => {
+      let errors = {};
+      if (!data.email) {
+        errors.email = " Email is required";
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)
+      ) {
+        errors.email = "Invalid email";
+      }
+      return errors;
+    },
+    onSubmit: (data) => {
+      if (data) {
+        dispatch(subscribeReducer(data))
+          .unwrap()
+          .then((res) => {
+            show();
+            formik.resetForm();
+          })
+          .catch((err) => {
+            if (err?.response?.data?.message) {
+              EMptyInput(err.response.data.message);
+            } else {
+              EMptyInput(t("auth.wrong"));
+            }
+            // EMptyInput()
+          });
+      }
+    },
+  });
+  const toast = useRef(null);
+  const EMptyInput = (mess) => {
+    toast.current.show({
+      severity: "error",
+      summary: `${mess}`,
+      // life: 3000,
+    });
+  };
+  const show = () => {
+    toast.current.show({
+      severity: "success",
+      summary: t("auth.succ_signup"),
+      // detail: formik.values.value,
+    });
+  };
+
+  return (
+    <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en"}>
+      <div className={styles.footer}>
+        <div
+          className="container"
+          style={{
+            direction: router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
+          }}
+        >
+          <Toast ref={toast} />
+          <div className="row justify-content-between ">
+            <div className={`col-md-4 ${styles.column}`}>
+              <h2>{t("title")}</h2>
+              <p>{t("footer.about")}</p>
+            </div>
+            <div className={`col-6 col-md-2 ${styles.column}`}>
+              <h3
+                className={
+                  router?.query?.Lang?.toLowerCase() === "ar"
+                    ? "mob_right"
+                    : "mob_left"
+                }
+              >
+                {t("footer.feature")}
+              </h3>
+              <div className={styles.Links}>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}`}>
+                  {t("menu.home")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}#about`}>
+                  {t("menu.about")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}#programs`}>
+                  {t("menu.our_programs")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}#faq`}>
+                  {t("menu.faq")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}>
+                  {t("auth.login")}
+                </Link>
+              </div>
+            </div>
+            <div className={`col-6 col-md-2 ${styles.column}`}>
+              <h3
+                style={{
+                  textAlign:
+                    router?.query?.Lang?.toLowerCase() === "ar" ? "right" : "left",
+                }}
+              >
+                {t("footer.contact")}
+              </h3>
+              <div className={styles.Links}>
+                <a
+                  aria-label="our whatsapp "
+                  href={
+                    "https://api.whatsapp.com/send/?phone=971501225632&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%2C+%D8%B9%D9%86%D8%AF%D9%8A+%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1+%D8%A8%D8%AE%D8%B5%D9%88%D8%B5&type=phone_number&app_absent=0"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.span_div}
+                >
+                  {t("footer.whatsapp")}
+                  {/* <BsWhatsapp /> */}
+                </a>
+                <a
+                  aria-label="our instagram"
+                  href={
+                    "https://www.instagram.com/thetop.player/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.span_div}
+                >
+                  {t("footer.instagram")}
+
+                  {/* <AiFillInstagram /> */}
+                </a>
+                <a
+                  aria-label="Tiktok"
+                  href={
+                    "https://www.tiktok.com/@thetop.player?_t=8i0wA2PQnHc&_r=1"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.span_div}
+                >
+                  {t("footer.tiktok")}
+                </a>
+              </div>
+            </div>
+            <div className={`col-md-4 ${styles.column}`}>
+              <h3>{t("footer.email")}</h3>
+              <form onSubmit={formik.handleSubmit} className={styles.form}>
+                <input
+                  style={{
+                    marginRight:
+                      router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
+                    marginLeft:
+                      router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
+                  }}
+                  placeholder={t("footer.enter_email")}
+                  // value={email}
+                  value={formik.values.email}
+                  onChange={(e) => {
+                    formik.setFieldValue("email", e.target.value);
+                  }}
+                  // onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <button type="submit" name="subscribe">
+                  {t("footer.subscribe")}
+                </button>
+              </form>
+              <h3>{t("footer.payment")}</h3>
+              <div className={styles.Payments}>
+                <span
+                  style={{
+                    marginRight:
+                      router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
+                    marginLeft:
+                      router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
+                  }}
+                >
+                  <FaStripe />
+                </span>
+                <span>
+                  <SiVisa />
+                </span>
+                <span>
+                  <FaGooglePay />
+                </span>
+                <span>
+                  <FaApplePay />
+                </span>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div className={styles.rights}>
+            <p className="text-center">
+              {t("footer.copy_1")}
+              <span className="En_num">
+              {t("footer.copy_2")}
+
+              </span>
+              {t("footer.copy_3")}
+
+              </p>
+          </div>
+        </div>
+      </div>
+    </LangWrap>
+  );
+};
+
+export default Footer;
