@@ -21,6 +21,7 @@ import {
   VolumeMenuButton,
   FullscreenToggle,
 } from "video-react";
+import Image from "next/image";
 const VideoShow = ({ video_id, courseId, list, Lang, week_id, day_id, subCourseId, type, video_key, video_name, next_name, next_id, key, video_image, day_time }) => {
   // console.log(
   //   `2 => Lang : ${Lang} - type: ${type} - week : ${week_id} -  day : ${day_id} - courseId: ${courseId} - subCourseId : ${subCourseId} - videId : ${video_id}`
@@ -172,7 +173,7 @@ const VideoShow = ({ video_id, courseId, list, Lang, week_id, day_id, subCourseI
         </div>
 
         <div className={`watermark-logo`} style={{ fontSize: "20px" }}>
-          Logo
+          <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} />
         </div>
       </Player>
       {/* <div
