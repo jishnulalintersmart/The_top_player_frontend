@@ -29,11 +29,13 @@
 }
 
 .NavLinks a {
+  font-size: clamp(18px, 4vh, 16px);
+  line-height: 1;
+  font-weight: 400;
+  color: #000;
   display: block;
   text-decoration: none;
-  font-weight: 600;
   position: relative;
-  font-size: clamp(20px, 4vh, 18px);
   margin-bottom: 0;
   background-color: var(--bg_color);
   cursor: pointer;
@@ -60,7 +62,7 @@
   }
   .image_container {
     height: 60px;
-    width: 120px;
+    width: 220px;
   }
 }
 .AccordionLinks a {
@@ -318,7 +320,7 @@
 
 .image_container {
   position: relative;
-  height: 92px;
+  height: 60px;
   margin: 10px 0;
   cursor: pointer;
   z-index: 10;
@@ -370,22 +372,20 @@
 }
 
 .Login .log {
-  display: inline-flex;
-  padding: 0px 32px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  width: 100%;
+  max-width: 160px;
+  height: 50px;
+  padding: 10px;
   justify-content: center;
   align-items: center;
+  display: inline-flex;
   gap: 8px;
   border-radius: 4px;
-  background: var(
-    --Linear,
-    linear-gradient(193deg, #b58e69 -30.12%, #8e6c4d 90.67%)
-  );
-  color: #fff;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 42px;
-  letter-spacing: 0.2px;
+  background: var(--main_color);
 }
 .Login {
   display: flex;
@@ -524,11 +524,11 @@ font-size: 30px !important;
  font-size: 20px;
 }
 .link {
-  color: #26262699 !important;
+  color: #26262699;
 }
 
 .active {
-  color: black !important;
+  color: black;
 }
 
 .image_lang {

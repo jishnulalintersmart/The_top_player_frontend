@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
+import stylesSass from "@/styles/Home.module.scss";
 // import Header from "@/components/Home/Header";
 // import Who from "@/components/Home/who";
 // import FAQs from "@/components/Home/FAQs";
@@ -10,6 +11,10 @@ import styles from "@/styles/Home.module.css";
 import dynamic from "next/dynamic";
 import LangWrap from "@/components/layouts/LangWarp";
 const LangChange = dynamic(() => import("@/components/layouts/LangChange"), {
+  loading: () => <></>,
+  ssr: false,
+});
+const News = dynamic(() => import("@/components/Home/News"), {
   loading: () => <></>,
   ssr: false,
 });
@@ -58,8 +63,9 @@ export default function Home({ Lang }) {
       <main>
         <LangWrap Lang={Lang.toLowerCase()}>
           <LangChange Lang={Lang.toLowerCase()}>
-            <Header styles={styles} Lang={Lang.toLowerCase()} />
-            <Who styles={styles} Lang={Lang.toLowerCase()} />
+            <Header styles={stylesSass} Lang={Lang.toLowerCase()} />
+            <Who styles={stylesSass} Lang={Lang.toLowerCase()} />
+            <News styles={stylesSass} Lang={Lang.toLowerCase()} />
             <Program styles={styles} Lang={Lang.toLowerCase()} />
             <Suspense styles={styles} Lang={Lang.toLowerCase()} />
             <FAQs styles={styles} Lang={Lang.toLowerCase()} />

@@ -6,101 +6,140 @@ const Who = ({ styles, Lang }) => {
   const { t } = useTranslation();
   const router = useRouter();
   return (
-    <div className="container-xxl margin_top" id="about">
-      {/* <div className={`title`}>
-      <p>about us</p>
-      <h2>Who Are We ?</h2>
-      </div> */}
-      <div className="row align-items-center justify-content-between ">
-        <div className="col-md-5">
-          <div className={styles.main_who}>
-            <h2 className="title who_title">{t("who.title")}</h2>
-            <div
-              className={styles.image_arrow}
-              style={{
-                transform: Lang === "ar" ? "rotate(180deg)" : "rotate(0)",
-              }}
-            >
-              <Image
-              priority
-                src="/images/who1.svg"
-                alt="arrow1"
-                layout="fill"
-                objectFit="contain"
-              />
+    <div className={styles.who_section}>
+      <div className={styles.dElmt_1}>
+        <Image
+          src={"/images/dElmt-countBg-1.svg"}
+          layout="fill"
+          alt="bg"
+          objectFit="contain"
+        />
+      </div>
+      <div className="container">
+        <div className={styles.dFlx}>
+          <div className={styles.w_100}>
+            <div className={styles.cntWrap}>
+              <div className={"tleWrap center"}>
+                <h2 className={"mTle"}>{t("who.title")}</h2>
+              </div>
+              <p className={styles.who_p}>{t("who.about")}</p>
             </div>
           </div>
-          <p className={styles.who_p}>{t("who.about")}</p>
-        </div>
-        <div className="col-md-5">
-          {/* <div className="row">
-            <div className={`col-6 ${styles.mt_mob}`}
-            data-aos="fade-right"
-            data-aos-once="true"
-            >
-              <div className={styles.who_type}>
-                <h3>Football</h3>
+          <div className={styles.lftSd}>
+            <div className={styles.imgWrap}>
+              <video muted autoPlay loop playsInline preload="metadata">
+                <source
+                  src="/videos/who-1.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          <div className={styles.rgtSd}>
+            <div className={styles.itemFlx}>
+              <div className={styles.item}>
+                <div className={styles.countBx}>
+                  <div className={styles.dElmt_1}>
+                    <Image
+                      src={"/images/dElmt-countBg-1.svg"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <div className={styles.dElmt_2}>
+                    <Image
+                      src={"/images/dElmt-countBg-2.png"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <span className={styles.iconWrap}>
+                    <Image
+                      src={"/images/icon-exp.svg"}
+                      alt="exp"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </span>
+                  <span className={styles.cntWrap}>
+                    <h3 className={styles.num}>
+                      <span className={styles.counter}>14</span>
+                    </h3>
+                    <div className={styles.txt}>Years of Experience</div>
+                  </span>
+                </div>
               </div>
-             <div className={`${styles.who_Image} mt-3`}>
-              <Image src={"/images/who1.png"} alt="who1" layout="fill" objectFit="cover" />
-             </div>
-            </div>
-            <div  className={`col-6 ${styles.mt_mob}`}
-            data-aos="fade-left"
-            data-aos-once="true"
-            >
-            <div className={`${styles.who_Image} mb-3`}>
-              <Image src={"/images/who2.png"} alt="who1" layout="fill" objectFit="cover" />
-             </div>
-              <div className={styles.who_type}>
-                <h3>Fitness</h3>
+              <div className={styles.item}>
+                <div className={styles.countBx}>
+                  <div className={styles.dElmt_1}>
+                    <Image
+                      src={"/images/dElmt-countBg-1.svg"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <div className={styles.dElmt_2}>
+                    <Image
+                      src={"/images/dElmt-countBg-2.png"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <span className={styles.iconWrap}>
+                    <Image
+                      src={"/images/icon-users.svg"}
+                      alt="exp"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </span>
+                  <span className={styles.cntWrap}>
+                    <h3 className={styles.num}>
+                      <span className={styles.counter}>10</span>K+
+                    </h3>
+                    <div className={styles.txt}>Users</div>
+                  </span>
+                </div>
+              </div>
+              <div className={styles.item}>
+                <div className={styles.countBx}>
+                  <div className={styles.dElmt_1}>
+                    <Image
+                      src={"/images/dElmt-countBg-1.svg"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <div className={styles.dElmt_2}>
+                    <Image
+                      src={"/images/dElmt-countBg-2.png"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <span className={styles.iconWrap}>
+                    <Image
+                      src={"/images/icon-courses.svg"}
+                      alt="exp"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </span>
+                  <span className={styles.cntWrap}>
+                    <h3 className={styles.num}>
+                      <span className={styles.counter}>14</span>+
+                    </h3>
+                    <div className={styles.txt}>Courses</div>
+                  </span>
+                </div>
               </div>
             </div>
-          </div> */}
-
-          <div
-            className={styles.who_Image}
-            style={{
-              marginLeft: Lang === "ar" ? "0" : "auto",
-              marginRight: Lang === "ar" ? "auto" : "0",
-            }}
-          >
-            <div className={`${styles.who_Image} ${Lang === "ar" ? "" :styles.rotate_image}`}>
-              <Image
-              // className={styles.rotate_image}
-              priority
-                src={"/images/who_main.jpg"}
-                alt="Who are we"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div
-              className={styles.arrow2}
-              style={{
-                right: Lang === "ar" ? 0 : "unset",
-                left: Lang === "ar" ? "unset" : 0,
-                transform:
-                  Lang === "ar"
-                    ? "translateX(100%) rotate(180deg)"
-                    : "translateX(-100%) rotate(0deg)",
-              }}
-            >
-              <Image
-                src={"/images/who2.svg"}
-                alt="Who are we"
-                layout="fill"
-                objectFit="contain"
-              />
-            </div>
-            {/* <div className={styles.arrow3}>
-              <Image
-                src={"/images/who3.svg"}
-                alt="Who are we"
-                layout="fill"
-                objectFit="contain"
-              />
-            </div> */}
           </div>
         </div>
       </div>
