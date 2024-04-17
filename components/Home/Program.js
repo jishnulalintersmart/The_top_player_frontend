@@ -58,7 +58,7 @@ const Program = ({ styles, Lang }) => {
         <div
           className={`${styles.program} ${
             Lang === "ar" ? styles.ar_slide : styles.en_slide
-          } ${Lang === "ar" ? "Arabic_web_program" :""}`}
+          } ${Lang === "ar" ? "Arabic_web_program" : ""}`}
           // style={{
           //   direction: ,
           // }}
@@ -118,7 +118,7 @@ const Program = ({ styles, Lang }) => {
                 </div> */}
                 <div className={styles.filnal_price}>
                   <p>
-                    25%
+                    20%
                     <span>{t("programs.off")}</span>
                   </p>
                 </div>
@@ -186,9 +186,9 @@ const Program = ({ styles, Lang }) => {
                       Lang === "ar" ? styles.rightPrice : styles.leftPrice
                     }`}
                   >
-                    <h5>80</h5>
+                    <h5>70</h5>
                     <h6>
-                      <del>105 </del>
+                      <del>90 </del>
                     </h6>
                   </div>
                   <button>
@@ -277,11 +277,11 @@ const Program = ({ styles, Lang }) => {
                     }`}
                   >
                     <h5>
-                      105
+                      89
                       {/* <span>/4mo</span> */}
                     </h5>
                     <h6>
-                      <del>210 </del>
+                      <del>180 </del>
                       {/* <span>/4mo</span> */}
                     </h6>
                   </div>
@@ -310,7 +310,7 @@ const Program = ({ styles, Lang }) => {
               >
                 <div className={styles.filnal_price}>
                   <p>
-                    25%
+                    20%
                     <span>{t("programs.off")}</span>
                   </p>
                 </div>
@@ -387,9 +387,9 @@ const Program = ({ styles, Lang }) => {
                       Lang === "ar" ? styles.rightPrice : styles.leftPrice
                     }`}
                   >
-                    <h5>80</h5>
+                    <h5>70</h5>
                     <h6>
-                      <del>105 </del>
+                      <del>90 </del>
                     </h6>
                   </div>
                   <button>

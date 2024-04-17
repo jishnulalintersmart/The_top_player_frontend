@@ -1,12 +1,5 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-// import Header from "@/components/Home/Header";
-// import Who from "@/components/Home/who";
-// import FAQs from "@/components/Home/FAQs";
-// import Program from "@/components/Home/Program";
-// import Suspense from "@/components/Home/Suspense";
-// import Contact from "@/components/Home/contact";
-// import LangChange from "@/components/layouts/LangChange";
 import dynamic from "next/dynamic";
 import LangWrap from "@/components/layouts/LangWarp";
 const LangChange = dynamic(() => import("@/components/layouts/LangChange"), {
@@ -70,6 +63,7 @@ export default function Home({ Lang }) {
     </>
   );
 }
+
 export async function getServerSideProps({ params }) {
   return {
     props: {

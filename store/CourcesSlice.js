@@ -112,6 +112,7 @@ export const videos_in_days = createAsyncThunk(
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
+      console.log("Token", Cookies.get("UT"));
       const result = await axios
         .get(
           `${process.env.customKey}/videos/${data.courseId}/${data.subCourseId}/${data.day}`,

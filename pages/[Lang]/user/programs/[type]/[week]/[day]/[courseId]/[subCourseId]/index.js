@@ -77,6 +77,7 @@ const FristVideos = ({
   // console.log(router.asPath)
 
   // console.log()
+  console.log("Here")
   const day_time = day_id % 5;
   return (
     <LangWrap Lang={Lang}>

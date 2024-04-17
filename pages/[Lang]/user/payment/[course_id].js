@@ -5,12 +5,12 @@ import styles from "@/styles/Profile.module.css";
 import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
-// const stripePromise = loadStripe(
-//   "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
-// );
 const stripePromise = loadStripe(
-  "pk_test_51JfnclSB3xgpz68UfpbbOI6c1bFLFPSc06z33jeu1M3HOAysByRg5P74gRqx17UBxQCF5GtA6olGyjcPx1kkU2Rg00PAyC9qZs"
+  "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
 );
+// const stripePromise = loadStripe(
+//   "pk_test_51JfnclSB3xgpz68UfpbbOI6c1bFLFPSc06z33jeu1M3HOAysByRg5P74gRqx17UBxQCF5GtA6olGyjcPx1kkU2Rg00PAyC9qZs"
+// );
 import { useDispatch, useSelector } from "react-redux";
 import { PayReducer } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
@@ -63,7 +63,7 @@ const Payment = ({ course_id, Lang }) => {
                       <MdArrowDropDown />
                     </span>
                   </h1>
-                  <h3 className="En_num">$80.00</h3>
+                  <h3 className="En_num">$70.00</h3>
                 </div>
               )}
               {parseInt(course_id) === 2 && (
@@ -77,7 +77,7 @@ const Payment = ({ course_id, Lang }) => {
                       <MdArrowDropDown />
                     </span>
                   </h1>
-                  <h3 className="En_num">$105.00</h3>
+                  <h3 className="En_num">$89.00</h3>
                 </div>
               )}
               {parseInt(course_id) === 3 && (
@@ -91,7 +91,7 @@ const Payment = ({ course_id, Lang }) => {
                       <MdArrowDropDown />
                     </span>
                   </h1>
-                  <h3 className="En_num">$80.00</h3>
+                  <h3 className="En_num">$70.00</h3>
                 </div>
               )}
 
@@ -115,20 +115,20 @@ const Payment = ({ course_id, Lang }) => {
                       </div>
                       <h4>{t("payment.fitness")}</h4>
                     </div>
-                    <p className="En_num">$80.00</p>
+                    <p className="En_num">$70.00</p>
                   </div>
                   <div className={`${styles.package} ${styles.package_sub}`}>
                     <p>{t("payment.Subtotal")}</p>
-                    <p className="En_num">$105.00</p>
+                    <p className="En_num">$89.00</p>
                   </div>
                   <div className={`${styles.package} ${styles.package_sub}`}>
                     <p>{t("payment.Discount")}</p>
-                    <p className="En_num">-$25.00</p>
+                    <p className="En_num">-$20.00</p>
                   </div>
                   <hr />
                   <div className={`${styles.package} ${styles.package_total}`}>
                     <p>{t("payment.Total")}</p>
-                    <p className="En_num">$80.00</p>
+                    <p className="En_num">$70.00</p>
                   </div>
                 </div>
               )}
@@ -152,20 +152,20 @@ const Payment = ({ course_id, Lang }) => {
                       </div>
                       <h4>{t("payment.fitness_football")}</h4>
                     </div>
-                    <p className="En_num">$105.00</p>
+                    <p className="En_num">$89.00</p>
                   </div>
                   <div className={`${styles.package} ${styles.package_sub}`}>
                     <p>{t("payment.Subtotal")}</p>
-                    <p className="En_num">$210.00</p>
+                    <p className="En_num">$180.00</p>
                   </div>
                   <div className={`${styles.package} ${styles.package_sub}`}>
                     <p>{t("payment.Discount")}</p>
-                    <p className="En_num">-$105.00</p>
+                    <p className="En_num">-$89.00</p>
                   </div>
                   <hr />
                   <div className={`${styles.package} ${styles.package_total}`}>
                     <p>{t("payment.Total")}</p>
-                    <p className="En_num">$105.00</p>
+                    <p className="En_num">$89.00</p>
                   </div>
                 </div>
               )}
@@ -189,20 +189,20 @@ const Payment = ({ course_id, Lang }) => {
                       </div>
                       <h4>{t("payment.football")}</h4>
                     </div>
-                    <p className="En_num">$80.00</p>
+                    <p className="En_num">$70.00</p>
                   </div>
                   <div className={`${styles.package} ${styles.package_sub}`}>
                     <p>{t("payment.Subtotal")}</p>
-                    <p className="En_num">$105.00</p>
+                    <p className="En_num">$89.00</p>
                   </div>
                   <div className={`${styles.package} ${styles.package_sub}`}>
                     <p>{t("payment.Discount")}</p>
-                    <p className="En_num">-$25.00</p>
+                    <p className="En_num">-$20.00</p>
                   </div>
                   <hr />
                   <div className={`${styles.package} ${styles.package_total}`}>
                     <p>{t("payment.Total")}</p>
-                    <p className="En_num">$80.00</p>
+                    <p className="En_num">$70.00</p>
                   </div>
                 </div>
               )}
