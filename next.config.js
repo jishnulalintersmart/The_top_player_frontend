@@ -3,7 +3,8 @@ const nextConfig = {
   env: {
     customKey: "https://backend.thetopplayer.com",
     // webDomain: "https://interregionall.vercel.app",
-    webDomain: "https://www.thetopplayer.com",
+    // webDomain: "https://www.thetopplayer.com",
+    webDomain: "https://the-top-player-frontend-1.onrender.com",
     googleAnalytics: "G-E1W5ELK5TZ",
 
   },
