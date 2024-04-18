@@ -165,7 +165,7 @@ const News = ({ styles, Lang }) => {
               <div className={styles.dElmt}>
                 <Image
                   src={"/images/news-dElmt-1.svg"}
-                  alt="dElmt"
+                  alt="dElmt" 
                   layout="fill"
                   objectFit="contain"
                 />
