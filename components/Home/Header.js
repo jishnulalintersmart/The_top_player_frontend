@@ -22,7 +22,7 @@ const Header = ({ styles, Lang }) => {
         <div className={styles.btn_wrap}>
           <Link
             href={`/${Lang}#programs`}
-            className="baseBtn"
+            className="baseBtn hoveranim"
             aria-label={t("yalla")}
           >
             <span>{t("yalla")}</span>

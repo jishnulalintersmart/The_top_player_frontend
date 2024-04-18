@@ -86,7 +86,7 @@ const Contact = ({ styles, Lang }) => {
         <Toast ref={toast} />
 
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-7">
             <h2
               className="title"
               style={{
@@ -178,7 +178,7 @@ const Contact = ({ styles, Lang }) => {
               </div>
             </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-5">
             <form
               onSubmit={formik.handleSubmit}
               className={`${styles.formWrap} grid gap-2 contact`}
@@ -234,8 +234,8 @@ const Contact = ({ styles, Lang }) => {
                   {getFormErrorMessage("message")}
                 </div>
               </div>
-              <button name="login" type="submit" className="submit-button">
-                {t("contact.send")}
+              <button name="login" type="submit" className="submit-button hoveranim">
+                <span> {t("contact.send")}</span>
               </button>
             </form>
           </div>

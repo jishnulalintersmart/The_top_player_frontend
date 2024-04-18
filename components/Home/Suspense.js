@@ -44,16 +44,9 @@ const Suspense = ({ styles, Lang }) => {
     <div className={`${styles.Suspense} margin_top`}>
       <div className={`container`}>
         <div className="row align-items-center justify-content-between ">
-          <div className="col-12 col-md-6 ">
+          <div className="col-12 col-lg-6">
             <div className={styles.become}>
-              <h2
-
-              // style={{
-              //   fontStyle: Lang === "ar" ? "normal" : "italic",
-              // }}
-              >
-                {t("title")}
-              </h2>
+              <h2>{t("title")}</h2>
               <h4 className={`${styles.become_animation} become_animation`}>
                 {t("suspens.become")} &nbsp;
                 <span>
@@ -108,8 +101,7 @@ const Suspense = ({ styles, Lang }) => {
               <p>{t("suspens.intro4")}</p>
             </div>
           </div>
-
-          <div className="col-12 col-md-5  col_video_mobile">
+          <div className="col-12 col-lg-5  col_video_mobile">
             <div
               className={`${
                 styles.Video_Suspense

@@ -2,51 +2,47 @@
   font-family: "Mont";
   font-weight: 300;
   font-style: normal;
-  src: url("../public/fonts/mont/Mont-Light.otf") format("opentype");
-  src: url("../public/fonts/mont/Mont-Light.otf") format("opentype"),
-    url("../public/fonts/mont/Mont-Light.woff") format("woff"),
-    url("../public/fonts/mont/Mont-Light.woff2") format("woff2");
+  src: url("/fonts/mont/Mont-Light.otf") format("opentype"),
+    url("/fonts/mont/Mont-Light.woff") format("woff"),
+    url("/fonts/mont/Mont-Light.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Mont";
   font-weight: 400;
   font-style: normal;
-  src: url("../public/fonts/mont/Mont-Regular.otf") format("opentype");
-  src: url("../public/fonts/mont/Mont-Regular.otf") format("opentype"),
-    url("../public/fonts/mont/Mont-Regular.woff") format("woff"),
-    url("../public/fonts/mont/Mont-Regular.woff2") format("woff2");
+  src: url("/fonts/mont/Mont-Regular.otf") format("opentype"),
+    url("/fonts/mont/Mont-Regular.woff") format("woff"),
+    url("/fonts/mont/Mont-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Mont";
   font-weight: 600;
   font-style: normal;
-  src: url("../public/fonts/mont/Mont-SemiBold.otf") format("opentype");
-  src: url("../public/fonts/mont/Mont-SemiBold.otf") format("opentype"),
-    url("../public/fonts/mont/Mont-SemiBold.woff") format("woff"),
-    url("../public/fonts/mont/Mont-SemiBold.woff2") format("woff2");
+  src: url("/fonts/mont/Mont-SemiBold.otf") format("opentype"),
+    url("/fonts/mont/Mont-SemiBold.woff") format("woff"),
+    url("/fonts/mont/Mont-SemiBold.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Mont";
   font-weight: 700;
   font-style: normal;
-  src: url("../public/fonts/mont/Mont-Bold.otf") format("opentype");
-  src: url("../public/fonts/mont/Mont-Bold.otf") format("opentype"),
-    url("../public/fonts/mont/Mont-Bold.woff") format("woff"),
-    url("../public/fonts/mont/Mont-Bold.woff2") format("woff2");
+  src: url("/fonts/mont/Mont-Bold.otf") format("opentype"),
+    url("/fonts/mont/Mont-Bold.woff") format("woff"),
+    url("/fonts/mont/Mont-Bold.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Mont";
   font-weight: 900;
   font-style: normal;
-  src: url("../public/fonts/mont/Mont-Black.otf") format("opentype");
-  src: url("../public/fonts/mont/Mont-Black.otf") format("opentype"),
-    url("../public/fonts/mont/Mont-Black.woff") format("woff"),
-    url("../public/fonts/mont/Mont-Black.woff2") format("woff2");
+  src: url("/fonts/mont/Mont-Black.otf") format("opentype"),
+    url("/fonts/mont/Mont-Black.woff") format("woff"),
+    url("/fonts/mont/Mont-Black.woff2") format("woff2");
 }
+
 
 :root {
   --main_color: #c7a27d;
@@ -109,6 +105,7 @@ h5 {
 }
 
 @media print {
+
   html,
   body {
     display: none !important;
@@ -175,6 +172,12 @@ a {
   justify-content: center;
 }
 
+@media (max-width: 1551.98px) {
+  .baseBtn {
+    height: 60px;
+  }
+}
+
 @media (max-width: 991.98px) {
   .baseBtn {
     font-size: 16px;
@@ -207,7 +210,8 @@ a {
   }
 }
 
-.baseBtn svg, .baseBtn img {
+.baseBtn svg,
+.baseBtn img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -228,6 +232,50 @@ a {
   }
 }
 
+.hoveranim {
+  position: relative;
+  overflow: hidden;
+}
+
+.hoveranim::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #ad8b69;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+}
+
+.hoveranim span {
+  position: relative;
+  z-index: 1;
+}
+
+.hoveranim:hover {
+  color: var(--white_color);
+}
+
+.hoveranim:hover::before {
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
 .vAllBtn {
   font-size: 17px;
   line-height: 1;
@@ -243,31 +291,38 @@ a {
   display: flex;
   align-items: center;
 }
+
 @media (max-width: 1199.98px) {
   .vAllBtn {
     font-size: 16px;
   }
 }
+
 @media (max-width: 991.98px) {
   .vAllBtn {
     font-size: 14px;
     column-gap: 6px;
   }
 }
+
 @media (max-width: 575.98px) {
   .vAllBtn {
     font-size: 12px;
     column-gap: 4px;
   }
 }
+
 .vAllBtn:hover {
   color: var(--main_color);
 }
-.vAllBtn:hover .icon svg, .vAllBtn:hover .icon img{
+
+.vAllBtn:hover .icon svg,
+.vAllBtn:hover .icon img {
   transform: translateX(4px);
 }
 
-.vAllBtn svg, .vAllBtn img {
+.vAllBtn svg,
+.vAllBtn img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -287,7 +342,6 @@ a {
     height: 16px;
   }
 }
-
 
 /*  TITLE */
 .tleWrap {
@@ -317,7 +371,7 @@ a {
 
 .tleWrap h2,
 .mTle {
-  font-size: clamp(25px, 3vw, 40px);
+  font-size: clamp(22px, 3vw, 40px);
   font-weight: 700;
   line-height: 1.1;
   text-transform: uppercase;
@@ -395,7 +449,7 @@ a {
 
 .accordion-item {
   border: 1px solid #eee;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border-radius: 22px !important;
   -webkit-border-r22ius: 16px !important;
   -moz-border-radius: 16px !important;
@@ -416,8 +470,41 @@ a {
   color: #000;
 }
 
+.accordion-button h6 {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--black_color);
+}
+
+@media (max-width: 991.98px) {
+  .accordion-button h6 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .accordion-button h6 {
+    font-size: 14px;
+  }
+}
+
 .accordion-button:focus {
   box-shadow: none;
+}
+
+.accordion-button::after {
+  width: 40px;
+  height: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg width='41' height='41' viewBox='0 0 41 41' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.5 0.109375C9.25652 0.109375 0.109375 9.25652 0.109375 20.5C0.109375 31.7435 9.25652 40.8906 20.5 40.8906C31.7435 40.8906 40.8906 31.7435 40.8906 20.5C40.8906 9.25652 31.7435 0.109375 20.5 0.109375ZM26.8281 21.9062H21.9062V26.8281C21.9062 27.6047 21.2766 28.2344 20.5 28.2344C19.7234 28.2344 19.0938 27.6047 19.0938 26.8281V21.9062H14.1719C13.3953 21.9062 12.7656 21.2766 12.7656 20.5C12.7656 19.7234 13.3953 19.0938 14.1719 19.0938H19.0938V14.1719C19.0938 13.3953 19.7234 12.7656 20.5 12.7656C21.2766 12.7656 21.9062 13.3953 21.9062 14.1719V19.0938H26.8281C27.6047 19.0938 28.2344 19.7234 28.2344 20.5C28.2344 21.2766 27.6047 21.9062 26.8281 21.9062Z' fill='%23C7A27D'/%3E%3C/svg%3E%0A") !important;
+  background-size: contain;
+}
+
+@media (max-width: 991.98px) {
+  .accordion-button::after {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .accordion-body {
@@ -452,12 +539,17 @@ a {
   }
 }
 
+.swiper-slide {
+  height: auto;
+}
+
 /* Start Contact */
 .contact {
   padding: 35px 40px;
-  background: #F9F1EB;
-  border-radius: 6px;
-  box-shadow: 0px 24px 48px -12px rgba(85, 105, 135, 0.06);
+  background: #f9f1eb;
+  border: 1px solid #EEDCCE;
+  border-radius: 16px;
+  display: block;
 }
 
 .submit-button {
@@ -477,6 +569,12 @@ a {
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
+}
+
+@media (max-width: 991.98px) {
+  .submit-button {
+    max-width: 100%;
+  }
 }
 
 .LoadingButton {
@@ -502,6 +600,12 @@ a {
   padding: 10px;
 }
 
+@media (max-width: 991.98px) {
+  .p-inputtext {
+    height: 40px;
+  }
+}
+
 .contact textarea {
   height: 200px;
 }
@@ -513,7 +617,9 @@ a {
 }
 
 .contact small {
-  margin: 3px 0;
+  font-size: 0.75em;
+  line-height: 1;
+  margin: 2px 0;
 }
 
 .elementor-headline-dynamic-text {
@@ -554,7 +660,7 @@ a {
   }
 
   .contact {
-    padding: 15px 5px;
+    padding: 15px;
   }
 }
 
@@ -698,6 +804,10 @@ a {
   }
 }
 
+.swiper {
+  padding-bottom: 20px;
+}
+
 .HomeLayoutbullets .swiper-pagination-bullet {
   background: var(--main_color) !important;
 }
@@ -755,11 +865,11 @@ a {
     -o-border-radius: 5.5000046491622925px !important;
   }
 
-  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-horizontal>.swiper-pagination-bullets,
   .swiper-pagination-bullets.swiper-pagination-horizontal,
   .swiper-pagination-custom,
   .swiper-pagination-fraction {
-    bottom: var(--swiper-pagination-bottom, -5px) !important;
+    bottom: -5px;
   }
 }
 
@@ -843,11 +953,7 @@ i {
 }
 
 .EN_FaqAcc .accordion-button::after {
-  width: 40px;
-  height: 40px;
   margin: 0 0 0 auto !important;
-  background-image: url("data:image/svg+xml,%3Csvg width='41' height='41' viewBox='0 0 41 41' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.5 0.109375C9.25652 0.109375 0.109375 9.25652 0.109375 20.5C0.109375 31.7435 9.25652 40.8906 20.5 40.8906C31.7435 40.8906 40.8906 31.7435 40.8906 20.5C40.8906 9.25652 31.7435 0.109375 20.5 0.109375ZM26.8281 21.9062H21.9062V26.8281C21.9062 27.6047 21.2766 28.2344 20.5 28.2344C19.7234 28.2344 19.0938 27.6047 19.0938 26.8281V21.9062H14.1719C13.3953 21.9062 12.7656 21.2766 12.7656 20.5C12.7656 19.7234 13.3953 19.0938 14.1719 19.0938H19.0938V14.1719C19.0938 13.3953 19.7234 12.7656 20.5 12.7656C21.2766 12.7656 21.9062 13.3953 21.9062 14.1719V19.0938H26.8281C27.6047 19.0938 28.2344 19.7234 28.2344 20.5C28.2344 21.2766 27.6047 21.9062 26.8281 21.9062Z' fill='%23C7A27D'/%3E%3C/svg%3E%0A");
-  background-size: contain;
 }
 
 .AR_FaqAcc h2 {
@@ -916,7 +1022,7 @@ i {
   }
 }
 
-.Ar_Sign .p-input-icon-right > i:last-of-type {
+.Ar_Sign .p-input-icon-right>i:last-of-type {
   left: 0.75rem !important;
   right: unset !important;
 }

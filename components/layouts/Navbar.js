@@ -532,9 +532,9 @@ const Navbar = ({ overHeight, state }) => {
                     onClick={() => {
                       setToggle(false);
                     }}
-                    className={styles.log}
+                    className={`${styles.log} ${styles.hoveranim}`}
                   >
-                    {t("menu.signup")}
+                   <span>{t("menu.signup")}</span>
                   </Link>
                 )}
 

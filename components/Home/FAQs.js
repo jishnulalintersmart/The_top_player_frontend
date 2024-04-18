@@ -6,7 +6,7 @@ const FAQs = ({ styles, Lang }) => {
   const { t } = useTranslation();
 
   return (
-    <div className={`${styles.Program_Section} margin_top `} id="faq">
+    <div className={`${styles.faq_section} margin_top `} id="faq">
       <div className="container ">
         <div className={styles.FAQs}>
           <h2
@@ -27,7 +27,7 @@ const FAQs = ({ styles, Lang }) => {
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
                   <div className={`${styles.FAQ_info} FAQ_info_ar`}>
-                    <h2>{t("faqs.faq1")}</h2>
+                    <h6>{t("faqs.faq1")}</h6>
                   </div>
                 </Accordion.Header>
                 <Accordion.Body>
@@ -37,7 +37,7 @@ const FAQs = ({ styles, Lang }) => {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>
                   <div className={`${styles.FAQ_info} FAQ_info_ar`}>
-                    <h2>{t("faqs.faq2")}</h2>
+                    <h6>{t("faqs.faq2")}</h6>
                   </div>
                 </Accordion.Header>
                 <Accordion.Body>
@@ -47,7 +47,7 @@ const FAQs = ({ styles, Lang }) => {
               <Accordion.Item eventKey="2">
                 <Accordion.Header>
                   <div className={`${styles.FAQ_info} FAQ_info_ar`}>
-                    <h2>{t("faqs.faq3")}</h2>
+                    <h6>{t("faqs.faq3")}</h6>
                   </div>
                 </Accordion.Header>
                 <Accordion.Body>
@@ -67,7 +67,7 @@ const FAQs = ({ styles, Lang }) => {
               <Accordion.Item eventKey="3">
                 <Accordion.Header>
                   <div className={`${styles.FAQ_info} FAQ_info_ar`}>
-                    <h2>{t("faqs.faq4")}</h2>
+                    <h6>{t("faqs.faq4")}</h6>
                   </div>
                 </Accordion.Header>
                 <Accordion.Body>

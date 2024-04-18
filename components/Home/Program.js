@@ -86,27 +86,24 @@ const Program = ({ styles, Lang }) => {
               // direction={}
               breakpoints={{
                 320: {
-                  // direction:"",
                   slidesPerView: 1,
                   spaceBetween: 10,
                 },
                 480: {
-                  // direction:"",
-
                   slidesPerView: 1,
                   spaceBetween: 20,
                 },
                 640: {
-                  // direction:"",
-
                   slidesPerView: 2,
-                  spaceBetween: 30,
+                  spaceBetween: 25,
                 },
-                920: {
-                  // direction:"",
-
+                992: {
                   slidesPerView: 3,
-                  spaceBetween: 30,
+                  spaceBetween: 20,
+                },
+                1551: {
+                  slidesPerView: 3,
+                  spaceBetween: 25,
                 },
               }}
             >
@@ -456,27 +453,20 @@ const Program = ({ styles, Lang }) => {
               // direction={}
               breakpoints={{
                 320: {
-                  // direction:"",
                   slidesPerView: 1,
                   spaceBetween: 10,
                 },
                 480: {
-                  // direction:"",
-
                   slidesPerView: 1,
                   spaceBetween: 20,
-                },
-                640: {
-                  // direction:"",
-
-                  slidesPerView: 2,
-                  spaceBetween: 30,
-                },
-                920: {
-                  // direction:"",
-
+                },                
+                992: {
                   slidesPerView: 3,
-                  spaceBetween: 30,
+                  spaceBetween: 20,
+                },
+                1551: {
+                  slidesPerView: 3,
+                  spaceBetween: 25,
                 },
               }}
             >
