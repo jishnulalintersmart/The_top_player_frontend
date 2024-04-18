@@ -51,8 +51,10 @@ const Program = ({ styles, Lang }) => {
               <h3 className={styles.small_title}>{t("programs.top")}</h3>
             </div>
             <div className={styles.rgtSd}>
-              <div className={styles.cSlideNav}>
-                <button className={styles.prev}>
+              <div className={styles.cSlideNav} style={{
+                    direction: Lang === "ar" ? "row-reverse" : "row",
+                  }}>
+                <button className={styles.prev} id={"programSlide1_prev"}>
                   <Image
                     src={"/images/icon-rgtArrow.svg"}
                     alt="rgtArrow"
@@ -60,7 +62,7 @@ const Program = ({ styles, Lang }) => {
                     objectFit="contain"
                   />
                 </button>
-                <button className={styles.next}>
+                <button className={styles.next} id={"programSlide1_next"}>
                   <Image
                     src={"/images/icon-rgtArrow.svg"}
                     alt="rgtArrow"
@@ -81,9 +83,11 @@ const Program = ({ styles, Lang }) => {
               slidesPerView={1}
               modules={[Pagination, Navigation]}
               pagination={pagination}
-              navigation
+              navigation={{
+                nextEl: "#programSlide1_next",
+                prevEl: "#programSlide1_prev"
+              }}
               initialSlide={1}
-              // direction={}
               breakpoints={{
                 320: {
                   slidesPerView: 1,
@@ -91,11 +95,11 @@ const Program = ({ styles, Lang }) => {
                 },
                 480: {
                   slidesPerView: 1,
-                  spaceBetween: 20,
+                  spaceBetween: 10,
                 },
                 640: {
                   slidesPerView: 2,
-                  spaceBetween: 25,
+                  spaceBetween: 15,
                 },
                 992: {
                   slidesPerView: 3,
@@ -418,8 +422,10 @@ const Program = ({ styles, Lang }) => {
               <h3 className={styles.small_title}>{t("programs.top")}</h3>
             </div>
             <div className={styles.rgtSd}>
-              <div className={styles.cSlideNav}>
-                <button className={styles.prev}>
+              <div className={styles.cSlideNav} style={{
+                    direction: Lang === "ar" ? "row-reverse" : "row",
+                  }}>
+                <button className={styles.prev} id={"programSlide2_prev"}>
                   <Image
                     src={"/images/icon-rgtArrow.svg"}
                     alt="rgtArrow"
@@ -427,7 +433,7 @@ const Program = ({ styles, Lang }) => {
                     objectFit="contain"
                   />
                 </button>
-                <button className={styles.next}>
+                <button className={styles.next} id={"programSlide2_next"}>
                   <Image
                     src={"/images/icon-rgtArrow.svg"}
                     alt="rgtArrow"
@@ -448,9 +454,11 @@ const Program = ({ styles, Lang }) => {
               slidesPerView={1}
               modules={[Pagination, Navigation]}
               pagination={pagination}
-              navigation
+              navigation={{
+                nextEl: "#programSlide2_next",
+                prevEl: "#programSlide2_prev"
+              }}
               initialSlide={1}
-              // direction={}
               breakpoints={{
                 320: {
                   slidesPerView: 1,
@@ -458,8 +466,12 @@ const Program = ({ styles, Lang }) => {
                 },
                 480: {
                   slidesPerView: 1,
-                  spaceBetween: 20,
-                },                
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 15,
+                },
                 992: {
                   slidesPerView: 3,
                   spaceBetween: 20,

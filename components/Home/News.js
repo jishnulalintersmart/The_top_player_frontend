@@ -172,7 +172,7 @@ const News = ({ styles, Lang }) => {
               </div>
               <div className={styles.imgWrap}>
                 <Image
-                  src={"/images/news-1.jpg"}
+                  src={"/images/news-2.jpg"}
                   alt="news"
                   layout="fill"
                   objectFit="cover"
@@ -280,7 +280,7 @@ const News = ({ styles, Lang }) => {
               </div>
               <div className={styles.imgWrap}>
                 <Image
-                  src={"/images/news-1.jpg"}
+                  src={"/images/news-3.jpg"}
                   alt="news"
                   layout="fill"
                   objectFit="cover"

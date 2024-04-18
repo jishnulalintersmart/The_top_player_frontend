@@ -140,6 +140,10 @@ a {
   font-family: "GE Dinar One Medium", sans-serif;
 }
 
+.swiper-button-disabled {
+  opacity: 0.3;
+}
+
 .overHeight {
   height: 100vh;
   overflow: hidden;

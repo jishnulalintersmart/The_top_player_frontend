@@ -508,6 +508,10 @@
   text-transform: capitalize;
 }
 
+.side_menu a:hover{
+  color: var(--main_color);
+}
+
 .Links_side .close_side {
   background-color: transparent;
   border: none;
@@ -605,7 +609,7 @@
   /* font-family: 'Readex Pro', sans-serif !important; */
   font-family: "GE Dinar One Medium", sans-serif !important;
 }
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
   .ar_lang {
     margin-right: 10px;
     padding-left: 5px;
