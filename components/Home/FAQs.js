@@ -7,7 +7,7 @@ const FAQs = ({ styles, Lang }) => {
 
   return (
     <div className={`${styles.Program_Section} margin_top `} id="faq">
-      <div className="container-xxl ">
+      <div className="container ">
         <div className={styles.FAQs}>
           <h2
             className={`title ${styles.title}`}

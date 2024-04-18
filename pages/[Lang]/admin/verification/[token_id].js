@@ -78,7 +78,7 @@ const Verifivation = ({ token_id, Lang }) => {
         >
           <div className="failer_card">
             <div className={"icon"}>
-              <i class="checkmark">x</i>
+              <i className="checkmark">x</i>
             </div>
             <h1 className="title">{t("confirm.failure")}</h1>
             <p>{t("confirm.sing_again")}</p>

@@ -1,4 +1,5 @@
 import styles from "@/styles/Footer.module.css";
+import Image from "next/legacy/image";
 // import { GoLocation } from "react-icons/go";
 // import { BsWhatsapp } from "react-icons/bs";
 // import { HiOutlineMail } from "react-icons/hi";
@@ -71,18 +72,33 @@ const Footer = () => {
   };
 
   return (
-    <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en"}>
+    <LangWrap
+      Lang={
+        router?.query?.Lang?.toLowerCase()
+          ? router?.query?.Lang?.toLowerCase()
+          : "en"
+      }
+    >
       <div className={styles.footer}>
         <div
           className="container"
           style={{
-            direction: router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
+            direction:
+              router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
           }}
         >
           <Toast ref={toast} />
           <div className="row justify-content-between ">
             <div className={`col-md-4 ${styles.column}`}>
-              <h2>{t("title")}</h2>
+              {/* <h2>{t("title")}</h2> */}
+              <div className={styles.logoWrap}>
+                <Image
+                  src={"/images/logo-light.svg"}
+                  layout="fill"
+                  alt="bg"
+                  objectFit="contain"
+                />
+              </div>
               <p>{t("footer.about")}</p>
             </div>
             <div className={`col-6 col-md-2 ${styles.column}`}>
@@ -108,7 +124,9 @@ const Footer = () => {
                 <Link href={`/${router?.query?.Lang?.toLowerCase()}#faq`}>
                   {t("menu.faq")}
                 </Link>
-                <Link href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}>
+                <Link
+                  href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
+                >
                   {t("auth.login")}
                 </Link>
               </div>
@@ -117,7 +135,9 @@ const Footer = () => {
               <h3
                 style={{
                   textAlign:
-                    router?.query?.Lang?.toLowerCase() === "ar" ? "right" : "left",
+                    router?.query?.Lang?.toLowerCase() === "ar"
+                      ? "right"
+                      : "left",
                 }}
               >
                 {t("footer.contact")}
@@ -167,9 +187,13 @@ const Footer = () => {
                 <input
                   style={{
                     marginRight:
-                      router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "0"
+                        : "10px",
                     marginLeft:
-                      router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "10px"
+                        : "0",
                   }}
                   placeholder={t("footer.enter_email")}
                   // value={email}
@@ -189,9 +213,13 @@ const Footer = () => {
                 <span
                   style={{
                     marginRight:
-                      router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "0"
+                        : "10px",
                     marginLeft:
-                      router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "10px"
+                        : "0",
                   }}
                 >
                   <FaStripe />
@@ -212,13 +240,9 @@ const Footer = () => {
           <div className={styles.rights}>
             <p className="text-center">
               {t("footer.copy_1")}
-              <span className="En_num">
-              {t("footer.copy_2")}
-
-              </span>
+              <span className="En_num">{t("footer.copy_2")}</span>
               {t("footer.copy_3")}
-
-              </p>
+            </p>
           </div>
         </div>
       </div>

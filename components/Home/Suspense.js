@@ -1,4 +1,4 @@
-// import Image from "next/legacy/image";
+import Image from "next/legacy/image";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ReactTyped } from "react-typed";
@@ -42,7 +42,7 @@ const Suspense = ({ styles, Lang }) => {
   // };
   return (
     <div className={`${styles.Suspense} margin_top`}>
-      <div className={`container-xxl`}>
+      <div className={`container`}>
         <div className="row align-items-center justify-content-between ">
           <div className="col-12 col-md-6 ">
             <div className={styles.become}>
@@ -104,74 +104,31 @@ const Suspense = ({ styles, Lang }) => {
                   /> */}
                 </span>
               </h4>
-
-              {/* <p>{t("suspens.intro")}</p> */}
               <p>{t("suspens.intro2")}</p>
-              <p>{t("suspens.intro3")}</p>
               <p>{t("suspens.intro4")}</p>
-              <p
-                className={Lang === "ar" ? styles.Ar_Tamren : styles.En_Tamrenk}
-              >
-                #تمرينك_توب
-              </p>
-              {/* <p>{t("suspens.hashtag")}</p> */}
             </div>
           </div>
 
           <div className="col-12 col-md-5  col_video_mobile">
-            <div className={`${styles.Video_Suspense} Video_Suspense video-container ${Lang === "ar" ? styles.susAr : styles.susEn}`}>
-              {/* <video
-                ref={videoRef}
-                onClick={togglePlay}
-                muted
-                autoPlay
-                loop
-                // disablePictureInPicture
-                playsInline
-                controls
-                preload="metadata"
-                controlsList="nodownload nofullscreen noplaybackrate nopictureinpicture" // Disable specific controls
-              >
-                <source
-                  src="https://backend.thetopplayer.com/videos/Suspense.mp4"
-                  type="video/mp4"
-                />
-              </video> */}
-              {/* <ReactPlayer
-                // className="test_video"
-                pip={false}
-                loop
-                muted
-                url={"https://backend.thetopplayer.com/videos/Suspense.mp4"}
-                config={{
-                  file: {
-                    attributes: {
-                      controlsList:
-                        "nodownload nopictureinpicture nofullscreen",
-                      disablePictureInPicture: true,
-                      disableFullScreen: true,
-                      playsinline: "true", // for iOS Safari
-                      webkitplaysinline: "true",
-                    },
-                  },
-                }}
-                controls={true}
-                // playIcon={<75}
-                playsinline={true}
-                // onClick={() => setVideoPlay((prevPlaying) => !prevPlaying)}
-                playing={true}
-              /> */}
-
-              <Player fluid playsInline={true} autoPlay muted>
+            <div
+              className={`${
+                styles.Video_Suspense
+              } Video_Suspense video-container ${
+                Lang === "ar" ? styles.susAr : styles.susEn
+              }`}
+            >
+              <Image
+                src={"/images/topPlayer-1.png"}
+                layout="fill"
+                alt="topPlayer"
+                objectFit="contain"
+              />
+              {/* <Player fluid playsInline={true} autoPlay muted>
                 <source
                   src={"https://backend.thetopplayer.com/videos/Suspense.mp4"}
                 />
-
                 <ControlBar>
-
                   <FullscreenToggle className="ToogelFull"  />
-                  {/* <ReplayControl seconds={10} order={1.1} /> */}
-                  {/* <ForwardControl seconds={30} order={1.2} /> */}
                   <CurrentTimeDisplay order={4.1} />
                   <TimeDivider order={4.2} />
                   <PlaybackRateMenuButton
@@ -180,8 +137,7 @@ const Suspense = ({ styles, Lang }) => {
                   />
                   <VolumeMenuButton  />
                 </ControlBar>
-
-              </Player>
+              </Player> */}
             </div>
             {/* <div className={styles.Video_Suspense}
              ref={containerRef}>

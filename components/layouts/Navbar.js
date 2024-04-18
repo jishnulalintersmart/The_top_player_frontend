@@ -35,7 +35,7 @@ const Navbar = ({ overHeight, state }) => {
     }
   }, [i18n, router.query.Lang]);
   return (
-    <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en" }>
+    <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en"}>
       <div className={styles.navbar}>
         {toggle && (
           <div
@@ -51,7 +51,7 @@ const Navbar = ({ overHeight, state }) => {
           style={{
             width: "90vw",
           }}
-          // header={false}
+        // header={false}
         >
           <div
             className={styles.side_menu}
@@ -71,9 +71,7 @@ const Navbar = ({ overHeight, state }) => {
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}`}
                 className={
-                  router.asPath === router.query.Lang
-                    ? styles.active
-                    : styles.link
+                  router.asPath === router.query.Lang ? styles.active : styles.link
                 }
               >
                 {t("menu.home")}
@@ -164,7 +162,7 @@ const Navbar = ({ overHeight, state }) => {
                   {t("menu.edit_profile")}
                 </Link>
               )}
-               {Cookies.get("UT") && (
+              {Cookies.get("UT") && (
                 <Link
                   href={`/${router?.query?.Lang?.toLowerCase()}/user/update-password`}
                   onClick={() => setVisible(false)}
@@ -309,11 +307,10 @@ const Navbar = ({ overHeight, state }) => {
                 </button>
 
                 <button
-                  className={`${styles.menu_button} ${styles.image_lang} ${
-                    router?.query?.Lang?.toLowerCase() === "ar"
-                      ? styles.ar_lang
-                      : styles.en_Lang
-                  }`}
+                  className={`${styles.menu_button} ${styles.image_lang} ${router?.query?.Lang?.toLowerCase() === "ar"
+                    ? styles.ar_lang
+                    : styles.en_Lang
+                    }`}
                   aria-label="menu"
                   name="menu"
                   onClick={() => {
@@ -347,7 +344,7 @@ const Navbar = ({ overHeight, state }) => {
                 }}
               >
                 <Image
-                  src={"/images/logo.png"}
+                  src={"/images/logo.svg"}
                   layout={"fill"}
                   objectFit={"contain"}
                   alt={"logo"}
@@ -360,11 +357,10 @@ const Navbar = ({ overHeight, state }) => {
             </Col>
             <Col xs={4} md={4} lg={4} className="d-block d-xl-none">
               <p
-                className={`${styles.tag} ${
-                  router?.query?.Lang?.toLowerCase() === "ar"
-                    ? styles.tag_ar
-                    : styles.tag_en
-                }`}
+                className={`${styles.tag} ${router?.query?.Lang?.toLowerCase() === "ar"
+                  ? styles.tag_ar
+                  : styles.tag_en
+                  }`}
               >
                 #تمرينك_توب
               </p>
@@ -430,7 +426,24 @@ const Navbar = ({ overHeight, state }) => {
                   >
                     {t("menu.our_programs")}
                   </Link>
-
+                  <Link
+                    onClick={() => {
+                      setShow(false);
+                      overHeight(false);
+                      setToggle(false);
+                    }}
+                    title={"Trending News"}
+                    href={`/${router?.query?.Lang?.toLowerCase()}#news`}
+                    className={
+                      router.asPath.includes(
+                        `/${router?.query?.Lang?.toLowerCase()}#news`
+                      )
+                        ? styles.active
+                        : styles.link
+                    }
+                  >
+                    {t("menu.our_news")}
+                  </Link>
                   <Link
                     onClick={() => {
                       setShow(false);
@@ -530,6 +543,12 @@ const Navbar = ({ overHeight, state }) => {
                   onClick={() => setToggle(!toggle)}
                 >
                   <IoPersonCircleOutline />
+                  <Image
+                    src={"/images/icon-user.svg"}
+                    layout={"fill"}
+                    objectFit={"contain"}
+                    alt={"user"}
+                  />
                 </button>
                 {/* <button
                 className={`${styles.toogle_menu} ${styles.image_lang}`}
@@ -555,11 +574,10 @@ const Navbar = ({ overHeight, state }) => {
                 />
               </button> */}
                 <button
-                  className={`${styles.menu_button} ${styles.image_lang} ${
-                    router?.query?.Lang?.toLowerCase() === "ar"
-                      ? styles.ar_lang
-                      : styles.en_Lang
-                  }`}
+                  className={`${styles.menu_button} ${styles.image_lang} ${router?.query?.Lang?.toLowerCase() === "ar"
+                    ? styles.ar_lang
+                    : styles.en_Lang
+                    }`}
                   aria-label="menu"
                   name="menu"
                   onClick={() => {
@@ -638,7 +656,7 @@ const Navbar = ({ overHeight, state }) => {
                         {t("menu.edit_profile")}
                       </Link>
                     )}
-                      {Cookies.get("UT") && <hr />}
+                    {Cookies.get("UT") && <hr />}
                     {Cookies.get("UT") && (
                       <Link
                         href={`/${router?.query?.Lang?.toLowerCase()}/user/update-password`}
