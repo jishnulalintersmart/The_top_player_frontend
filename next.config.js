@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
   env: {
     // customKey: "http://localhost:7700",
     customKey: "https://backend.thetopplayer.com",
