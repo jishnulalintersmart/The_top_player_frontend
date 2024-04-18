@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    // customKey: "http://localhost:7700",
     customKey: "https://backend.thetopplayer.com",
     // webDomain: "https://interregionall.vercel.app",
-    // webDomain: "http://localhost:3000",
     webDomain: "https://www.thetopplayer.com",
     googleAnalytics: "G-E1W5ELK5TZ",
+
   },
   swcMinify: true,
 
@@ -19,7 +18,6 @@ const nextConfig = {
     imageSizes: [32, 64, 96, 112, 128, 144, 160, 176, 192, 240],
     formats: ["image/webp"],
     domains: ["backend.thetopplayer.com"],
-    // domains: ["localhost"],
   },
   async redirects() {
     return [
@@ -32,13 +30,13 @@ const nextConfig = {
   },
   reactStrictMode: false,
   async headers() {
-    return [
-      {
-        source: "/.well-known/apple-developer-merchantid-domain-association",
-        headers: [{ key: "content-type", value: "application/json" }],
-      },
-    ];
-  },
+  return [
+    {
+      source: "/.well-known/apple-developer-merchantid-domain-association",
+      headers: [{ key: "content-type", value: "application/json" }]
+    }
+  ];
+}
 };
 
 module.exports = nextConfig;
