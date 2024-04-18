@@ -1,0 +1,106 @@
+[debug] [2024-04-18T06:15:19.629Z] ----------------------------------------------------------------------
+[debug] [2024-04-18T06:15:19.633Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Vaishnav\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-04-18T06:15:19.633Z] CLI Version:   13.7.3
+[debug] [2024-04-18T06:15:19.634Z] Platform:      win32
+[debug] [2024-04-18T06:15:19.634Z] Node Version:  v20.12.0
+[debug] [2024-04-18T06:15:19.634Z] Time:          Thu Apr 18 2024 11:45:19 GMT+0530 (India Standard Time)
+[debug] [2024-04-18T06:15:19.634Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-18T06:15:19.760Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-18T06:15:19.761Z] > authorizing via signed-in user (intersmartmobility@gmail.com)
+[debug] [2024-04-18T06:15:19.761Z] [iam] checking project thetopplayer-a2551 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-18T06:15:19.764Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/thetopplayer-a2551:testIamPermissions [none]
+[debug] [2024-04-18T06:15:19.764Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/thetopplayer-a2551:testIamPermissions x-goog-quota-user=projects/thetopplayer-a2551
+[debug] [2024-04-18T06:15:19.765Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/thetopplayer-a2551:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-18T06:15:21.420Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/thetopplayer-a2551:testIamPermissions 200
+[debug] [2024-04-18T06:15:21.421Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/thetopplayer-a2551:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-18T06:15:21.423Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/thetopplayer-a2551 [none]
+[debug] [2024-04-18T06:15:21.958Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/thetopplayer-a2551 200
+[debug] [2024-04-18T06:15:21.958Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/thetopplayer-a2551 {"projectId":"thetopplayer-a2551","projectNumber":"291860030504","displayName":"thetopplayer","name":"projects/thetopplayer-a2551","resources":{"hostingSite":"thetopplayer-a2551"},"state":"ACTIVE","etag":"1_6ab19104-5e1b-4f52-add2-1968b971a25a"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-04-18T06:15:39.509Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/thetopplayer-a2551/sites/thetopplayer-a2551 [none]
+[debug] [2024-04-18T06:15:40.618Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/thetopplayer-a2551/sites/thetopplayer-a2551 200
+[debug] [2024-04-18T06:15:40.619Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/thetopplayer-a2551/sites/thetopplayer-a2551 {"name":"projects/thetopplayer-a2551/sites/thetopplayer-a2551","defaultUrl":"https://thetopplayer-a2551.web.app","appId":"1:291860030504:web:b23c976b3c899c56dcc11d","type":"DEFAULT_SITE"}
+[info]  ⚠ Specified "redirects" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+
+[info]  ⚠ Specified "headers" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+
+[info]    Linting and checking validity of types ...
+
+[info]  ⚠ Specified "redirects" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+
+[info]    ▲ Next.js 14.0.4
+
+   Creating an optimized production build ...
+
+[info]  ⚠ Specified "headers" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+
+[info]  ✓ Compiled successfully
+
+[info]    Collecting page data ...
+
+[info] Warning: You have opted-out of Automatic Static Optimization due to `getInitialProps` in `pages/_app`. This does not opt-out pages with `getStaticProps`
+
+[info] Read more: https://nextjs.org/docs/messages/opt-out-auto-static-optimization
+
+
+[info]    Finalizing page optimization ...
+
+[info]    Collecting build traces ...
+
+[info]  ⚠ rewrites, redirects, and headers are not applied when exporting your application, detected (redirects, headers). See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+
+[info] 
+
+[info] > Image Optimization using the default loader is not compatible with export.
+  Possible solutions:
+    - Use `next start` to run a server, which includes the Image Optimization API.
+    - Configure `images.unoptimized = true` in `next.config.js` to disable the Image Optimization API.
+  Read more: https://nextjs.org/docs/messages/export-image-api
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • middleware
+[info]  • Image Optimization
+[info]  • non-static route /404
+[info]  • non-static route /500
+[info]  • non-static route /[Lang]/admin/confrim
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/admin/waitchange
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/terms
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/admin/change/[token_id]
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/admin/change
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/admin/forget
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/admin/sign-verify
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/error-handel/[text]
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]/admin/login
+[debug] [2024-04-18T06:16:08.377Z]  • non-static route /[Lang]
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/admin/verification/[token_id]
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/payment/confirm/[course_id]
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/payment-program
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/admin/signup
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/payment/[course_id]
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/profile
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/programs/[type]/[week]/[day]/[courseId]/[subCourseId]/[video]/[video_name]
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/programs
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/update-password
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/programs/[type]/[week]/[day]/[courseId]/[subCourseId]
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/programs/details/[programs_id]
+[debug] [2024-04-18T06:16:08.378Z]  • non-static route /[Lang]/user/programs/details/[programs_id]/sub/[sub]
+[info]  • and 21 other reasons, use --debug to see more
+[info] 
+[debug] [2024-04-18T06:16:20.017Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/thetopplayer-a2551/sites/thetopplayer-a2551 [none]
+[debug] [2024-04-18T06:16:21.248Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/thetopplayer-a2551/sites/thetopplayer-a2551 200
+[debug] [2024-04-18T06:16:21.248Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/thetopplayer-a2551/sites/thetopplayer-a2551 {"name":"projects/thetopplayer-a2551/sites/thetopplayer-a2551","defaultUrl":"https://thetopplayer-a2551.web.app","appId":"1:291860030504:web:b23c976b3c899c56dcc11d","type":"DEFAULT_SITE"}
+[debug] [2024-04-18T06:16:21.761Z] Error: Source and destination must not be the same.
+    at C:\Users\Vaishnav\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\fs-extra\lib\util\stat.js:49:19
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.
