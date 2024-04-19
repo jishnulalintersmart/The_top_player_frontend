@@ -106,6 +106,7 @@ const Suspense = ({ styles, Lang }) => {
           <div className="col-12 col-lg-5  col_video_mobile">
             <Swiper
               // effect={"fade"}
+              loop={true}
               spaceBetween={0}
               slidesPerView={1}
               pagination={false}
