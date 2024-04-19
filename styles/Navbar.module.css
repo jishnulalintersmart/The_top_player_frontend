@@ -2,6 +2,9 @@
   width: 100%;
   background-color: var(--white_color);
   padding: 10px 0;
+  height: var(--header-y);
+  display: flex;
+  align-items: center;
 }
 .gulf {
   color: #ffba00;
@@ -318,8 +321,8 @@
 
 .image_container {
   position: relative;
-  height: 60px;
-  margin: 10px 0;
+  height: 50px;
+  margin: 6px 0;
   cursor: pointer;
   z-index: 10;
 }

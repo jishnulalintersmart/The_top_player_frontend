@@ -1,23 +1,25 @@
 import Image from "next/legacy/image";
-import { useRef, useState } from "react";
+// import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ReactTyped } from "react-typed";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade, Autoplay } from 'swiper/modules';
+import 'swiper/css/effect-fade';
 // import Typewriter from "typewriter-effect";
 // import useIntersectionObserver from "@react-hook/intersection-observer";
-// import { useRef } from "react";
-import ReactPlayer from "react-player";
-import {
-  ControlBar,
-  CurrentTimeDisplay,
-  ForwardControl,
-  PlayToggle,
-  PlaybackRateMenuButton,
-  Player,
-  ReplayControl,
-  TimeDivider,
-  VolumeMenuButton,
-  FullscreenToggle,
-} from "video-react";
+// import ReactPlayer from "react-player";
+// import {
+//   ControlBar,
+//   CurrentTimeDisplay,
+//   ForwardControl,
+//   PlayToggle,
+//   PlaybackRateMenuButton,
+//   Player,
+//   ReplayControl,
+//   TimeDivider,
+//   VolumeMenuButton,
+//   FullscreenToggle,
+// } from "video-react";
 
 const Suspense = ({ styles, Lang }) => {
   const { t } = useTranslation();
@@ -102,20 +104,69 @@ const Suspense = ({ styles, Lang }) => {
             </div>
           </div>
           <div className="col-12 col-lg-5  col_video_mobile">
-            <div
-              className={`${
-                styles.Video_Suspense
-              } Video_Suspense video-container ${
-                Lang === "ar" ? styles.susAr : styles.susEn
-              }`}
+            <Swiper
+              // effect={"fade"}
+              spaceBetween={0}
+              slidesPerView={1}
+              pagination={false}
+              navigation={false}
+              initialSlide={1}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              modules={[EffectFade, Autoplay]}
             >
-              <Image
-                src={"/images/topPlayer-1.png"}
-                layout="fill"
-                alt="topPlayer"
-                objectFit="contain"
-              />
-              {/* <Player fluid playsInline={true} autoPlay muted>
+              <SwiperSlide>
+                <div
+                  className={`${
+                    styles.Video_Suspense
+                  } Video_Suspense video-container ${
+                    Lang === "ar" ? styles.susAr : styles.susEn
+                  }`}
+                >
+                  <Image
+                    src={"/images/topPlayer-1.png"}
+                    layout="fill"
+                    alt="topPlayer"
+                    objectFit="contain"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div
+                  className={`${
+                    styles.Video_Suspense
+                  } Video_Suspense video-container ${
+                    Lang === "ar" ? styles.susAr : styles.susEn
+                  }`}
+                >
+                  <Image
+                    src={"/images/topPlayer-1.png"}
+                    layout="fill"
+                    alt="topPlayer"
+                    objectFit="contain"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div
+                  className={`${
+                    styles.Video_Suspense
+                  } Video_Suspense video-container ${
+                    Lang === "ar" ? styles.susAr : styles.susEn
+                  }`}
+                >
+                  <Image
+                    src={"/images/topPlayer-1.png"}
+                    layout="fill"
+                    alt="topPlayer"
+                    objectFit="contain"
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
+            {/* <Player fluid playsInline={true} autoPlay muted>
                 <source
                   src={"https://backend.thetopplayer.com/videos/Suspense.mp4"}
                 />
@@ -130,7 +181,7 @@ const Suspense = ({ styles, Lang }) => {
                   <VolumeMenuButton  />
                 </ControlBar>
               </Player> */}
-            </div>
+            {/* </div> */}
             {/* <div className={styles.Video_Suspense}
              ref={containerRef}>
             {

@@ -54,6 +54,27 @@
   --box2: 0px 0px 2px #e7e7e7;
   --box1: 0 15px 30px rgb(0 0 0 / 10%);
   --border: 1px solid #ebebeb;
+  --header-y: 100px;
+  --header-y: 100px;
+}
+
+@media (max-width: 1551.98px) {
+  :root {
+    --header-y: 80px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  :root {
+    --header-y: 60px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  :root {
+    --header-y: 55px;
+  }
+
 }
 
 * {

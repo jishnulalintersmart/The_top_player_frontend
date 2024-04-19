@@ -1,12 +1,32 @@
 import Image from "next/legacy/image";
 import { useRouter } from "next/router";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 const Who = ({ styles, Lang }) => {
   const { t } = useTranslation();
   const router = useRouter();
+
+  const counters = document.querySelectorAll(".counter");
+
+  counters.forEach((counter) => {
+    counter.innerText = "0";
+    const updateCounter = (speed) => {
+      const target = +counter.getAttribute("data-target");
+      const current = +counter.innerText;
+      const increment = target / 100;
+      if (current < target) {
+        counter.innerText = `${Math.ceil(current + increment)}`;
+        setTimeout(() => updateCounter(speed), speed);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCounter(60); // Change the speed here (in milliseconds)
+  });
+
   return (
-    <div className={styles.who_section}>
+    <div className={styles.who_section} id={"who"}>
       <div className={styles.dElmt_1}>
         <Image
           src={"/images/dElmt-countBg-1.svg"}
@@ -28,10 +48,7 @@ const Who = ({ styles, Lang }) => {
           <div className={styles.lftSd}>
             <div className={styles.imgWrap}>
               <video muted autoPlay loop playsInline preload="metadata">
-                <source
-                  src="/videos/who-1.mp4"
-                  type="video/mp4"
-                />
+                <source src="/videos/who-1.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
@@ -65,7 +82,10 @@ const Who = ({ styles, Lang }) => {
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num}>
-                      <span className={styles.counter}>14</span>
+                      <span
+                        className={`${styles.counter} counter`}
+                        data-target={"14"}
+                      ></span>
                     </h3>
                     <div className={styles.txt}>Years of Experience</div>
                   </span>
@@ -99,7 +119,11 @@ const Who = ({ styles, Lang }) => {
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num}>
-                      <span className={styles.counter}>10</span>K+
+                      <span
+                        className={`${styles.counter} counter`}
+                        data-target={"10"}
+                      ></span>
+                      K+
                     </h3>
                     <div className={styles.txt}>Users</div>
                   </span>
@@ -133,7 +157,11 @@ const Who = ({ styles, Lang }) => {
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num}>
-                      <span className={styles.counter}>14</span>+
+                      <span
+                        className={`${styles.counter} counter`}
+                        data-target={"10"}
+                      ></span>
+                      +
                     </h3>
                     <div className={styles.txt}>Courses</div>
                   </span>
