@@ -1,23 +1,24 @@
 import Image from "next/legacy/image";
+import styles from "/styles/InnerBanner.module.scss";
 const InnerBanner = () => {
   return (
-    <div className={"inner_banner"}>
-      <div className={"bgImg"}>
+    <div className={styles.inner_banner}>
+      <div className={styles.bgImg}>
         <Image
           src={"/images/banner-program.jpg"}
           layout={"fill"}
-          objectFit={"contain"}
+          objectFit={"cover"}
           alt={"banner-program"}
           priority
           sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
-              33vw"
+              100vw"
         />
       </div>
-      <div className={"container"}>
-        <div className={"dFlx"}>
-          <div className={"cntWrap"}>
-            <h1 className={"mHd"}>FITNESS PROGRAM</h1>
+      <div className={styles.container}>
+        <div className={styles.dFlx}>
+          <div className={styles.cntWrap}>
+            <h1 className={styles.mHd}>FITNESS PROGRAM</h1>
           </div>
         </div>
       </div>

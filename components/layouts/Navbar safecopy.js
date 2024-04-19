@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Col } from "react-bootstrap";
-// import styles from "@/styles/Navbar.module.css";
-import styles from "@/styles/Navbar.module.scss";
+import styles from "@/styles/Navbar.module.css";
 import { useRouter } from "next/router";
 import { AiFillInstagram } from "react-icons/ai";
 import { BsWhatsapp } from "react-icons/bs";
@@ -57,10 +56,10 @@ const Navbar = ({ overHeight, state }) => {
           visible={visible}
           onHide={() => setVisible(false)}
           showCloseIcon={false}
-          // style={{
-          //   maxWidth: "468px",
-          // }}
-          className={styles.sidebarWrap}
+          style={{
+            width: "90vw",
+          }}
+          // header={false}
         >
           <div
             className={styles.side_menu}
@@ -306,61 +305,58 @@ const Navbar = ({ overHeight, state }) => {
           </div>
         </Sidebar>
         <div
-          className="container"
+          className="container-xxl"
           style={{
             direction:
               router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
           }}
         >
-          <div className={styles.mainNav}>
-            <div className={styles.lftSd}>
-              <div className={styles.lftItemWrap}>
-                <div className={styles.item}>
-                  <button
-                    style={{
-                      padding: 0,
-                      display: "flex",
-                    }}
-                    className={styles.menu_button}
-                    aria-label="menu"
-                    name="menu"
-                    onClick={() => {
-                      setVisible(true);
-                    }}
-                  >
-                    <RxHamburgerMenu />
-                  </button>
-                </div>
-                <div className={styles.item}>
-                  <button
-                    className={`${styles.menu_button} ${styles.image_lang} ${
-                      router?.query?.Lang?.toLowerCase() === "ar"
-                        ? styles.ar_lang
-                        : styles.en_Lang
-                    }`}
-                    aria-label="menu"
-                    name="menu"
-                    onClick={() => {
-                      setVisible(false);
+          <div className={`row ${styles.center}`}>
+            <Col xs={4} md={4} lg={4} className="d-block d-xl-none">
+              <div className="d-flex align-items-center justify-content-start">
+                <button
+                  style={{
+                    padding: 0,
+                    display: "flex",
+                  }}
+                  className={styles.menu_button}
+                  aria-label="menu"
+                  name="menu"
+                  onClick={() => {
+                    setVisible(true);
+                  }}
+                >
+                  <RxHamburgerMenu />
+                </button>
 
-                      if (router?.query?.Lang?.toLowerCase() === "ar") {
-                        i18n.changeLanguage("en");
-                        router.push(`/en`);
-                      } else {
-                        i18n.changeLanguage("ar");
-                        router.push(`/ar`);
-                      }
-                    }}
-                  >
-                    {t("menu.lang")}
-                  </button>
-                </div>
+                <button
+                  className={`${styles.menu_button} ${styles.image_lang} ${
+                    router?.query?.Lang?.toLowerCase() === "ar"
+                      ? styles.ar_lang
+                      : styles.en_Lang
+                  }`}
+                  aria-label="menu"
+                  name="menu"
+                  onClick={() => {
+                    setVisible(false);
+
+                    if (router?.query?.Lang?.toLowerCase() === "ar") {
+                      i18n.changeLanguage("en");
+                      router.push(`/en`);
+                    } else {
+                      i18n.changeLanguage("ar");
+                      router.push(`/ar`);
+                    }
+                  }}
+                >
+                  {t("menu.lang")}
+                </button>
               </div>
-            </div>
+            </Col>
 
-            <div className={styles.midSd}>
+            <Col xs={4} md={2} lg={2}>
               <div
-                className={styles.logo_wrap}
+                className={`${styles.image_container}`}
                 onClick={() => {
                   router.push(`/${router?.query?.Lang?.toLowerCase()}`);
                   overHeight(false);
@@ -369,18 +365,32 @@ const Navbar = ({ overHeight, state }) => {
                 }}
               >
                 <Image
-                  src={"/images/logo-light.svg"}
+                  src={"/images/logo.svg"}
                   layout={"fill"}
                   objectFit={"contain"}
                   alt={"logo"}
                   priority
+                  sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
                 />
               </div>
-            </div>
+            </Col>
+            <Col xs={4} md={4} lg={4} className="d-block d-xl-none">
+              <p
+                className={`${styles.tag} ${
+                  router?.query?.Lang?.toLowerCase() === "ar"
+                    ? styles.tag_ar
+                    : styles.tag_en
+                }`}
+              >
+                #تمرينك_توب
+              </p>
+            </Col>
 
             {/* <Col xs={3} md={2} lg={2} className="d-block d-md-none"></Col> */}
 
-            {/* <Col lg={6} className={`${styles.menu} `}>
+            <Col lg={6} className={`${styles.menu} `}>
               <div
                 className={`${styles.NavLinks} ${show && styles.menuActive}`}
               >
@@ -534,25 +544,23 @@ const Navbar = ({ overHeight, state }) => {
                   </div>
                 </div>
               </div>
-            </Col> */}
+            </Col>
 
-            <div className={styles.rgtSd}>
-              <div className={styles.rgtItemWrap}>
-                <div className={styles.item}>
+            <Col md={!Cookies.get("UT") ? 3 : 2} className="d-none d-xl-block">
+              <div className={styles.Login}>
                 {!Cookies.get("UT") && (
                   <Link
                     href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
                     onClick={() => {
                       setToggle(false);
                     }}
-                    className={`${styles.navBtn} hoveranim`}
+                    className={`${styles.log} ${styles.hoveranim}`}
                   >
                     <span>{t("menu.signup")}</span>
                   </Link>
                 )}
-                </div>
 
-                {/* <button
+                <button
                   className={styles.toogle_menu}
                   onClick={() => setToggle(!toggle)}
                 >
@@ -563,9 +571,53 @@ const Navbar = ({ overHeight, state }) => {
                     objectFit={"contain"}
                     alt={"user"}
                   />
-                </button> */}
+                </button>
+                {/* <button
+                className={`${styles.toogle_menu} ${styles.image_lang}`}
+                onClick={() => {
+                  if (router?.query?.Lang?.toLowerCase() === "ar") {
+                    i18n.changeLanguage("en");
+                    router.push(`/en`);
+                  } else {
+                    i18n.changeLanguage("ar");
+                    router.push(`/ar`);
+                  }
+                }}
+              >
+                <Image
+                  src={
+                    router?.query?.Lang?.toLowerCase() === "ar"
+                      ? "/images/en.png"
+                      : "/images/ar.png"
+                  }
+                  layout="fill"
+                  objectFit="contain"
+                  alt="Langauge"
+                />
+              </button> */}
+                <button
+                  className={`${styles.menu_button} ${styles.image_lang} ${
+                    router?.query?.Lang?.toLowerCase() === "ar"
+                      ? styles.ar_lang
+                      : styles.en_Lang
+                  }`}
+                  aria-label="menu"
+                  name="menu"
+                  onClick={() => {
+                    setVisible(false);
 
-                {/* {toggle && (
+                    if (router?.query?.Lang?.toLowerCase() === "ar") {
+                      i18n.changeLanguage("en");
+                      router.push(`/en`);
+                    } else {
+                      i18n.changeLanguage("ar");
+                      router.push(`/ar`);
+                    }
+                  }}
+                >
+                  {t("menu.lang")}
+                </button>
+                {toggle && (
                   <div
                     className={styles.drop_men}
                     style={{
@@ -645,15 +697,16 @@ const Navbar = ({ overHeight, state }) => {
                           Cookies.remove("UT");
                           dispatch(ClearToken());
                           dispatch(ClearSecret());
+                          // window.location.reload();
                         }}
                       >
                         {t("menu.logout")}
                       </Link>
                     )}
                   </div>
-                )} */}
+                )}
               </div>
-            </div>
+            </Col>
           </div>
         </div>
       </div>
