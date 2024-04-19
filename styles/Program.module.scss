@@ -1,0 +1,14 @@
+.program_section {
+  width: 100%;
+  height: auto;
+  padding: 60px 0 50px;
+  background-color: red;
+  position: relative;
+  z-index: 0;
+  @media (max-width: 991.98px) {
+    padding: 40px 0 30px;
+  }
+  @media (max-width: 575.98px) {
+    padding: 20px 0 20px;
+  }
+}
