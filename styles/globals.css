@@ -1116,17 +1116,9 @@ i {
   text-align: right;
 }
 
-.fitness_fottboll_line br {
-  display: none;
-}
-
 @media (max-width: 767.98px) {
   .mob_right {
     text-align: right;
-  }
-
-  .fitness_fottboll_line br {
-    display: block;
   }
 
   .fitness_fottboll_line span {

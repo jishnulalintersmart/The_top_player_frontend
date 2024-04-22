@@ -256,14 +256,13 @@ const Program = ({ styles, Lang }) => {
                             {t("programs.fitness_fottboll.line1_2")}
                           </span>
                           {t("programs.fitness_fottboll.line1_3")}
-
-                          <p></p>
+                          <br />
                           <span className="En_num">
                             {t("programs.fitness_fottboll.line1_1_1")}
                           </span>
                           {t("programs.fitness_fottboll.line1_1_2")}
 
-                          <p></p>
+                          <br />
                           <span className="En_num">
                             {t("programs.fitness_fottboll.line1_1_3")}
                           </span>
@@ -558,14 +557,12 @@ const Program = ({ styles, Lang }) => {
                             {t("programs.fitness_fottboll.line1_2")}
                           </span>
                           {t("programs.fitness_fottboll.line1_3")}
-
-                          <p></p>
+                          <br />
                           <span className="En_num">
                             {t("programs.fitness_fottboll.line1_1_1")}
                           </span>
                           {t("programs.fitness_fottboll.line1_1_2")}
-
-                          <p></p>
+                          <br />
                           <span className="En_num">
                             {t("programs.fitness_fottboll.line1_1_3")}
                           </span>
@@ -929,14 +926,12 @@ const Program = ({ styles, Lang }) => {
                             {t("programs.fitness_fottboll.line1_2")}
                           </span>
                           {t("programs.fitness_fottboll.line1_3")}
-
-                          <p></p>
+                          <br />
                           <span className="En_num">
                             {t("programs.fitness_fottboll.line1_1_1")}
                           </span>
                           {t("programs.fitness_fottboll.line1_1_2")}
-
-                          <p></p>
+                          <br />
                           <span className="En_num">
                             {t("programs.fitness_fottboll.line1_1_3")}
                           </span>

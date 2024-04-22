@@ -131,5 +131,23 @@
     @media (max-width: 575.98px) {
       padding: 20px 10px;
     }
+    ul{
+      list-style: none;
+      padding: 0;
+      li{
+        position: relative;
+        z-index: 0;
+        padding-left: 20px;
+        &::after{
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: url('../public/images/icon-list.svg');
+          width: 32px;
+          height: 16px;
+        }
+      }
+    }
   }
 }
