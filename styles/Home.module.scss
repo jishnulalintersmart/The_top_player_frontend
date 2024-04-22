@@ -1,11 +1,18 @@
 .banner_section {
   width: 100%;
+  min-height: 468px;
   height: 100vh;
   padding-top: var(--header-y);
   display: flex;
   align-items: center;
   position: relative;
   z-index: 0;
+  @media (max-width: 991.98px) {
+    min-height: 376px;
+  }
+  @media (max-width: 575.98px) {
+    min-height: 320px;
+  }
   &::after {
     content: "";
     width: 100%;
@@ -125,18 +132,18 @@
     flex-wrap: wrap;
     margin: 0 -20px;
     @media (max-width: 991.98px) {
-      margin: 0 -15px;
+      margin: 0 -10px;
     }
     @media (max-width: 575.98px) {
-      margin: 0 -10px;
+      margin: 0 -5px;
     }
     & > * {
       padding: 20px;
       @media (max-width: 991.98px) {
-        padding: 15px;
+        padding: 10px;
       }
       @media (max-width: 575.98px) {
-        padding: 10px;
+        padding: 5px;
       }
     }
     & > .lftSd {
@@ -203,18 +210,25 @@
   .itemFlx {
     display: flex;
     flex-wrap: wrap;
+    @media (max-width: 991.98px) {
+      margin: 0 -10px;
+    }
+    @media (max-width: 575.98px) {
+      margin: 0 -5px;
+    }
     & > .item {
       width: 100%;
       @media (max-width: 991.98px) {
-        width: calc(100% / 2);
+        width: calc(100% / 3);
+        padding: 0 10px;
+      }
+      @media (max-width: 575.98px) {
+        padding: 0 5px;
       }
       &:not(:last-of-type) {
         margin-bottom: 25px;
         @media (max-width: 991.98px) {
-          margin-bottom: 15px;
-        }
-        @media (max-width: 575.98px) {
-          margin-bottom: 10px;
+          margin-bottom: 0;
         }
       }
     }
@@ -226,6 +240,7 @@
     background-color: var(--white_color);
     border-radius: 14px;
     box-shadow: 0 0 20px 20px rgba(black, 0.02);
+    overflow: hidden;
     position: relative;
     z-index: 0;
     display: flex;
@@ -237,10 +252,15 @@
       --pad-xy: 20px;
     }
     @media (max-width: 991.98px) {
-      --pad-xy: 15px;
+      --pad-xy: 10px;
+      height: 100%;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
     }
     @media (max-width: 575.98px) {
-      --pad-xy: 10px;
+      --pad-xy: 5px;
     }
     &:hover {
       background-color: var(--main_color);
@@ -271,14 +291,17 @@
     }
     & > * {
       margin: 20px;
-      @media (max-width: 1199.98px) {
+      @media (max-width: 1551.98px) {
         margin: 15px;
       }
-      @media (max-width: 991.98px) {
+      @media (max-width: 1199.98px) {
         margin: 10px;
       }
+      @media (max-width: 991.98px) {
+        margin: 6px;
+      }
       @media (max-width: 575.98px) {
-        margin: 5px;
+        margin: 4px;
       }
     }
     .dElmt_1 {
@@ -301,26 +324,35 @@
       bottom: var(--pad-xy);
       margin: 0;
       opacity: 0.2;
+      @media (max-width: 991.98px) {
+        max-width: 100%;
+        height: 80px;
+        top: 0;
+        right: 0;
+      }
+      @media (max-width: 575.98px) {
+        height: 60px;
+      }
     }
     .iconWrap {
       width: 80px;
       height: 80px;
       position: relative;
       @media (max-width: 1551.98px) {
-        width: 50px;
-        height: 50px;
-      }
-      @media (max-width: 1199.98px) {
         width: 60px;
         height: 60px;
+      }
+      @media (max-width: 1199.98px) {
+        width: 55px;
+        height: 55px;
       }
       @media (max-width: 991.98px) {
         width: 40px;
         height: 40px;
       }
       @media (max-width: 575.98px) {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
       }
     }
     .cntWrap {
@@ -330,13 +362,16 @@
       align-items: center;
       gap: 20px;
       @media (max-width: 1199.98px) {
-        gap: 15px;
-      }
-      @media (max-width: 991.98px) {
         gap: 10px;
       }
+      @media (max-width: 991.98px) {
+        gap: 6px;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
       @media (max-width: 375.98px) {
-        gap: 5px;
+        gap: 4px;
       }
       .num {
         font-size: 64px;
@@ -356,9 +391,13 @@
         }
         @media (max-width: 991.98px) {
           font-size: 38px;
+          text-align: center;
         }
         @media (max-width: 575.98px) {
-          font-size: 28px;
+          font-size: 26px;
+        }
+        @media (max-width: 375.98px) {
+          font-size: 22px;
         }
       }
       .txt {
@@ -371,10 +410,14 @@
           font-size: 18px;
         }
         @media (max-width: 991.98px) {
-          font-size: 16px;
+          font-size: 14px;
+          text-align: center;
+        }
+        @media (max-width: 575.98px) {
+          font-size: 12px;
         }
         @media (max-width: 375.98px) {
-          font-size: 14px;
+          font-size: 10px;
         }
       }
     }
@@ -401,10 +444,10 @@
     gap: 10px;
     margin-bottom: 30px;
     @media (max-width: 991.98px) {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     @media (max-width: 575.98px) {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
     .tleWrap,
     .mTle {
@@ -417,23 +460,23 @@
     justify-content: center;
     margin: 0 -20px;
     @media (max-width: 1551.98px) {
-      margin: 0 -15px;
+      margin: 0 -10px;
     }
     @media (max-width: 575.98px) {
-      margin: 0 -10px;
+      margin: 0 -5px;
     }
     & > .item {
       width: calc(100% / 3);
       padding: 10px 20px;
       @media (max-width: 1551.98px) {
-        padding: 10px 15px;
+        padding: 10px;
       }
       @media (max-width: 991.98px) {
         width: calc(100% / 2);
       }
       @media (max-width: 575.98px) {
         width: 100%;
-        padding: 5px 10px;
+        padding: 5px;
       }
     }
   }
@@ -452,11 +495,11 @@
       height: 468px;
     }
     @media (max-width: 991.98px) {
-      --pad-xy: 25px;
+      --pad-xy: 20px;
       height: 376px;
     }
     @media (max-width: 575.98px) {
-      --pad-xy: 20px;
+      --pad-xy: 15px;
       height: 320px;
     }
     &::after {

@@ -623,9 +623,14 @@
   background-color: transparent;
   border: none;
   font-size: 30px;
-}
-.menu_button svg {
-  color: var(--white_color);
+  svg {
+    color: var(--white_color);
+  }
+  &:hover {
+    svg {
+      color: var(--main_color);
+    }
+  }
 }
 .side_menu {
   display: flex;

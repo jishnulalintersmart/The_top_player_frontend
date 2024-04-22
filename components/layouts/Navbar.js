@@ -35,6 +35,20 @@ const Navbar = ({ overHeight, state }) => {
       i18n.changeLanguage("en");
     }
   }, [i18n, router.query.Lang]);
+  // Sticky Menu Area
+  useEffect(() => {
+    window.addEventListener("scroll", isSticky);
+    return () => {
+      window.removeEventListener("scroll", isSticky);
+    };
+  });
+  const isSticky = (e) => {
+    const header = document.querySelector(".header");
+    const scrollTop = window.scrollY;
+    scrollTop >= 250
+      ? header.classList.add("is-sticky")
+      : header.classList.remove("is-sticky");
+  };
   return (
     <LangWrap
       Lang={
@@ -43,7 +57,7 @@ const Navbar = ({ overHeight, state }) => {
           : "en"
       }
     >
-      <div className={styles.navbar}>
+      <div className={`${styles.navbar} header`}>
         {toggle && (
           <div
             className={styles.Dialog_drop}
@@ -321,7 +335,7 @@ const Navbar = ({ overHeight, state }) => {
                       padding: 0,
                       display: "flex",
                     }}
-                    className={styles.menu_button}
+                    className={`${styles.menu_button} menu_btn`}
                     aria-label="menu"
                     name="menu"
                     onClick={() => {
@@ -337,7 +351,7 @@ const Navbar = ({ overHeight, state }) => {
                       router?.query?.Lang?.toLowerCase() === "ar"
                         ? styles.ar_lang
                         : styles.en_Lang
-                    }`}
+                    } lang_btn`}
                     aria-label="menu"
                     name="menu"
                     onClick={() => {
@@ -368,6 +382,7 @@ const Navbar = ({ overHeight, state }) => {
                   setToggle(false);
                 }}
               >
+                <span className="logoLight">
                 <Image
                   src={"/images/logo-light.svg"}
                   layout={"fill"}
@@ -375,6 +390,16 @@ const Navbar = ({ overHeight, state }) => {
                   alt={"logo"}
                   priority
                 />
+                </span>
+                <span className="logoDark">
+                <Image
+                  src={"/images/logo.svg"}
+                  layout={"fill"}
+                  objectFit={"contain"}
+                  alt={"logo"}
+                  priority
+                />
+                </span>
               </div>
             </div>
 
@@ -539,17 +564,17 @@ const Navbar = ({ overHeight, state }) => {
             <div className={styles.rgtSd}>
               <div className={styles.rgtItemWrap}>
                 <div className={styles.item}>
-                {!Cookies.get("UT") && (
-                  <Link
-                    href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
-                    onClick={() => {
-                      setToggle(false);
-                    }}
-                    className={`${styles.navBtn} hoveranim`}
-                  >
-                    <span>{t("menu.signup")}</span>
-                  </Link>
-                )}
+                  {!Cookies.get("UT") && (
+                    <Link
+                      href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
+                      onClick={() => {
+                        setToggle(false);
+                      }}
+                      className={`${styles.navBtn} hoveranim`}
+                    >
+                      <span>{t("menu.signup")}</span>
+                    </Link>
+                  )}
                 </div>
 
                 {/* <button

@@ -81,7 +81,7 @@ const Who = ({ styles, Lang }) => {
                     />
                   </span>
                   <span className={styles.cntWrap}>
-                    <h3 className={styles.num}>
+                    <h3 className={styles.num} style={{direction: "ltr"}}>
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"14"}
@@ -118,7 +118,7 @@ const Who = ({ styles, Lang }) => {
                     />
                   </span>
                   <span className={styles.cntWrap}>
-                    <h3 className={styles.num}>
+                    <h3 className={styles.num} style={{direction: "ltr"}}>
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"10"}
@@ -156,7 +156,7 @@ const Who = ({ styles, Lang }) => {
                     />
                   </span>
                   <span className={styles.cntWrap}>
-                    <h3 className={styles.num}>
+                    <h3 className={styles.num} style={{direction: "ltr"}}>
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"10"}

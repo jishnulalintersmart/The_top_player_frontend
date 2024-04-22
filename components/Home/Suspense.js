@@ -3,8 +3,8 @@ import Image from "next/legacy/image";
 import { useTranslation } from "react-i18next";
 import { ReactTyped } from "react-typed";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Autoplay } from 'swiper/modules';
-import 'swiper/css/effect-fade';
+import { EffectFade, Autoplay } from "swiper/modules";
+import "swiper/css/effect-fade";
 // import Typewriter from "typewriter-effect";
 // import useIntersectionObserver from "@react-hook/intersection-observer";
 // import ReactPlayer from "react-player";
@@ -44,6 +44,14 @@ const Suspense = ({ styles, Lang }) => {
   // };
   return (
     <div className={`${styles.Suspense} margin_top`}>
+      <div className={styles.dElmt_1}>
+        <Image
+          src={"/images/dElmt-countBg-1.svg"}
+          layout="fill"
+          alt="bg"
+          objectFit="contain"
+        />
+      </div>
       <div className={`container`}>
         <div className="row align-items-center justify-content-between ">
           <div className="col-12 col-lg-6">

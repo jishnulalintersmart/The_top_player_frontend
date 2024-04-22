@@ -407,6 +407,50 @@ a {
   width: fit-content;
 }
 
+.header.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+  background-color: var(--white_color);
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+}
+
+.header .logoLight,
+.header.is-sticky .logoDark {
+  display: block;
+}
+
+.header .logoDark,
+.header.is-sticky .logoLight {
+  display: none;
+}
+
+.header.is-sticky .menu_btn svg {
+  color: var(--black_color);
+}
+
+.header.is-sticky .lang_btn {
+  color: var(--black_color);
+}
+
 /*  Loading Screen */
 .splashScreen {
   width: 100%;
@@ -474,7 +518,7 @@ a {
 
 .accordion-item {
   border: 1px solid #eee;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border-radius: 22px !important;
   -webkit-border-r22ius: 16px !important;
   -moz-border-radius: 16px !important;
@@ -638,7 +682,7 @@ a {
 }
 
 .contact textarea {
-  height: 200px;
+  height: 160px;
 }
 
 @media (max-width: 1551.98px) {
@@ -848,7 +892,19 @@ a {
 }
 
 .swiper {
-  padding-bottom: 20px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 991.98px) {
+  .swiper {
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .swiper {
+    padding-bottom: 20px;
+  }
 }
 
 .HomeLayoutbullets .swiper-pagination-bullet {
@@ -914,6 +970,43 @@ a {
   .swiper-pagination-fraction {
     bottom: -5px;
   }
+}
+
+.newsSlide .swiper-button-prev,
+.newsSlide .swiper-button-next {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  color: var(--main_color);
+  background-color: rgba(255, 255, 255, 0.6);
+  outline: 5px solid rgba(255, 255, 255, 0.6);
+  border: 1 solid rgba(255, 255, 255, 0.6);
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 991.98px) {
+
+  .newsSlide .swiper-button-prev,
+  .newsSlide .swiper-button-next {
+    width: 25px;
+    height: 25px;
+  }
+
+}
+
+.newsSlide .swiper-button-prev:hover,
+.newsSlide .swiper-button-next:hover {
+  background-color: rgba(255, 255, 255, 1);
+  outline-color: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.newsSlide .swiper-button-prev:after,
+.newsSlide .swiper-button-next:after {
+  font-size: 25px;
 }
 
 .container_confirm {
