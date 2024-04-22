@@ -625,6 +625,12 @@ a {
   padding: 10px;
 }
 
+@media (max-width: 1551.98px) {
+  .p-inputtext {
+    height: 45px;
+  }
+}
+
 @media (max-width: 991.98px) {
   .p-inputtext {
     height: 40px;
@@ -633,6 +639,18 @@ a {
 
 .contact textarea {
   height: 200px;
+}
+
+@media (max-width: 1551.98px) {
+  .contact textarea {
+    height: 120px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .contact textarea {
+    height: 80px;
+  }
 }
 
 .contact label {

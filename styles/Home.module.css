@@ -268,13 +268,13 @@
 
 @media (max-width: 991.98px) {
   .program_section {
-    padding: 40px 0 15px;
+    padding: 40px 0 25px;
   }
 }
 
 @media (max-width: 575.98px) {
   .program_section {
-    padding: 20px 0 10px;
+    padding: 20px 0;
   }
 }
 
@@ -726,20 +726,20 @@
 .Suspense {
   width: 100%;
   height: auto;
-  padding: 60px 0;
+  padding: 20px 0;
   position: relative;
   z-index: 0;
 }
 
 @media (max-width: 991.98px) {
   .Suspense {
-    padding: 30px 0;
+    padding: 15px 0;
   }
 }
 
 @media (max-width: 575.98px) {
   .Suspense {
-    padding: 20px 0;
+    padding: 10px 0;
   }
 }
 
@@ -899,7 +899,7 @@
 .contact_section {
   width: 100%;
   height: auto;
-  padding: 60px 0 120px;
+  padding: 40px 0 80px;
   position: relative;
   z-index: 0;
 }

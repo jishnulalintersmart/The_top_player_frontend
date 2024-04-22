@@ -103,7 +103,7 @@ const Suspense = ({ styles, Lang }) => {
               <p>{t("suspens.intro4")}</p>
             </div>
           </div>
-          <div className="col-12 col-lg-5  col_video_mobile">
+          <div className="col-12 col-lg-6  col_video_mobile">
             <Swiper
               // effect={"fade"}
               loop={true}
