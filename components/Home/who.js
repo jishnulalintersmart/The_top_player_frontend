@@ -6,24 +6,27 @@ import { useTranslation } from "react-i18next";
 const Who = ({ styles, Lang }) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const targetRef = useRef(null);
 
-  const counters = document.querySelectorAll(".counter");
+  useEffect(() => {
+    const counters = document.querySelectorAll(".counter");
 
-  counters.forEach((counter) => {
-    counter.innerText = "0";
-    const updateCounter = (speed) => {
-      const target = +counter.getAttribute("data-target");
-      const current = +counter.innerText;
-      const increment = target / 100;
-      if (current < target) {
-        counter.innerText = `${Math.ceil(current + increment)}`;
-        setTimeout(() => updateCounter(speed), speed);
-      } else {
-        counter.innerText = target;
-      }
-    };
-    updateCounter(60); // Change the speed here (in milliseconds)
-  });
+    counters.forEach((counter) => {
+      counter.innerText = "0";
+      const updateCounter = (speed) => {
+        const target = +counter.getAttribute("data-target");
+        const current = +counter.innerText;
+        const increment = target / 100;
+        if (current < target) {
+          counter.innerText = `${Math.ceil(current + increment)}`;
+          setTimeout(() => updateCounter(speed), speed);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCounter(70);
+    });
+  }, []);
 
   return (
     <div className={styles.who_section} id={"who"}>
@@ -81,7 +84,7 @@ const Who = ({ styles, Lang }) => {
                     />
                   </span>
                   <span className={styles.cntWrap}>
-                    <h3 className={styles.num} style={{direction: "ltr"}}>
+                    <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"14"}
@@ -118,7 +121,7 @@ const Who = ({ styles, Lang }) => {
                     />
                   </span>
                   <span className={styles.cntWrap}>
-                    <h3 className={styles.num} style={{direction: "ltr"}}>
+                    <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"10"}
@@ -156,7 +159,7 @@ const Who = ({ styles, Lang }) => {
                     />
                   </span>
                   <span className={styles.cntWrap}>
-                    <h3 className={styles.num} style={{direction: "ltr"}}>
+                    <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"10"}

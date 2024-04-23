@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    // customKey: "http://localhost:7700",
-    customKey: "https://backend.thetopplayer.com",
+    customKey: "http://localhost:7700",
+    // customKey: "https://backend.thetopplayer.com",
     // webDomain: "https://interregionall.vercel.app",
     // webDomain: "https://www.thetopplayer.com",
     webDomain: "http://localhost:3000",
