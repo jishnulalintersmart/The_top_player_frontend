@@ -4,7 +4,8 @@ import styles from "/styles/Program.module.scss";
 const Program = ({ Lang }) => {
   return (
     <div className={styles.program_page}>
-      <InnerBanner />
+      <InnerBanner imageUrl={"/images/banner-program.jpg"} title={"FITNESS PROGRAM"} />
+
       <div className={styles.program_section}>
         <div className={"container"}>
           <div className={styles.program_bx}>
