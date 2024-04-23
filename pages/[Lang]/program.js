@@ -1,10 +1,14 @@
 import Image from "next/image";
 import InnerBanner from "/components/layouts/InnerBanner";
 import styles from "/styles/Program.module.scss";
+import Link from "next/link";
 const Program = ({ Lang }) => {
   return (
     <div className={styles.program_page}>
-      <InnerBanner imageUrl={"/images/banner-program.jpg"} title={"FITNESS PROGRAM"} />
+      <InnerBanner
+        imageUrl={"/images/banner-program.jpg"}
+        title={"FITNESS PROGRAM"}
+      />
 
       <div className={styles.program_section}>
         <div className={"container"}>
@@ -13,7 +17,7 @@ const Program = ({ Lang }) => {
               <div className={styles.cntWrap}>
                 <div className={"tleWrap"}>
                   <h2 className={"mTle"}>FITNESS PROGRAM</h2>
-                  <div className={"subTle"}>The program contains</div>
+                  <div className={"sTle"}>The program contains</div>
                 </div>
                 <div className={styles.list_bx}>
                   <ul>
@@ -28,7 +32,11 @@ const Program = ({ Lang }) => {
                   </ul>
                 </div>
                 <div className={styles.btnWrap}>
-                  <div className={"baseBtn hoveranim"}>
+                  <Link
+                    href={"#!"}
+                    className={"baseBtn hoveranim"}
+                    aria-label="view all button"
+                  >
                     <span>Join Now</span>
                     <span className={"icon"}>
                       <svg
@@ -51,7 +59,7 @@ const Program = ({ Lang }) => {
                         </defs>
                       </svg>
                     </span>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -67,14 +75,16 @@ const Program = ({ Lang }) => {
                   <Image
                     src={"/images/1.png"}
                     alt="fitness"
-                    layout="fill"
+                    width={380}
+                    height={520}
+                    layout="responsive"
                     objectFit="contain"
                   />
                 </div>
                 <div className={styles.info_price}>
-                  <span>80</span>
+                  <span> <sup>$</sup>80</span>
                   <span className={styles.old_price}>
-                    <span>105</span>
+                  <sup>$</sup><span>105</span>
                   </span>
                 </div>
               </div>
