@@ -195,13 +195,15 @@
 
 .form {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .form input {
   border: none;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1;
+  font-weight: 500;
   padding: 10px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -216,9 +218,9 @@
   flex: 1;
   background-color: transparent;
   border: none;
+  font-size: clamp(14px, 2vw, 16px);
   line-height: 1;
   font-weight: 500;
-  font-size: 18px;
   color: white;
   padding: 10px 15px;
   transition: all 0.3s;

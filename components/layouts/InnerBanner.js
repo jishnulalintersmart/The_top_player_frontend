@@ -1,11 +1,12 @@
 import Image from "next/legacy/image";
 import styles from "/styles/InnerBanner.module.scss";
-const InnerBanner = () => {
+
+const InnerBanner = ({ imageUrl, title }) => {
   return (
     <div className={styles.inner_banner}>
       <div className={styles.bgImg}>
         <Image
-          src={"/images/banner-program.jpg"}
+          src={imageUrl}
           layout={"fill"}
           objectFit={"cover"}
           alt={"banner-program"}
@@ -18,7 +19,7 @@ const InnerBanner = () => {
       <div className={styles.container}>
         <div className={styles.dFlx}>
           <div className={styles.cntWrap}>
-            <h1 className={styles.mHd}>FITNESS PROGRAM</h1>
+            <h1 className={styles.mHd}>{title}</h1>
           </div>
         </div>
       </div>
