@@ -90,7 +90,7 @@ const Who = ({ styles, Lang }) => {
                         data-target={"14"}
                       ></span>
                     </h3>
-                    <div className={styles.txt}>Years of Experience</div>
+                    <div className={styles.txt}>{t("who.experience")}</div>
                   </span>
                 </div>
               </div>
@@ -128,7 +128,7 @@ const Who = ({ styles, Lang }) => {
                       ></span>
                       K+
                     </h3>
-                    <div className={styles.txt}>Users</div>
+                    <div className={styles.txt}>{t("who.users")}</div>
                   </span>
                 </div>
               </div>
@@ -166,7 +166,7 @@ const Who = ({ styles, Lang }) => {
                       ></span>
                       +
                     </h3>
-                    <div className={styles.txt}>Courses</div>
+                    <div className={styles.txt}>{t("who.courses")}</div>
                   </span>
                 </div>
               </div>

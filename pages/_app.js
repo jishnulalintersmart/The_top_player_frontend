@@ -18,6 +18,7 @@ import "video-react/dist/video-react.css"; // import css
 import "@/styles/globals.css";
 import Loading from "@/components/layouts/Loading";
 import dynamic from "next/dynamic";
+import ErrorBoundary from "@/components/ErrorBoundary/eb";
 const Navbar = dynamic(() => import("@/components/layouts/Navbar"), {
   loading: () => <Loading />,
   ssr: false,
@@ -160,40 +161,42 @@ function App({ Component, pageProps, canonical, Path }) {
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
 
-      <Provider store={store}>
-        {loading && <Loading />}
+      {/* <ErrorBoundary> */}
+        <Provider store={store}>
+          {loading && <Loading />}
 
-        <div
-          className={`${bodyHeight && "overHeight"}`}
-          style={{
-            overflow: "hidden",
-            position: "relative",
-          }}
-          onContextMenu={(e) => e.preventDefault()}
-          onKeyDown={handleKeyPress}
-          onKeyUp={(e) => {
-            if (e.keyCode == 44) {
-              e.preventDefault();
-              alert("Not allow to take screen schoot");
-            } else {
-              e.preventDefault();
-            }
-          }}
-          onKeyUpCapture={(e) => e.preventDefault()}
-          onKeyPress={(e) => {
-            if (e.keyCode == 44) {
-              e.preventDefault();
-              alert("Not allow to take screen schoot");
-            }
-          }}
-          tabIndex={0}
-        >
-          <Navbar state={bodyHeight} overHeight={(e) => setBodyHeight(e)} />
-          <Component {...pageProps} />
-          <Footer />
-          <SocialMedia to={Path} />
-        </div>
-      </Provider>
+          <div
+            className={`${bodyHeight && "overHeight"}`}
+            style={{
+              overflow: "hidden",
+              position: "relative",
+            }}
+            onContextMenu={(e) => e.preventDefault()}
+            onKeyDown={handleKeyPress}
+            onKeyUp={(e) => {
+              if (e.keyCode == 44) {
+                e.preventDefault();
+                alert("Not allow to take screen schoot");
+              } else {
+                e.preventDefault();
+              }
+            }}
+            onKeyUpCapture={(e) => e.preventDefault()}
+            onKeyPress={(e) => {
+              if (e.keyCode == 44) {
+                e.preventDefault();
+                alert("Not allow to take screen schoot");
+              }
+            }}
+            tabIndex={0}
+          >
+            <Navbar state={bodyHeight} overHeight={(e) => setBodyHeight(e)} />
+            <Component {...pageProps} />
+            <Footer />
+            <SocialMedia to={Path} />
+          </div>
+        </Provider>
+      {/* </ErrorBoundary> */}
     </>
   );
 }

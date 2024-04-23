@@ -16,6 +16,7 @@ const Program = ({ styles, Lang }) => {
     (state) => state.CourcesSlice
   );
 
+  console.log(CoursecArr?.courses);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,7 +74,10 @@ const Program = ({ styles, Lang }) => {
                     flexDirection: Lang === "ar" ? "row-reverse" : "row",
                   }}
                 >
-                  <button className={styles.prev} id={"programSlide1_prev"}>
+                  <button
+                    className={styles.prev}
+                    id={`${(item?.categoryName).replace(/\s/g, "")}_prev`}
+                  >
                     <Image
                       src={"/images/icon-rgtArrow.svg"}
                       alt="rgtArrow"
@@ -81,7 +85,10 @@ const Program = ({ styles, Lang }) => {
                       objectFit="contain"
                     />
                   </button>
-                  <button className={styles.next} id={"programSlide1_next"}>
+                  <button
+                    className={styles.next}
+                    id={`${(item?.categoryName).replace(/\s/g, "")}_next`}
+                  >
                     <Image
                       src={"/images/icon-rgtArrow.svg"}
                       alt="rgtArrow"
@@ -103,8 +110,8 @@ const Program = ({ styles, Lang }) => {
                 modules={[Pagination, Navigation]}
                 pagination={pagination}
                 navigation={{
-                  nextEl: "#programSlide1_next",
-                  prevEl: "#programSlide1_prev",
+                  nextEl: `#${item?.categoryName.replace(/\s/g, "")}_next`,
+                  prevEl: `#${item?.categoryName.replace(/\s/g, "")}_prev`,
                 }}
                 initialSlide={1}
                 breakpoints={{

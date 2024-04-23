@@ -25,7 +25,16 @@
     },
     "who": {
         "title": "WHO ARE WE ?",
-        "about": "First website that is from the Middle East region to specialise in the football training, we offer comprehensive football training covering both the fitness and technique part."
+        "about": "First website that is from the Middle East region to specialise in the football training, we offer comprehensive football training covering both the fitness and technique part.",
+        "experience":"Years of Experience",
+        "users":"Users",
+        "courses":"Courses"
+    },
+    "news": {
+       "viewall":"VIEW ALL",
+       "heading":"TRENDING NEWS",
+       "readmore":"Read More",
+       "postdate":"Post date"
     },
     "programs": {
         "title": "Our Programs",

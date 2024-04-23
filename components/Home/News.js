@@ -17,6 +17,8 @@ const News = ({ styles, Lang }) => {
   const dispatch = useDispatch();
   const { allNews } = useSelector((state) => state.NewsSlice);
 
+  console.log(allNews);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +35,7 @@ const News = ({ styles, Lang }) => {
       <div className="container">
         <div className={styles.tleFlx}>
           <div className={`${styles.tleWrap} tleWrap`}>
-            <h2 className={"mTle"}>Trending News</h2>
+            <h2 className={"mTle"}>{t("news.heading")}</h2>
           </div>
           <div className={styles.rgtSd}>
             <div className={styles.btnWrap}>
@@ -42,7 +44,7 @@ const News = ({ styles, Lang }) => {
                 className="vAllBtn"
                 aria-label="view all button"
               >
-                <span>VIEW ALL</span>
+                <span>{t("news.viewall")}</span>
                 <span
                   className="icon"
                   style={{
@@ -464,14 +466,17 @@ const News = ({ styles, Lang }) => {
                       ? news?.description_en
                       : news?.description_ar}
                   </div>
-                  <div className={styles.info}> Post Date :{" "}
-                    {format(new Date(news?.createdAt), "dd MMMM yyyy")}</div>
+                  <div className={styles.info}>
+                    {" "}
+                    {t("news.postdate")} :{" "}
+                    {format(new Date(news?.createdAt), "dd MMMM yyyy")}
+                  </div>
                   <Link
                     href={"#!"}
                     className={`${styles.vAllBtn} vAllBtn`}
                     aria-label="view all button"
                   >
-                    <span>READ MORE</span>
+                    <span>{t("news.readmore")}</span>
                     <span
                       className="icon"
                       style={{
