@@ -29,8 +29,10 @@ const Navbar = ({ overHeight, state }) => {
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
   useEffect(() => {
     if (router?.query?.Lang?.toLowerCase() === "ar") {
+      console.log("Arabic");
       i18n.changeLanguage("ar");
     } else {
+      console.log("English");
       i18n.changeLanguage("en");
     }
   }, [i18n, router.query.Lang]);

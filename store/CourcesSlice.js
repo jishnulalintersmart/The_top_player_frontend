@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-
 export const getPayments = createAsyncThunk(
   "Cources/getPayments",
   async (id, thunkAPI) => {
@@ -76,7 +75,7 @@ export const getsubscribedCourse = createAsyncThunk(
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            "X-Access-Token": token? token: Cookies.get("UT"),
+            "X-Access-Token": token ? token : Cookies.get("UT"),
           },
         })
         .then((res) => res.data);
@@ -180,6 +179,27 @@ export const watchedVideo = createAsyncThunk(
     }
   }
 );
+export const allCourses = createAsyncThunk(
+  "Cources/allCourses",
+  async (data, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const result = await axios
+        .get(`${process.env.customKey}/courses`, data, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": Cookies.get("UT"),
+          },
+        })
+        .then((res) => res.data);
+      return result;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+
 const CourcesSlice = createSlice({
   name: "Cources",
   initialState: {
@@ -199,68 +219,151 @@ const CourcesSlice = createSlice({
       state.SubCourse = null;
     },
   },
-  extraReducers: {
-    [getCources.pending]: (state, action) => {
-      state.isCourcesLoading = true;
-      state.CoursecArr = null;
-    },
-    [getCources.fulfilled]: (state, action) => {
-      state.isCourcesLoading = false;
-      state.CoursecArr = action.payload;
-    },
-    [getCources.rejected]: (state, action) => {
-      state.isCourcesLoading = false;
-      state.CoursecArr = null;
-    },
-    // getSubCources
-    [getSubCources.pending]: (state, action) => {
-      state.isCourcesLoading = true;
-      state.SubCourse = null;
-    },
-    [getSubCources.fulfilled]: (state, action) => {
-      state.isCourcesLoading = false;
-      state.SubCourse = action.payload;
-    },
-    [getSubCources.rejected]: (state, action) => {
-      state.isCourcesLoading = false;
-      state.SubCourse = null;
-    },
-    [getsubscribedCourse.pending]: (state, action) => {
-      state.isCourcesLoading = true;
-    },
-    [getsubscribedCourse.fulfilled]: (state, action) => {
-      state.isCourcesLoading = false;
-      state.subscribedCourseArr = action.payload;
-    },
-    [getsubscribedCourse.rejected]: (state, action) => {},
-    // videos_in_days
-
-    [videos_in_days.pending]: (state, action) => {
-      state.allVideoLoading = true;
-      state.videos = null;
-    },
-    [videos_in_days.fulfilled]: (state, action) => {
-      state.allVideoLoading = false;
-      state.videos = action.payload;
-    },
-    [videos_in_days.rejected]: (state, action) => {
-      state.videos = null;
-      state.allVideoLoading = false;
-    },
-
-    // getVideo
-    [getVideo.pending]: (state, action) => {
-      state.isCourcesLoading = true;
-      state.Curreent_video = null;
-    },
-    [getVideo.fulfilled]: (state, action) => {
-      state.isCourcesLoading = false;
-      state.Curreent_video = action.payload;
-    },
-    [getVideo.rejected]: (state, action) => {
-      state.Curreent_video = null;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCources.pending, (state, action) => {
+        console.log("Pending");
+        state.isCourcesLoading = true;
+        state.CoursecArr = null;
+      })
+      .addCase(getCources.fulfilled, (state, action) => {
+        console.log("fullfiiled");
+        state.isCourcesLoading = false;
+        state.CoursecArr = action.payload;
+      })
+      .addCase(getCources.rejected, (state, action) => {
+        console.log("rejected");
+        state.isCourcesLoading = false;
+        state.CoursecArr = null;
+      })
+      .addCase(allCourses.pending, (state, action) => {
+        console.log("Pending");
+        state.isCourcesLoading = true;
+        state.CoursecArr = null;
+      })
+      .addCase(allCourses.fulfilled, (state, action) => {
+        console.log("Fulfilled");
+        state.isCourcesLoading = false;
+        state.CoursecArr = action.payload;
+      })
+      .addCase(allCourses.rejected, (state, action) => {
+        console.log("Rejected");
+        state.isCourcesLoading = false;
+        state.CoursecArr = null;
+      })
+      .addCase(getSubCources.pending, (state, action) => {
+        state.isCourcesLoading = true;
+        state.SubCourse = null;
+      })
+      .addCase(getSubCources.fulfilled, (state, action) => {
+        state.isCourcesLoading = false;
+        state.SubCourse = action.payload;
+      })
+      .addCase(getSubCources.rejected, (state, action) => {
+        state.isCourcesLoading = false;
+        state.SubCourse = null;
+      })
+      .addCase(getsubscribedCourse.pending, (state, action) => {
+        state.isCourcesLoading = true;
+      })
+      .addCase(getsubscribedCourse.fulfilled, (state, action) => {
+        state.isCourcesLoading = false;
+        state.subscribedCourseArr = action.payload;
+      })
+      .addCase(getsubscribedCourse.rejected, (state, action) => {
+        // You can handle rejection logic here if needed
+      })
+      .addCase(videos_in_days.pending, (state, action) => {
+        state.allVideoLoading = true;
+        state.videos = null;
+      })
+      .addCase(videos_in_days.fulfilled, (state, action) => {
+        state.allVideoLoading = false;
+        state.videos = action.payload;
+      })
+      .addCase(videos_in_days.rejected, (state, action) => {
+        state.videos = null;
+        state.allVideoLoading = false;
+      })
+      .addCase(getVideo.pending, (state, action) => {
+        state.isCourcesLoading = true;
+        state.Curreent_video = null;
+      })
+      .addCase(getVideo.fulfilled, (state, action) => {
+        state.isCourcesLoading = false;
+        state.Curreent_video = action.payload;
+      })
+      .addCase(getVideo.rejected, (state, action) => {
+        state.Curreent_video = null;
+      });
   },
+  //   //allCourses
+
+  //   [allCourses.pending]: (state, action) => {
+  //     console.log("Pending");
+  //     state.isCourcesLoading = true;
+  //     state.CoursecArr = null;
+  //   },
+
+  //   [allCourses.fulfilled]: (state, action) => {
+  //     console.log("fullfiiled");
+  //     state.isCourcesLoading = false;
+  //     state.CoursecArr = action.payload;
+  //   },
+  //   [allCourses.rejected]: (state, action) => {
+  //     console.log("rejected");
+  //     state.isCourcesLoading = false;
+  //     state.CoursecArr = null;
+  //   },
+  //   // getSubCources
+  //   [getSubCources.pending]: (state, action) => {
+  //     state.isCourcesLoading = true;
+  //     state.SubCourse = null;
+  //   },
+  //   [getSubCources.fulfilled]: (state, action) => {
+  //     state.isCourcesLoading = false;
+  //     state.SubCourse = action.payload;
+  //   },
+  //   [getSubCources.rejected]: (state, action) => {
+  //     state.isCourcesLoading = false;
+  //     state.SubCourse = null;
+  //   },
+  //   [getsubscribedCourse.pending]: (state, action) => {
+  //     state.isCourcesLoading = true;
+  //   },
+  //   [getsubscribedCourse.fulfilled]: (state, action) => {
+  //     state.isCourcesLoading = false;
+  //     state.subscribedCourseArr = action.payload;
+  //   },
+  //   [getsubscribedCourse.rejected]: (state, action) => {},
+  //   // videos_in_days
+
+  //   [videos_in_days.pending]: (state, action) => {
+  //     state.allVideoLoading = true;
+  //     state.videos = null;
+  //   },
+  //   [videos_in_days.fulfilled]: (state, action) => {
+  //     state.allVideoLoading = false;
+  //     state.videos = action.payload;
+  //   },
+  //   [videos_in_days.rejected]: (state, action) => {
+  //     state.videos = null;
+  //     state.allVideoLoading = false;
+  //   },
+
+  //   // getVideo
+  //   [getVideo.pending]: (state, action) => {
+  //     state.isCourcesLoading = true;
+  //     state.Curreent_video = null;
+  //   },
+  //   [getVideo.fulfilled]: (state, action) => {
+  //     state.isCourcesLoading = false;
+  //     state.Curreent_video = action.payload;
+  //   },
+  //   [getVideo.rejected]: (state, action) => {
+  //     state.Curreent_video = null;
+  //   },
+  // },
 });
 export const { ClearToken } = CourcesSlice.actions;
 
