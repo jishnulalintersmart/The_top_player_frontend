@@ -383,27 +383,25 @@ const Navbar = ({ overHeight, state }) => {
                 }}
               >
                 <span className="logoLight">
-                <Image
-                  src={"/images/logo-light.svg"}
-                  layout={"fill"}
-                  objectFit={"contain"}
-                  alt={"logo"}
-                  priority
-                />
+                  <Image
+                    src={"/images/logo-light.svg"}
+                    layout={"fill"}
+                    objectFit={"contain"}
+                    alt={"logo"}
+                    priority
+                  />
                 </span>
                 <span className="logoDark">
-                <Image
-                  src={"/images/logo.svg"}
-                  layout={"fill"}
-                  objectFit={"contain"}
-                  alt={"logo"}
-                  priority
-                />
+                  <Image
+                    src={"/images/logo.svg"}
+                    layout={"fill"}
+                    objectFit={"contain"}
+                    alt={"logo"}
+                    priority
+                  />
                 </span>
               </div>
             </div>
-
-            {/* <Col xs={3} md={2} lg={2} className="d-block d-md-none"></Col> */}
 
             {/* <Col lg={6} className={`${styles.menu} `}>
               <div
@@ -576,107 +574,112 @@ const Navbar = ({ overHeight, state }) => {
                     </Link>
                   )}
                 </div>
-
-                {/* <button
-                  className={styles.toogle_menu}
-                  onClick={() => setToggle(!toggle)}
-                >
-                  <IoPersonCircleOutline />
-                  <Image
-                    src={"/images/icon-user.svg"}
-                    layout={"fill"}
-                    objectFit={"contain"}
-                    alt={"user"}
-                  />
-                </button> */}
-
-                {/* {toggle && (
-                  <div
-                    className={styles.drop_men}
-                    style={{
-                      right:
-                        router?.query?.Lang?.toLowerCase() === "ar"
-                          ? "unset"
-                          : "50px",
-                      left:
-                        router?.query?.Lang?.toLowerCase() === "ar"
-                          ? "0"
-                          : "unset",
-                    }}
-                  >
-                    {!Cookies.get("UT") && (
-                      <Link
-                        href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
-                        onClick={() => setToggle(false)}
+                <div className={styles.item}>
+                  <div className={styles.userWrap}>
+                    {Cookies.get("UT") && (
+                      <button
+                        className={styles.toogle_menu}
+                        onClick={() => setToggle(!toggle)}
                       >
-                        {t("menu.login")}
-                      </Link>
-                    )}
-                    {!Cookies.get("UT") && <hr />}
-                    {!Cookies.get("UT") && (
-                      <Link
-                        href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
-                        onClick={() => setToggle(false)}
-                      >
-                        {t("menu.signup")}
-                      </Link>
+                        <IoPersonCircleOutline />
+                        <Image
+                          src={"/images/icon-user.svg"}
+                          layout={"fill"}
+                          objectFit={"contain"}
+                          alt={"user"}
+                        />
+                      </button>
                     )}
 
-                    {Cookies.get("UT") && (
-                      <Link
-                        href={`/${router?.query?.Lang?.toLowerCase()}/user/programs`}
-                        onClick={() => setToggle(false)}
-                      >
-                        {t("menu.my_programs")}
-                      </Link>
-                    )}
-                    {Cookies.get("UT") &&
-                      subscribedCourseArr &&
-                      subscribedCourseArr.length > 0 && <hr />}
-                    {Cookies.get("UT") &&
-                      subscribedCourseArr &&
-                      subscribedCourseArr.length > 0 && (
-                        <Link
-                          href={`/${router?.query?.Lang?.toLowerCase()}/user/payment-program`}
-                          onClick={() => setToggle(false)}
-                        >
-                          {t("menu.payments")}
-                        </Link>
-                      )}
-                    {Cookies.get("UT") && <hr />}
-                    {Cookies.get("UT") && (
-                      <Link
-                        href={`/${router?.query?.Lang?.toLowerCase()}/user/profile`}
-                        onClick={() => setToggle(false)}
-                      >
-                        {t("menu.edit_profile")}
-                      </Link>
-                    )}
-                    {Cookies.get("UT") && <hr />}
-                    {Cookies.get("UT") && (
-                      <Link
-                        href={`/${router?.query?.Lang?.toLowerCase()}/user/update-password`}
-                        onClick={() => setToggle(false)}
-                      >
-                        {t("menu.update_pass")}
-                      </Link>
-                    )}
-                    {Cookies.get("UT") && <hr />}
-                    {Cookies.get("UT") && (
-                      <Link
-                        href={`/${router?.query?.Lang?.toLowerCase()}`}
-                        onClick={() => {
-                          setToggle(false);
-                          Cookies.remove("UT");
-                          dispatch(ClearToken());
-                          dispatch(ClearSecret());
+                    {toggle && (
+                      <div
+                        className={styles.drop_men}
+                        style={{
+                          right:
+                            router?.query?.Lang?.toLowerCase() === "ar"
+                              ? "unset"
+                              : "0",
+                          left:
+                            router?.query?.Lang?.toLowerCase() === "ar"
+                              ? "0"
+                              : "unset",
                         }}
                       >
-                        {t("menu.logout")}
-                      </Link>
+                        {!Cookies.get("UT") && (
+                          <Link
+                            href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
+                            onClick={() => setToggle(false)}
+                          >
+                            {t("menu.login")}
+                          </Link>
+                        )}
+                        {!Cookies.get("UT") && <hr />}
+                        {!Cookies.get("UT") && (
+                          <Link
+                            href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
+                            onClick={() => setToggle(false)}
+                          >
+                            {t("menu.signup")}
+                          </Link>
+                        )}
+
+                        {Cookies.get("UT") && (
+                          <Link
+                            href={`/${router?.query?.Lang?.toLowerCase()}/user/programs`}
+                            onClick={() => setToggle(false)}
+                          >
+                            {t("menu.my_programs")}
+                          </Link>
+                        )}
+                        {Cookies.get("UT") &&
+                          subscribedCourseArr &&
+                          subscribedCourseArr.length > 0 && <hr />}
+                        {Cookies.get("UT") &&
+                          subscribedCourseArr &&
+                          subscribedCourseArr.length > 0 && (
+                            <Link
+                              href={`/${router?.query?.Lang?.toLowerCase()}/user/payment-program`}
+                              onClick={() => setToggle(false)}
+                            >
+                              {t("menu.payments")}
+                            </Link>
+                          )}
+                        {Cookies.get("UT") && <hr />}
+                        {Cookies.get("UT") && (
+                          <Link
+                            href={`/${router?.query?.Lang?.toLowerCase()}/user/profile`}
+                            onClick={() => setToggle(false)}
+                          >
+                            {t("menu.edit_profile")}
+                          </Link>
+                        )}
+                        {Cookies.get("UT") && <hr />}
+                        {Cookies.get("UT") && (
+                          <Link
+                            href={`/${router?.query?.Lang?.toLowerCase()}/user/update-password`}
+                            onClick={() => setToggle(false)}
+                          >
+                            {t("menu.update_pass")}
+                          </Link>
+                        )}
+                        {Cookies.get("UT") && <hr />}
+                        {Cookies.get("UT") && (
+                          <Link
+                            href={`/${router?.query?.Lang?.toLowerCase()}`}
+                            onClick={() => {
+                              setToggle(false);
+                              Cookies.remove("UT");
+                              dispatch(ClearToken());
+                              dispatch(ClearSecret());
+                            }}
+                          >
+                            {t("menu.logout")}
+                          </Link>
+                        )}
+                      </div>
                     )}
                   </div>
-                )} */}
+                </div>
               </div>
             </div>
           </div>
