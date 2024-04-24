@@ -188,7 +188,7 @@ function App({ Component, pageProps, canonical, Path }) {
           }}
           tabIndex={0}
         >
-          <Navbar state={bodyHeight} overHeight={(e) => setBodyHeight(e)} />
+          <Navbar state={bodyHeight} className={"dssdf"} overHeight={(e) => setBodyHeight(e)} />
           <Component {...pageProps} />
           <Footer />
           <SocialMedia to={Path} />
