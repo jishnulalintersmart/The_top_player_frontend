@@ -19,6 +19,8 @@ const News = ({ styles, Lang }) => {
   const dispatch = useDispatch();
   const { allNews } = useSelector((state) => state.NewsSlice);
 
+  console.log(allNews);
+
   useEffect(() => {
     dispatch(getAllNews(1));
   }, [dispatch]);
@@ -70,18 +72,18 @@ const News = ({ styles, Lang }) => {
         </div>
 
         <Swiper
-          // effect={"fade"}
+          dir= {Lang === "ar" ? "rtl" : "ltr"}
+          // dir="ltr"
           loop={false}
           spaceBetween={10}
           slidesPerView={1}
           pagination={false}
           navigation={true}
           initialSlide={1}
-          autoplay={false}
-          // autoplay={{
-          //   delay: 2500,
-          //   disableOnInteraction: false,
-          // }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           modules={[Autoplay, Navigation]}
           breakpoints={{
             320: {

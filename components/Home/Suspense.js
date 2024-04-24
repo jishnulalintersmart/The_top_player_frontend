@@ -126,8 +126,9 @@ const Suspense = ({ styles, Lang }) => {
           </div>
           <div className="col-12 col-lg-6  col_video_mobile">
             <Swiper
-              // effect={"fade"}
-              loop={true}
+              // effect={"fade"}              
+              dir={Lang === "ar" ? "rtl" : "ltr"}
+              loop={false}
               spaceBetween={0}
               slidesPerView={1}
               pagination={false}
@@ -139,6 +140,8 @@ const Suspense = ({ styles, Lang }) => {
               }}
               modules={[EffectFade, Autoplay]}
             >
+              
+              {console.log(Lang === "ar" ? "rtl" : "ltr")}
               {banners?.map((banner) => (
                 <SwiperSlide>
                   <div
@@ -185,10 +188,7 @@ const Suspense = ({ styles, Lang }) => {
                 src="https://backend.thetopplayer.com/videos/Suspense.mp4"
                 type="video/mp4"
               />
-            </video>
-
-            }
-             
+            </video>}             
             </div> */}
           </div>
         </div>

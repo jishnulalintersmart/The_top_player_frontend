@@ -68,7 +68,7 @@ const Program = ({ styles, Lang }) => {
                 >
                   <button
                     className={styles.prev}
-                    id={`${(item?.categoryName).replace(/\s/g, "")}_prev`}
+                    id={`${item?.categoryName?.replace(/\s/g, "")}_prev`}
                   >
                     <Image
                       src={"/images/icon-rgtArrow.svg"}
@@ -79,7 +79,7 @@ const Program = ({ styles, Lang }) => {
                   </button>
                   <button
                     className={styles.next}
-                    id={`${(item?.categoryName).replace(/\s/g, "")}_next`}
+                    id={`${item?.categoryName?.replace(/\s/g, "")}_next`}
                   >
                     <Image
                       src={"/images/icon-rgtArrow.svg"}
@@ -97,13 +97,15 @@ const Program = ({ styles, Lang }) => {
               } ${Lang === "ar" ? "Arabic_web_program" : ""}`}
             >
               <Swiper
+                dir={Lang === "ar" ? "rtl" : "ltr"}
+                loop={false}
                 spaceBetween={10}
                 slidesPerView={1}
                 modules={[Pagination, Navigation]}
                 pagination={pagination}
                 navigation={{
-                  nextEl: `#${item?.categoryName.replace(/\s/g, "")}_next`,
-                  prevEl: `#${item?.categoryName.replace(/\s/g, "")}_prev`,
+                  nextEl: `#${item?.categoryName?.replace(/\s/g, "")}_next`,
+                  prevEl: `#${item?.categoryName?.replace(/\s/g, "")}_prev`,
                 }}
                 initialSlide={1}
                 breakpoints={{

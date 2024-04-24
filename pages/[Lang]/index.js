@@ -66,7 +66,7 @@ export default function Home({ Lang }) {
       <main>
         <LangWrap Lang={Lang.toLowerCase()}>
           <LangChange Lang={Lang.toLowerCase()}>
-            <Header styles={stylesSass} Lang={Lang.toLowerCase()} />
+            <Header styles={stylesSass} className={"sdkjbhd"} Lang={Lang.toLowerCase()} />
             <Who styles={stylesSass} Lang={Lang.toLowerCase()} />
             <News styles={stylesSass} Lang={Lang.toLowerCase()} />
             <Program styles={styles} Lang={Lang.toLowerCase()} />
