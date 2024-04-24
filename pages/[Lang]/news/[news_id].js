@@ -17,6 +17,7 @@ const NewsDetail = () => {
   const { news_id, Lang } = router.query;
   const { news } = useSelector((state) => state.NewsSlice.singleNews);
 
+  console.log(news?.images);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,7 +48,6 @@ const NewsDetail = () => {
               {news?.createdAt &&
                 format(new Date(news?.createdAt), "dd MMMM yyyy")}
             </div>
-
             <Swiper
               spaceBetween={10}
               loop={true}
@@ -81,42 +81,20 @@ const NewsDetail = () => {
                 },
               }}
             >
-              <SwiperSlide>
-                <Image
-                  src={"/images/news-3.jpg"}
-                  alt="news"
-                  width={0}
-                  height={100}
-                  style={{
-                    objectFit: "cover",
-                  }}
-                  layout="responsive"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Image
-                  src={"/images/news-2.jpg"}
-                  alt="news"
-                  width={0}
-                  height={100}
-                  layout="responsive"
-                  style={{
-                    objectFit: "cover",
-                  }}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Image
-                  src={"/images/news-1.jpg"}
-                  alt="news"
-                  width={0}
-                  height={100}
-                  style={{
-                    objectFit: "cover",
-                  }}
-                  layout="responsive"
-                />
-              </SwiperSlide>
+              {news?.images?.map((item) => (
+                <SwiperSlide>
+                  <Image
+                    src={`${process.env.customKey}/newsImages/${item?.imageUrl}`}
+                    alt="news"
+                    width={0}
+                    height={100}
+                    style={{
+                      objectFit: "cover",
+                    }}
+                    layout="responsive"
+                  />
+                </SwiperSlide>
+              ))}
             </Swiper>
 
             <p>{Lang === "ar" ? news?.description_ar : news?.description_en}</p>

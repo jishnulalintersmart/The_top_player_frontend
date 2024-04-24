@@ -23,14 +23,14 @@ const FitnessFottball = ({ Lang }) => {
                   <ul>
                     <li>
                       <p>
-                        {t("programs.fitness_fottboll.line1_1")}{" "}
+                        {t("programs.fitness.line1_1")}{" "}
                         <span>{t("programs.fitness_fottboll.line1_2")}</span>{" "}
                         {t("programs.fitness_fottboll.line1_3")}
                       </p>
                     </li>
                     <li>
                       <p>
-                        <span>{t("programs.fitness_fottboll.line2_1")}</span>{" "}
+                        <span>{t("programs.fitness.line2_1")}</span>{" "}
                         {t("programs.fitness_fottboll.line2_2")}{" "}
                         <span>{t("programs.fitness_fottboll.line2_3")}</span>{" "}
                         {t("programs.fitness_fottboll.line2_4")}

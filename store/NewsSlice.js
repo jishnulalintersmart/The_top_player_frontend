@@ -15,12 +15,12 @@ export const getAllNews = createAsyncThunk(
           },
         })
         .then((res) => res.data);
-      return result;
-    } catch (err) {
-      console.log(err);
-      return rejectWithValue(err);
+        return result;
+      } catch (err) {
+        console.log(err);
+        return rejectWithValue(err);
+      }
     }
-  }
 );
 
 export const getNewsCount = createAsyncThunk(
@@ -55,8 +55,9 @@ export const getNewsById = createAsyncThunk(
           },
         })
         .then((res) => res.data);
-      return result;
-    } catch (err) {
+        console.log(result);
+        return result;
+      } catch (err) {
       console.log(err);
       return rejectWithValue(err);
     }

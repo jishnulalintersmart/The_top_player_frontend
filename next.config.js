@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
+    // customKey: "https://crm.intersmarthosting.in/topplayer",
     customKey: "http://localhost:7700",
     // customKey: "https://backend.thetopplayer.com",
     // webDomain: "https://interregionall.vercel.app",
@@ -17,11 +18,16 @@ const nextConfig = {
       1792, 1920, 2048, 2176, 2304, 2432, 2560, 2688, 2944,
     ],
     imageSizes: [32, 64, 96, 112, 128, 144, 160, 176, 192, 240],
-    formats: ["image/webp"],
+    // formats: ["image/webp"],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
+        protocol: "https", // Set the protocol as a string
+        hostname: "crm.intersmarthosting.in", // Set the hostname as a string
+        pathname: "**",
+      },
+      {
+        protocol: "http", // Set the protocol as a string
+        hostname: "localhost", // Set the hostname as a string
         pathname: "**",
       },
     ],

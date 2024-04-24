@@ -27,7 +27,14 @@ const NewsBox = ({ imageUrl, Lang, news }) => {
         <div className={styles.tle}>
           {Lang === "ar" ? news?.title_ar : news?.title_en}{" "}
         </div>
-        <div className={styles.txt}>
+        <div
+          className={styles.txt}
+          style={{
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+          }}
+        >
           {" "}
           {Lang === "ar" ? news?.description_ar : news?.description_en}{" "}
         </div>
