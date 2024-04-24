@@ -19,15 +19,7 @@ const Program = ({ styles, Lang }) => {
   console.log(CoursecArr?.courses);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch(allCourses()).unwrap();
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-      }
-    };
-
-    fetchData();
+    dispatch(allCourses());
   }, [dispatch]);
 
   const pagination = {

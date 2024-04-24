@@ -43,6 +43,9 @@ const FAQs = dynamic(() => import("@/components/Home/FAQs"), {
   ssr: false,
 });
 export default function Home({ Lang }) {
+
+  console.log(Lang);
+
   return (
     <>
       <Head>

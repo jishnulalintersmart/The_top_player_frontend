@@ -34,7 +34,9 @@
        "viewall":"VIEW ALL",
        "heading":"TRENDING NEWS",
        "readmore":"Read More",
-       "postdate":"Post date"
+       "postdate":"Post date",
+       "loadmore":"Load More",
+       "finished":"Thats All"
     },
     "programs": {
         "title": "Our Programs",

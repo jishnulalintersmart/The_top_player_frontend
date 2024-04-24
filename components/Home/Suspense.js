@@ -5,6 +5,9 @@ import { ReactTyped } from "react-typed";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css/effect-fade";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllBanners } from "@/store/BannerSlice";
 // import Typewriter from "typewriter-effect";
 // import useIntersectionObserver from "@react-hook/intersection-observer";
 // import ReactPlayer from "react-player";
@@ -23,6 +26,8 @@ import "swiper/css/effect-fade";
 
 const Suspense = ({ styles, Lang }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
   // const containerRef = useRef();
   // const videoEl = useRef(null);
   // const lockRef = useRef(false);
@@ -42,6 +47,14 @@ const Suspense = ({ styles, Lang }) => {
   //     // setIsPlaying(false);
   //   }
   // };
+
+  const { banners } = useSelector((state) => state.BannerSlice.banners);
+  console.log(banners);
+
+  useEffect(() => {
+    dispatch(getAllBanners());
+  }, [dispatch]);
+
   return (
     <div className={`${styles.Suspense} margin_top`}>
       <div className={styles.dElmt_1}>
@@ -126,54 +139,24 @@ const Suspense = ({ styles, Lang }) => {
               }}
               modules={[EffectFade, Autoplay]}
             >
-              <SwiperSlide>
-                <div
-                  className={`${
-                    styles.Video_Suspense
-                  } Video_Suspense video-container ${
-                    Lang === "ar" ? styles.susAr : styles.susEn
-                  }`}
-                >
-                  <Image
-                    src={"/images/topPlayer-1.png"}
-                    layout="fill"
-                    alt="topPlayer"
-                    objectFit="contain"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  className={`${
-                    styles.Video_Suspense
-                  } Video_Suspense video-container ${
-                    Lang === "ar" ? styles.susAr : styles.susEn
-                  }`}
-                >
-                  <Image
-                    src={"/images/topPlayer-1.png"}
-                    layout="fill"
-                    alt="topPlayer"
-                    objectFit="contain"
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  className={`${
-                    styles.Video_Suspense
-                  } Video_Suspense video-container ${
-                    Lang === "ar" ? styles.susAr : styles.susEn
-                  }`}
-                >
-                  <Image
-                    src={"/images/topPlayer-1.png"}
-                    layout="fill"
-                    alt="topPlayer"
-                    objectFit="contain"
-                  />
-                </div>
-              </SwiperSlide>
+              {banners?.map((banner) => (
+                <SwiperSlide>
+                  <div
+                    className={`${
+                      styles.Video_Suspense
+                    } Video_Suspense video-container ${
+                      Lang === "ar" ? styles.susAr : styles.susEn
+                    }`}
+                  >
+                    <Image
+                      src={`${process.env.customKey}/bannerImages/${banner?.image}`}
+                      layout="fill"
+                      alt="topPlayer"
+                      objectFit="contain"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
             {/* <Player fluid playsInline={true} autoPlay muted>
                 <source

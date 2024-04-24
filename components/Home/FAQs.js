@@ -10,18 +10,8 @@ const FAQs = ({ styles, Lang }) => {
   const dispatch = useDispatch();
   const { faqs } = useSelector((state) => state?.FaqSlice?.faqs);
 
-  
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch(getAllFaq()).unwrap();
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-      }
-    };
-
-    fetchData();
+    dispatch(getAllFaq());
   }, [dispatch]);
 
   return (

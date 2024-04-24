@@ -1,8 +1,10 @@
 import Image from "next/legacy/image";
 import styles from "/styles/NewsBox.module.scss";
 import Link from "next/link";
+import { t } from "i18next";
+import { format } from "date-fns";
 
-const NewsBox = ({ imageUrl, title, info, postDate, Lang }) => {
+const NewsBox = ({ imageUrl, Lang, news }) => {
   return (
     <div className={styles.newsBx}>
       <div className={styles.dElmt}>
@@ -14,18 +16,32 @@ const NewsBox = ({ imageUrl, title, info, postDate, Lang }) => {
         />
       </div>
       <div className={styles.imgWrap}>
-        <Image src={imageUrl} alt="news" layout="fill" objectFit="cover" />
+        <Image
+          src={"/images/news-2.jpg"}
+          alt="news"
+          layout="fill"
+          objectFit="cover"
+        />
       </div>
       <div className={styles.cntWrap}>
-        <div className={styles.tle}>{title} </div>
-        <div className={styles.txt}>{info}</div>
-        <div className={styles.info}>{`Post Date : ${postDate}`}</div>
+        <div className={styles.tle}>
+          {Lang === "ar" ? news?.title_ar : news?.title_en}{" "}
+        </div>
+        <div className={styles.txt}>
+          {" "}
+          {Lang === "ar" ? news?.description_ar : news?.description_en}{" "}
+        </div>
+        <div className={styles.info}>
+          {" "}
+          {t("news.postdate")} :{" "}
+          {format(new Date(news?.createdAt), "dd MMMM yyyy")}
+        </div>
         <Link
           href={"#!"}
           className={`${styles.vAllBtn} vAllBtn`}
           aria-label="view all button"
         >
-          <span>READ MORE</span>
+          <span>{t("news.readmore")}</span>
           <span
             className="icon"
             style={{
@@ -55,9 +71,14 @@ const NewsBox = ({ imageUrl, title, info, postDate, Lang }) => {
         </Link>
       </div>
       <div className={`${styles.cntWrap} ${styles.dElmtcntWrap}`}>
-        <div className={styles.tle}>{title}</div>
-        <div className={styles.txt}>{info}</div>
-        <div className={styles.info}>{`Post Date : ${postDate}`}</div>
+        <div className={styles.tle}>
+          {Lang === "ar" ? news?.title_ar : news?.title_en}{" "}
+        </div>
+        <div className={styles.txt}>
+          {" "}
+          {Lang === "ar" ? news?.description_ar : news?.description_en}{" "}
+        </div>
+        {/* <div className={styles.info}>{`Post Date : ${postDate}`}</div> */}
         <Link
           href={"#!"}
           className={`${styles.vAllBtn} vAllBtn`}
@@ -98,9 +119,6 @@ const NewsBox = ({ imageUrl, title, info, postDate, Lang }) => {
 
 NewsBox.defaultProps = {
   imageUrl: "/images/default-image.jpg",
-  title: "Default Title",
-  info: "Default information text",
-  postDate: "Default Date",
 };
 
 export default NewsBox;

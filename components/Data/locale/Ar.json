@@ -32,8 +32,10 @@
   "news": {
     "viewall": "عرض الكل",
     "heading": "أخبار رائجة",
-    "readmore":"اقرأ المزيد",
-    "postdate":"تاريخ النشر"
+    "readmore": "اقرأ المزيد",
+    "postdate": "تاريخ النشر",
+    "loadmore": "تحميل المزيد",
+    "finished": "هذا كل شيء"
   },
   "programs": {
     "title": "برامجنا",
