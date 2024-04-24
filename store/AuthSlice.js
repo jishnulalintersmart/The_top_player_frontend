@@ -90,7 +90,6 @@ export const updatePassword = createAsyncThunk(
             "Content-Type": "application/json",
             Accept: "application/json",
             "X-Access-Token": Cookies.get("UT"),
-
           },
         })
         .then((res) => res.data);
@@ -280,30 +279,29 @@ const AuthSlice = createSlice({
       (state.clientSecret = ""), (state.user_info = null);
     },
   },
-  extraReducers: {
-    [PayReducer.pending]: (state, action) => {
-      state.isHomeLoading = true;
-      state.clientSecret = "";
-    },
-    [PayReducer.fulfilled]: (state, action) => {
-      state.isHomeLoading = false;
-      state.clientSecret = action.payload.clientSecret;
-    },
-    [PayReducer.rejected]: (state, action) => {
-      state.isHomeLoading = false;
-      state.clientSecret = "";
-    },
-    // getUserInfo
-
-    [getUserInfo.pending]: (state, action) => {
-      state.user_info = null;
-    },
-    [getUserInfo.fulfilled]: (state, action) => {
-      state.user_info = action.payload;
-    },
-    [getUserInfo.rejected]: (state, action) => {
-      state.user_info = null;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(PayReducer.pending, (state, action) => {
+        state.isHomeLoading = true;
+        state.clientSecret = "";
+      })
+      .addCase(PayReducer.fulfilled, (state, action) => {
+        state.isHomeLoading = false;
+        state.clientSecret = action.payload.clientSecret;
+      })
+      .addCase(PayReducer.rejected, (state, action) => {
+        state.isHomeLoading = false;
+        state.clientSecret = "";
+      })
+      .addCase(getUserInfo.pending, (state, action) => {
+        state.user_info = null;
+      })
+      .addCase(getUserInfo.fulfilled, (state, action) => {
+        state.user_info = action.payload;
+      })
+      .addCase(getUserInfo.rejected, (state, action) => {
+        state.user_info = null;
+      });
   },
 });
 export const { ClearSecret } = AuthSlice.actions;
