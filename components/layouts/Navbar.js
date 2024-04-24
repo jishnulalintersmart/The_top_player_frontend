@@ -28,6 +28,7 @@ const Navbar = ({ overHeight, state }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
+  
   useEffect(() => {
     if (router?.query?.Lang?.toLowerCase() === "ar") {
       i18n.changeLanguage("ar");
@@ -57,7 +58,7 @@ const Navbar = ({ overHeight, state }) => {
           : "en"
       }
     >
-      <div className={`${styles.navbar} header`}>
+      <div className={`${styles.navbar} ${router.pathname.includes('/admin/login') || router.pathname.includes('/admin/signup') || router.pathname.includes('/admin/forget') ? "spHeader is-sticky" : 'commonHeader'} header`}>
         {toggle && (
           <div
             className={styles.Dialog_drop}

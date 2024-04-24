@@ -56,7 +56,6 @@
   --box1: 0 15px 30px rgb(0 0 0 / 10%);
   --border: 1px solid #ebebeb;
   --header-y: 100px;
-  --header-y: 100px;
 }
 
 @media (max-width: 1551.98px) {
@@ -444,6 +443,18 @@ a {
   padding-top: 0px;
   padding-bottom: 0px;
 }
+.header.spHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+  background-color: var(--white_color);
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
 
 @keyframes fadeInDown {
   0% {
@@ -459,20 +470,20 @@ a {
 }
 
 .header .logoLight,
-.header.is-sticky .logoDark {
+.header.is-sticky .logoDark, .header.spHeader .logoDark {
   display: block;
 }
 
 .header .logoDark,
-.header.is-sticky .logoLight {
+.header.is-sticky .logoLight, .header.spHeader .logoLight {
   display: none;
 }
 
-.header.is-sticky .menu_btn svg {
+.header.is-sticky .menu_btn svg, .header.spHeader .menu_btn svg {
   color: var(--black_color);
 }
 
-.header.is-sticky .lang_btn {
+.header.is-sticky .lang_btn, .header.spHeader .lang_btn {
   color: var(--black_color);
 }
 
