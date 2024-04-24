@@ -10,9 +10,23 @@ import { Rating } from "react-simple-star-rating";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllTestimonials } from "@/store/TestimonialSlice";
 
 const Testimonials = ({ Lang }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const { testimonials } = useSelector(
+    (state) => state.TestimonialSlice.testimonials
+  );
+
+  console.log(testimonials);
+
+  useEffect(() => {
+    dispatch(getAllTestimonials());
+  }, [dispatch]);
 
   return (
     <div className={styles.testimonials_section}>
@@ -36,174 +50,32 @@ const Testimonials = ({ Lang }) => {
         modules={[Autoplay, Pagination]}
         className={"testiSlide"}
       >
-        <SwiperSlide>
-          <div className={styles.testiBx}>
-            <div className={styles.iconWrap}>
-              <Rating
-                initialValue={5}
-                readonly
-                rtl={Lang === "ar" ? true : false}
-                size={16}
-                fillColor={"#FCA34A"}
-              />
+        {testimonials?.map((testimonial) => (
+          <SwiperSlide>
+            <div className={styles.testiBx}>
+              <div className={styles.iconWrap}>
+                <Rating
+                  initialValue={testimonial?.rating}
+                  readonly
+                  rtl={Lang === "ar" ? true : false}
+                  size={16}
+                  fillColor={"#FCA34A"}
+                />
+              </div>
+              <div className={styles.cntWrap}>
+                <p>
+                  {Lang === "ar"
+                    ? testimonial?.comment_ar
+                    : testimonial?.comment_en}
+                </p>
+              </div>
+              <div className={styles.infoWrap}>
+                <div className={styles.tle}>{testimonial?.user_name}</div>
+                <div className={styles.sTle}>{testimonial?.user_role}</div>
+              </div>
             </div>
-            <div className={styles.cntWrap}>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour
-              </p>
-            </div>
-            <div className={styles.infoWrap}>
-              <div className={styles.tle}>John Doe</div>
-              <div className={styles.sTle}>Fitness Student</div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={styles.testiBx}>
-            <div className={styles.iconWrap}>
-              <Rating
-                initialValue={5}
-                readonly
-                rtl={Lang === "ar" ? true : false}
-                size={16}
-                fillColor={"#FCA34A"}
-              />
-            </div>
-            <div className={styles.cntWrap}>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour
-              </p>
-            </div>
-            <div className={styles.infoWrap}>
-              <div className={styles.tle}>John Doe</div>
-              <div className={styles.sTle}>Fitness Student</div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={styles.testiBx}>
-            <div className={styles.iconWrap}>
-              <Rating
-                initialValue={5}
-                readonly
-                rtl={Lang === "ar" ? true : false}
-                size={16}
-                fillColor={"#FCA34A"}
-              />
-            </div>
-            <div className={styles.cntWrap}>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour
-              </p>
-            </div>
-            <div className={styles.infoWrap}>
-              <div className={styles.tle}>John Doe</div>
-              <div className={styles.sTle}>Fitness Student</div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={styles.testiBx}>
-            <div className={styles.iconWrap}>
-              <Rating
-                initialValue={5}
-                readonly
-                rtl={Lang === "ar" ? true : false}
-                size={16}
-                fillColor={"#FCA34A"}
-              />
-            </div>
-            <div className={styles.cntWrap}>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour
-              </p>
-            </div>
-            <div className={styles.infoWrap}>
-              <div className={styles.tle}>John Doe</div>
-              <div className={styles.sTle}>Fitness Student</div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={styles.testiBx}>
-            <div className={styles.iconWrap}>
-              <Rating
-                initialValue={5}
-                readonly
-                rtl={Lang === "ar" ? true : false}
-                size={16}
-                fillColor={"#FCA34A"}
-              />
-            </div>
-            <div className={styles.cntWrap}>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour
-              </p>
-            </div>
-            <div className={styles.infoWrap}>
-              <div className={styles.tle}>John Doe</div>
-              <div className={styles.sTle}>Fitness Student</div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={styles.testiBx}>
-            <div className={styles.iconWrap}>
-              <Rating
-                initialValue={5}
-                readonly
-                rtl={Lang === "ar" ? true : false}
-                size={16}
-                fillColor={"#FCA34A"}
-              />
-            </div>
-            <div className={styles.cntWrap}>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour
-              </p>
-            </div>
-            <div className={styles.infoWrap}>
-              <div className={styles.tle}>John Doe</div>
-              <div className={styles.sTle}>Fitness Student</div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className={styles.testiBx}>
-            <div className={styles.iconWrap}>
-              <Rating
-                initialValue={5}
-                readonly
-                rtl={Lang === "ar" ? true : false}
-                size={16}
-                fillColor={"#FCA34A"}
-              />
-            </div>
-            <div className={styles.cntWrap}>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour
-              </p>
-            </div>
-            <div className={styles.infoWrap}>
-              <div className={styles.tle}>John Doe</div>
-              <div className={styles.sTle}>Fitness Student</div>
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
