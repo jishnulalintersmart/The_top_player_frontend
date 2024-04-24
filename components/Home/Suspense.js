@@ -143,7 +143,7 @@ const Suspense = ({ styles, Lang }) => {
               
               {console.log(Lang === "ar" ? "rtl" : "ltr")}
               {banners?.map((banner) => (
-                <SwiperSlide>
+                <SwiperSlide key={banner?.id}>
                   <div
                     className={`${
                       styles.Video_Suspense
