@@ -18,7 +18,7 @@ const FitnessProgram = ({ Lang }) => {
                 <div className={"sTle"}>{t("programs_details.contain")}</div>
               </div>
               <div className={styles.list_bx}>
-                <ul>
+                <ul className={`${Lang === "ar" ? styles.ar : ""}`}>
                   <li>
                     <p>
                       {t("programs.fitness.line1_1")}{" "}

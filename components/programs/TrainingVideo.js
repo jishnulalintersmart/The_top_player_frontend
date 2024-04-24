@@ -9,7 +9,7 @@ const TrainingVideo = ({ Lang }) => {
       <div className={"container"}>
         <div className={styles.imgWrap}>
           <video muted autoPlay loop playsInline preload="metadata">
-            <source src="/videos/who-1.mp4" type="video/mp4" />
+            <source src="/videos/programVideo.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
