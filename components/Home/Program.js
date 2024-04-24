@@ -168,55 +168,16 @@ const Program = ({ styles, Lang }) => {
                       <div className={styles.info_card}>
                         {/* <h4>{t("programs.fitness.title")}</h4> */}
                         <h4>{course.name}</h4>
-
-                        <ul
-                          className={`${
-                            Lang === "ar" ? styles.rightText : styles.leftText
-                          }`}
-                        >
-                          <li>
-                            <p>
-                              {t("programs.fitness.line1_1")}{" "}
-                              <span className="En_num">
-                                {t("programs.fitness.line1_2")}
-                              </span>
-                              {t("programs.fitness.line1_3")}
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              <span className="En_num">
-                                {t("programs.fitness.line2_1")}
-                              </span>
-                              {t("programs.fitness.line2_2")}
-                              <span className="En_num">
-                                {t("programs.fitness.line2_3")}
-                              </span>
-                              {t("programs.fitness.line2_4")}
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              {t("programs.fitness.line3_1")}
-                              <span className="En_num">
-                                {t("programs.fitness.line3_2")}
-                              </span>
-                              {t("programs.fitness.line3_3")}
-                            </p>
-                          </li>
-                          <li>
-                            <p>{t("programs.fitness.line4")}</p>
-                          </li>
-                          <li>
-                            <p>
-                              {t("programs.fitness.line5_1")}
-                              <span className="En_num">
-                                {t("programs.fitness.line5_2")}
-                              </span>
-                              {t("programs.fitness.line5_3")}
-                            </p>
-                          </li>
-                        </ul>
+                        {course?.descriptionHTML && (
+                          <ul
+                            className={`${
+                              Lang === "ar" ? styles.rightText : styles.leftText
+                            }`}
+                            dangerouslySetInnerHTML={{
+                              __html: course?.descriptionHTML,
+                            }}
+                          ></ul>
+                        )}
                         <div
                           className={`${styles.price_offer} ${
                             Lang === "ar" ? styles.rightPrice : styles.leftPrice
