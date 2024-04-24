@@ -131,6 +131,10 @@
     font-weight: 600;
     color: var(--white_color);
     margin-top: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     @media (max-width: 991.98px) {
       font-size: 18px;
     }
@@ -153,6 +157,10 @@
   .txt {
     @extend .info;
     line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     height: 0;
     overflow: hidden;
     transform: scaleY(0);

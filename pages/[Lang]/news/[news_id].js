@@ -48,9 +48,10 @@ const NewsDetail = () => {
                 format(new Date(news?.createdAt), "dd MMMM yyyy")}
             </div>
 
-            <Swiper
+            <Swiper            
+              dir={Lang === "ar" ? "rtl" : "ltr"}
+              loop={false}
               spaceBetween={10}
-              loop={true}
               slidesPerView={1}
               autoplay={{
                 delay: 2500,

@@ -991,6 +991,10 @@ a {
   transform: scale(1.4);
 }
 
+.newsSlide {
+  padding: 0;
+}
+
 .newsSlide .swiper-button-prev,
 .newsSlide .swiper-button-next {
   width: 35px;

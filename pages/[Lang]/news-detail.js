@@ -102,15 +102,14 @@ const NewsDetail = ({ Lang }) => {
             <div className={`${styles.tleWrap} tleWrap`}>
               <h2 className={"mTle"}>Recent News</h2>
             </div>
-          <Swiper
-            // effect={"fade"}
+          <Swiper         
+            dir={Lang === "ar" ? "rtl" : "ltr"}
             loop={false}
             spaceBetween={10}
             slidesPerView={1}
             pagination={false}
             navigation={true}
             initialSlide={1}
-            // autoplay={false}
             autoplay={{
               delay: 4500,
               disableOnInteraction: false,

@@ -42,18 +42,16 @@ const NewsBox = ({ imageUrl, Lang, news }) => {
           aria-label="view all button"
         >
           <span>{t("news.readmore")}</span>
-          <span
-            className="icon"
-            style={{
-              transform: Lang === "ar" ? "rotate(180deg)" : "rotate(0)",
-            }}
-          >
+          <span className="icon">
             <svg
               width="22"
               height="22"
               viewBox="0 0 22 22"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              style={{
+                transform: Lang === "ar" ? "rotate(180deg)" : "rotate(0)",
+              }}
             >
               <g clipPath="url(#clip0_2016_70)">
                 <path
