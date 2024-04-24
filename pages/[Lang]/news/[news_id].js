@@ -49,7 +49,7 @@ const NewsDetail = () => {
                 format(new Date(news?.createdAt), "dd MMMM yyyy")}
             </div>
 
-            <Swiper            
+            <Swiper
               dir={Lang === "ar" ? "rtl" : "ltr"}
               loop={false}
               spaceBetween={10}
@@ -60,27 +60,8 @@ const NewsDetail = () => {
               }}
               modules={[EffectFade, Autoplay]}
               initialSlide={1}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1,
-                  spaceBetween: 10,
-                },
-                480: {
-                  slidesPerView: 1,
-                  spaceBetween: 10,
-                },
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 15,
-                },
-                992: {
-                  slidesPerView: 3,
-                  spaceBetween: 20,
-                },
-                1551: {
-                  slidesPerView: 3,
-                  spaceBetween: 25,
-                },
+              style={{
+                padding: 0,
               }}
             >
               {news?.images?.map((item) => (
@@ -88,8 +69,8 @@ const NewsDetail = () => {
                   <Image
                     src={`${process.env.customKey}/newsImages/${item?.imageUrl}`}
                     alt="news"
-                    width={0}
-                    height={100}
+                    width={1200}
+                    height={520}
                     style={{
                       objectFit: "cover",
                     }}
