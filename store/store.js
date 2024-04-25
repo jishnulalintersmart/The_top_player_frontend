@@ -6,6 +6,7 @@ import FaqSlice from "./FaqSlice";
 import NewsSlice from "./NewsSlice";
 import BannerSlice from "./BannerSlice";
 import TestimonialSlice from "./TestimonialSlice";
+import WhoSlice from "./WhoSlice";
 export default configureStore({
   reducer: {
     AuthSlice,
@@ -14,6 +15,7 @@ export default configureStore({
     NewsSlice,
     BannerSlice,
     TestimonialSlice,
+    WhoSlice
   },
   //   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

@@ -1,11 +1,22 @@
+import { getCounts } from "@/store/WhoSlice";
 import Image from "next/legacy/image";
+import { useSelectedLayoutSegments } from "next/navigation";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 
 const Who = ({ styles, Lang }) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const counts = useSelector((state) => state.WhoSlice.counts.data);
+
+  useEffect(() => {
+    dispatch(getCounts());
+  }, []);
 
   return (
     <div className={styles.who_section} id={"about"}>
@@ -75,7 +86,11 @@ const Who = ({ styles, Lang }) => {
                         className={`${styles.counter} counter`}
                         data-target={"14"}
                       >
-                        <CountUp enableScrollSpy={true} start={0} end={14} />
+                        <CountUp
+                          enableScrollSpy={true}
+                          start={0}
+                          end={counts?.experience}
+                        />
                       </span>
                     </h3>
                     <div className={styles.txt}>{t("who.experience")}</div>
@@ -114,7 +129,11 @@ const Who = ({ styles, Lang }) => {
                         className={`${styles.counter} counter`}
                         data-target={"10"}
                       >
-                        <CountUp enableScrollSpy={true} start={0} end={10} />
+                        <CountUp
+                          enableScrollSpy={true}
+                          start={0}
+                          end={counts?.users}
+                        />
                       </span>
                       K+
                     </h3>
@@ -154,7 +173,11 @@ const Who = ({ styles, Lang }) => {
                         className={`${styles.counter} counter`}
                         data-target={"10"}
                       >
-                        <CountUp enableScrollSpy={true} start={0} end={10} />
+                        <CountUp
+                          enableScrollSpy={true}
+                          start={0}
+                          end={counts?.courses}
+                        />
                       </span>
                       +
                     </h3>
