@@ -111,6 +111,7 @@ const News = ({ styles, Lang }) => {
         >
           {allNews?.news?.map((news) => (
             <SwiperSlide
+            key={news?.id}
               onClick={() => router.push(`/${Lang}/news/${news?.id}`)}
             >
               <NewsBox news={news} Lang={Lang} />

@@ -51,7 +51,7 @@ const Testimonials = ({ Lang }) => {
         className={"testiSlide"}
       >
         {testimonials?.map((testimonial) => (
-          <SwiperSlide>
+          <SwiperSlide key={testimonial?.id}>
             <div className={styles.testiBx}>
               <div className={styles.iconWrap}>
                 <Rating

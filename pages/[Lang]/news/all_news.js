@@ -16,7 +16,7 @@ const News = () => {
   const { allNews, count } = useSelector((state) => state.NewsSlice);
   useEffect(() => {
     dispatch(getNewsCount());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getAllNews(dataCount));
@@ -44,6 +44,7 @@ const News = () => {
           <div className={styles.dFlx}>
             {allNews?.news?.map((news) => (
               <div
+              key={news?.id}
                 className={styles.item}
                 onClick={(e) => handleNavigate(news.id)}
               >

@@ -30,7 +30,7 @@ const NewsDetail = () => {
     if (news_id) {
       fetchData();
     }
-  }, [dispatch]);
+  }, [dispatch, news_id]);
 
   return (
     <div className={styles.program_page}>
@@ -65,7 +65,7 @@ const NewsDetail = () => {
               }}
             >
               {news?.images?.map((item) => (
-                <SwiperSlide>
+                <SwiperSlide key={item?.id}>
                   <Image
                     src={`${process.env.customKey}/newsImages/${item?.imageUrl}`}
                     alt="news"
