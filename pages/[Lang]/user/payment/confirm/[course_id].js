@@ -17,22 +17,24 @@ const Cnofirm = ({ course_id, Lang }) => {
   }, [Lang, course_id, router]);
 
   return (
-   <LangWrap Lang={Lang}>
-     <div
-      className="container padding_all container_confirm"
-      style={{
-        direction: Lang === "ar" ? "rtl" : "ltr",
-      }}
-    >
-      <div className="confrim_card">
-        <div className={"icon"}>
-          <i className="checkmark">✓</i>
+    <LangWrap Lang={Lang}>
+      <div className={"inner_section_outer"}>
+        <div
+          className="container padding_all container_confirm"
+          style={{
+            direction: Lang === "ar" ? "rtl" : "ltr",
+          }}
+        >
+          <div className="confrim_card">
+            <div className={"icon"}>
+              <i className="checkmark">✓</i>
+            </div>
+            <h1 className="title">{t("confirm.success")}</h1>
+            <p>{t("confirm.pruch")}</p>
+          </div>
         </div>
-        <h1 className="title">{t("confirm.success")}</h1>
-        <p>{t("confirm.pruch")}</p>
       </div>
-    </div>
-   </LangWrap>
+    </LangWrap>
   );
 };
 
