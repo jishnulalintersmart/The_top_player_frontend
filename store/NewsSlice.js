@@ -34,7 +34,7 @@ export const getNewsCount = createAsyncThunk(
           Accept: "application/json",
         },
       });
-      console.log(data);
+      
       return data
     } catch (error) {
       rejectWithValue(error);

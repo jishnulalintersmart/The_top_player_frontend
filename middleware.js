@@ -1,5 +1,7 @@
 const { NextResponse } = require("next/server");
 
+
+
 export default function middleware(req) {
   const verifytoken = req.cookies.get("UT");
   let url = req.nextUrl.pathname;

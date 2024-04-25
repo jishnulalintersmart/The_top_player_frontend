@@ -22,7 +22,6 @@ const Testimonials = ({ Lang }) => {
     (state) => state.TestimonialSlice.testimonials
   );
 
-  console.log(testimonials);
 
   useEffect(() => {
     dispatch(getAllTestimonials());

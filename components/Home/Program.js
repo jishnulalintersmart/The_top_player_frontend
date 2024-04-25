@@ -9,14 +9,11 @@ import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 const Program = ({ styles, Lang }) => {
-  // const [fitness]
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { subscribedCourseArr, CoursecArr } = useSelector(
     (state) => state.CourcesSlice
   );
-
-  console.log(CoursecArr?.courses);
 
   useEffect(() => {
     dispatch(allCourses());
@@ -178,6 +175,7 @@ const Program = ({ styles, Lang }) => {
                             }}
                           ></ul>
                         )}
+
                         <div
                           className={`${styles.price_offer} ${
                             Lang === "ar" ? styles.rightPrice : styles.leftPrice
