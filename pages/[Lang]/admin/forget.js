@@ -95,7 +95,7 @@ const Signup = ({ Lang }) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
     ) : (
-      <small className="p-error">&nbsp;</small>
+      ""
     );
   };
   return (
@@ -153,8 +153,8 @@ const Signup = ({ Lang }) => {
                 }}
               >
                 {t("auth.have_account")}
+                <Link href={`/${Lang}/admin/login`}>{t("auth.login")}</Link>
               </p>
-              <Link href={`/${Lang}/admin/login`}>{t("auth.login")}</Link>
             </div>
           </form>
         </div>

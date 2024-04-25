@@ -29,11 +29,6 @@ const NewsBox = ({ imageUrl, Lang, news }) => {
         </div>
         <div
           className={styles.txt}
-          style={{
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-            textOverflow: "ellipsis",
-          }}
         >
           {" "}
           {Lang === "ar" ? news?.description_ar : news?.description_en}{" "}

@@ -473,7 +473,6 @@
 .drop_men a {
   color: #272626;
   text-align: center;
-  font-family: Poppins;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -605,12 +604,12 @@
 .tag_en {
   margin-left: auto;
   direction: rtl;
-  /* font-family: 'Readex Pro', sans-serif !important; */
-  font-family: "GE Dinar One Medium", sans-serif !important;
+}
+.ar_Lang {
+  font-family: "Mont";
 }
 .en_Lang {
-  /* font-family: 'Readex Pro', sans-serif !important; */
-  font-family: "GE Dinar One Medium", sans-serif !important;
+  font-family: "Cairo", sans-serif;
 }
 @media (max-width: 1199.98px) {
   .ar_lang {

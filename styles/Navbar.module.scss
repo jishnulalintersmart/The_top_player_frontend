@@ -740,15 +740,16 @@
 }
 .tag_ar {
   margin-right: auto;
-  /* direction: ltr; */
+  font-family: "Cairo", sans-serif;
 }
 .tag_en {
   margin-left: auto;
   direction: rtl;
-  /* font-family: 'Readex Pro', sans-serif !important; */
-  font-family: "GE Dinar One Medium", sans-serif !important;
+  font-family: "Mont";
 }
-.en_Lang {
-  /* font-family: 'Readex Pro', sans-serif !important; */
-  font-family: "GE Dinar One Medium", sans-serif !important;
+.ar_lang {
+  font-family: "Mont" !important;
+}
+.en_lang {
+  font-family: "Cairo", sans-serif !important;
 }

@@ -1,7 +1,7 @@
 const Terms = () => {
   return (
-    <div className="container-xxl">
-      <div className="Terms padding_all">
+    <div className="Terms padding_all">
+        <div className="container">
         <div className="En_terms">
           <h2 className="title">Introduction</h2>
           <ol>

@@ -33,7 +33,7 @@ const NewsDetail = () => {
   }, [dispatch, news_id]);
 
   return (
-    <div className={styles.program_page}>
+    <div className={styles.news_detail_page}>
       <InnerBanner
         imageUrl={"/images/banner-news.jpg"}
         title={"TRENDING NEWS"}
@@ -42,7 +42,7 @@ const NewsDetail = () => {
         <div className={"container"}>
           <div className={styles.cntWrap}>
             <h2>{Lang === "ar" ? news?.title_ar : news?.title_en}</h2>
-            <div className="info">
+            <div className={styles.info}>
               {" "}
               {t("news.postdate")} :{" "}
               {news?.createdAt &&
@@ -84,6 +84,117 @@ const NewsDetail = () => {
           </div>
         </div>
       </div>
+      {/* <div className={styles.news_section}>
+        <div className="container">
+            <div className={`${styles.tleWrap} tleWrap`}>
+              <h2 className={"mTle"}>Recent News</h2>
+            </div>
+          <Swiper         
+            dir={Lang === "ar" ? "rtl" : "ltr"}
+            loop={false}
+            spaceBetween={10}
+            slidesPerView={1}
+            pagination={false}
+            navigation={true}
+            initialSlide={1}
+            autoplay={{
+              delay: 4500,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Navigation]}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              480: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 15,
+              },
+              992: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1551: {
+                slidesPerView: 3,
+                spaceBetween: 25,
+              },
+            }}
+            className={"newsSlide"}
+          >
+            <SwiperSlide>
+              <NewsBox
+                imageUrl={"/images/news-1.jpg"}
+                title={"Lorem Ipsum is simply dummy text of the printing."}
+                info={
+                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
+                }
+                postDate={"25 March 2024"}
+                Lang={Lang}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NewsBox
+                imageUrl={"/images/news-2.jpg"}
+                title={"Lorem Ipsum is simply dummy text of the printing."}
+                info={
+                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
+                }
+                postDate={"25 March 2024"}
+                Lang={Lang}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NewsBox
+                imageUrl={"/images/news-3.jpg"}
+                title={"Lorem Ipsum is simply dummy text of the printing."}
+                info={
+                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
+                }
+                postDate={"25 March 2024"}
+                Lang={Lang}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NewsBox
+                imageUrl={"/images/news-1.jpg"}
+                title={"Lorem Ipsum is simply dummy text of the printing."}
+                info={
+                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
+                }
+                postDate={"25 March 2024"}
+                Lang={Lang}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NewsBox
+                imageUrl={"/images/news-2.jpg"}
+                title={"Lorem Ipsum is simply dummy text of the printing."}
+                info={
+                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
+                }
+                postDate={"25 March 2024"}
+                Lang={Lang}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <NewsBox
+                imageUrl={"/images/news-3.jpg"}
+                title={"Lorem Ipsum is simply dummy text of the printing."}
+                info={
+                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
+                }
+                postDate={"25 March 2024"}
+                Lang={Lang}
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </div> */}
     </div>
   );
 };

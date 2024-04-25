@@ -58,7 +58,7 @@ const Navbar = ({ overHeight, state }) => {
           : "en"
       }
     >
-      <div className={`${styles.navbar} ${router.pathname.includes('/admin/login') || router.pathname.includes('/admin/signup') || router.pathname.includes('/admin/forget') ? "spHeader is-sticky" : 'commonHeader'} header`}>
+      <div className={`${styles.navbar} ${router.pathname.includes('/admin/login') || router.pathname.includes('/admin/signup') || router.pathname.includes('/admin/forget') || router.pathname.includes('/terms') || router.pathname.includes('/admin/change') || router.pathname.includes('/admin/change') || router.pathname.includes('/update-password') ? "spHeader is-sticky" : 'commonHeader'} header`}>
         {toggle && (
           <div
             className={styles.Dialog_drop}
@@ -72,9 +72,6 @@ const Navbar = ({ overHeight, state }) => {
           visible={visible}
           onHide={() => setVisible(false)}
           showCloseIcon={false}
-          // style={{
-          //   maxWidth: "468px",
-          // }}
           className={styles.sidebarWrap}
         >
           <div
@@ -351,7 +348,7 @@ const Navbar = ({ overHeight, state }) => {
                     className={`${styles.menu_button} ${styles.image_lang} ${
                       router?.query?.Lang?.toLowerCase() === "ar"
                         ? styles.ar_lang
-                        : styles.en_Lang
+                        : styles.en_lang
                     } lang_btn`}
                     aria-label="menu"
                     name="menu"
