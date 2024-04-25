@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/styles/Profile.module.css";
+import styles from "@/styles/Profile.module.scss";
 import { FaCheck } from "react-icons/fa6";
 import { FaCirclePlay } from "react-icons/fa6";
 // import { useRef, useState } from "react";

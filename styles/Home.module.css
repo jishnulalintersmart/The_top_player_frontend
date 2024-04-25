@@ -985,6 +985,7 @@
   color: var(--black_color);
   margin: 20px 0;
 }
+
 @media (max-width: 1551.98px) {
   .social h4 {
     font-size: 20px;
@@ -1052,7 +1053,7 @@
 }
 
 .iconsSec a svg {
-  font-size:  clamp(16px, 2vw, 24px);
+  font-size: clamp(16px, 2vw, 24px);
   line-height: 1;
   margin-right: 15px;
   color: var(--main_color);
@@ -1069,6 +1070,72 @@
     text-align: center;
     margin: 5px auto 15px;
   }
+}
+
+
+.formWrap {
+  padding: 35px 40px;
+  background-color: #f9f6f3;
+  background: #f9f1eb;
+  border: 1px solid #eedcce;
+  border-radius: 16px;
+}
+
+@media (max-width: 991.98px) {
+  .formWrap {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .formWrap {
+    padding: 30px 20px;
+  }
+}
+
+.formRow>* {
+  margin: 10px 0;
+}
+
+@media (max-width: 991.98px) {
+  .formRow>* {
+    margin: 6px 0;
+  }
+}
+
+.formWrap textarea {
+  height: 160px;
+}
+
+@media (max-width: 1551.98px) {
+  .formWrap textarea {
+    height: 120px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .formWrap textarea {
+    height: 80px;
+  }
+}
+
+.formWrap label {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 991.98px) {
+  .formWrap label {
+    font-size: 14px;
+  }
+}
+
+.formWrap small {
+  font-size: 0.75em;
+  line-height: 1;
+  margin: 2px 0;
 }
 
 /* start FAQs */

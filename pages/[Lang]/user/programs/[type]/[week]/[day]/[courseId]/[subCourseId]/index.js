@@ -8,7 +8,7 @@
 // import VideoShow from "@/components/layouts/VideoShow";
 // import Cookies from "js-cookie";
 import VideoCard from "@/components/layouts/VideoCard";
-import styles from "@/styles/Profile.module.css";
+import styles from "@/styles/Profile.module.scss";
 import dynamic from "next/dynamic";
 import axios from "axios";
 import { useTranslation } from "react-i18next";

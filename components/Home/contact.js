@@ -76,7 +76,9 @@ const Contact = ({ styles, Lang }) => {
   const getFormErrorMessage = (name) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
-    ) : "" ;
+    ) : (
+      ""
+    );
   };
   return (
     <div className={styles.contact_section}>
@@ -85,15 +87,7 @@ const Contact = ({ styles, Lang }) => {
 
         <div className="row">
           <div className="col-md-7">
-            <h2
-              className="title"
-              style={{
-                // fontStyle: Lang === "ar" ? "normal" : "italic",
-                lineHeight: Lang === "ar" ? "normal" : "normal",
-              }}
-            >
-              {t("contact.title")}
-            </h2>
+            <h2 className="title">{t("contact.title")}</h2>
             <h3>{t("contact.intro")}</h3>
             <div className="row">
               <div className="col-6">
@@ -181,60 +175,68 @@ const Contact = ({ styles, Lang }) => {
               onSubmit={formik.handleSubmit}
               className={`${styles.formWrap} grid gap-2 contact`}
             >
-              <div className="col-12">
-                <div className="inputFormik">
-                  <label htmlFor="password"> {t("contact.name")}</label>
-                  <InputText
-                    name="name"
-                    className={classNames({
-                      "p-invalid": isFormFieldInvalid("name"),
-                    })}
-                    value={formik.values.name}
-                    onChange={(e) => {
-                      formik.setFieldValue("name", e.target.value);
-                    }}
-                  />
-                  {getFormErrorMessage("name")}
+              <div className={`${styles.formRow} row`}>
+                <div className="col-12">
+                  <div className="inputFormik">
+                    <label htmlFor="password"> {t("contact.name")}</label>
+                    <InputText
+                      name="name"
+                      className={classNames({
+                        "p-invalid": isFormFieldInvalid("name"),
+                      })}
+                      value={formik.values.name}
+                      onChange={(e) => {
+                        formik.setFieldValue("name", e.target.value);
+                      }}
+                    />
+                    {getFormErrorMessage("name")}
+                  </div>
                 </div>
-              </div>
-              <div className="col-12">
-                <div className="inputFormik">
-                  <label htmlFor="email">{t("contact.email")} </label>
-                  <InputText
-                    name="email"
-                    className={classNames({
-                      "p-invalid": isFormFieldInvalid("email"),
-                    })}
-                    value={formik.values.email}
-                    onChange={(e) => {
-                      formik.setFieldValue("email", e.target.value);
-                    }}
-                  />
-                  {getFormErrorMessage("email")}
+                <div className="col-12">
+                  <div className="inputFormik">
+                    <label htmlFor="email">{t("contact.email")} </label>
+                    <InputText
+                      name="email"
+                      className={classNames({
+                        "p-invalid": isFormFieldInvalid("email"),
+                      })}
+                      value={formik.values.email}
+                      onChange={(e) => {
+                        formik.setFieldValue("email", e.target.value);
+                      }}
+                    />
+                    {getFormErrorMessage("email")}
+                  </div>
                 </div>
-              </div>
-              <div className="col-12">
-                <div className="inputFormik">
-                  <label htmlFor="email">{t("contact.message")} </label>
+                <div className="col-12">
+                  <div className="inputFormik">
+                    <label htmlFor="email">{t("contact.message")} </label>
 
-                  <InputTextarea
-                    name="message"
-                    className={classNames({
-                      "p-invalid": isFormFieldInvalid("message"),
-                    })}
-                    value={formik.values.message}
-                    onChange={(e) => {
-                      formik.setFieldValue("message", e.target.value);
-                    }}
-                    rows={5}
-                    cols={10}
-                  />
-                  {getFormErrorMessage("message")}
+                    <InputTextarea
+                      name="message"
+                      className={classNames({
+                        "p-invalid": isFormFieldInvalid("message"),
+                      })}
+                      value={formik.values.message}
+                      onChange={(e) => {
+                        formik.setFieldValue("message", e.target.value);
+                      }}
+                      rows={5}
+                      cols={10}
+                    />
+                    {getFormErrorMessage("message")}
+                  </div>
+                </div>
+                <div className="col-12">
+                  <button
+                    name="login"
+                    type="submit"
+                    className="submit-button hoveranim"
+                  >
+                    <span> {t("contact.send")}</span>
+                  </button>
                 </div>
               </div>
-              <button name="login" type="submit" className="submit-button hoveranim">
-                <span> {t("contact.send")}</span>
-              </button>
             </form>
           </div>
         </div>

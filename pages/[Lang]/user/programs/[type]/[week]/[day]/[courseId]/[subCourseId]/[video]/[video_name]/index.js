@@ -1,6 +1,6 @@
 // import VideoCard from "@/components/layouts/VideoCard";
 // import { getVideo, videos_in_days, watchedVideo } from "@/store/CourcesSlice";
-import styles from "@/styles/Profile.module.css";
+import styles from "@/styles/Profile.module.scss";
 // import { useEffect, useRef, useState } from "react";
 // import { getCookies, getCookie, setCookies, removeCookies } from "cookies-next";
 

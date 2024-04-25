@@ -66,7 +66,12 @@ const Navbar = ({ overHeight, state }) => {
           router.pathname.includes("/terms") ||
           router.pathname.includes("/admin/change") ||
           router.pathname.includes("/admin/change") ||
-          router.pathname.includes("/update-password")
+          router.pathname.includes("/update-password") ||
+          router.pathname.includes("/user/programs") ||
+          router.pathname.includes("/user/profile") ||
+          router.pathname.includes("/user/profile") ||
+          router.pathname.includes("/user/payment/")
+          
             ? "spHeader is-sticky"
             : "commonHeader"
         } header`}
