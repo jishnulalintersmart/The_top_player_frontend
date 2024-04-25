@@ -140,8 +140,6 @@ const Suspense = ({ styles, Lang }) => {
               }}
               modules={[EffectFade, Autoplay]}
             >
-              
-              {console.log(Lang === "ar" ? "rtl" : "ltr")}
               {banners?.map((banner) => (
                 <SwiperSlide key={banner?.id}>
                   <div
