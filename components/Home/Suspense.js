@@ -128,6 +128,7 @@ const Suspense = ({ styles, Lang }) => {
             <Swiper
               // effect={"fade"}              
               dir={Lang === "ar" ? "rtl" : "ltr"}
+              key={Lang}
               loop={false}
               spaceBetween={0}
               slidesPerView={1}

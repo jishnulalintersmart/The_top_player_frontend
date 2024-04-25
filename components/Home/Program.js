@@ -95,6 +95,7 @@ const Program = ({ styles, Lang }) => {
             >
               <Swiper
                 dir={Lang === "ar" ? "rtl" : "ltr"}
+                key={Lang}
                 loop={false}
                 spaceBetween={10}
                 slidesPerView={1}
