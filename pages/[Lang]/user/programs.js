@@ -29,6 +29,8 @@ const Programs = ({ Lang }) => {
     (ele) => ele.courseId === 2
   );
   const Football = subscribedCourseArr?.find((ele) => ele.courseId === 3);
+console.log("subscribedCourseArr", subscribedCourseArr);
+
   return (
     <LangWrap Lang={Lang}>
       <div className={"inner_section_outer"}>
