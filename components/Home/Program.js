@@ -15,7 +15,6 @@ const Program = ({ styles, Lang }) => {
     (state) => state.CourcesSlice
   );
 
-
   console.log(CoursecArr);
 
   useEffect(() => {
@@ -168,15 +167,21 @@ const Program = ({ styles, Lang }) => {
                       </div>
                       <div className={styles.info_card}>
                         {/* <h4>{t("programs.fitness.title")}</h4> */}
-                        <h4>{course.name}</h4>
+                        <h4>
+                          {Lang === "ar"
+                            ? course?.name_arabic
+                            : course?.name_arabic}
+                        </h4>
                         {course?.descriptionHTML && (
                           <ul
                             className={`${
                               Lang === "ar" ? styles.rightText : styles.leftText
-                              }`}
-                            
+                            }`}
                             dangerouslySetInnerHTML={{
-                              __html: course?.descriptionHTML,
+                              __html:
+                                Lang === "ar"
+                                  ? course?.descriptionHTMLAr
+                                  : course?.descriptionHTML,
                             }}
                           ></ul>
                         )}
