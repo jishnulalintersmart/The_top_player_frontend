@@ -36,7 +36,8 @@
        "readmore":"Read More",
        "postdate":"Post date",
        "loadmore":"Load More",
-       "finished":"Thats All"
+       "finished":"Thats All",
+       "recentnews":"Recent News"
     },
     "programs": {
         "title": "Our Programs",
