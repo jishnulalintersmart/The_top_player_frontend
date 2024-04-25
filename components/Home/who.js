@@ -9,17 +9,6 @@ const Who = ({ styles, Lang }) => {
 
   return (
     <div className={styles.who_section} id={"about"}>
-      <h1>
-        <CountUp enableScrollSpy={true} start={0} end={160526} />
-
-        <CountUp start={0} end={100} delay={0}>
-          {({ countUpRef }) => (
-            <div>
-              <span ref={countUpRef} />
-            </div>
-          )}
-        </CountUp>
-      </h1>
       <div className={styles.dElmt_1}>
         <Image
           src={"/images/dElmt-countBg-1.svg"}
