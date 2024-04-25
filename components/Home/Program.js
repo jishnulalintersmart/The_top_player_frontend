@@ -15,6 +15,9 @@ const Program = ({ styles, Lang }) => {
     (state) => state.CourcesSlice
   );
 
+
+  console.log(CoursecArr);
+
   useEffect(() => {
     dispatch(allCourses());
   }, [dispatch]);
@@ -170,7 +173,8 @@ const Program = ({ styles, Lang }) => {
                           <ul
                             className={`${
                               Lang === "ar" ? styles.rightText : styles.leftText
-                            }`}
+                              }`}
+                            
                             dangerouslySetInnerHTML={{
                               __html: course?.descriptionHTML,
                             }}
