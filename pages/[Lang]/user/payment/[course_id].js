@@ -1,7 +1,7 @@
 import CheckoutForm from "@/components/Payment/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import styles from "@/styles/Profile.module.css";
+import styles from "@/styles/Profile.module.scss";
 import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
@@ -41,184 +41,206 @@ const Payment = ({ course_id, Lang }) => {
 
   const [show, setShow] = useState(false);
   return (
-   <LangWrap Lang={Lang}>
-     <div
-      className="container-xxl padding_all"
-      style={{
-        direction: Lang === "ar" ? "rtl" : "ltr",
-      }}
-    >
-      <div className={`${styles.profile} ${styles.payment}`}>
-        <div className="row">
-          <div className="col-12">
-            <div className={styles.Order_summery}>
-              {parseInt(course_id) === 1 && (
-                <div
-                  className={styles.summer_header}
-                  onClick={() => setShow(!show)}
-                >
-                  <h1>
-                    {t("payment.summary")}
-                    <span>
-                      <MdArrowDropDown />
-                    </span>
-                  </h1>
-                  <h3 className="En_num">$80.00</h3>
-                </div>
-              )}
-              {parseInt(course_id) === 2 && (
-                <div
-                  className={styles.summer_header}
-                  onClick={() => setShow(!show)}
-                >
-                  <h1>
-                    {t("payment.summary")}
-                    <span>
-                      <MdArrowDropDown />
-                    </span>
-                  </h1>
-                  <h3 className="En_num">$105.00</h3>
-                </div>
-              )}
-              {parseInt(course_id) === 3 && (
-                <div
-                  className={styles.summer_header}
-                  onClick={() => setShow(!show)}
-                >
-                  <h1>
-                    {t("payment.summary")}
-                    <span>
-                      <MdArrowDropDown />
-                    </span>
-                  </h1>
-                  <h3 className="En_num">$80.00</h3>
-                </div>
-              )}
+    <LangWrap Lang={Lang}>
+      <div className={"inner_section_outer"}>
+        <div className={styles.payment_section}>
+          <div
+            className="container"
+            style={{
+              direction: Lang === "ar" ? "rtl" : "ltr",
+            }}
+          >
+            <div className={`${styles.profile} ${styles.payment}`}>
+              <div className="row">
+                <div className="col-12">
+                  <div className={styles.Order_summery}>
+                    {parseInt(course_id) === 1 && (
+                      <div
+                        className={styles.summer_header}
+                        onClick={() => setShow(!show)}
+                      >
+                        <h1>
+                          {t("payment.summary")}
+                          <span>
+                            <MdArrowDropDown />
+                          </span>
+                        </h1>
+                        <h3 className="En_num">$80.00</h3>
+                      </div>
+                    )}
+                    {parseInt(course_id) === 2 && (
+                      <div
+                        className={styles.summer_header}
+                        onClick={() => setShow(!show)}
+                      >
+                        <h1>
+                          {t("payment.summary")}
+                          <span>
+                            <MdArrowDropDown />
+                          </span>
+                        </h1>
+                        <h3 className="En_num">$105.00</h3>
+                      </div>
+                    )}
+                    {parseInt(course_id) === 3 && (
+                      <div
+                        className={styles.summer_header}
+                        onClick={() => setShow(!show)}
+                      >
+                        <h1>
+                          {t("payment.summary")}
+                          <span>
+                            <MdArrowDropDown />
+                          </span>
+                        </h1>
+                        <h3 className="En_num">$80.00</h3>
+                      </div>
+                    )}
 
-              {show && parseInt(course_id) === 1 && (
-                <div className={styles.summer_content}>
-                  <div className={styles.package}>
-                    <div className="d-flex align-items-center">
-                      <div
-                        className={styles.package_image}
-                        style={{
-                          marginRight: Lang === "ar" ? "0" : "10px",
-                          marginLeft: Lang === "ar" ? "10px" : "0",
-                        }}
-                      >
-                        <Image
-                          src={"/images/1.png"}
-                          alt="package"
-                          layout="fill"
-                          objectFit="contain"
-                        />
+                    {show && parseInt(course_id) === 1 && (
+                      <div className={styles.summer_content}>
+                        <div className={styles.package}>
+                          <div className="d-flex align-items-center">
+                            <div
+                              className={styles.package_image}
+                              style={{
+                                marginRight: Lang === "ar" ? "0" : "10px",
+                                marginLeft: Lang === "ar" ? "10px" : "0",
+                              }}
+                            >
+                              <Image
+                                src={"/images/1.png"}
+                                alt="package"
+                                layout="fill"
+                                objectFit="contain"
+                              />
+                            </div>
+                            <h4>{t("payment.fitness")}</h4>
+                          </div>
+                          <p className="En_num">$80.00</p>
+                        </div>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.Subtotal")}</p>
+                          <p className="En_num">$105.00</p>
+                        </div>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.Discount")}</p>
+                          <p className="En_num">-$25.00</p>
+                        </div>
+                        <hr />
+                        <div
+                          className={`${styles.package} ${styles.package_total}`}
+                        >
+                          <p>{t("payment.Total")}</p>
+                          <p className="En_num">$80.00</p>
+                        </div>
                       </div>
-                      <h4>{t("payment.fitness")}</h4>
-                    </div>
-                    <p className="En_num">$80.00</p>
-                  </div>
-                  <div className={`${styles.package} ${styles.package_sub}`}>
-                    <p>{t("payment.Subtotal")}</p>
-                    <p className="En_num">$105.00</p>
-                  </div>
-                  <div className={`${styles.package} ${styles.package_sub}`}>
-                    <p>{t("payment.Discount")}</p>
-                    <p className="En_num">-$25.00</p>
-                  </div>
-                  <hr />
-                  <div className={`${styles.package} ${styles.package_total}`}>
-                    <p>{t("payment.Total")}</p>
-                    <p className="En_num">$80.00</p>
+                    )}
+                    {show && parseInt(course_id) === 2 && (
+                      <div className={styles.summer_content}>
+                        <div className={styles.package}>
+                          <div className="d-flex align-items-center">
+                            <div
+                              className={styles.package_image}
+                              style={{
+                                marginRight: Lang === "ar" ? "0" : "10px",
+                                marginLeft: Lang === "ar" ? "10px" : "0",
+                              }}
+                            >
+                              <Image
+                                src={"/images/2.png"}
+                                alt="package"
+                                layout="fill"
+                                objectFit="contain"
+                              />
+                            </div>
+                            <h4>{t("payment.fitness_football")}</h4>
+                          </div>
+                          <p className="En_num">$105.00</p>
+                        </div>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.Subtotal")}</p>
+                          <p className="En_num">$210.00</p>
+                        </div>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.Discount")}</p>
+                          <p className="En_num">-$105.00</p>
+                        </div>
+                        <hr />
+                        <div
+                          className={`${styles.package} ${styles.package_total}`}
+                        >
+                          <p>{t("payment.Total")}</p>
+                          <p className="En_num">$105.00</p>
+                        </div>
+                      </div>
+                    )}
+                    {show && parseInt(course_id) === 3 && (
+                      <div className={styles.summer_content}>
+                        <div className={styles.package}>
+                          <div className="d-flex align-items-center">
+                            <div
+                              className={styles.package_image}
+                              style={{
+                                marginRight: Lang === "ar" ? "0" : "10px",
+                                marginLeft: Lang === "ar" ? "10px" : "0",
+                              }}
+                            >
+                              <Image
+                                src={"/images/3.png"}
+                                alt="package"
+                                layout="fill"
+                                objectFit="contain"
+                              />
+                            </div>
+                            <h4>{t("payment.football")}</h4>
+                          </div>
+                          <p className="En_num">$80.00</p>
+                        </div>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.Subtotal")}</p>
+                          <p className="En_num">$105.00</p>
+                        </div>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.Discount")}</p>
+                          <p className="En_num">-$25.00</p>
+                        </div>
+                        <hr />
+                        <div
+                          className={`${styles.package} ${styles.package_total}`}
+                        >
+                          <p>{t("payment.Total")}</p>
+                          <p className="En_num">$80.00</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-              )}
-              {show && parseInt(course_id) === 2 && (
-                <div className={styles.summer_content}>
-                  <div className={styles.package}>
-                    <div className="d-flex align-items-center">
-                      <div
-                        className={styles.package_image}
-                        style={{
-                          marginRight: Lang === "ar" ? "0" : "10px",
-                          marginLeft: Lang === "ar" ? "10px" : "0",
-                        }}
-                      >
-                        <Image
-                          src={"/images/2.png"}
-                          alt="package"
-                          layout="fill"
-                          objectFit="contain"
-                        />
-                      </div>
-                      <h4>{t("payment.fitness_football")}</h4>
-                    </div>
-                    <p className="En_num">$105.00</p>
-                  </div>
-                  <div className={`${styles.package} ${styles.package_sub}`}>
-                    <p>{t("payment.Subtotal")}</p>
-                    <p className="En_num">$210.00</p>
-                  </div>
-                  <div className={`${styles.package} ${styles.package_sub}`}>
-                    <p>{t("payment.Discount")}</p>
-                    <p className="En_num">-$105.00</p>
-                  </div>
-                  <hr />
-                  <div className={`${styles.package} ${styles.package_total}`}>
-                    <p>{t("payment.Total")}</p>
-                    <p className="En_num">$105.00</p>
-                  </div>
+                <div className="col-12">
+                  {stripePromise && clientSecret && (
+                    <Elements stripe={stripePromise} options={options}>
+                      <CheckoutForm course_id={course_id} Lang={Lang} />
+                    </Elements>
+                  )}
                 </div>
-              )}
-              {show && parseInt(course_id) === 3 && (
-                <div className={styles.summer_content}>
-                  <div className={styles.package}>
-                    <div className="d-flex align-items-center">
-                      <div
-                        className={styles.package_image}
-                        style={{
-                          marginRight: Lang === "ar" ? "0" : "10px",
-                          marginLeft: Lang === "ar" ? "10px" : "0",
-                        }}
-                      >
-                        <Image
-                          src={"/images/3.png"}
-                          alt="package"
-                          layout="fill"
-                          objectFit="contain"
-                        />
-                      </div>
-                      <h4>{t("payment.football")}</h4>
-                    </div>
-                    <p className="En_num">$80.00</p>
-                  </div>
-                  <div className={`${styles.package} ${styles.package_sub}`}>
-                    <p>{t("payment.Subtotal")}</p>
-                    <p className="En_num">$105.00</p>
-                  </div>
-                  <div className={`${styles.package} ${styles.package_sub}`}>
-                    <p>{t("payment.Discount")}</p>
-                    <p className="En_num">-$25.00</p>
-                  </div>
-                  <hr />
-                  <div className={`${styles.package} ${styles.package_total}`}>
-                    <p>{t("payment.Total")}</p>
-                    <p className="En_num">$80.00</p>
-                  </div>
-                </div>
-              )}
+              </div>
             </div>
-          </div>
-          <div className="col-12">
-            {stripePromise && clientSecret && (
-              <Elements stripe={stripePromise} options={options}>
-                <CheckoutForm course_id={course_id} Lang={Lang} />
-              </Elements>
-            )}
           </div>
         </div>
       </div>
-    </div>
-   </LangWrap>
+    </LangWrap>
   );
 };
 

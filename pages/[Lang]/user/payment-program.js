@@ -1,4 +1,4 @@
-import styles from "@/styles/Profile.module.css";
+import styles from "@/styles/Profile.module.scss";
 import { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { useTranslation } from "react-i18next";
