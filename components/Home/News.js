@@ -26,7 +26,7 @@ const News = ({ styles, Lang }) => {
   }, [dispatch]);
 
   return (
-    <div className={styles.news_section}>
+    <div className={styles.news_section} id={"news"}>
       <div className="container">
         <div className={styles.tleFlx}>
           <div className={`${styles.tleWrap} tleWrap`}>

@@ -76,9 +76,7 @@ const Contact = ({ styles, Lang }) => {
   const getFormErrorMessage = (name) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
-    ) : (
-      <small className="p-error">&nbsp;</small>
-    );
+    ) : "" ;
   };
   return (
     <div className={styles.contact_section}>

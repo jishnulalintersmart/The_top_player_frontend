@@ -8,7 +8,7 @@ const TrainingVideo = ({ Lang }) => {
     <div className={styles.trainingVideo_section}>
       <div className={"container"}>
         <div className={styles.imgWrap}>
-          <video muted autoPlay loop playsInline preload="metadata">
+          <video muted autoPlay loop playsInline preload="metadata" aria-label="video player">
             <source src="/videos/programVideo.mp4" type="video/mp4" />
           </video>
         </div>

@@ -67,9 +67,7 @@ const Profile = ({ Lang }) => {
   const getFormErrorMessage = (name) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
-    ) : (
-      <small className="p-error">&nbsp;</small>
-    );
+    ) : "" ;
   };
   const router = useRouter();
   useEffect(() => {

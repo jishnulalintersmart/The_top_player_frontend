@@ -86,7 +86,6 @@ const Login = ({ Lang }) => {
               })
               .catch((err) => {
                 setDisabed(false);
-               
 
                 if (err?.response?.data?.message) {
                   EMptyInput(err.response.data.message);
@@ -143,7 +142,7 @@ const Login = ({ Lang }) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
     ) : (
-      <small className="p-error">&nbsp;</small>
+      ""
     );
   };
   return (
@@ -227,8 +226,8 @@ const Login = ({ Lang }) => {
                 }}
               >
                 {t("auth.forget")}{" "}
+                <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
               </p>
-              <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
             </div>
             <div className={styles.have_account}>
               <p
@@ -238,21 +237,10 @@ const Login = ({ Lang }) => {
                 }}
               >
                 {t("auth.donthave")}
+                <Link href={`/${Lang}/admin/signup`}>{t("auth.signup")}</Link>
               </p>
-              <Link href={`/${Lang}/admin/signup`}>{t("auth.signup")}</Link>
             </div>
           </form>
-
-          {/* <div className="LoginPage">
-          <div className="container">
-            <div className="grid justify-content-center align-items-center">
-              <div className="col-12 md:col-4 Login-card">
-                
-                
-              </div>
-            </div>
-          </div>
-        </div> */}
         </div>
       </div>
     </LangWrap>

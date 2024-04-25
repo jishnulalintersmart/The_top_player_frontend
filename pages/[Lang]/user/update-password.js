@@ -90,7 +90,7 @@ const UpdatePassword = ({ Lang }) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
     ) : (
-      <small className="p-error">&nbsp;</small>
+      ""
     );
   };
 
@@ -155,7 +155,7 @@ const UpdatePassword = ({ Lang }) => {
             >
               {t("auth.send")}
             </button>
-            
+
             <div className={styles.have_account}>
               <p
                 style={{
@@ -164,8 +164,8 @@ const UpdatePassword = ({ Lang }) => {
                 }}
               >
                 {t("auth.forget")}
+                <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
               </p>
-              <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
             </div>
           </form>
         </div>

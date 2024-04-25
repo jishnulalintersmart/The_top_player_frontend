@@ -93,7 +93,6 @@ const Signup = ({ Lang }) => {
             setDisabed(false);
             if (err?.response?.data?.message) {
               EMptyInput(err.response.data.message);
-            
             } else {
               EMptyInput(t("auth.wrong"));
             }
@@ -127,7 +126,7 @@ const Signup = ({ Lang }) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
     ) : (
-      <small className="p-error">&nbsp;</small>
+      ""
     );
   };
   return (
@@ -281,8 +280,8 @@ const Signup = ({ Lang }) => {
               >
                 {" "}
                 {t("auth.have_account")}{" "}
+                <Link href={`/${Lang}/admin/login`}>{t("auth.login")}</Link>
               </p>
-              <Link href={`/${Lang}/admin/login`}>{t("auth.login")}</Link>
             </div>
           </form>
 

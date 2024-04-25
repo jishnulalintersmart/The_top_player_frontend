@@ -13,9 +13,7 @@ const Header = ({ styles, Lang }) => {
 
   return (
     <div className={styles.banner_section}>
-      <div
-        className={styles.banner_info}
-      >
+      <div className={styles.banner_info}>
         <h1>{t("title")}</h1>
         <h2>{t("header.intro2")}</h2>
         <p>{t("header.intro3")}</p>
@@ -57,7 +55,7 @@ const Header = ({ styles, Lang }) => {
       </div>
       <div className={styles.image_header}>
         {/* <Image src={"/images/header.png"} alt="Header" layout="fill" objectFit="cover"/> */}
-        <video muted autoPlay loop playsInline preload="metadata">
+        <video muted autoPlay loop playsInline preload="metadata" aria-label="Video player">
           <source
             src="https://backend.thetopplayer.com/videos/header.mp4"
             type="video/mp4"

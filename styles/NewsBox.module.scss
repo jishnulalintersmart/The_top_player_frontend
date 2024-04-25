@@ -18,6 +18,8 @@
   }
   @media (max-width: 575.98px) {
     --pad-xy: 15px;
+  }
+  @media (max-width: 375.98px) {
     height: 376px;
   }
   &::after {
@@ -158,14 +160,17 @@
     @extend .info;
     line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 0;
-    overflow: hidden;
-    transform: scaleY(0);
     transform-origin: bottom;
     transition: all 0.4s ease;
+    @media (min-width: 575.98px) {
+      height: 0;
+      overflow: hidden;
+      transform: scaleY(0);
+      -webkit-line-clamp: 6;      
+    }
   }
   .vAllBtn {
     color: var(--white_color);

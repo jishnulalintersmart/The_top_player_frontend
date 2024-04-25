@@ -29,7 +29,7 @@ const Who = ({ styles, Lang }) => {
   }, []);
 
   return (
-    <div className={styles.who_section} id={"who"}>
+    <div className={styles.who_section} id={"about"}>
       <div className={styles.dElmt_1}>
         <Image
           src={"/images/dElmt-countBg-1.svg"}
@@ -50,7 +50,7 @@ const Who = ({ styles, Lang }) => {
           </div>
           <div className={styles.lftSd}>
             <div className={styles.imgWrap}>
-              <video muted autoPlay loop playsInline preload="metadata">
+              <video muted autoPlay loop playsInline preload="metadata" aria-label="Video player">
                 <source src="/videos/who-1.mp4" type="video/mp4" />
               </video>
             </div>

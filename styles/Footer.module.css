@@ -1,24 +1,16 @@
 .footer {
   background: #262626;
-  /* background : #303441; */
-  padding: 50px 10px 20px;
+  padding: 50px 10px 10px;
   color: rgb(245 255 255 / 80%);
 }
 
 .footer h2 {
-  /* text-align: center; */
-  /* font-size: 144px; */
   color: white;
   font-size: clamp(20px, 3vw, 40px);
   font-style: italic;
   font-weight: 700;
-  /* line-height: 115px; 79.861% */
   text-transform: uppercase;
   margin-bottom: 24px;
-  /* background: linear-gradient(269deg, #d5caca -29.76%, #a77e5a 95.61%); */
-  /* background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
 }
 
 .footerImage {
@@ -168,15 +160,10 @@
 
 .Payments span {
   display: block;
-  font-size: 35px;
+  font-size: 32px;
   margin: 8px;
-
-  /*padding: 10px 15px;
-  */
-  /*border: 1px solid white;
-  */
   width: 60px;
-  height: 45px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -186,6 +173,11 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+  transition: background 0.4s ease;
+}
+
+.Payments span:hover{
+  background-color: #3b3b3b;
 }
 
 .Payments span:first-of-type {
