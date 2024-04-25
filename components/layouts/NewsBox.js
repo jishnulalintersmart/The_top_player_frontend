@@ -5,6 +5,9 @@ import { t } from "i18next";
 import { format } from "date-fns";
 
 const NewsBox = ({ imageUrl, Lang, news }) => {
+  const length = news?.images?.length;
+  const randomIndex = length ? Math.floor(Math.random() * length) : 0;
+
   return (
     <div className={styles.newsBx}>
       <div className={styles.dElmt}>
@@ -17,7 +20,11 @@ const NewsBox = ({ imageUrl, Lang, news }) => {
       </div>
       <div className={styles.imgWrap}>
         <Image
-          src={"/images/news-2.jpg"}
+          src={
+            length && news.images[randomIndex].imageUrl
+              ? `${process.env.customKey}/newsImages/${news?.images[randomIndex]?.imageUrl}`
+              : "/images/news-1.jpg"
+          }
           alt="news"
           layout="fill"
           objectFit="cover"

@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    customKey: "https://crm.intersmarthosting.in/topplayer",
+    // customKey: "https://crm.intersmarthosting.in/topplayer",
     // customKey: "http://localhost:7700",
     // customKey: "https://backend.thetopplayer.com",
-    // customKey: "https://crm.intersmarthosting.in/topplayer",
+    customKey: "https://crm.intersmarthosting.in/topplayer",
     // webDomain: "https://interregionall.vercel.app",
     // webDomain: "https://www.thetopplayer.com",
     webDomain: "http://localhost:3000",
