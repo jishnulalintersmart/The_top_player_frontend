@@ -44,6 +44,7 @@ const NewsDetail = () => {
 
             <Swiper
               dir={Lang === "ar" ? "rtl" : "ltr"}
+              key={Lang}
               loop={false}
               spaceBetween={10}
               slidesPerView={1}
@@ -84,6 +85,7 @@ const NewsDetail = () => {
           </div>
           <Swiper
             dir={Lang === "ar" ? "rtl" : "ltr"}
+            key={Lang}
             loop={false}
             spaceBetween={10}
             slidesPerView={1}

@@ -37,6 +37,7 @@ const Testimonials = ({ Lang }) => {
       <Swiper
         loop={true}
         dir={Lang === "ar" ? "rtl" : "ltr"}
+        key={Lang}
         slidesPerView={"auto"}
         spaceBetween={0}
         centeredSlides={true}
