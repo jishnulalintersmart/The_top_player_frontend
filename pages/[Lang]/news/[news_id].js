@@ -4,7 +4,7 @@ import styles from "/styles/News.module.scss";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getNewsById } from "@/store/NewsSlice";
+import { getAllNews, getNewsById } from "@/store/NewsSlice";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { t } from "i18next";
@@ -16,19 +16,12 @@ const NewsDetail = () => {
   const router = useRouter();
   const { news_id, Lang } = router.query;
   const { news } = useSelector((state) => state.NewsSlice.singleNews);
+  const allnews = useSelector((state) => state.NewsSlice.allNews.news);
 
-  console.log(news?.images);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch(getNewsById(news_id)).unwrap();
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-      }
-    };
-
     if (news_id) {
-      fetchData();
+      dispatch(getNewsById(news_id));
+      dispatch(getAllNews(1));
     }
   }, [dispatch, news_id]);
 
@@ -84,12 +77,12 @@ const NewsDetail = () => {
           </div>
         </div>
       </div>
-      {/* <div className={styles.news_section}>
+      <div className={styles.news_section}>
         <div className="container">
-            <div className={`${styles.tleWrap} tleWrap`}>
-              <h2 className={"mTle"}>Recent News</h2>
-            </div>
-          <Swiper         
+          <div className={`${styles.tleWrap} tleWrap`}>
+            <h2 className={"mTle"}>{t("news.recentnews")}</h2>
+          </div>
+          <Swiper
             dir={Lang === "ar" ? "rtl" : "ltr"}
             loop={false}
             spaceBetween={10}
@@ -126,75 +119,22 @@ const NewsDetail = () => {
             }}
             className={"newsSlide"}
           >
-            <SwiperSlide>
-              <NewsBox
-                imageUrl={"/images/news-1.jpg"}
-                title={"Lorem Ipsum is simply dummy text of the printing."}
-                info={
-                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
-                }
-                postDate={"25 March 2024"}
-                Lang={Lang}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <NewsBox
-                imageUrl={"/images/news-2.jpg"}
-                title={"Lorem Ipsum is simply dummy text of the printing."}
-                info={
-                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
-                }
-                postDate={"25 March 2024"}
-                Lang={Lang}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <NewsBox
-                imageUrl={"/images/news-3.jpg"}
-                title={"Lorem Ipsum is simply dummy text of the printing."}
-                info={
-                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
-                }
-                postDate={"25 March 2024"}
-                Lang={Lang}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <NewsBox
-                imageUrl={"/images/news-1.jpg"}
-                title={"Lorem Ipsum is simply dummy text of the printing."}
-                info={
-                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
-                }
-                postDate={"25 March 2024"}
-                Lang={Lang}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <NewsBox
-                imageUrl={"/images/news-2.jpg"}
-                title={"Lorem Ipsum is simply dummy text of the printing."}
-                info={
-                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
-                }
-                postDate={"25 March 2024"}
-                Lang={Lang}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <NewsBox
-                imageUrl={"/images/news-3.jpg"}
-                title={"Lorem Ipsum is simply dummy text of the printing."}
-                info={
-                  "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form."
-                }
-                postDate={"25 March 2024"}
-                Lang={Lang}
-              />
-            </SwiperSlide>
+            {allnews &&
+              allnews
+                ?.filter((item) => item.id != news_id)
+                ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                ?.slice(0, 3)
+                ?.map((news) => (
+                  <SwiperSlide
+                    key={news.id}
+                    onClick={() => router.push(`/${Lang}/news/${news?.id}`)}
+                  >
+                    <NewsBox Lang={Lang} news={news} />
+                  </SwiperSlide>
+                ))}
           </Swiper>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

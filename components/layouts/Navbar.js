@@ -28,7 +28,7 @@ const Navbar = ({ overHeight, state }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
-  
+
   useEffect(() => {
     if (router?.query?.Lang?.toLowerCase() === "ar") {
       i18n.changeLanguage("ar");
@@ -58,13 +58,19 @@ const Navbar = ({ overHeight, state }) => {
           : "en"
       }
     >
-      <div className={`${styles.navbar} ${router.pathname.includes('/admin/login') || router.pathname.includes('/admin/signup') || router.pathname.includes('/admin/forget') || router.pathname.includes('/terms') || router.pathname.includes('/admin/change') || router.pathname.includes('/admin/change') || router.pathname.includes('/update-password') ? "spHeader is-sticky" : 'commonHeader'} header`}>
-        {toggle && (
-          <div
-            className={styles.Dialog_drop}
-            onClick={() => setToggle(false)}
-          ></div>
-        )}
+      <div
+        className={`${styles.navbar} ${
+          router.pathname.includes("/admin/login") ||
+          router.pathname.includes("/admin/signup") ||
+          router.pathname.includes("/admin/forget") ||
+          router.pathname.includes("/terms") ||
+          router.pathname.includes("/admin/change") ||
+          router.pathname.includes("/admin/change") ||
+          router.pathname.includes("/update-password")
+            ? "spHeader is-sticky"
+            : "commonHeader"
+        } header`}
+      >
         <Sidebar
           position={
             router?.query?.Lang?.toLowerCase() === "ar" ? "right" : "left"
@@ -400,162 +406,6 @@ const Navbar = ({ overHeight, state }) => {
                 </span>
               </div>
             </div>
-
-            {/* <Col lg={6} className={`${styles.menu} `}>
-              <div
-                className={`${styles.NavLinks} ${show && styles.menuActive}`}
-              >
-                <div className={`text-center ${styles.NavLinksOne}`}>
-                  <Link
-                    onClick={() => {
-                      setShow(false);
-                      overHeight(false);
-                      setToggle(false);
-                    }}
-                    title={"web Home"}
-                    href={`/${router?.query?.Lang?.toLowerCase()}`}
-                    className={
-                      router.asPath === router.query.Lang
-                        ? styles.active
-                        : styles.link
-                    }
-                  >
-                    {t("menu.home")}
-                  </Link>
-
-                  <Link
-                    onClick={() => {
-                      setShow(false);
-                      overHeight(false);
-                      setToggle(false);
-                    }}
-                    title={"about us"}
-                    href={`/${router?.query?.Lang?.toLowerCase()}#about`}
-                    className={
-                      router.asPath.includes(
-                        `/${router?.query?.Lang?.toLowerCase()}#about`
-                      )
-                        ? styles.active
-                        : styles.link
-                    }
-                  >
-                    {t("menu.about")}
-                  </Link>
-                  <Link
-                    onClick={() => {
-                      setShow(false);
-                      overHeight(false);
-                      setToggle(false);
-                    }}
-                    title={"Our Programs"}
-                    href={`/${router?.query?.Lang?.toLowerCase()}#programs`}
-                    className={
-                      router.asPath.includes(
-                        `/${router?.query?.Lang?.toLowerCase()}#programs`
-                      )
-                        ? styles.active
-                        : styles.link
-                    }
-                  >
-                    {t("menu.our_programs")}
-                  </Link>
-                  <Link
-                    onClick={() => {
-                      setShow(false);
-                      overHeight(false);
-                      setToggle(false);
-                    }}
-                    title={"Trending News"}
-                    href={`/${router?.query?.Lang?.toLowerCase()}#news`}
-                    className={
-                      router.asPath.includes(
-                        `/${router?.query?.Lang?.toLowerCase()}#news`
-                      )
-                        ? styles.active
-                        : styles.link
-                    }
-                  >
-                    {t("menu.our_news")}
-                  </Link>
-                  <Link
-                    onClick={() => {
-                      setShow(false);
-                      overHeight(false);
-                      setToggle(false);
-                    }}
-                    title={"contact"}
-                    href={`/${router?.query?.Lang?.toLowerCase()}#contact`}
-                    className={
-                      router.asPath.includes(
-                        `/${router?.query?.Lang?.toLowerCase()}#contact`
-                      )
-                        ? styles.active
-                        : styles.link
-                    }
-                  >
-                    {t("menu.contact")}
-                  </Link>
-                  <Link
-                    onClick={() => {
-                      setShow(false);
-                      overHeight(false);
-                      setToggle(false);
-                    }}
-                    title={"faq"}
-                    href={`/${router?.query?.Lang?.toLowerCase()}#faq`}
-                    className={
-                      router.asPath.includes(
-                        `/${router?.query?.Lang?.toLowerCase()}#faq`
-                      )
-                        ? styles.active
-                        : styles.link
-                    }
-                  >
-                    {t("menu.faq")}
-                  </Link>
-                </div>
-                <div className={`text-center ${styles.followus}`}>
-                  <p>{t("menu.follow")}</p>
-                  <div className={styles.iconsSec}>
-                    <a
-                      aria-label="our ios application"
-                      href={
-                        "https://www.tiktok.com/@thetop.player?_t=8i0wA2PQnHc&_r=1"
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.span_div}
-                    >
-                      <FaTiktok />
-                    </a>
-
-                    <a
-                      aria-label="our ios application"
-                      href={
-                        "https://www.instagram.com/thetop.player/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.span_div}
-                    >
-                      <AiFillInstagram />
-                    </a>
-
-                    <a
-                      aria-label="our ios application"
-                      href={
-                        "https://api.whatsapp.com/send/?phone=971501225632&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%2C+%D8%B9%D9%86%D8%AF%D9%8A+%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1+%D8%A8%D8%AE%D8%B5%D9%88%D8%B5&type=phone_number&app_absent=0"
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.span_div}
-                    >
-                      <BsWhatsapp />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </Col> */}
 
             <div className={styles.rgtSd}>
               <div className={styles.rgtItemWrap}>
