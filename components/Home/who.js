@@ -1,35 +1,25 @@
 import Image from "next/legacy/image";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 
 const Who = ({ styles, Lang }) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const targetRef = useRef(null);
-
-  useEffect(() => {
-    const counters = document.querySelectorAll(".counter");
-
-    counters.forEach((counter) => {
-      counter.innerText = "0";
-      const updateCounter = (speed) => {
-        const target = +counter.getAttribute("data-target");
-        const current = +counter.innerText;
-        const increment = target / 100;
-        if (current < target) {
-          counter.innerText = `${Math.ceil(current + increment)}`;
-          setTimeout(() => updateCounter(speed), speed);
-        } else {
-          counter.innerText = target;
-        }
-      };
-      updateCounter(70);
-    });
-  }, []);
 
   return (
     <div className={styles.who_section} id={"about"}>
+      <h1>
+        <CountUp enableScrollSpy={true} start={0} end={160526} />
+
+        <CountUp start={0} end={100} delay={0}>
+          {({ countUpRef }) => (
+            <div>
+              <span ref={countUpRef} />
+            </div>
+          )}
+        </CountUp>
+      </h1>
       <div className={styles.dElmt_1}>
         <Image
           src={"/images/dElmt-countBg-1.svg"}
@@ -50,7 +40,14 @@ const Who = ({ styles, Lang }) => {
           </div>
           <div className={styles.lftSd}>
             <div className={styles.imgWrap}>
-              <video muted autoPlay loop playsInline preload="metadata" aria-label="Video player">
+              <video
+                muted
+                autoPlay
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Video player"
+              >
                 <source src="/videos/who-1.mp4" type="video/mp4" />
               </video>
             </div>
@@ -88,7 +85,9 @@ const Who = ({ styles, Lang }) => {
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"14"}
-                      >{"14"}</span>
+                      >
+                        <CountUp enableScrollSpy={true} start={0} end={14} />
+                      </span>
                     </h3>
                     <div className={styles.txt}>{t("who.experience")}</div>
                   </span>
@@ -125,7 +124,9 @@ const Who = ({ styles, Lang }) => {
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"10"}
-                      >{"10"}</span>
+                      >
+                        <CountUp enableScrollSpy={true} start={0} end={10} />
+                      </span>
                       K+
                     </h3>
                     <div className={styles.txt}>{t("who.users")}</div>
@@ -163,7 +164,9 @@ const Who = ({ styles, Lang }) => {
                       <span
                         className={`${styles.counter} counter`}
                         data-target={"10"}
-                      >{"10"}</span>
+                      >
+                        <CountUp enableScrollSpy={true} start={0} end={10} />
+                      </span>
                       +
                     </h3>
                     <div className={styles.txt}>{t("who.courses")}</div>
