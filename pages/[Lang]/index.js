@@ -10,6 +10,7 @@ import stylesSass from "@/styles/Home.module.scss";
 // import LangChange from "@/components/layouts/LangChange";
 import dynamic from "next/dynamic";
 import LangWrap from "@/components/layouts/LangWarp";
+import NewsDetail from "./news/[news_id]";
 const LangChange = dynamic(() => import("@/components/layouts/LangChange"), {
   loading: () => <></>,
   ssr: false,
@@ -72,7 +73,7 @@ export default function Home({ Lang }) {
             <Program styles={styles} Lang={Lang.toLowerCase()} />
             <Suspense styles={styles} Lang={Lang.toLowerCase()} />
             <FAQs styles={styles} Lang={Lang.toLowerCase()} />
-            <Contact styles={styles} Lang={Lang.toLowerCase()} />
+            <Contact styles={styles} Lang={Lang.toLowerCase()} />            
           </LangChange>
         </LangWrap>
       </main>

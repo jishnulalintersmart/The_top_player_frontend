@@ -14,6 +14,8 @@ const Who = ({ styles, Lang }) => {
 
   const counts = useSelector((state) => state.WhoSlice.counts.data);
 
+  console.log(counts);
+
   useEffect(() => {
     dispatch(getCounts());
   }, []);
@@ -89,7 +91,7 @@ const Who = ({ styles, Lang }) => {
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
-                          end={counts?.experience}
+                          end={counts && counts[0]?.experience}
                         />
                       </span>
                     </h3>
@@ -132,7 +134,7 @@ const Who = ({ styles, Lang }) => {
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
-                          end={counts?.users}
+                          end={counts  && counts[0]?.users}
                         />
                       </span>
                       K+
@@ -176,7 +178,7 @@ const Who = ({ styles, Lang }) => {
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
-                          end={counts?.courses}
+                          end={counts && counts[0]?.courses}
                         />
                       </span>
                       +
