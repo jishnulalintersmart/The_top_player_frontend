@@ -49,14 +49,14 @@ const Fitness = ({
 }) => {
   const router = useRouter();
   const { t } = useTranslation();
-  useEffect(() => {
-    if (error_status === 401) {
-      Cookies.remove("UT");
-      router.push(`/${Lang}`);
-    } else if (error) {
-      router.push(`/${Lang}/error-handel/${error_Text}`);
-    }
-  }, [error, Lang, router, error_status, error_Text]);
+  // useEffect(() => {
+  //   if (error_status === 401) {
+  //     Cookies.remove("UT");
+  //     router.push(`/${Lang}`);
+  //   } else if (error) {
+  //     router.push(`/${Lang}/error-handel/${error_Text}`);
+  //   }
+  // }, [error, Lang, router, error_status, error_Text]);
   const daysFinished = CoursecArr?.subCourses[0]?.finished_days?.length;
   const weeksFinished = CoursecArr?.subCourses[0]?.finished_weeks?.length * 2;
   const AllDays_finished = daysFinished + weeksFinished;
@@ -116,7 +116,7 @@ const Fitness = ({
 
       <div className={styles.enrolled_section}>
         <div className={"container"}>
-          <div className={styles.days}>
+          {CoursecArr && <div className={styles.days}>
             <div
               className={`${styles.day_finish} ${
                 Lang === "ar" ? styles.Ar_day_finish : ""
@@ -130,7 +130,8 @@ const Fitness = ({
                 {parseInt((AllDays_finished / 28) * 100)}%
               </h3>
             )}
-          </div>
+          </div>}
+          
           {CoursecArr && (
             <div
               className={`${styles.progress_week_grid} ${
@@ -577,6 +578,7 @@ const Fitness = ({
 };
 
 export default Fitness;
+
 export async function getServerSideProps({ req, params }) {
   try {
     const result = await axios
