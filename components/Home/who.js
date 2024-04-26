@@ -2,7 +2,7 @@ import { getCounts } from "@/store/WhoSlice";
 import Image from "next/legacy/image";
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,6 @@ const Who = ({ styles, Lang }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useDispatch();
-  const countUpRef = useRef();
 
   const counts = useSelector((state) => state.WhoSlice.counts.data);
 
@@ -87,16 +86,13 @@ const Who = ({ styles, Lang }) => {
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span
                         className={`${styles.counter} counter`}
-                        data-target={counts && counts[0]?.experience}
+                        data-target={"14"}
                       >
                         <CountUp
                           enableScrollSpy={true}
-                          redraw={true}
                           start={0}
                           end={counts && counts[0]?.experience}
-                        >
-                          {({ countUpRef }) => <span ref={countUpRef} />}
-                        </CountUp>
+                        />
                       </span>
                     </h3>
                     <div className={styles.txt}>{t("who.experience")}</div>
@@ -133,16 +129,13 @@ const Who = ({ styles, Lang }) => {
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span
                         className={`${styles.counter} counter`}
-                        data-target={counts && counts[0]?.users}
+                        data-target={"10"}
                       >
                         <CountUp
                           enableScrollSpy={true}
-                          redraw={true}
                           start={0}
-                          end={counts && counts[0]?.users}
-                        >
-                          {({ countUpRef }) => <span ref={countUpRef} />}
-                        </CountUp>
+                          end={counts  && counts[0]?.users}
+                        />
                       </span>
                       K+
                     </h3>
@@ -180,17 +173,13 @@ const Who = ({ styles, Lang }) => {
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span
                         className={`${styles.counter} counter`}
-                        data-target={counts && counts[0]?.courses}
+                        data-target={"10"}
                       >
                         <CountUp
                           enableScrollSpy={true}
-                          redraw={true}
                           start={0}
-                          scrollSpyDelay={100}
                           end={counts && counts[0]?.courses}
-                        >
-                          {({ countUpRef }) => <span ref={countUpRef} />}
-                        </CountUp>
+                        />
                       </span>
                       +
                     </h3>
