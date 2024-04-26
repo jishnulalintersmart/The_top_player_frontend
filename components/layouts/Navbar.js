@@ -321,19 +321,19 @@ const Navbar = ({ overHeight, state }) => {
                   {!Cookies.get("UT") && (
                     <Link
                       href={
-                        router.pathname.includes("/admin/signup")
-                          ? `/${router?.query?.Lang?.toLowerCase()}/admin/login`
-                          : `/${router?.query?.Lang?.toLowerCase()}/admin/signup`
+                        router.pathname.includes("/admin/login")
+                          ? `/${router?.query?.Lang?.toLowerCase()}/admin/signup`
+                          : `/${router?.query?.Lang?.toLowerCase()}/admin/login`
                       }
                       onClick={() => {
                         setToggle(false);
                       }}
                       className={`${styles.navBtn} hoveranim`}
                     >
-                      {router.pathname.includes("/admin/signup") ? (
-                        <span>{t("menu.login")}</span>
-                      ) : (
+                      {router.pathname.includes("/admin/login") ? (
                         <span>{t("menu.signup")}</span>
+                      ) : (
+                        <span>{t("menu.login")}</span>
                       )}
                     </Link>
                   )}
