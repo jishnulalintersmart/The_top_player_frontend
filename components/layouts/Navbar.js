@@ -16,7 +16,7 @@ import Image from "next/legacy/image";
 import Cookies from "js-cookie";
 import { ClearToken } from "@/store/CourcesSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { ClearSecret } from "@/store/AuthSlice";
+import { ClearSecret, getUserInfo } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
 import LangWrap from "./LangWarp";
 
@@ -28,6 +28,13 @@ const Navbar = ({ overHeight, state }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
+  const { user_info } = useSelector((state) => state.AuthSlice);
+
+  console.log(user_info);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
 
   useEffect(() => {
     if (router?.query?.Lang?.toLowerCase() === "ar") {
@@ -72,7 +79,6 @@ const Navbar = ({ overHeight, state }) => {
           router.pathname.includes("/user/profile") ||
           router.pathname.includes("/user/payment/") ||
           router.pathname.includes("/user/payment-program")
-          
             ? "spHeader is-sticky"
             : "commonHeader"
         } header`}
@@ -418,16 +424,25 @@ const Navbar = ({ overHeight, state }) => {
                 <div className={styles.item}>
                   {!Cookies.get("UT") && (
                     <Link
-                      href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
+                      href={
+                        router.pathname.includes("/admin/signup")
+                          ? `/${router?.query?.Lang?.toLowerCase()}/admin/login`
+                          : `/${router?.query?.Lang?.toLowerCase()}/admin/signup`
+                      }
                       onClick={() => {
                         setToggle(false);
                       }}
                       className={`${styles.navBtn} hoveranim`}
                     >
-                      <span>{t("menu.signup")}</span>
+                      {router.pathname.includes("/admin/signup") ? (
+                        <span>{t("menu.login")}</span>
+                      ) : (
+                        <span>{t("menu.signup")}</span>
+                      )}
                     </Link>
                   )}
                 </div>
+                <span>{user_info && user_info?.username}</span>
                 <div className={styles.item}>
                   <div className={styles.userWrap}>
                     {Cookies.get("UT") && (
