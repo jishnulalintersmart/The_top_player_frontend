@@ -143,7 +143,7 @@ const Program = ({ styles, Lang }) => {
                       </div>
                       <div className={styles.info_card}>
                         {/* <h4>{t("programs.fitness.title")}</h4> */}
-                        <h4>{Lang === "ar" ? course?.name_arabic : course?.name_arabic}</h4>
+                        <h4>{Lang === "ar" ? course?.name_arabic : course?.name}</h4>
                         {course?.descriptionHTML && (
                           <ul
                             className={`${Lang === "ar" ? styles.rightText : styles.leftText}`}
