@@ -14,9 +14,9 @@ export default function middleware(req) {
 
   if (url.includes("/user") && !verifytoken) {
     if (url.includes("/ar/user")) {
-      return NextResponse.redirect(`${process.env.webDomain}/ar/admin/signup`);
+      // return NextResponse.redirect(`${process.env.webDomain}/ar/admin/signup`);
     } else {
-      return NextResponse.redirect(`${process.env.webDomain}/en/admin/signup`);
+      // return NextResponse.redirect(`${process.env.webDomain}/en/admin/signup`);
     }
   }
 }

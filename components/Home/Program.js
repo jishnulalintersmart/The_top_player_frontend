@@ -117,14 +117,15 @@ const Program = ({ styles, Lang }) => {
                       style={{
                         direction: Lang === "ar" ? "rtl" : "ltr",
                       }}
-                      href={
-                        // Fitness
-                        // ? `/${Lang}/user/programs/details/${course?.id}` :
-                        Cookies.get("UT")
-                          ? // ? `/${Lang}/user/payment/1`
-                            `/${Lang}/user/programs/details/${course?.id}`
-                          : `/${Lang}/admin/signup`
-                      }
+                      href={`/${Lang}/user/programs/details/${course?.id}`}
+                      // href={
+                      //   // Fitness
+                      //   // ? `/${Lang}/user/programs/details/${course?.id}` :
+                      //   // Cookies.get("UT")
+                      //   // ? `/${Lang}/user/payment/1`
+                      //   `/${Lang}/user/programs/details/${course?.id}`
+                      //   // : `/${Lang}/admin/signup`
+                      // }
                       className={styles.card}
                     >
                       {/* <div className={styles.filnal_price}>
