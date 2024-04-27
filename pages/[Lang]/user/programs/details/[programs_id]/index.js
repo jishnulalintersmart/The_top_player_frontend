@@ -38,13 +38,10 @@ const Personlized = dynamic(() => import("@/components/programs/Personlized"), {
   loading: () => <></>,
   ssr: false,
 });
-const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Text }) => {
+const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Text, CourseByIdArray }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { CourseById } = useSelector((state) => state?.CourcesSlice);
-
-  console.log("course", CourseById);
 
   // useEffect(() => {
   //   if (error_status === 401) {
@@ -58,16 +55,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   const weeksFinished = CoursecArr?.subCourses[0]?.finished_weeks?.length * 2;
   const AllDays_finished = daysFinished + weeksFinished;
 
-  useEffect(() => {
-    programs_id && dispatch(courseById(programs_id));
-  }, [dispatch, programs_id]);
-
-  console.log("programs_id", programs_id);
-
-  console.log("CoursecArr===============>", CoursecArr);
   return (
     <LangWrap Lang={Lang}>
-      <InnerBanner imageUrl={"/images/banner-program.jpg"} title={CourseById?.name || ""} />
+      <InnerBanner imageUrl={"/images/banner-program.jpg"} title={CourseByIdArray?.name || ""} />
       {/* {CoursecArr?.subCourses?.length > 1 && (
           <div className={styles.sub_course}>
             {CoursecArr?.subCourses.map((ele) => {
@@ -86,7 +76,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
           </div>
         )} */}
 
-      <ProgramCard programDetails={CourseById} styles={styles} Lang={Lang} />
+      <ProgramCard programDetails={CourseByIdArray} styles={styles} Lang={Lang} />
 
       {/* {CoursecArr?.subCourses?.length < 2 && (
         <>
@@ -516,10 +506,21 @@ export async function getServerSideProps({ req, params }) {
         },
       })
       .then((res) => res.data);
+
+    const result2 = await axios
+      .get(`${process.env.customKey}/courseById/${parseInt(params.programs_id)}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": req.cookies.UT,
+        },
+      })
+      .then((res) => res.data.course);
     // .catch(err => )
     return {
       props: {
         CoursecArr: result,
+        CourseByIdArray: result2,
         programs_id: params.programs_id,
         Lang: params.Lang.toLowerCase(),
         error: false,
@@ -530,6 +531,7 @@ export async function getServerSideProps({ req, params }) {
     return {
       props: {
         CoursecArr: null,
+        CourseByIdArray: null,
         programs_id: params.programs_id,
         Lang: params.Lang.toLowerCase(),
         error: true,
