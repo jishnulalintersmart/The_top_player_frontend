@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import styles from "@/styles/Program.module.scss";
 import Cookies from "js-cookie";
 
-const ProgramCard = ({ Lang, programDetails, CoursecArr }) => {
+const ProgramCard = ({ Lang, programDetails, CoursecArr, programId }) => {
   const { t } = useTranslation();
   console.log("programDetails", programDetails);
   return (
