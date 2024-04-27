@@ -2,8 +2,9 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import styles from "@/styles/Program.module.scss";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
-const EnrollProgram = ({ Lang }) => {
+const EnrollProgram = ({ Lang, programId, CoursecArr }) => {
   const { t } = useTranslation();
 
   return (
@@ -14,20 +15,28 @@ const EnrollProgram = ({ Lang }) => {
             <div className={`${styles.tleWrap} tleWrap`}>
               <div className={styles.dElmt}></div>
               <div className={"mTle"}>Enroll to our program</div>
-              <div className={styles.txt}>
-                There are many variations of passages of Lorem Ipsum available.
-              </div>
+              <div className={styles.txt}>There are many variations of passages of Lorem Ipsum available.</div>
             </div>
           </div>
           <div className={styles.rgtWrap}>
             <div className={styles.btnWrap}>
-              <Link
-                href={"#!"}
-                className={"baseBtn hoveranim"}
-                aria-label="view all button"
-              >
-                <span>JOIN NOW</span>
-              </Link>
+              {!CoursecArr ? (
+                <Link
+                  href={Cookies.get("UT") ? `/${Lang}/user/payment/${programId}` : `/${Lang}/admin/login`}
+                  className={"baseBtn hoveranim"}
+                  aria-label="view all button"
+                >
+                  <span>JOIN NOW</span>
+                </Link>
+              ) : (
+                <Link
+                  href={"#!"}
+                  className={"baseBtn hoveranim"}
+                  aria-label="view all button"
+                >
+                  <span>YALLA !</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>

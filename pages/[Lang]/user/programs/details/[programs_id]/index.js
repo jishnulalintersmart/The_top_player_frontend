@@ -43,6 +43,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  console.log("CoursecArr", CoursecArr);
+  console.log("CourseByIdArray", CourseByIdArray);
+
   // useEffect(() => {
   //   if (error_status === 401) {
   //     Cookies.remove("UT");
@@ -76,7 +79,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
           </div>
         )} */}
 
-      <ProgramCard programDetails={CourseByIdArray} styles={styles} Lang={Lang} />
+      <ProgramCard programDetails={CourseByIdArray} styles={styles} Lang={Lang} CoursecArr={CoursecArr}/>
 
       {/* {CoursecArr?.subCourses?.length < 2 && (
         <>
@@ -488,7 +491,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
       <Testimonials Lang={Lang} />
 
-      <EnrollProgram Lang={Lang} />
+      <EnrollProgram Lang={Lang} programId={programs_id} CoursecArr={CoursecArr} />
     </LangWrap>
   );
 };
@@ -497,16 +500,6 @@ export default Fitness;
 
 export async function getServerSideProps({ req, params }) {
   try {
-    const result = await axios
-      .get(`${process.env.customKey}/course/${parseInt(params.programs_id)}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "X-Access-Token": req.cookies.UT,
-        },
-      })
-      .then((res) => res.data);
-
     const result2 = await axios
       .get(`${process.env.customKey}/courseById/${parseInt(params.programs_id)}`, {
         headers: {
@@ -515,7 +508,25 @@ export async function getServerSideProps({ req, params }) {
           "X-Access-Token": req.cookies.UT,
         },
       })
-      .then((res) => res.data.course);
+      .then((res) => res.data.course)
+      .catch((err) => {
+        console.log(err);
+        return null;
+      });
+    const result = await axios
+      .get(`${process.env.customKey}/course/${parseInt(params.programs_id)}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": req.cookies.UT,
+        },
+      })
+      .then((res) => res?.data)
+      .catch((err) => {
+        console.log(err);
+        return null
+      });
+
     // .catch(err => )
     return {
       props: {
