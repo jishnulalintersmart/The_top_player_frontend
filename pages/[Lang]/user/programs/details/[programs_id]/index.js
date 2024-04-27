@@ -67,7 +67,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   console.log("CoursecArr===============>", CoursecArr);
   return (
     <LangWrap Lang={Lang}>
-      <InnerBanner imageUrl={"/images/banner-program.jpg"} title={"FITNESS PROGRAM"} />
+      <InnerBanner imageUrl={"/images/banner-program.jpg"} title={CourseById?.name || ""} />
       {/* {CoursecArr?.subCourses?.length > 1 && (
           <div className={styles.sub_course}>
             {CoursecArr?.subCourses.map((ele) => {
@@ -86,7 +86,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
           </div>
         )} */}
 
-      <ProgramCard programDetails={CourseById} styles={styles} Lang={Lang}/>
+      <ProgramCard programDetails={CourseById} styles={styles} Lang={Lang} />
 
       {/* {CoursecArr?.subCourses?.length < 2 && (
         <>
