@@ -98,9 +98,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
         </>
       )} */}
 
-      {CoursecArr?.subCourses?.length >= 2 && (
+      {/* {CoursecArr?.subCourses?.length >= 2 && (
         <>{parseInt(CoursecArr.subCourses[0].id) === 2 && <FitnessProgram styles={styles} Lang={Lang} />}</>
-      )}
+      )} */}
 
       <Personlized Lang={Lang} />
 
