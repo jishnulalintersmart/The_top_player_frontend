@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import styles from "@/styles/Program.module.scss";
 import Cookies from "js-cookie";
 
-const ProgramCard = ({ Lang, programDetails, CoursecArr, programId }) => {
+const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
   const { t } = useTranslation();
   console.log("programDetails", programDetails);
   return (
@@ -33,7 +33,7 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programId }) => {
               <div className={styles.btnWrap}>
                 {!CoursecArr && (
                   <Link
-                    href={Cookies.get("UT") ? `/${Lang}/user/payment/${programId}` : `/${Lang}/admin/login`}
+                    href={Cookies.get("UT") ? `/${Lang}/user/payment/${programsId}` : `/${Lang}/admin/login`}
                     className={"baseBtn hoveranim"}
                     aria-label="view all button"
                   >

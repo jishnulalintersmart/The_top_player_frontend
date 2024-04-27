@@ -45,6 +45,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
   console.log("CoursecArr", CoursecArr);
   console.log("CourseByIdArray", CourseByIdArray);
+  console.log("programs_id", programs_id);
 
   // useEffect(() => {
   //   if (error_status === 401) {
@@ -79,7 +80,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
           </div>
         )} */}
 
-      <ProgramCard programDetails={CourseByIdArray} styles={styles} Lang={Lang} CoursecArr={CoursecArr}/>
+      <ProgramCard programDetails={CourseByIdArray} styles={styles} Lang={Lang} CoursecArr={CoursecArr} programsId={programs_id}/>
 
       {/* {CoursecArr?.subCourses?.length < 2 && (
         <>
