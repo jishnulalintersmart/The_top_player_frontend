@@ -12,7 +12,7 @@ const Who = ({ styles, Lang }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const counts = useSelector((state) => state.WhoSlice.counts.data);
+  const { counts } = useSelector((state) => state.WhoSlice);
 
   console.log(counts);
 
@@ -50,7 +50,16 @@ const Who = ({ styles, Lang }) => {
                 preload="metadata"
                 aria-label="Video player"
               >
-                <source src="/videos/who-1.mp4" type="video/mp4" />
+                {/* <source
+                  src="http://localhost:7700/who_we_videos/who-1.mp4"
+                  type="video/mp4"
+                /> */}
+                {counts[0]?.videoUrl && (
+                  <source
+                    src={`${process.env.customKey}/who_we_videos/${counts[0].videoUrl}`}
+                    type="video/mp4"
+                  />
+                )}
               </video>
             </div>
           </div>
@@ -91,7 +100,7 @@ const Who = ({ styles, Lang }) => {
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
-                          end={counts && counts[0]?.experience}
+                          end={counts[0] && counts[0]?.experience}
                         />
                       </span>
                     </h3>
@@ -134,7 +143,7 @@ const Who = ({ styles, Lang }) => {
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
-                          end={counts  && counts[0]?.users}
+                          end={counts[0] && counts[0]?.users}
                         />
                       </span>
                       K+
@@ -178,7 +187,7 @@ const Who = ({ styles, Lang }) => {
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
-                          end={counts && counts[0]?.courses}
+                          end={counts[0] && counts[0]?.courses}
                         />
                       </span>
                       +

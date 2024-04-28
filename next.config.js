@@ -10,9 +10,6 @@ const nextConfig = {
     webDomain: "http://localhost:4000",
     googleAnalytics: "G-E1W5ELK5TZ",
   },
-  server: {
-    port: 4000,
-  },
   swcMinify: true,
 
   images: {
