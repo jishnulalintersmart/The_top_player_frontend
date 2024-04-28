@@ -15,6 +15,7 @@ export const getCounts = createAsyncThunk(
           },
         })
         .then((res) => res.data);
+      console.log(result);
       return result;
     } catch (err) {
       return rejectWithValue(err);
@@ -35,7 +36,7 @@ const WhoSlice = createSlice({
       state.initialloading = true;
     });
     builder.addCase(getCounts.fulfilled, (state, action) => {
-      state.counts = action.payload;
+      state.counts = action.payload.data;
       state.initialloading = false;
     });
     builder.addCase(getCounts.rejected, (state, action) => {
