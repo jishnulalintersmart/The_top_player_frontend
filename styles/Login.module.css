@@ -12,7 +12,6 @@
   /* box-shadow: 1px 1px 20px 20px #eee; */
 }
 
-
 @media (max-width: 991.98px) {
   .Login_card {
     padding: 30px 20px;
@@ -82,12 +81,12 @@
   margin: 0 auto;
 }
 
-.Login_card form>* {
+.Login_card form > * {
   margin: 10px 0;
 }
 
 @media (max-width: 991.98px) {
-  .Login_card form>* {
+  .Login_card form > * {
     margin: 8px 0;
   }
 }
@@ -106,7 +105,7 @@
 }
 
 .have_account a {
-  color: #A27D5B;
+  color: #a27d5b;
   font-weight: bold;
   font-size: clamp(13px, 2vw, 15px);
 }
@@ -114,7 +113,7 @@
 .have_account button {
   background-color: transparent;
   border: none;
-  color: #A27D5B;
+  color: #a27d5b;
   font-weight: bold;
   font-size: clamp(13px, 2vw, 15px);
   margin: 0;
