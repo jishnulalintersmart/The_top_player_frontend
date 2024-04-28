@@ -75,7 +75,8 @@ const Login = ({ Lang }) => {
               .then((res) => {
                 if (res.length > 0) {
                   formik.resetForm();
-                  router.push(`/${Lang}/user/programs`);
+                  // router.push(`/${Lang}/user/programs`);
+                  router.back()
                   setDisabed(false);
                 } else {
                   formik.resetForm();

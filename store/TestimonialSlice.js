@@ -9,7 +9,7 @@ export const getAllTestimonials = createAsyncThunk(
 
     try {
       const result = await axios
-        .get(`${process.env.customKey}/dashboard/testimonial`, {
+        .get(`${process.env.customKey}/testimonial`, {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
