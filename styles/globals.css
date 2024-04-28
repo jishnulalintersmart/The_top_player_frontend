@@ -168,6 +168,7 @@ a {
   font-family: "Cairo", sans-serif;
 }
 
+
 .swiper-button-disabled {
   opacity: 0.3;
 }
@@ -1393,20 +1394,23 @@ i {
   animation: 15s moving-watermark infinite;
   font-size: 40px;
   /* color: gray; */
-  z-index: 999;
+  z-index: 1;
   -webkit-animation: 15s moving-watermark infinite;
 }
 
 .watermark-logo {
   display: block;
   position: absolute;
-  left: 3%;
-  top: 3%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
   /* color: white; */
   color: rgba(0, 0, 0, 0.4);
   user-select: none;
   font-weight: bold;
   text-transform: uppercase;
+  opacity: .6;
 }
 
 @keyframes moving-watermark {

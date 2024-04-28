@@ -173,7 +173,9 @@ const VideoShow = ({ video_id, courseId, list, Lang, week_id, day_id, subCourseI
         </div>
 
         <div className={`watermark-logo`} style={{ fontSize: "20px" }}>
-          <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} />
+          {/* <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} /> */}
+          <Image src={"/images/logo-light.svg"} objectFit={"contain"} alt={"logo"} priority width={100} height={100} />
+
         </div>
       </Player>
       {/* <div

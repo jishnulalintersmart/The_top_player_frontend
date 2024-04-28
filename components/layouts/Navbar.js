@@ -88,14 +88,18 @@ const Navbar = ({ overHeight, state }) => {
               direction: router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
             }}
           >
-            <div className={styles.Links_side}>
+            <div
+              className={`${styles.Links_side}  ${
+                router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
+              }`}
+            >
               <button className={styles.close_side} onClick={() => setVisible(false)}>
                 <IoClose />
               </button>
               <Link
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}`}
-                className={router.asPath === router.query.Lang ? styles.active : styles.link}
+                className={`${router.asPath === router.query.Lang ? styles.active : styles.link}`}
               >
                 {t("menu.home")}
               </Link>
@@ -195,7 +199,9 @@ const Navbar = ({ overHeight, state }) => {
               {!Cookies.get("UT") && (
                 <Link
                   href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
-                  className={styles.sign_side}
+                  className={`${styles.sign_side}  ${
+                    router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
+                  }`}
                   onClick={() => setVisible(false)}
                 >
                   <IoPersonCircleOutline
@@ -211,7 +217,9 @@ const Navbar = ({ overHeight, state }) => {
               {!Cookies.get("UT") && (
                 <Link
                   href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
-                  className={styles.sign_side}
+                  className={`${styles.sign_side}  ${
+                    router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
+                  }`}
                   onClick={() => setVisible(false)}
                 >
                   <IoPersonCircleOutline
@@ -227,7 +235,9 @@ const Navbar = ({ overHeight, state }) => {
             {Cookies.get("UT") && (
               <Link
                 href={`/${router?.query?.Lang?.toLowerCase()}`}
-                className={styles.out_side}
+                className={`${styles.out_side}  ${
+                  router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
+                }`}
                 onClick={() => {
                   setVisible(false);
                   Cookies.remove("UT");
@@ -307,10 +317,10 @@ const Navbar = ({ overHeight, state }) => {
                 }}
               >
                 <span className="logoLight">
-                  <Image src={"/images/logo-light.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority />
+                  {/* <Image src={"/images/logo-light.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority /> */}
                 </span>
                 <span className="logoDark">
-                  <Image src={"/images/logo.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority />
+                  {/* <Image src={"/images/logo.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority /> */}
                 </span>
               </div>
             </div>

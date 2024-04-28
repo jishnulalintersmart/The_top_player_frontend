@@ -510,7 +510,7 @@
   text-transform: capitalize;
 }
 
-.side_menu a:hover{
+.side_menu a:hover {
   color: var(--main_color);
 }
 
@@ -606,10 +606,10 @@
   direction: rtl;
 }
 .ar_Lang {
-  font-family: "Mont";
+  font-family: "Cairo", sans-serif;
 }
 .en_Lang {
-  font-family: "Cairo", sans-serif;
+  font-family: "Mont";
 }
 @media (max-width: 1199.98px) {
   .ar_lang {
