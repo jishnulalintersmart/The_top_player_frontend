@@ -1,22 +1,33 @@
+import { getHeaderBanner } from "@/store/HeaderSlice";
 import Aos from "aos";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = ({ styles, Lang }) => {
+  const dispatch = useDispatch();
+  const { state } = useSelector((state) => ({
+    state: state?.HeaderSlice?.banners[0],
+  }));
+
+
   useEffect(() => {
     Aos.init({ duration: 900 });
   });
+  useEffect(() => {
+    dispatch(getHeaderBanner());
+  }, []);
   const { t } = useTranslation();
 
   return (
     <div className={styles.banner_section}>
       <div className={styles.banner_info}>
-        <h1>{t("title")}</h1>
-        <h2>{t("header.intro2")}</h2>
-        <p>{t("header.intro3")}</p>
+        <h1>{Lang === "ar" ? state?.head_ar : state?.head}</h1>
+        <h2>{Lang === "ar" ? state?.subhead_ar : state?.subhead}</h2>
+        <p>{Lang === "ar" ? state?.text_title_Ar : state?.text_title}</p>
         <div className={styles.btn_wrap}>
           <Link
             href={`/${Lang}#programs`}
@@ -55,7 +66,14 @@ const Header = ({ styles, Lang }) => {
       </div>
       <div className={styles.image_header}>
         {/* <Image src={"/images/header.png"} alt="Header" layout="fill" objectFit="cover"/> */}
-        <video muted autoPlay loop playsInline preload="metadata" aria-label="Video player">
+        <video
+          muted
+          autoPlay
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="Video player"
+        >
           <source
             src="https://backend.thetopplayer.com/videos/header.mp4"
             type="video/mp4"
