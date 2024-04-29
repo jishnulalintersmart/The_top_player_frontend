@@ -190,9 +190,9 @@ const Program = ({ styles, Lang }) => {
                             Lang === "ar" ? styles.rightPrice : styles.leftPrice
                           }`}
                         >
-                          <h5>{course?.amount}</h5>
+                          <h5>{course?.offerAmount}</h5>
                           <h6>
-                            <del>{course?.offerAmount} </del>
+                            <del>{course?.amount} </del>
                           </h6>
                         </div>
                         <button>
