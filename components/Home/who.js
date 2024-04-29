@@ -41,9 +41,14 @@ const Who = ({ styles, Lang }) => {
           <div className={styles.w_100}>
             <div className={styles.cntWrap}>
               <div className={"tleWrap center"}>
-                <h2 className={"mTle"}>{t("who.title")}</h2>
+                <h2 className={"mTle"}>
+                  {Lang === "ar" ? counts[0]?.head_ar : counts[0]?.head}
+                </h2>
               </div>
-              <p className={styles.who_p}>{t("who.about")}</p>
+              <p className={styles.who_p}>
+                {" "}
+                {Lang === "ar" ? counts[0]?.subhead_ar : counts[0]?.subhead}
+              </p>
             </div>
           </div>
           <div className={styles.lftSd}>
