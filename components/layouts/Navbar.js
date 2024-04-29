@@ -317,10 +317,10 @@ const Navbar = ({ overHeight, state }) => {
                 }}
               >
                 <span className="logoLight">
-                  {/* <Image src={"/images/logo-light.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority /> */}
+                  <Image src={"/images/logo-light.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority />
                 </span>
                 <span className="logoDark">
-                  {/* <Image src={"/images/logo.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority /> */}
+                  <Image src={"/images/logo.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority />
                 </span>
               </div>
             </div>

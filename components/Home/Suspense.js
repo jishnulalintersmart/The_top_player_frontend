@@ -56,7 +56,7 @@ const Suspense = ({ styles, Lang }) => {
   }, [dispatch]);
 
   return (
-    <div className={`${styles.Suspense} margin_top`}>
+    <div className={`${styles.Suspense}`} style={{padding:0, margin:0}}>
       <div className={styles.dElmt_1}>
         <Image
           src={"/images/dElmt-countBg-1.svg"}

@@ -6,6 +6,17 @@ import { useEffect } from "react";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  ControlBar,
+  CurrentTimeDisplay,
+  ForwardControl,
+  FullscreenToggle,
+  PlaybackRateMenuButton,
+  Player,
+  ReplayControl,
+  TimeDivider,
+  VolumeMenuButton,
+} from "video-react";
 
 const Who = ({ styles, Lang }) => {
   const { t } = useTranslation();
@@ -23,12 +34,7 @@ const Who = ({ styles, Lang }) => {
   return (
     <div className={styles.who_section} id={"about"}>
       <div className={styles.dElmt_1}>
-        <Image
-          src={"/images/dElmt-countBg-1.svg"}
-          layout="fill"
-          alt="bg"
-          objectFit="contain"
-        />
+        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
       </div>
       <div className="container">
         <div className={styles.dFlx}>
@@ -47,25 +53,23 @@ const Who = ({ styles, Lang }) => {
           </div>
           <div className={styles.lftSd}>
             <div className={styles.imgWrap}>
-              <video
-                muted
-                autoPlay
-                loop
-                playsInline
-                preload="metadata"
-                aria-label="Video player"
-              >
-                {/* <source
-                  src="http://localhost:7700/who_we_videos/who-1.mp4"
-                  type="video/mp4"
-                /> */}
+              {/* <video muted autoPlay loop playsInline preload="metadata" aria-label="Video player">
                 {counts[0]?.videoUrl && (
-                  <source
-                    src={`${process.env.customKey}/who_we_videos/${counts[0].videoUrl}`}
-                    type="video/mp4"
-                  />
+                  <source src={`${process.env.customKey}/who_we_videos/${counts[0].videoUrl}`} type="video/mp4" />
                 )}
-              </video>
+              </video> */}
+              <Player fluid playsInline={true} key={counts[0]?.id} autoPlay loop muted>
+                <source src={`${process.env.customKey}/who_we_videos/${counts[0]?.videoUrl}`} />
+                <ControlBar>
+                  <FullscreenToggle className="ToogelFull" />
+                  <ReplayControl seconds={10} order={1.1} />
+                  <ForwardControl seconds={10} order={1.2} />
+                  <CurrentTimeDisplay order={4.1} />
+                  <TimeDivider order={4.2} />
+                  <PlaybackRateMenuButton rates={[5, 2, 1, 0.5, 0.1]} order={7.1} />
+                  <VolumeMenuButton disabled={false} />
+                </ControlBar>
+              </Player>
             </div>
           </div>
           <div className={styles.rgtSd}>
@@ -73,40 +77,18 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image
-                      src={"/images/dElmt-countBg-1.svg"}
-                      layout="fill"
-                      alt="bg"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image
-                      src={"/images/dElmt-countBg-2.png"}
-                      layout="fill"
-                      alt="bg"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image
-                      src={"/images/icon-exp.svg"}
-                      alt="exp"
-                      layout="fill"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/icon-exp.svg"} alt="exp" layout="fill" objectFit="contain" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
-                      <span
-                        className={`${styles.counter} counter`}
-                        data-target={"14"}
-                      >
-                        <CountUp
-                          enableScrollSpy={true}
-                          start={0}
-                          end={counts[0] && counts[0]?.experience}
-                        />
+                      <span className={`${styles.counter} counter`} data-target={"14"}>
+                        <CountUp enableScrollSpy={true} start={0} end={counts[0] && counts[0]?.experience} />
                       </span>
                     </h3>
                     <div className={styles.txt}>{t("who.experience")}</div>
@@ -116,40 +98,18 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image
-                      src={"/images/dElmt-countBg-1.svg"}
-                      layout="fill"
-                      alt="bg"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image
-                      src={"/images/dElmt-countBg-2.png"}
-                      layout="fill"
-                      alt="bg"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image
-                      src={"/images/icon-users.svg"}
-                      alt="exp"
-                      layout="fill"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/icon-users.svg"} alt="exp" layout="fill" objectFit="contain" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
-                      <span
-                        className={`${styles.counter} counter`}
-                        data-target={"10"}
-                      >
-                        <CountUp
-                          enableScrollSpy={true}
-                          start={0}
-                          end={counts[0] && counts[0]?.users}
-                        />
+                      <span className={`${styles.counter} counter`} data-target={"10"}>
+                        <CountUp enableScrollSpy={true} start={0} end={counts[0] && counts[0]?.users} />
                       </span>
                       K+
                     </h3>
@@ -160,42 +120,20 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image
-                      src={"/images/dElmt-countBg-1.svg"}
-                      layout="fill"
-                      alt="bg"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image
-                      src={"/images/dElmt-countBg-2.png"}
-                      layout="fill"
-                      alt="bg"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image
-                      src={"/images/icon-courses.svg"}
-                      alt="exp"
-                      layout="fill"
-                      objectFit="contain"
-                    />
+                    <Image src={"/images/icon-courses.svg"} alt="exp" layout="fill" objectFit="contain" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
-                      <span
-                        className={`${styles.counter} counter`}
-                        data-target={"10"}
-                      >
-                        <CountUp
-                          enableScrollSpy={true}
-                          start={0}
-                          end={counts[0] && counts[0]?.courses}
-                        />
+                      <span className={`${styles.counter} counter`} data-target={"10"}>
+                        <CountUp enableScrollSpy={true} start={0} end={counts[0] && counts[0]?.courses} />
                       </span>
-                      +
+                      %
                     </h3>
                     <div className={styles.txt}>{t("who.courses")}</div>
                   </span>

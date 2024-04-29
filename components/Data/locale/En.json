@@ -19,6 +19,7 @@
     },
     "title": "The top Player",
     "yalla": "Yalla !",
+    "join_now": "Join now",
     "header": {
         "intro2": "Where You Become The Top Player",
         "intro3": "Kick-start Your Journey to Excellence: Unleash Your Inner Champion with Our Premier Football Training Programs!"
@@ -28,7 +29,7 @@
         "about": "First website that is from the Middle East region to specialise in the football training, we offer comprehensive football training covering both the fitness and technique part.",
         "experience":"Years of Experience",
         "users":"Users",
-        "courses":"Courses"
+        "courses":"Customized programs"
     },
     "news": {
        "viewall":"VIEW ALL",
