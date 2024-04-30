@@ -38,7 +38,7 @@ const News = () => {
         <div className={styles.program_page}>
           <InnerBanner
             imageUrl={"/images/banner-news.jpg"}
-            title={"TRENDING NEWS"}
+            title={t("news.heading")}
           />
           <div className={styles.news_list_section}>
             <div className={"container"}>
