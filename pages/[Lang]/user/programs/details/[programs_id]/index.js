@@ -62,7 +62,8 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   return (
     <LangWrap Lang={Lang}>
       <InnerBanner
-        imageUrl={"/images/banner-program.jpg"}
+        // imageUrl={"/images/banner-program.jpg"}
+        imageUrl={`${process.env.customKey}/courseImages/${CourseByIdArray?.bannerUrl}`}
         title={Lang === "en" ? CourseByIdArray?.name : CourseByIdArray?.name_arabic}
       />
       {/* {CoursecArr?.subCourses?.length > 1 && (
@@ -107,7 +108,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
       <Personlized Lang={Lang} />
 
-      <TrainingVideo Lang={Lang} />
+      <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
 
       {CoursecArr && (
         <div className={styles.enrolled_section}>
@@ -507,7 +508,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
       <Testimonials Lang={Lang} />
 
-      <EnrollProgram Lang={Lang} programId={programs_id} CoursecArr={CoursecArr} />
+      <EnrollProgram Lang={Lang} programId={programs_id} CoursecArr={CoursecArr} CourseByIdArray={CourseByIdArray} />
     </LangWrap>
   );
 };

@@ -4,7 +4,7 @@ import styles from "@/styles/Program.module.scss";
 import Link from "next/link";
 import Cookies from "js-cookie";
 
-const EnrollProgram = ({ Lang, programId, CoursecArr }) => {
+const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
   const { t } = useTranslation();
 
   return (
@@ -15,7 +15,7 @@ const EnrollProgram = ({ Lang, programId, CoursecArr }) => {
             <div className={`${styles.tleWrap} tleWrap`}>
               <div className={styles.dElmt}></div>
               <div className={"mTle"}>Enroll to our program</div>
-              <div className={styles.txt}>There are many variations of passages of Lorem Ipsum available.</div>
+              <div className={styles.txt}>{Lang === "ar" ? CourseByIdArray?.enroll_text_ar : CourseByIdArray?.enroll_text}</div>
             </div>
           </div>
           <div className={styles.rgtWrap}>
