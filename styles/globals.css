@@ -86,7 +86,7 @@ html {
   scroll-behavior: smooth;
 }
 
-button:active {
+button:active, button:focus-visible {
   outline: none;
   border: none;
 }
@@ -144,6 +144,9 @@ a {
   text-decoration: none;
 }
 
+.English_lang{
+  direction: ltr;
+}
 .English_lang,
 .English_lang h1,
 .English_lang h2,
@@ -156,6 +159,9 @@ a {
   font-family: "Mont";
 }
 
+.Arabic_lang{
+  direction: rtl;
+}
 .Arabic_lang,
 .Arabic_lang h1,
 .Arabic_lang h2,
@@ -497,6 +503,11 @@ a {
 
 .header.is-sticky .lang_btn,
 .header.spHeader .lang_btn {
+  color: var(--black_color);
+}
+
+.header.is-sticky .userWrap,
+.header.spHeader .userWrap {
   color: var(--black_color);
 }
 
@@ -977,6 +988,9 @@ a {
   }
 }
 
+.swiper-pagination {
+  bottom: var(--swiper-pagination-bottom, -5px) !important;
+}
 .swiper-pagination .swiper-pagination-bullet {
   background-color: #C08450;
   opacity: 0.4;
