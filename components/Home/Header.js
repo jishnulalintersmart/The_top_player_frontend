@@ -75,10 +75,13 @@ const Header = ({ styles, Lang }) => {
           preload="metadata"
           aria-label="Video player"
         >
-          <source
-            src="https://backend.thetopplayer.com/videos/header.mp4"
-            type="video/mp4"
-          />
+          {state && (
+            <source
+              // src="https://backend.thetopplayer.com/videos/header.mp4"
+              src={`${process.env.customKey}/banner_videos/${state.videoUrl}`}
+              type="video/mp4"
+            />
+          )}
         </video>
       </div>
     </div>
