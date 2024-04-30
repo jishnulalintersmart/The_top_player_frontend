@@ -140,13 +140,13 @@
       padding: 0;
       &.ar {
         li {
-          padding-left: 50px;
-          padding-right: 0;
+          padding-right: 50px;
+          padding-left: 0;
           @media (max-width: 991.98px) {
-            padding-left: 40px;
+            padding-right: 40px;
           }
           @media (max-width: 575.98px) {
-            padding-left: 35px;
+            padding-right: 35px;
           }
 
           &::after {
@@ -171,7 +171,7 @@
         &::after {
           content: "";
           position: absolute;
-          top: 0;
+          top: 2px;
           left: 0;
           background: url("../public/images/icon-list.svg");
           background-size: contain;
@@ -231,6 +231,30 @@
     }
     @media (max-width: 575.98px) {
       margin: 0 -5px;
+    }
+    &.ar {
+      & > .item {
+        &:first-of-type {
+          .wkBox .line {
+            &::before {
+              display: none;
+            }
+            &::after {
+              display: block;
+            }
+          }
+        }
+        &:last-of-type {
+          .wkBox .line {
+            &::before {
+              display: block;
+            }
+            &::after {
+              display: none;
+            }
+          }
+        }
+      }
     }
     & > .item {
       width: calc(100% / 4);

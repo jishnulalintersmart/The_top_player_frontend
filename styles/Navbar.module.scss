@@ -135,15 +135,21 @@
     }
   }
   .image_lang {
-    font-size: clamp(14px, 2vw, 18px);
+    font-size: 16px;
     line-height: 1;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--white_color);
     position: relative;
     transition: color 0.4s ease;
     padding: 0;
     &:hover {
       color: var(--main_color);
+    }
+    @media (max-width: 991.98px) {
+      font-size: 15px;
+    }
+    @media (max-width: 575.98px) {
+      font-size: 13px;
     }
   }
 
@@ -588,8 +594,23 @@
   }
 }
 .userWrap {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--white_color);
+  text-transform: capitalize;
   position: relative;
   z-index: 0;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  @media (max-width: 991.98px) {
+    font-size: 15px;
+  }
+  @media (max-width: 575.98px) {
+    font-size: 13px;
+    column-gap: 2px;
+  }
 }
 .drop_men {
   width: 160px;
@@ -646,6 +667,9 @@
   background-color: transparent;
   border: none;
   font-size: 30px;
+  @media (max-width: 991.98px) {
+    font-size: 25px;
+  }
   svg {
     color: var(--white_color);
   }
