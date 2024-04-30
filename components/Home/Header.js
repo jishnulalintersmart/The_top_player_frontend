@@ -13,6 +13,7 @@ const Header = ({ styles, Lang }) => {
     state: state?.HeaderSlice?.banners[0],
   }));
 
+  console.log(state);
 
   useEffect(() => {
     Aos.init({ duration: 900 });
@@ -27,7 +28,7 @@ const Header = ({ styles, Lang }) => {
       <div className={styles.banner_info}>
         <h1>{Lang === "ar" ? state?.head_ar : state?.head}</h1>
         <h2>{Lang === "ar" ? state?.subhead_ar : state?.subhead}</h2>
-        <p>{Lang === "ar" ? state?.text_title_Ar : state?.text_title}</p>
+        <p>{Lang === "ar" ? state?.title_text_Ar : state?.title_text}</p>
         <div className={styles.btn_wrap}>
           <Link
             href={`/${Lang}#programs`}
