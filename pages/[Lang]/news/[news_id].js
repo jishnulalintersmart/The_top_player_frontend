@@ -31,10 +31,7 @@ const NewsDetail = () => {
     <LangWrap Lang={Lang.toLowerCase()}>
       <LangChange Lang={Lang.toLowerCase()}>
         <div className={styles.news_detail_page}>
-          <InnerBanner
-            imageUrl={"/images/banner-news.jpg"}
-            title={t("news.heading")}
-          />
+          <InnerBanner imageUrl={"/images/banner-news.jpg"} title={t("news.heading")} />
           <div className={styles.news_detail_section}>
             <div className={"container"}>
               <div className={styles.cntWrap}>
@@ -42,9 +39,7 @@ const NewsDetail = () => {
                 <h2>{t("news.heading")}</h2>
                 <div className={styles.info}>
                   {" "}
-                  {t("news.postdate")} :{" "}
-                  {news?.createdAt &&
-                    format(new Date(news?.createdAt), "dd MMMM yyyy")}
+                  {t("news.postdate")} : {news?.createdAt && format(new Date(news?.createdAt), "dd MMMM yyyy")}
                 </div>
 
                 <Swiper
@@ -79,9 +74,7 @@ const NewsDetail = () => {
                   ))}
                 </Swiper>
 
-                <p>
-                  {Lang === "ar" ? news?.description_ar : news?.description_en}
-                </p>
+                <p>{Lang === "ar" ? news?.description_ar : news?.description_en}</p>
               </div>
             </div>
           </div>
@@ -131,15 +124,10 @@ const NewsDetail = () => {
                 {allnews &&
                   allnews
                     ?.filter((item) => item.id != news_id)
-                    ?.sort(
-                      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-                    )
+                    ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                     ?.slice(0, 3)
                     ?.map((news) => (
-                      <SwiperSlide
-                        key={news.id}
-                        onClick={() => router.push(`/${Lang}/news/${news?.id}`)}
-                      >
+                      <SwiperSlide key={news.id} onClick={() => router.push(`/${Lang}/news/${news?.id}`)}>
                         <NewsBox Lang={Lang} news={news} />
                       </SwiperSlide>
                     ))}
