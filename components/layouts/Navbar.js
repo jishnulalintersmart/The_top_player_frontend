@@ -291,13 +291,21 @@ const Navbar = ({ overHeight, state }) => {
                     onClick={() => {
                       setVisible(false);
 
-                      if (router?.query?.Lang?.toLowerCase() === "ar") {
-                        i18n.changeLanguage("en");
-                        router.push(`/en`);
-                      } else {
-                        i18n.changeLanguage("ar");
-                        router.push(`/ar`);
-                      }
+                      const currentUrl = window.location.href;
+                      const currentLang = router?.query?.Lang?.toLowerCase();
+                      const newLang = currentLang === "ar" ? "en" : "ar";
+                      const newUrl = currentUrl.replace(`/${currentLang}`, `/${newLang}/`);
+                      history.pushState(null, "", newUrl);
+                      i18n.changeLanguage(newLang);
+                      window.location.reload();
+
+                      // if (router?.query?.Lang?.toLowerCase() === "ar") {
+                      //   i18n.changeLanguage("en");
+                      //   router.push(`/en`);
+                      // } else {
+                      //   i18n.changeLanguage("ar");
+                      //   router.push(`/ar`);
+                      // }
                     }}
                   >
                     {t("menu.lang")}
