@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Col } from "react-bootstrap";
 // import styles from "@/styles/Navbar.module.css";
 import styles from "@/styles/Navbar.module.scss";
 import { useRouter } from "next/router";

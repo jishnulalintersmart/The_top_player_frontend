@@ -31,7 +31,7 @@ const Testimonials = ({ Lang }) => {
     <div className={styles.testimonials_section}>
       <div className={"container"}>
         <div className={"tleWrap center"}>
-          <div className={"mTle"}>TESTIMONIALS</div>
+          <div className={"mTle"}>{t("testimonials")}</div>
         </div>
       </div>
       <Swiper
