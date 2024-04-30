@@ -14,7 +14,7 @@ const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
           <div className={styles.lftWrap}>
             <div className={`${styles.tleWrap} tleWrap`}>
               <div className={styles.dElmt}></div>
-              <div className={"mTle"}>Enroll to our program</div>
+              <div className={"mTle"}>{t("enroll_to_our_program")}</div>
               <div className={styles.txt}>{Lang === "ar" ? CourseByIdArray?.enroll_text_ar : CourseByIdArray?.enroll_text}</div>
             </div>
           </div>
@@ -26,7 +26,7 @@ const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
                   className={"baseBtn hoveranim"}
                   aria-label="view all button"
                 >
-                  <span>JOIN NOW</span>
+                  <span>{t("join_now")}</span>
                 </Link>
               ) : (
                 <Link

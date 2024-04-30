@@ -10,7 +10,7 @@ const Personlized = ({ Lang }) => {
         <div className={"tleWrap center"}>
           <h2 className={"mTle"}>{t("programs_details.personal")}</h2>
         </div>
-        <div className={styles.dFlx}>
+        <div className={`${styles.dFlx} ${Lang === "ar" ? styles.ar : styles.en}`}>
           <div className={styles.item}>
             <div className={styles.wkBox}>
               <div className={styles.icon}>
