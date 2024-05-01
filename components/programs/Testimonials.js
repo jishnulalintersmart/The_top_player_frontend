@@ -12,19 +12,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTestimonials } from "@/store/TestimonialSlice";
+import { getAllTestimonials, getTestimonialById } from "@/store/TestimonialSlice";
 
 const Testimonials = ({ Lang }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const { testimonials } = useSelector(
-    (state) => state.TestimonialSlice.testimonials
-  );
-
+  const testimonials = useSelector((state) => state.TestimonialSlice.testimonialById);
 
   useEffect(() => {
-    dispatch(getAllTestimonials());
+    dispatch(getTestimonialById(2));
   }, [dispatch]);
 
   return (
@@ -64,15 +61,11 @@ const Testimonials = ({ Lang }) => {
                 />
               </div>
               <div className={styles.cntWrap}>
-                <p>
-                  {Lang === "ar"
-                    ? testimonial?.comment_ar
-                    : testimonial?.comment_en}
-                </p>
+                <p>{Lang === "ar" ? testimonial?.comment_ar : testimonial?.comment_en}</p>
               </div>
               <div className={styles.infoWrap}>
                 <div className={styles.tle}>{testimonial?.user_name}</div>
-                <div className={styles.sTle}>{testimonial?.user_role}</div>
+                <div className={styles.sTle}>{testimonial?.role}</div>
               </div>
             </div>
           </SwiperSlide>

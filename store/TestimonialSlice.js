@@ -25,11 +25,35 @@ export const getAllTestimonials = createAsyncThunk(
   }
 );
 
+export const getTestimonialById = createAsyncThunk(
+  "Testimonial/testimonialById",
+  async (testimonialId, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
+    try {
+      const result = await axios
+        .get(`${process.env.customKey}/testimonial/${testimonialId}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": Cookies.get("UT"),
+          },
+        })
+        .then((res) => res.data.testimonials);
+      console.log(result);
+      return result;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+
 const TestimonialSlice = createSlice({
   name: "Testimonial",
   initialState: {
     initialloading: false,
     testimonials: [],
+    testimonialById: [],
     error: null,
   },
   reducers: {},
@@ -42,6 +66,17 @@ const TestimonialSlice = createSlice({
       state.initialloading = false;
     });
     builder.addCase(getAllTestimonials.rejected, (state, action) => {
+      state.error = action.payload;
+    });
+
+    builder.addCase(getTestimonialById.pending, (state, action) => {
+      state.initialloading = true;
+    });
+    builder.addCase(getTestimonialById.fulfilled, (state, action) => {
+      state.testimonialById = action.payload;
+      state.initialloading = false;
+    });
+    builder.addCase(getTestimonialById.rejected, (state, action) => {
       state.error = action.payload;
     });
   },
