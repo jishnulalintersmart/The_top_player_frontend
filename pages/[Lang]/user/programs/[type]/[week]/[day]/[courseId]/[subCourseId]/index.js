@@ -84,6 +84,7 @@ const FristVideos = ({
         className="container-xxl"
         style={{
           direction: Lang === "ar" ? "rtl" : "ltr",
+          marginTop:"70px"
         }}
       >
         <div

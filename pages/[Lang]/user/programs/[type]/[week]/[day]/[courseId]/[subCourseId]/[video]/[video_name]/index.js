@@ -44,7 +44,7 @@ const Videos = ({
   // console.log(
   //   `Lang : ${Lang} - type: ${type} - week : ${week_id} -  day : ${day_id} - courseId: ${courseId} - subCourseId : ${subCourseId} - videId : ${video_id}`
   // );
-  const {t}= useTranslation()
+  const { t } = useTranslation();
   const router = useRouter();
 
   useEffect(() => {
@@ -64,63 +64,66 @@ const Videos = ({
   // console.log(Next_video );
   // console.log(Next_video?.id)
 
+  console.log("videos===>", videos);
+  console.log("video===>", video);
+
   return (
     <LangWrap Lang={Lang}>
       <div
-      className="container-xxl"
-      style={{
-        direction: Lang === "ar" ? "rtl" : "ltr",
-      }}
-    >
-      <div   className={`${styles.videos} ${
-          Lang === "ar" ? "ar_Video" : "en_Video"
-        }`}>
-        <div className={styles.Main_header}>
-          <div
-            className={`breadCramp ${Lang === "ar" ? "Ar_cramp" : "En_cramp"}`}
-          >
-            <Link href={`/${Lang}`}>{t("menu.home")}</Link>
-            <span>{" > "}</span>
-            <Link href={`/${Lang}/user/programs/details/${courseId}`}>
-              {/* {type} */}
-              {parseInt(courseId)=== 1 &&  t("programs_details.fitness.title")}
-              {parseInt(courseId)=== 2 &&  t("programs_details.fitness_fottboll.title")}
-              {parseInt(courseId)=== 3 &&  t("programs_details.football.title")}
-            </Link>
-          </div>
-          <h2 className="title"> {video_name}</h2>
-          <div className={styles.week}>
-            <div className={styles.day_finish}>
-              <h3>{t("vidoe.week")} {week_id} - </h3>
-
-              <h3>&nbsp; {t("vidoe.day")} {day_id % 5 === 0 ? 5 : day_id % 5}</h3>
+        className="container-xxl"
+        style={{
+          direction: Lang === "ar" ? "rtl" : "ltr",
+        }}
+      >
+        <div className={`${styles.videos} ${Lang === "ar" ? "ar_Video" : "en_Video"}`}>
+          <div className={styles.Main_header}>
+            <div className={`breadCramp ${Lang === "ar" ? "Ar_cramp" : "En_cramp"}`}>
+              <Link href={`/${Lang}`}>{t("menu.home")}</Link>
+              <span>{" > "}</span>
+              <Link href={`/${Lang}/user/programs/details/${courseId}`}>
+                {/* {type} */}
+                {parseInt(courseId) === 1 && t("programs_details.fitness.title")}
+                {parseInt(courseId) === 2 && t("programs_details.fitness_fottboll.title")}
+                {parseInt(courseId) === 3 && t("programs_details.football.title")}
+              </Link>
             </div>
-            {/* <p className={styles.head_phar}>
+            <h2 className="title"> {video_name}</h2>
+            <div className={styles.week}>
+              <div className={styles.day_finish}>
+                <h3>
+                  {t("vidoe.week")} {week_id} -{" "}
+                </h3>
+
+                <h3>
+                  &nbsp; {t("vidoe.day")} {day_id % 5 === 0 ? 5 : day_id % 5}
+                </h3>
+              </div>
+              {/* <p className={styles.head_phar}>
               Your first plan will be created for 30 days and displayed in your
               calendar
             </p> */}
-          </div>
-        </div>
-
-        <div className="row justify-content-between">
-          <div className="col-md-8">
-            <div className={styles.Main_Video}>
-              <VideoShow
-                video_key={video_key}
-                video_id={video_id}
-                courseId={courseId}
-                list={videos?.length}
-                type={type}
-                week_id={week_id}
-                day_id={day_id}
-                subCourseId={subCourseId}
-                Lang={Lang}
-                video_name={video_name}
-                next_name={Next_video?.name}
-                next_id={Next_video?.id}
-              />
             </div>
-            {/* <div className={styles.Main_Video_mobile}>
+          </div>
+
+          <div className="row justify-content-between">
+            <div className="col-md-8">
+              <div className={styles.Main_Video}>
+                <VideoShow
+                  video_key={video_key}
+                  video_id={video_id}
+                  courseId={courseId}
+                  list={videos?.length}
+                  type={type}
+                  week_id={week_id}
+                  day_id={day_id}
+                  subCourseId={subCourseId}
+                  Lang={Lang}
+                  video_name={video_name}
+                  next_name={Next_video?.name}
+                  next_id={Next_video?.id}
+                />
+              </div>
+              {/* <div className={styles.Main_Video_mobile}>
               <h1 className="title">Prefect Lower body</h1>
               <div className={styles.week}>
                 <div className={styles.day_finish}>
@@ -134,34 +137,34 @@ const Videos = ({
                 </p>
               </div>
             </div> */}
-          </div>
-          <div className="col-md-4">
-            <div className="row">
-              {videos &&
-                videos.map((ele, idx) => {
-                  return (
-                    <div key={ele.id} className="col-12">
-                      <VideoCard
-                        key={idx}
-                        type={type}
-                        id={ele.id}
-                        name={ele.name}
-                        active={ele.watched}
-                        courseId={courseId}
-                        week_id={week_id}
-                        day_id={day_id}
-                        subCourseId={subCourseId}
-                        Lang={Lang}
-                        videoURL={ele.videoURL}
-                      />
-                    </div>
-                  );
-                })}
+            </div>
+            <div className="col-md-4">
+              <div className="row">
+                {videos &&
+                  videos.map((ele, idx) => {
+                    return (
+                      <div key={ele.id} className="col-12">
+                        <VideoCard
+                          key={idx}
+                          type={type}
+                          id={ele.id}
+                          name={ele.name}
+                          active={ele.watched}
+                          courseId={courseId}
+                          week_id={week_id}
+                          day_id={day_id}
+                          subCourseId={subCourseId}
+                          Lang={Lang}
+                          videoURL={ele.videoURL}
+                        />
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </LangWrap>
   );
 };
@@ -171,17 +174,14 @@ export default Videos;
 export async function getServerSideProps({ req, params }) {
   try {
     const result = await axios
-      .get(
-        `${process.env.customKey}/videos/${params.courseId}/${params.subCourseId}/${params.day}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": req.cookies.UT,
-            // params: data,
-          },
-        }
-      )
+      .get(`${process.env.customKey}/videos/${params.courseId}/${params.subCourseId}/${params.day}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": req.cookies.UT,
+          // params: data,
+        },
+      })
       .then((res) => res.data);
     return {
       props: {
@@ -210,10 +210,7 @@ export async function getServerSideProps({ req, params }) {
         video_name: params.video_name,
         error: true,
         error_status: err?.response?.status,
-        error_Text:
-          err?.response?.data?.message === undefined
-            ? null
-            : err?.response?.data?.message,
+        error_Text: err?.response?.data?.message === undefined ? null : err?.response?.data?.message,
       },
     };
   }
