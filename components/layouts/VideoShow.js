@@ -22,7 +22,23 @@ import {
   FullscreenToggle,
 } from "video-react";
 import Image from "next/image";
-const VideoShow = ({ video_id, courseId, list, Lang, week_id, day_id, subCourseId, type, video_key, video_name, next_name, next_id, key, video_image, day_time }) => {
+const VideoShow = ({
+  video_id,
+  courseId,
+  list,
+  Lang,
+  week_id,
+  day_id,
+  subCourseId,
+  type,
+  video_key,
+  video_name,
+  next_name,
+  next_id,
+  key,
+  video_image,
+  day_time,
+}) => {
   // console.log(
   //   `2 => Lang : ${Lang} - type: ${type} - week : ${week_id} -  day : ${day_id} - courseId: ${courseId} - subCourseId : ${subCourseId} - videId : ${video_id}`
   // );
@@ -166,16 +182,14 @@ const VideoShow = ({ video_id, courseId, list, Lang, week_id, day_id, subCourseI
 
         {/* <Player onEnded={handleVideoEnded} /> */}
 
-        <div className={`watermark`} style={{ fontSize: "16px" }}>
-          {/* {user_info?.username}
-      <br /> */}
+        {/* <div className={`watermark`} style={{ fontSize: "16px" }}>
           User ID: {user_info?.id}
-        </div>
+        </div> */}
 
         <div className={`watermark-logo`} style={{ fontSize: "20px" }}>
           {/* <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} /> */}
-          <Image src={"/images/logo-light.svg"} objectFit={"contain"} alt={"logo"} priority width={150} height={150} />
-
+          <Image src={"/images/logo-light.svg"} objectFit={"contain"} alt={"logo"} priority width={150} height={50} />
+          <p>User ID: {user_info?.id}</p>
         </div>
       </Player>
       {/* <div
