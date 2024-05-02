@@ -228,8 +228,8 @@ a {
 @media (max-width: 575.98px) {
   .baseBtn {
     font-size: 14px;
-    max-width: 140px;
-    height: 35px;
+    max-width: 160px;
+    height: 40px;
   }
 }
 
@@ -240,12 +240,6 @@ a {
 @media (max-width: 991.98px) {
   .baseBtn span {
     margin: 0 4px;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .baseBtn span {
-    margin: 0 2px;
   }
 }
 

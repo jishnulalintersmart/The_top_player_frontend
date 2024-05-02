@@ -24,7 +24,7 @@ const Header = ({ styles, Lang }) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.banner_section}>
+    <div className={styles.banner_section} id="banner">
       <div className={styles.banner_info}>
         <h1>{Lang === "ar" ? state?.head_ar : state?.head}</h1>
         <h2>{Lang === "ar" ? state?.subhead_ar : state?.subhead}</h2>
