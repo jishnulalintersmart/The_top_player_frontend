@@ -28,6 +28,7 @@ const Navbar = ({ overHeight, state }) => {
   const { t, i18n } = useTranslation();
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
   const { user_info } = useSelector((state) => state.AuthSlice);
+  const toggleRef = useRef(null);
 
   console.log(user_info);
 
@@ -56,6 +57,17 @@ const Navbar = ({ overHeight, state }) => {
       ? header.classList.add("is-sticky")
       : header.classList.remove("is-sticky");
   };
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (toggleRef.current && !toggleRef.current.contains(event.target)) {
+        setToggle(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <LangWrap
       Lang={
@@ -78,7 +90,7 @@ const Navbar = ({ overHeight, state }) => {
           router.pathname.includes("/user/profile") ||
           router.pathname.includes("/user/payment/") ||
           router.pathname.includes("/user/payment-program") ||
-          router.pathname.includes("/error-handel")          
+          router.pathname.includes("/error-handel")
             ? "spHeader is-sticky"
             : "commonHeader"
         } header`}
@@ -365,7 +377,10 @@ const Navbar = ({ overHeight, state }) => {
                       const currentUrl = window.location.href;
                       const currentLang = router?.query?.Lang?.toLowerCase();
                       const newLang = currentLang === "ar" ? "en" : "ar";
-                      const newUrl = currentUrl.replace(`/${currentLang}`, `/${newLang}/`);
+                      const newUrl = currentUrl.replace(
+                        `/${currentLang}`,
+                        `/${newLang}/`
+                      );
                       history.pushState(null, "", newUrl);
                       i18n.changeLanguage(newLang);
                       window.location.reload();
@@ -472,6 +487,7 @@ const Navbar = ({ overHeight, state }) => {
                               ? "0"
                               : "unset",
                         }}
+                        ref={toggleRef}
                       >
                         {!Cookies.get("UT") && (
                           <Link
