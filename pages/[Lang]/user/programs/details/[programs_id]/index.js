@@ -508,7 +508,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
       <Testimonials Lang={Lang} />
 
-      <EnrollProgram Lang={Lang} programId={programs_id} CoursecArr={CoursecArr} CourseByIdArray={CourseByIdArray} />
+      {!CoursecArr && (
+        <EnrollProgram Lang={Lang} programId={programs_id} CoursecArr={CoursecArr} CourseByIdArray={CourseByIdArray} />
+      )}
     </LangWrap>
   );
 };
