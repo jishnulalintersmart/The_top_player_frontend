@@ -14,14 +14,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTestimonials, getTestimonialById } from "@/store/TestimonialSlice";
 
-const Testimonials = ({ Lang }) => {
+const Testimonials = ({ Lang, programId }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const testimonials = useSelector((state) => state.TestimonialSlice.testimonialById);
 
   useEffect(() => {
-    dispatch(getTestimonialById(2));
+    dispatch(getTestimonialById(programId));
   }, [dispatch]);
 
   return (
