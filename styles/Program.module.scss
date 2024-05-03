@@ -89,6 +89,10 @@
         height: auto;
         position: relative;
         z-index: 0;
+        @media (max-width: 991.98px) {
+          max-width: 268px;
+          margin: 0 auto;
+        }
       }
     }
     .info_price {
@@ -185,7 +189,7 @@
         }
         & > * {
           font-size: 18px;
-          line-height: 1.2;
+          line-height: 1.4;
           font-weight: 400;
           color: var(--black_color);
           @media (max-width: 991.98px) {
@@ -204,6 +208,7 @@
     justify-content: flex-end;
     @media (max-width: 991.98px) {
       margin-top: 15px;
+      justify-content: center;
     }
     @media (max-width: 575.98px) {
       margin-top: 10px;

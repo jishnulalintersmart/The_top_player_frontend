@@ -87,7 +87,8 @@ const VideoCard = ({
           <FaCirclePlay />
         </span>
         {/* <Image src={"https://backend.thetopplayer.com/images/warm%20up%20both.jpg"} layout="fill" objectFit="cover" alt={name} /> */}
-        <Image src={videoURL} layout="fill" objectFit="cover" alt={name} />
+        <img src={videoURL} layout="fill" alt={name} />
+        {/* <Image src={`${process.env.customKey}/images/${videoURL}`} layout="fill" objectFit="cover" alt={name} /> */}
 
         {/* <div className={styles.ImageVideo}>
         </div> */}

@@ -274,7 +274,7 @@
 
 @media (max-width: 575.98px) {
   .program_section {
-    padding: 20px 0;
+    padding: 30px 0;
   }
 }
 
@@ -677,6 +677,7 @@
   color: white;
   margin-top: auto;
   padding: 10px 15px;
+  margin: 5px 0;
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -802,12 +803,6 @@
   margin-right: auto;
 }
 
-.Video_Suspense div {
-  /* height: 100% !important; */
-  /* width: fit-content !important; */
-  /* margin:  0 auto ; */
-}
-
 .Video_Suspense video {
   height: 100%;
   object-fit: contain;
@@ -823,6 +818,12 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 30px;
+}
+
+@media (max-width: 991.98px) {
+  .Suspense h2 {
+    text-align: center;
+  }
 }
 
 .become h3 {

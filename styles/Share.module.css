@@ -14,7 +14,7 @@
     list-style: none;
     padding: 0;
 }
-.SocialIcons ul a {
+.SocialIcons ul a, .scrollBtn {
   /* padding: 10px; */
   border-radius: 50%;
   margin-bottom: 10px;
@@ -22,6 +22,7 @@
   /* background-color:#303441; */
   width: 45px;
   height: 45px;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +34,7 @@
   -o-transition: 0.3s;
 }
 
-.SocialIcons ul li:nth-of-type(1) a {
+.SocialIcons ul li:nth-of-type(1) a, .scrollBtn {
   transform: translateX(100px);
   -webkit-transform: translateX(100px);
   -moz-transform: translateX(100px);
@@ -67,7 +68,7 @@
 
   }
 }
-.SocialIcons ul a svg {
+.SocialIcons ul a svg, .SocialIcons ul .scrollBtn svg  {
   font-size:26px;
   /* font-size: clamp(22px, 4vw, 30px); */
   color :white;

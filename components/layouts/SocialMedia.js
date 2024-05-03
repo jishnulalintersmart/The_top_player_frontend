@@ -28,19 +28,32 @@ const SocialMedia = ({ to }) => {
       setShow(true);
     }
   }, [router.pathname]);
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <div className={styles.SocialIcons}>
       {show && (
         <ul>
           <li>
             <span>
-              <Link
+              {/* <Link
                 href={`${to}`}
                 title="scroll to top"
                 className={height ? styles.activeTop : ""}
               >
                 <AiOutlineArrowUp />
-              </Link>
+              </Link> */}
+              <div
+                title="scroll to top"
+                className={height ? `${styles['activeTop']} ${styles['scrollBtn']}` : styles.scrollBtn}
+                onClick={goToTop}
+              >
+                <AiOutlineArrowUp />
+              </div>
             </span>
           </li>
           <li>

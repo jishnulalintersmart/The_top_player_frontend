@@ -203,7 +203,8 @@ function App({ Component, pageProps, canonical, Path }) {
 
 App.getInitialProps = async ({ ctx }) => {
   const { asPath } = ctx;
-  const base = "https://thetopplayer.com/";
+  // const base = "https://thetopplayer.com/";
+  const base = "https://the-top-player-frontend-2.onrender.com"
   const canonical = base + asPath;
   return {
     Path: asPath,
