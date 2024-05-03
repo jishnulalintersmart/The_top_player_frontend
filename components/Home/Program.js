@@ -11,13 +11,12 @@ import { useRouter } from "next/router";
 const Program = ({ styles, Lang }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { subscribedCourseArr, CoursecArr } = useSelector(
-    (state) => state.CourcesSlice
-  );
+  const { subscribedCourseArr, CoursecArr } = useSelector((state) => state.CourcesSlice);
 
   console.log(CoursecArr);
   useEffect(() => {
     dispatch(allCourses());
+    dispatch(getsubscribedCourse());
   }, [dispatch]);
 
   const pagination = {
@@ -41,10 +40,10 @@ const Program = ({ styles, Lang }) => {
     }
   }, [dispatch, Lang, router]);
   const Fitness = subscribedCourseArr?.find((ele) => ele.courseId === 1);
-  const Fitness_Fottboll = subscribedCourseArr?.find(
-    (ele) => ele.courseId === 2
-  );
-  const Football = subscribedCourseArr?.find((ele) => ele.courseId === 3);
+  // const Fitness_Fottboll = subscribedCourseArr?.find(
+  //   (ele) => ele.courseId === 2
+  // );
+  // const Football = subscribedCourseArr?.find((ele) => ele.courseId === 3);
   return (
     <div className={`${styles.program_section}`} id="programs">
       <div className="container">
@@ -64,40 +63,24 @@ const Program = ({ styles, Lang }) => {
                     flexDirection: Lang === "ar" ? "row-reverse" : "row",
                   }}
                 >
-                  <button
-                    className={styles.prev}
-                    id={`${item?.categoryName?.replace(/\s/g, "")}_prev`}
-                  >
-                    <Image
-                      src={"/images/icon-rgtArrow.svg"}
-                      alt="rgtArrow"
-                      layout="fill"
-                      objectFit="contain"
-                    />
+                  <button className={styles.prev} id={`${item?.categoryName?.replace(/\s/g, "")}_prev`}>
+                    <Image src={"/images/icon-rgtArrow.svg"} alt="rgtArrow" layout="fill" objectFit="contain" />
                   </button>
-                  <button
-                    className={styles.next}
-                    id={`${item?.categoryName?.replace(/\s/g, "")}_next`}
-                  >
-                    <Image
-                      src={"/images/icon-rgtArrow.svg"}
-                      alt="rgtArrow"
-                      layout="fill"
-                      objectFit="contain"
-                    />
+                  <button className={styles.next} id={`${item?.categoryName?.replace(/\s/g, "")}_next`}>
+                    <Image src={"/images/icon-rgtArrow.svg"} alt="rgtArrow" layout="fill" objectFit="contain" />
                   </button>
                 </div>
               </div>
             </div>
             <div
-              className={`${styles.program} ${
-                Lang === "ar" ? styles.ar_slide : styles.en_slide
-              } ${Lang === "ar" ? "Arabic_web_program" : ""}`}
+              className={`${styles.program} ${Lang === "ar" ? styles.ar_slide : styles.en_slide} ${
+                Lang === "ar" ? "Arabic_web_program" : ""
+              }`}
             >
               <Swiper
                 dir={Lang === "ar" ? "rtl" : "ltr"}
                 key={Lang}
-                loop={false}
+                loop={true}
                 spaceBetween={10}
                 slidesPerView={1}
                 modules={[Pagination, Navigation]}
@@ -154,8 +137,7 @@ const Program = ({ styles, Lang }) => {
                 </div> */}
                       <div className={styles.filnal_price}>
                         <p>
-                          {course?.offerPercentage}%
-                          <span>{t("programs.off")}</span>
+                          {course?.offerPercentage}%<span>{t("programs.off")}</span>
                         </p>
                       </div>
                       <div className={styles.card_image}>
@@ -168,27 +150,18 @@ const Program = ({ styles, Lang }) => {
                       </div>
                       <div className={styles.info_card}>
                         {/* <h4>{t("programs.fitness.title")}</h4> */}
-                        <h4>
-                          {Lang === "ar" ? course?.name_arabic : course?.name}
-                        </h4>
+                        <h4>{Lang === "ar" ? course?.name_arabic : course?.name}</h4>
                         {course?.descriptionHTML && (
                           <ul
-                            className={`${
-                              Lang === "ar" ? styles.rightText : styles.leftText
-                            }`}
+                            className={`${Lang === "ar" ? styles.rightText : styles.leftText}`}
                             dangerouslySetInnerHTML={{
-                              __html:
-                                Lang === "ar"
-                                  ? course?.descriptionHTMLAr
-                                  : course?.descriptionHTML,
+                              __html: Lang === "ar" ? course?.descriptionHTMLAr : course?.descriptionHTML,
                             }}
                           ></ul>
                         )}
 
                         <div
-                          className={`${styles.price_offer} ${
-                            Lang === "ar" ? styles.rightPrice : styles.leftPrice
-                          }`}
+                          className={`${styles.price_offer} ${Lang === "ar" ? styles.rightPrice : styles.leftPrice}`}
                         >
                           <h5>{course?.offerAmount}</h5>
                           <h6>
@@ -196,7 +169,9 @@ const Program = ({ styles, Lang }) => {
                           </h6>
                         </div>
                         <button>
-                          {Fitness ? t("programs.yalla") : t("programs.join")}
+                          {subscribedCourseArr?.some((obj) => obj.courseId == course?.id)
+                            ? t("programs.yalla")
+                            : t("programs.join")}
                         </button>
                       </div>
                     </Link>

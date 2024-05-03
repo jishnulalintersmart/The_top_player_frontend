@@ -129,7 +129,7 @@ const Suspense = ({ styles, Lang }) => {
               // effect={"fade"}              
               dir={Lang === "ar" ? "rtl" : "ltr"}
               key={Lang}
-              loop={false}
+              loop={true}
               spaceBetween={0}
               slidesPerView={1}
               pagination={false}

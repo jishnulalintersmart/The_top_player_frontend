@@ -2,226 +2,191 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export const getPayments = createAsyncThunk(
-  "Cources/getPayments",
-  async (id, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/payments`, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": Cookies.get("UT"),
-          },
-        })
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+export const getPayments = createAsyncThunk("Cources/getPayments", async (id, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/payments`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
-export const getCources = createAsyncThunk(
-  "Cources/getCources",
-  async (id, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/course/${id}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": Cookies.get("UT"),
-          },
-        })
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+});
+export const getCources = createAsyncThunk("Cources/getCources", async (id, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/course/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
-export const getSubCources = createAsyncThunk(
-  "Cources/getSubCources",
-  async (data, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(
-          `${process.env.customKey}/subcourse/${data.courseId}/${data.sucourseId}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "X-Access-Token": Cookies.get("UT"),
-            },
-          }
-        )
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+});
+export const getSubCources = createAsyncThunk("Cources/getSubCources", async (data, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/subcourse/${data.courseId}/${data.sucourseId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
-export const getsubscribedCourse = createAsyncThunk(
-  "Cources/getsubscribedCourse",
-  async (token, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/subscribedCourse`, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": token ? token : Cookies.get("UT"),
-          },
-        })
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+});
+export const getsubscribedCourse = createAsyncThunk("Cources/getsubscribedCourse", async (token, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/subscribedCourse`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": token ? token : Cookies.get("UT"),
+        },
+      })
+      .then((res) => {
+        console.log("subscribedCourse=======>", res.data);
+        return res.data});
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
-export const checkToken = createAsyncThunk(
-  "Cources/checkToken",
-  async (data, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/subscribedCourse`, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": data,
-          },
-        })
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+});
+export const checkToken = createAsyncThunk("Cources/checkToken", async (data, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/subscribedCourse`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": data,
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
+});
 
-export const videos_in_days = createAsyncThunk(
-  "Cources/videos_in_days",
-  async (data, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      console.log("Token", Cookies.get("UT"));
-      const result = await axios
-        .get(
-          `${process.env.customKey}/videos/${data.courseId}/${data.subCourseId}/${data.day}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "X-Access-Token": Cookies.get("UT"),
-              // params: data,
-            },
-          }
-        )
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+export const videos_in_days = createAsyncThunk("Cources/videos_in_days", async (data, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    console.log("Token", Cookies.get("UT"));
+    const result = await axios
+      .get(`${process.env.customKey}/videos/${data.courseId}/${data.subCourseId}/${data.day}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+          // params: data,
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
+});
 
-export const getVideo = createAsyncThunk(
-  "Cources/getVideo",
-  async (data, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(
-          `${process.env.customKey}/video/${data.videoId}/${
-            data.courseId
-          }/${Cookies.get("UT")}`,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Accept: "application/json",
-              "X-Access-Token": Cookies.get("UT"),
-              // params: data,
-            },
-          }
-        )
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+export const getVideo = createAsyncThunk("Cources/getVideo", async (data, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/video/${data.videoId}/${data.courseId}/${Cookies.get("UT")}`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+          // params: data,
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
-export const watchedVideo = createAsyncThunk(
-  "Cources/watchedVideo",
-  async (data, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .post(`${process.env.customKey}/video`, data, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": Cookies.get("UT"),
-            // params: data,
-          },
-        })
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+});
+export const watchedVideo = createAsyncThunk("Cources/watchedVideo", async (data, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .post(`${process.env.customKey}/video`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+          // params: data,
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
-export const allCourses = createAsyncThunk(
-  "Cources/allCourses",
-  async (data, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/courses`, data, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": Cookies.get("UT"),
-          },
-        })
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+});
+export const allCourses = createAsyncThunk("Cources/allCourses", async (data, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/courses`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+        },
+      })
+      .then((res) => {
+        console.log("res", res.data);
+        return res.data;
+      });
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
+});
 
-export const courseById = createAsyncThunk(
-  "Cources/courseById",
-  async (data, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/courseById/${data}`, data, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": Cookies.get("UT"),
-          },
-        })
-        .then((res) => {
-          console.log("res", res);
-          return res.data.course});
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+export const courseById = createAsyncThunk("Cources/courseById", async (data, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/courseById/${data}`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+        },
+      })
+      .then((res) => {
+        console.log("res", res);
+        return res.data.course;
+      });
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
+});
 
 const CourcesSlice = createSlice({
   name: "Cources",
@@ -232,7 +197,7 @@ const CourcesSlice = createSlice({
     subscribedCourseArr: null,
     videos: null,
     Curreent_video: null,
-    CourseById: null
+    CourseById: null,
   },
   reducers: {
     ClearToken: (state, action) => {
