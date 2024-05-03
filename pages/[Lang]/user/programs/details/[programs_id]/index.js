@@ -83,13 +83,13 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
           </div>
         )} */}
 
-      <ProgramCard
+     {!CoursecArr && <ProgramCard
         programDetails={CourseByIdArray}
         styles={styles}
         Lang={Lang}
         CoursecArr={CoursecArr}
         programsId={programs_id}
-      />
+      />}
 
       {/* {CoursecArr?.subCourses?.length < 2 && (
         <>
@@ -107,7 +107,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
       <Personlized Lang={Lang} />
 
-      <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
+      {!CoursecArr && <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />}
 
       {CoursecArr && (
         <div className={styles.enrolled_section}>

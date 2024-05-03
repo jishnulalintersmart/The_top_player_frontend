@@ -64,7 +64,9 @@ export const getsubscribedCourse = createAsyncThunk("Cources/getsubscribedCourse
           "X-Access-Token": token ? token : Cookies.get("UT"),
         },
       })
-      .then((res) => res.data);
+      .then((res) => {
+        console.log("subscribedCourse=======>", res.data);
+        return res.data});
     return result;
   } catch (err) {
     return rejectWithValue(err);
