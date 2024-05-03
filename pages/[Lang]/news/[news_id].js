@@ -45,7 +45,7 @@ const NewsDetail = () => {
                 <Swiper
                   dir={Lang === "ar" ? "rtl" : "ltr"}
                   key={Lang}
-                  loop={false}
+                  loop={true}
                   spaceBetween={10}
                   slidesPerView={1}
                   autoplay={{
@@ -86,7 +86,7 @@ const NewsDetail = () => {
               <Swiper
                 dir={Lang === "ar" ? "rtl" : "ltr"}
                 key={Lang}
-                loop={false}
+                loop={true}
                 spaceBetween={10}
                 slidesPerView={1}
                 pagination={false}

@@ -28,10 +28,7 @@ const Login = ({ Lang }) => {
   useEffect(() => {
     // Generate device fingerprint using fingerprintjs2
     Fingerprint2.get({}, function (components) {
-      const fingerprint = Fingerprint2.x64hash128(
-        components.map((pair) => pair.value).join(),
-        31
-      );
+      const fingerprint = Fingerprint2.x64hash128(components.map((pair) => pair.value).join(), 31);
       setDevice_id(fingerprint);
     });
   }, []);
@@ -44,9 +41,7 @@ const Login = ({ Lang }) => {
       let errors = {};
       if (!data.email) {
         errors.email = t("auth.req_email");
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)
-      ) {
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
         errors.email = t("auth.invalid_email");
       }
       if (!data.password) {
@@ -70,13 +65,20 @@ const Login = ({ Lang }) => {
               expires: 90,
             });
             show();
+            console.log("res====>", res);
+            if (!res.verified) {
+              router.push({
+                pathname: `/${Lang}/admin/sign-verify`,
+                query: { email: data.email },
+              });
+            }
             dispatch(getsubscribedCourse(res.accessToken))
               .unwrap()
               .then((res) => {
                 if (res.length > 0) {
                   formik.resetForm();
                   // router.push(`/${Lang}/user/programs`);
-                  router.back()
+                  router.back();
                   setDisabed(false);
                 } else {
                   formik.resetForm();
@@ -136,15 +138,10 @@ const Login = ({ Lang }) => {
       // detail: formik.values.value,
     });
   };
-  const isFormFieldInvalid = (name) =>
-    !!(formik.touched[name] && formik.errors[name]);
+  const isFormFieldInvalid = (name) => !!(formik.touched[name] && formik.errors[name]);
 
   const getFormErrorMessage = (name) => {
-    return isFormFieldInvalid(name) ? (
-      <small className="p-error">{formik.errors[name]}</small>
-    ) : (
-      ""
-    );
+    return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : "";
   };
   return (
     <LangWrap Lang={Lang}>
@@ -226,8 +223,7 @@ const Login = ({ Lang }) => {
                   marginLeft: Lang === "ar" ? "10px" : "0",
                 }}
               >
-                {t("auth.forget")}{" "}
-                <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
+                {t("auth.forget")} <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
               </p>
             </div>
             <div className={styles.have_account}>

@@ -65,7 +65,7 @@ const News = ({ styles, Lang }) => {
           dir={Lang === "ar" ? "rtl" : "ltr"}
           key={Lang}
           // dir="ltr"
-          loop={false}
+          loop={true}
           spaceBetween={10}
           slidesPerView={1}
           pagination={false}
