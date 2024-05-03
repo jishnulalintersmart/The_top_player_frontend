@@ -66,8 +66,10 @@
       height: auto;
     }
     .dElmt {
-      opacity: 0.9;
-      transform: scale(60);
+      @media (min-width: 575.98px) {
+        opacity: 0.9;
+        transform: scale(60);
+      }
     }
   }
   .dElmt {
@@ -169,7 +171,7 @@
       height: 0;
       overflow: hidden;
       transform: scaleY(0);
-      -webkit-line-clamp: 6;      
+      -webkit-line-clamp: 6;
     }
   }
   .vAllBtn {

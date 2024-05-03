@@ -29,7 +29,7 @@ const Programs = ({ Lang }) => {
     (ele) => ele.courseId === 2
   );
   const Football = subscribedCourseArr?.find((ele) => ele.courseId === 3);
-console.log("subscribedCourseArr", subscribedCourseArr);
+  console.log("subscribedCourseArr", subscribedCourseArr);
 
   return (
     <LangWrap Lang={Lang}>
@@ -45,24 +45,14 @@ console.log("subscribedCourseArr", subscribedCourseArr);
           >
             <div className={"tleWrap"}>
               <h1 className="mTle">{t("programs.my_programs")}</h1>
-            </div>
-            <div className={styles.top1_titlle}>
-              <h3 className={styles.small_title}>{t("programs.top")}</h3>
-              <div className={styles.block}></div>
-
-              <div className={styles.top1_image}>
-                <Image
-                  src={"/images/top1.svg"}
-                  alt="top1"
-                  layout="fill"
-                  objectFit="cover"
-                />
+              <div className={styles.top1_titlle}>
+                <h3 className={styles.small_title}>{t("programs.top")}</h3>
               </div>
             </div>
 
             <div className="row justify-content-center">
               {Fitness && (
-                <div className="col-md-4">
+                <div className="col-md-6 col-lg-4 ">
                   <Link
                     href={`/${Lang}/user/programs/details/1`}
                     className={styles.card}
@@ -147,7 +137,7 @@ console.log("subscribedCourseArr", subscribedCourseArr);
                 </div>
               )}
               {Fitness_Fottboll && (
-                <div className="col-md-4">
+                <div className="col-md-6 col-lg-4">
                   <Link
                     href={`/${Lang}/user/programs/details/2`}
                     className={styles.card}
@@ -254,7 +244,7 @@ console.log("subscribedCourseArr", subscribedCourseArr);
                 </div>
               )}
               {Football && (
-                <div className="col-md-4">
+                <div className="col-md-6 col-lg-4">
                   <Link
                     href={`/${Lang}/user/programs/details/3`}
                     className={styles.card}
