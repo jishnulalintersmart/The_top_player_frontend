@@ -17,7 +17,7 @@ const Terms = ({ data }) => {
               <h2 className="title">{items.title}</h2>
               <ol>
                 {items?.values.map((points) => (
-                  <li>{points}</li>
+                  <li key={items.title}>{points}</li>
                 ))}
               </ol>
             </>
@@ -30,7 +30,7 @@ const Terms = ({ data }) => {
               <h2 className="title">{items.title}</h2>
               <ol>
                 {items?.values.map((points) => (
-                  <li>{points}</li>
+                  <li key={items.title}>{points}</li>
                 ))}
               </ol>
             </>
