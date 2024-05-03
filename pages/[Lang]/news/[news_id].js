@@ -86,7 +86,7 @@ const NewsDetail = () => {
               <Swiper
                 dir={Lang === "ar" ? "rtl" : "ltr"}
                 key={Lang}
-                loop={true}
+                loop={false}
                 spaceBetween={10}
                 slidesPerView={1}
                 pagination={false}
