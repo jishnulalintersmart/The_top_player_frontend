@@ -7,20 +7,20 @@ import { useTranslation } from "react-i18next";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 
-const Header = ({ styles, Lang }) => {
+const Header = ({ styles, Lang, state }) => {
   const dispatch = useDispatch();
-  const { state } = useSelector((state) => ({
-    state: state?.HeaderSlice?.banners[0],
-  }));
+  // const { state } = useSelector((state) => ({
+  //   state: state?.HeaderSlice?.banners[0],
+  // }));
 
   console.log(state);
 
   useEffect(() => {
     Aos.init({ duration: 900 });
   });
-  useEffect(() => {
-    dispatch(getHeaderBanner());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getHeaderBanner());
+  // }, []);
   const { t } = useTranslation();
 
   return (

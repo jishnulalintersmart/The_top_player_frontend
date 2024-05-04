@@ -33,8 +33,8 @@ const Navbar = ({ overHeight, state }) => {
   console.log(user_info);
 
   useEffect(() => {
-    dispatch(getUserInfo());
-  }, []);
+    Cookies.get("UT") && dispatch(getUserInfo());
+  }, [Cookies.get("UT")]);
 
   useEffect(() => {
     if (router?.query?.Lang?.toLowerCase() === "ar") {
