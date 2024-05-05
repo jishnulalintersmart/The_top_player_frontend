@@ -46,7 +46,7 @@ const Programs = ({ Lang }) => {
             <div className={"tleWrap"}>
               <h1 className="mTle">{t("programs.my_programs")}</h1>
               <div className={styles.top1_titlle}>
-                <h3 className={styles.small_title}>{t("programs.top")}</h3>
+                {/* <h3 className={styles.small_title}>{t("programs.top")}</h3> */}
               </div>
             </div>
 
