@@ -48,38 +48,31 @@ const Suspense = ({ styles, Lang }) => {
   //   }
   // };
 
-  const { banners } = useSelector((state) => state.BannerSlice.banners);
+  const { banners } = useSelector((state) => state.BannerSlice);
   console.log(banners);
+  console.log(banners?.images);
 
   useEffect(() => {
     dispatch(getAllBanners());
   }, [dispatch]);
 
   return (
-    <div className={`${styles.Suspense}`} style={{padding:0, margin:0}}>
+    <div className={`${styles.Suspense}`} style={{ padding: 0, margin: 0 }}>
       <div className={styles.dElmt_1}>
-        <Image
-          src={"/images/dElmt-countBg-1.svg"}
-          layout="fill"
-          alt="bg"
-          objectFit="contain"
-        />
+        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
       </div>
       <div className={`container`}>
         <div className="row align-items-center justify-content-between ">
           <div className="col-12 col-lg-6">
             <div className={styles.become}>
-              <h2>{t("title")}</h2>
+              <h2>{Lang === "ar" ? banners?.heading_ar : banners?.heading}</h2>
               <h4 className={`${styles.become_animation} become_animation`}>
-                {t("suspens.become")} &nbsp;
+                {Lang === "ar" ? banners?.non_animate_text_ar : non_animate_text} &nbsp;
+                {/* {t("suspens.become")} &nbsp; */}
                 <span>
                   {Lang === "ar" ? (
                     <ReactTyped
-                      strings={[
-                        t("suspens.better"),
-                        t("suspens.faster"),
-                        t("suspens.stronger"),
-                      ]}
+                      strings={banners?.animate_text_ar || []}
                       typeSpeed={40}
                       backSpeed={40}
                       backDelay={1500}
@@ -88,12 +81,7 @@ const Suspense = ({ styles, Lang }) => {
                     />
                   ) : (
                     <ReactTyped
-                      strings={[
-                        t("suspens.theTop"),
-                        t("suspens.better"),
-                        t("suspens.faster"),
-                        t("suspens.stronger"),
-                      ]}
+                      strings={banners?.animate_text || []}
                       typeSpeed={40}
                       backSpeed={40}
                       backDelay={1500}
@@ -101,32 +89,15 @@ const Suspense = ({ styles, Lang }) => {
                       loop
                     />
                   )}
-
-                  {/* <Typewriter
-                
-                    options={{
-
-                      strings: [
-                        t("suspens.theTop"),
-                        t("suspens.better"),
-                        t("suspens.faster"),
-                        t("suspens.stronger"),
-                      ],
-                      autoStart: true,
-                      loop: true,
-                      delay: 50,
-                      deleteSpeed: 20,
-                    }}
-                  /> */}
                 </span>
               </h4>
-              <p>{t("suspens.intro2")}</p>
-              <p>{t("suspens.intro4")}</p>
+              <p>{Lang === "ar" ? banners.para_ar : banners.para}</p>
+              {/* <p>{t("suspens.intro4")}</p> */}
             </div>
           </div>
           <div className="col-12 col-lg-6  col_video_mobile">
             <Swiper
-              // effect={"fade"}              
+              // effect={"fade"}
               dir={Lang === "ar" ? "rtl" : "ltr"}
               key={Lang}
               loop={true}
@@ -141,17 +112,15 @@ const Suspense = ({ styles, Lang }) => {
               }}
               modules={[EffectFade, Autoplay]}
             >
-              {banners?.map((banner) => (
+              {banners?.images?.map((banner) => (
                 <SwiperSlide key={banner?.id}>
                   <div
-                    className={`${
-                      styles.Video_Suspense
-                    } Video_Suspense video-container ${
+                    className={`${styles.Video_Suspense} Video_Suspense video-container ${
                       Lang === "ar" ? styles.susAr : styles.susEn
                     }`}
                   >
                     <Image
-                      src={`${process.env.customKey}/bannerImages/${banner?.image}`}
+                      src={`${process.env.customKey}/bannerImages/${banner?.imageUrl}`}
                       layout="fill"
                       alt="topPlayer"
                       objectFit="contain"
