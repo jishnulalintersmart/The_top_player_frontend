@@ -67,7 +67,7 @@ const Suspense = ({ styles, Lang }) => {
             <div className={styles.become}>
               <h2>{Lang === "ar" ? banners?.heading_ar : banners?.heading}</h2>
               <h4 className={`${styles.become_animation} become_animation`}>
-                {Lang === "ar" ? banners?.non_animate_text_ar : non_animate_text} &nbsp;
+                {Lang === "ar" ? banners?.non_animate_text_ar : banners?.non_animate_text} &nbsp;
                 {/* {t("suspens.become")} &nbsp; */}
                 <span>
                   {Lang === "ar" ? (
