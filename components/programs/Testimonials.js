@@ -37,7 +37,7 @@ const Testimonials = ({ Lang, programId }) => {
         key={Lang}
         slidesPerView={"auto"}
         spaceBetween={0}
-        centeredSlides={true}
+        centeredSlides={false}
         pagination={{
           clickable: true,
         }}
