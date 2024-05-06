@@ -113,6 +113,7 @@ const Payment = ({ course_id, Lang }) => {
                                 alt="package"
                                 layout="fill"
                                 objectFit="contain"
+                                loading="lazy"
                               />
                             </div>
                             <h4>{t("payment.fitness")}</h4>
@@ -156,6 +157,7 @@ const Payment = ({ course_id, Lang }) => {
                                 alt="package"
                                 layout="fill"
                                 objectFit="contain"
+                                loading="lazy"
                               />
                             </div>
                             <h4>{t("payment.fitness_football")}</h4>
@@ -199,6 +201,7 @@ const Payment = ({ course_id, Lang }) => {
                                 alt="package"
                                 layout="fill"
                                 objectFit="contain"
+                                loading="lazy"
                               />
                             </div>
                             <h4>{t("payment.football")}</h4>

@@ -68,6 +68,7 @@ const NewsDetail = () => {
                           objectFit: "cover",
                         }}
                         layout="responsive"
+                        loading="lazy"
                       />
                     </SwiperSlide>
                   ))}

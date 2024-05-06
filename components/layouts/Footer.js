@@ -97,6 +97,7 @@ const Footer = () => {
                   layout="fill"
                   alt="bg"
                   objectFit="contain"
+                  loading="lazy"
                 />
               </div>
               <p>{t("footer.about")}</p>

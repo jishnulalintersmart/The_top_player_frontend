@@ -56,7 +56,7 @@ const Programs = ({ Lang }) => {
                   </p>
                 </div> */}
                     <div className={styles.card_image}>
-                      <Image src={"/images/1.png"} alt="fitness" layout="fill" objectFit="contain" />
+                      <Image src={"/images/1.png"} alt="fitness" layout="fill" objectFit="contain" loading="lazy" />
                     </div>
                     <div className={styles.info_card}>
                       <h4>{t("programs.fitness.title")}</h4>
@@ -119,7 +119,7 @@ const Programs = ({ Lang }) => {
                   </p>
                 </div> */}
                     <div className={styles.card_image}>
-                      <Image src={"/images/2.png"} alt="fitness + football" layout="fill" objectFit="contain" />
+                      <Image src={"/images/2.png"} alt="fitness + football" layout="fill" objectFit="contain" loading="lazy" />
                     </div>
                     <div className={styles.info_card}>
                       <h4>
@@ -205,7 +205,7 @@ const Programs = ({ Lang }) => {
                   </p>
                 </div> */}
                     <div className={styles.card_image}>
-                      <Image src={"/images/3.png"} alt="fitness" layout="fill" objectFit="contain" />
+                      <Image src={"/images/3.png"} alt="fitness" layout="fill" objectFit="contain" loading="lazy" />
                     </div>
                     <div className={styles.info_card}>
                       <h4>{t("programs.football.title")}</h4>

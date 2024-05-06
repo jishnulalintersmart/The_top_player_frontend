@@ -24,6 +24,7 @@ const Personlized = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="contain"
+                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -46,6 +47,7 @@ const Personlized = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
+                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title1")}</h5>
@@ -65,6 +67,7 @@ const Personlized = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="contain"
+                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -87,6 +90,7 @@ const Personlized = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
+                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title2")}</h5>
@@ -106,6 +110,7 @@ const Personlized = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="contain"
+                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -128,6 +133,7 @@ const Personlized = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
+                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title3")}</h5>
@@ -147,6 +153,7 @@ const Personlized = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -169,6 +176,7 @@ const Personlized = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
+                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title4")}</h5>

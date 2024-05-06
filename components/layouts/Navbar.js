@@ -469,6 +469,7 @@ const Navbar = ({ overHeight, state }) => {
                           layout={"fill"}
                           objectFit={"contain"}
                           alt={"user"}
+                          loading="lazy"
                         />
                       </button>
                     )}

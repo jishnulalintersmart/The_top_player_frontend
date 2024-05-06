@@ -63,10 +63,10 @@ const Program = ({ styles, Lang }) => {
                   }}
                 >
                   <button className={styles.prev} id={`${item?.categoryName?.replace(/\s/g, "")}_prev`}>
-                    <Image src={"/images/icon-rgtArrow.svg"} alt="rgtArrow" layout="fill" objectFit="contain" />
+                    <Image src={"/images/icon-rgtArrow.svg"} alt="rgtArrow" layout="fill" objectFit="contain" loading="lazy" />
                   </button>
                   <button className={styles.next} id={`${item?.categoryName?.replace(/\s/g, "")}_next`}>
-                    <Image src={"/images/icon-rgtArrow.svg"} alt="rgtArrow" layout="fill" objectFit="contain" />
+                    <Image src={"/images/icon-rgtArrow.svg"} alt="rgtArrow" layout="fill" objectFit="contain" loading="lazy" />
                   </button>
                 </div>
               </div>
@@ -145,6 +145,7 @@ const Program = ({ styles, Lang }) => {
                           alt="fitness"
                           layout="fill"
                           objectFit="contain"
+                          loading="lazy"
                         />
                       </div>
                       <div className={styles.info_card}>

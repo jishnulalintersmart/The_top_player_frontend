@@ -32,7 +32,7 @@ const Who = ({ styles, Lang }) => {
   return (
     <div className={styles.who_section} id={"about"}>
       <div className={styles.dElmt_1}>
-        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
       </div>
       <div className="container">
         <div className={styles.dFlx}>
@@ -70,13 +70,13 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-exp.svg"} alt="exp" layout="fill" objectFit="contain" />
+                    <Image src={"/images/icon-exp.svg"} alt="exp" layout="fill" objectFit="contain" loading="lazy" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
@@ -96,13 +96,13 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-users.svg"} alt="exp" layout="fill" objectFit="contain" />
+                    <Image src={"/images/icon-users.svg"} alt="exp" layout="fill" objectFit="contain" loading="lazy" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
@@ -123,13 +123,13 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-courses.svg"} alt="exp" layout="fill" objectFit="contain" />
+                    <Image src={"/images/icon-courses.svg"} alt="exp" layout="fill" objectFit="contain" loading="lazy" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>

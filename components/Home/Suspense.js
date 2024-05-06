@@ -57,7 +57,7 @@ const Suspense = ({ styles, Lang }) => {
   return (
     <div className={`${styles.Suspense}`} style={{ padding: 0, margin: 0 }}>
       <div className={styles.dElmt_1}>
-        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
       </div>
       <div className={`container`}>
         <div className="row align-items-center justify-content-between ">
