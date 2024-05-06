@@ -1817,10 +1817,4 @@ video:-moz-full-screen {
 .video-container .video-react-video {
   height: auto !important; 
   width: 100% !important; 
-}
-.ToogelFull {
-  display: none;
 } */
-.ToogelFull {
-  display: none !important;
-}
