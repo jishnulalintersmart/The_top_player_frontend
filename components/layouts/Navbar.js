@@ -30,7 +30,6 @@ const Navbar = ({ overHeight, state }) => {
   const { user_info } = useSelector((state) => state.AuthSlice);
   const toggleRef = useRef(null);
 
-  console.log(user_info);
 
   useEffect(() => {
     Cookies.get("UT") && dispatch(getUserInfo());

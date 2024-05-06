@@ -13,7 +13,6 @@ const Program = ({ styles, Lang }) => {
   const dispatch = useDispatch();
   const { subscribedCourseArr, CoursecArr } = useSelector((state) => state.CourcesSlice);
 
-  console.log(CoursecArr);
   useEffect(() => {
     dispatch(allCourses());
     dispatch(getsubscribedCourse());

@@ -65,7 +65,6 @@ export const getsubscribedCourse = createAsyncThunk("Cources/getsubscribedCourse
         },
       })
       .then((res) => {
-        console.log("subscribedCourse=======>", res.data);
         return res.data});
     return result;
   } catch (err) {
@@ -93,7 +92,6 @@ export const checkToken = createAsyncThunk("Cources/checkToken", async (data, th
 export const videos_in_days = createAsyncThunk("Cources/videos_in_days", async (data, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
   try {
-    console.log("Token", Cookies.get("UT"));
     const result = await axios
       .get(`${process.env.customKey}/videos/${data.courseId}/${data.subCourseId}/${data.day}`, {
         headers: {
@@ -158,7 +156,6 @@ export const allCourses = createAsyncThunk("Cources/allCourses", async (data, th
         },
       })
       .then((res) => {
-        console.log("res", res.data);
         return res.data;
       });
     return result;
@@ -179,7 +176,6 @@ export const courseById = createAsyncThunk("Cources/courseById", async (data, th
         },
       })
       .then((res) => {
-        console.log("res", res);
         return res.data.course;
       });
     return result;
@@ -211,32 +207,26 @@ const CourcesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCources.pending, (state, action) => {
-        console.log("Pending");
         state.isCourcesLoading = true;
         state.CoursecArr = null;
       })
       .addCase(getCources.fulfilled, (state, action) => {
-        console.log("fullfiiled");
         state.isCourcesLoading = false;
         state.CoursecArr = action.payload;
       })
       .addCase(getCources.rejected, (state, action) => {
-        console.log("rejected");
         state.isCourcesLoading = false;
         state.CoursecArr = null;
       })
       .addCase(allCourses.pending, (state, action) => {
-        console.log("Pending");
         state.isCourcesLoading = true;
         state.CoursecArr = null;
       })
       .addCase(allCourses.fulfilled, (state, action) => {
-        console.log("Fulfilled");
         state.isCourcesLoading = false;
         state.CoursecArr = action.payload;
       })
       .addCase(allCourses.rejected, (state, action) => {
-        console.log("Rejected");
         state.isCourcesLoading = false;
         state.CoursecArr = null;
       })
@@ -290,7 +280,6 @@ const CourcesSlice = createSlice({
         state.CourseById = null;
       })
       .addCase(courseById.fulfilled, (state, action) => {
-        console.log("action.payload", action.payload);
         state.isCourcesLoading = false;
         state.CourseById = action.payload;
       })

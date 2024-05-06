@@ -49,8 +49,6 @@ const Suspense = ({ styles, Lang }) => {
   // };
 
   const { banners } = useSelector((state) => state.BannerSlice);
-  console.log(banners);
-  console.log(banners?.images);
 
   useEffect(() => {
     dispatch(getAllBanners());
@@ -72,7 +70,7 @@ const Suspense = ({ styles, Lang }) => {
                 <span>
                   {Lang === "ar" ? (
                     <ReactTyped
-                      strings={banners?.animate_text_ar || []}
+                      strings={banners?.animate_text_ar || [""]}
                       typeSpeed={40}
                       backSpeed={40}
                       backDelay={1500}
@@ -81,7 +79,7 @@ const Suspense = ({ styles, Lang }) => {
                     />
                   ) : (
                     <ReactTyped
-                      strings={banners?.animate_text || []}
+                      strings={banners?.animate_text || [""]}
                       typeSpeed={40}
                       backSpeed={40}
                       backDelay={1500}

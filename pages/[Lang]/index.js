@@ -45,9 +45,6 @@ const FAQs = dynamic(() => import("@/components/Home/FAQs"), {
   ssr: false,
 });
 export default function Home({ Lang, MainBanner }) {
-  console.log(MainBanner);
-  console.log(Lang);
-
   return (
     <>
       <Head>
@@ -92,7 +89,7 @@ export async function getServerSideProps({ params }) {
     .then((res) => res.data)
     .catch((err) => {
       console.log(err);
-      return null
+      return null;
     });
   // return result;
   return {

@@ -42,10 +42,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
-  console.log("CoursecArr", CoursecArr);
-  console.log("CourseByIdArray", CourseByIdArray);
-  console.log("programs_id", programs_id);
+  
   // useEffect(() => {
   //   if (error_status === 401) {
   //     Cookies.remove("UT");

@@ -25,11 +25,8 @@ const Programs = ({ Lang }) => {
   }, [dispatch, Lang, router]);
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
   const Fitness = subscribedCourseArr?.find((ele) => ele.courseId === 1);
-  const Fitness_Fottboll = subscribedCourseArr?.find(
-    (ele) => ele.courseId === 2
-  );
+  const Fitness_Fottboll = subscribedCourseArr?.find((ele) => ele.courseId === 2);
   const Football = subscribedCourseArr?.find((ele) => ele.courseId === 3);
-  console.log("subscribedCourseArr", subscribedCourseArr);
 
   return (
     <LangWrap Lang={Lang}>
@@ -40,9 +37,7 @@ const Programs = ({ Lang }) => {
             direction: Lang === "ar" ? "rtl" : "ltr",
           }}
         >
-          <div
-            className={`${styles.Program_Section} padding_all ${styles.our_programs}`}
-          >
+          <div className={`${styles.Program_Section} padding_all ${styles.our_programs}`}>
             <div className={"tleWrap"}>
               <h1 className="mTle">{t("programs.my_programs")}</h1>
               <div className={styles.top1_titlle}>
@@ -53,10 +48,7 @@ const Programs = ({ Lang }) => {
             <div className="row justify-content-center">
               {Fitness && (
                 <div className="col-md-6 col-lg-4 ">
-                  <Link
-                    href={`/${Lang}/user/programs/details/1`}
-                    className={styles.card}
-                  >
+                  <Link href={`/${Lang}/user/programs/details/1`} className={styles.card}>
                     {/* <div className={styles.filnal_price}>
                   <p>
                     25%
@@ -64,47 +56,30 @@ const Programs = ({ Lang }) => {
                   </p>
                 </div> */}
                     <div className={styles.card_image}>
-                      <Image
-                        src={"/images/1.png"}
-                        alt="fitness"
-                        layout="fill"
-                        objectFit="contain"
-                      />
+                      <Image src={"/images/1.png"} alt="fitness" layout="fill" objectFit="contain" />
                     </div>
                     <div className={styles.info_card}>
                       <h4>{t("programs.fitness.title")}</h4>
-                      <ul
-                        className={`${
-                          Lang === "ar" ? styles.rightText : styles.leftText
-                        }`}
-                      >
+                      <ul className={`${Lang === "ar" ? styles.rightText : styles.leftText}`}>
                         <li>
                           <p>
                             {t("programs.fitness.line1_1")}{" "}
-                            <span className="En_num">
-                              {t("programs.fitness.line1_2")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness.line1_2")}</span>
                             {t("programs.fitness.line1_3")}
                           </p>
                         </li>
                         <li>
                           <p>
-                            <span className="En_num">
-                              {t("programs.fitness.line2_1")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness.line2_1")}</span>
                             {t("programs.fitness.line2_2")}
-                            <span className="En_num">
-                              {t("programs.fitness.line2_3")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness.line2_3")}</span>
                             {t("programs.fitness.line2_4")}
                           </p>
                         </li>
                         <li>
                           <p>
                             {t("programs.fitness.line3_1")}
-                            <span className="En_num">
-                              {t("programs.fitness.line3_2")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness.line3_2")}</span>
                             {t("programs.fitness.line3_3")}
                           </p>
                         </li>
@@ -114,9 +89,7 @@ const Programs = ({ Lang }) => {
                         <li>
                           <p>
                             {t("programs.fitness.line5_1")}
-                            <span className="En_num">
-                              {t("programs.fitness.line5_2")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness.line5_2")}</span>
                             {t("programs.fitness.line5_3")}
                           </p>
                         </li>
@@ -138,10 +111,7 @@ const Programs = ({ Lang }) => {
               )}
               {Fitness_Fottboll && (
                 <div className="col-md-6 col-lg-4">
-                  <Link
-                    href={`/${Lang}/user/programs/details/2`}
-                    className={styles.card}
-                  >
+                  <Link href={`/${Lang}/user/programs/details/2`} className={styles.card}>
                     {/* <div className={styles.filnal_price}>
                   <p>
                     40%
@@ -149,41 +119,25 @@ const Programs = ({ Lang }) => {
                   </p>
                 </div> */}
                     <div className={styles.card_image}>
-                      <Image
-                        src={"/images/2.png"}
-                        alt="fitness + football"
-                        layout="fill"
-                        objectFit="contain"
-                      />
+                      <Image src={"/images/2.png"} alt="fitness + football" layout="fill" objectFit="contain" />
                     </div>
                     <div className={styles.info_card}>
                       <h4>
-                        {t("programs.fitness_name")} <span>+</span>{" "}
-                        {t("programs.football.title")}
+                        {t("programs.fitness_name")} <span>+</span> {t("programs.football.title")}
                       </h4>
-                      <ul
-                        className={`${
-                          Lang === "ar" ? styles.rightText : styles.leftText
-                        }`}
-                      >
+                      <ul className={`${Lang === "ar" ? styles.rightText : styles.leftText}`}>
                         <li>
                           <div className="fitness_fottboll_line">
                             {t("programs.fitness_fottboll.line1_1")}
-                            <span className="En_num">
-                              {t("programs.fitness_fottboll.line1_2")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness_fottboll.line1_2")}</span>
                             {t("programs.fitness_fottboll.line1_3")}
 
                             <p></p>
-                            <span className="En_num">
-                              {t("programs.fitness_fottboll.line1_1_1")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness_fottboll.line1_1_1")}</span>
                             {t("programs.fitness_fottboll.line1_1_2")}
 
                             <p></p>
-                            <span className="En_num">
-                              {t("programs.fitness_fottboll.line1_1_3")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness_fottboll.line1_1_3")}</span>
                             {t("programs.fitness_fottboll.line1_1_4")}
                           </div>
                         </li>
@@ -196,9 +150,7 @@ const Programs = ({ Lang }) => {
                         <li>
                           <p>
                             {t("programs.fitness_fottboll.line4_1")}
-                            <span className="En_num">
-                              {t("programs.fitness_fottboll.line4_2")}
-                            </span>
+                            <span className="En_num">{t("programs.fitness_fottboll.line4_2")}</span>
                           </p>
                         </li>
                       </ul>
@@ -245,10 +197,7 @@ const Programs = ({ Lang }) => {
               )}
               {Football && (
                 <div className="col-md-6 col-lg-4">
-                  <Link
-                    href={`/${Lang}/user/programs/details/3`}
-                    className={styles.card}
-                  >
+                  <Link href={`/${Lang}/user/programs/details/3`} className={styles.card}>
                     {/* <div className={styles.filnal_price}>
                   <p>
                     25%
@@ -256,12 +205,7 @@ const Programs = ({ Lang }) => {
                   </p>
                 </div> */}
                     <div className={styles.card_image}>
-                      <Image
-                        src={"/images/3.png"}
-                        alt="fitness"
-                        layout="fill"
-                        objectFit="contain"
-                      />
+                      <Image src={"/images/3.png"} alt="fitness" layout="fill" objectFit="contain" />
                     </div>
                     <div className={styles.info_card}>
                       <h4>{t("programs.football.title")}</h4>
@@ -293,38 +237,26 @@ const Programs = ({ Lang }) => {
                       </p>
                     </li>
                   </ul> */}
-                      <ul
-                        className={`${
-                          Lang === "ar" ? styles.rightText : styles.leftText
-                        }`}
-                      >
+                      <ul className={`${Lang === "ar" ? styles.rightText : styles.leftText}`}>
                         <li>
                           <p>
                             {t("programs.football.line1_1")}
-                            <span className="En_num">
-                              {t("programs.football.line1_2")}
-                            </span>
+                            <span className="En_num">{t("programs.football.line1_2")}</span>
                             {t("programs.football.line1_3")}
                           </p>
                         </li>
                         <li>
                           <p>
-                            <span className="En_num">
-                              {t("programs.football.line2_1")}
-                            </span>
+                            <span className="En_num">{t("programs.football.line2_1")}</span>
                             {t("programs.football.line2_2")}
-                            <span className="En_num">
-                              {t("programs.football.line2_3")}
-                            </span>
+                            <span className="En_num">{t("programs.football.line2_3")}</span>
                             {t("programs.football.line2_4")}
                           </p>
                         </li>
                         <li>
                           <p>
                             {t("programs.football.line3_1")}
-                            <span className="En_num">
-                              {t("programs.football.line3_2")}
-                            </span>
+                            <span className="En_num">{t("programs.football.line3_2")}</span>
                             {t("programs.football.line3_3")}
                           </p>
                         </li>
@@ -336,9 +268,7 @@ const Programs = ({ Lang }) => {
                           <p>
                             {t("programs.football.line5_1")}
 
-                            <span className="En_num">
-                              {t("programs.football.line5_2")}
-                            </span>
+                            <span className="En_num">{t("programs.football.line5_2")}</span>
                             {t("programs.football.line5_3")}
                           </p>
                         </li>

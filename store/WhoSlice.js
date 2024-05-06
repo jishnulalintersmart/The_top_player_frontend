@@ -15,7 +15,6 @@ export const getCounts = createAsyncThunk(
           },
         })
         .then((res) => res.data);
-      console.log(result);
       return result;
     } catch (err) {
       return rejectWithValue(err);

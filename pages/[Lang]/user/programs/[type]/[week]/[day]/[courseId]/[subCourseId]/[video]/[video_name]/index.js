@@ -64,9 +64,6 @@ const Videos = ({
   // console.log(Next_video );
   // console.log(Next_video?.id)
 
-  console.log("videos===>", videos);
-  console.log("video===>", video);
-
   return (
     <LangWrap Lang={Lang}>
       <div
