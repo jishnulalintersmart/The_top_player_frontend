@@ -149,6 +149,20 @@ const Navbar = ({ overHeight, state }) => {
               </Link>
               <Link
                 onClick={() => setVisible(false)}
+                href={`/${router?.query?.Lang?.toLowerCase()}#news`}
+                className={
+                  router.asPath.includes(
+                    `/${router?.query?.Lang?.toLowerCase()}#news`
+                  )
+                    ? styles.active
+                    : styles.link
+                }
+              >
+                {t("menu.our_news")}
+              </Link>
+
+              <Link
+                onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}#programs`}
                 className={
                   router.asPath.includes(
