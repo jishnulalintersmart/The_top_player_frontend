@@ -470,7 +470,7 @@ const Navbar = ({ overHeight, state }) => {
                 <div className={styles.item}>
                   <div className={`${styles.userWrap} userWrap`}>
                     <div className="name">
-                      {user_info && user_info?.username?.split(" ")[0]}
+                      {user_info && user_info?.username?.split(" ")[0]} 
                     </div>
                     {Cookies.get("UT") && (
                       <button
