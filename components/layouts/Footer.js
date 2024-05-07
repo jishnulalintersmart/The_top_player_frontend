@@ -79,6 +79,7 @@ const Footer = () => {
           : "en"
       }
     >
+        <Toast ref={toast} />
       <div className={styles.footer}>
         <div
           className="container"
@@ -87,7 +88,6 @@ const Footer = () => {
               router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
           }}
         >
-          <Toast ref={toast} />
           <div className="row justify-content-between ">
             <div className={`col-md-4 ${styles.column}`}>
               {/* <h2>{t("title")}</h2> */}

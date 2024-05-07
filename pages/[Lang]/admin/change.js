@@ -95,6 +95,7 @@ const Change = ({ Lang }) => {
 
   return (
     <LangWrap Lang={Lang}>
+      <Toast ref={toast} />
       <div
         className={styles.Login}
         style={{
@@ -109,7 +110,6 @@ const Change = ({ Lang }) => {
           objectFit="contain"
         />
       </div>
-        <Toast ref={toast} />
         <div className={styles.Login_card}>
           <h1>{t("auth.change_pass")}</h1>
 
