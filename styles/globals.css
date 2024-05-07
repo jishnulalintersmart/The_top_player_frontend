@@ -1818,3 +1818,7 @@ video:-moz-full-screen {
   height: auto !important; 
   width: 100% !important; 
 } */
+
+.ToogelFull {
+  display: none !important;
+}
