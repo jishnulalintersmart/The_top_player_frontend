@@ -70,7 +70,7 @@ const Testimonials = ({ Lang, programId }) => {
             clickable: true,
           }}
           className={"testiSlide"}
-          initialSlide={1}
+          // initialSlide={1}
           breakpoints={{
             320: {
               slidesPerView: 1,
@@ -89,7 +89,7 @@ const Testimonials = ({ Lang, programId }) => {
               spaceBetween: 20,
             },
             1551: {
-              slidesPerView: 4,
+              slidesPerView: 3,
               spaceBetween: 25,
             },
           }}

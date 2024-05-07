@@ -505,9 +505,9 @@ a {
   color: var(--black_color);
 }
 
-.testiSlide .swiper-wrapper {
+/* .testiSlide .swiper-wrapper {
   justify-content: center;
-}
+} */
 
 .testiSlide .swiper-slide {
   width: 440px;
