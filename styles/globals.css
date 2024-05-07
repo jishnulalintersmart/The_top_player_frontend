@@ -505,6 +505,10 @@ a {
   color: var(--black_color);
 }
 
+.testiSlide .swiper-wrapper {
+  justify-content: center;
+}
+
 .testiSlide .swiper-slide {
   width: 440px;
   padding: 25px;
@@ -1813,10 +1817,4 @@ video:-moz-full-screen {
 .video-container .video-react-video {
   height: auto !important; 
   width: 100% !important; 
-}
-.ToogelFull {
-  display: none;
 } */
-.ToogelFull {
-  display: none !important;
-}

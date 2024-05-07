@@ -1,26 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getAllBanners = createAsyncThunk(
-  "Banner/allbanners",
-  async (_, thunkAPI) => {
-    const { rejectWithValue} = thunkAPI;
-     
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/banner`, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        })
-        .then((res) => res.data);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+export const getAllBanners = createAsyncThunk("Banner/allbanners", async (_, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
+
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/banner`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        return res.data.banners[0];
+      });
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
+});
 
 const BannerSlice = createSlice({
   name: "Banner",
@@ -35,6 +34,7 @@ const BannerSlice = createSlice({
       state.initialloading = true;
     });
     builder.addCase(getAllBanners.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.banners = action.payload;
       state.initialloading = false;
     });

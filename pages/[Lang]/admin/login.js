@@ -65,7 +65,6 @@ const Login = ({ Lang }) => {
               expires: 90,
             });
             show();
-            console.log("res====>", res);
             if (!res.verified) {
               router.push({
                 pathname: `/${Lang}/admin/sign-verify`,

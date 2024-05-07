@@ -103,6 +103,7 @@ const FitnessFottball = ({ Lang }) => {
                     height={520}
                     layout="responsive"
                     objectFit="contain"
+                    loading="lazy"
                   />
                 </div>
                 <div className={styles.info_price}>

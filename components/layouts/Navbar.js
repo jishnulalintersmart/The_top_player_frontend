@@ -30,11 +30,10 @@ const Navbar = ({ overHeight, state }) => {
   const { user_info } = useSelector((state) => state.AuthSlice);
   const toggleRef = useRef(null);
 
-  console.log(user_info);
 
   useEffect(() => {
-    dispatch(getUserInfo());
-  }, []);
+    Cookies.get("UT") && dispatch(getUserInfo());
+  }, [Cookies.get("UT")]);
 
   useEffect(() => {
     if (router?.query?.Lang?.toLowerCase() === "ar") {
@@ -148,6 +147,20 @@ const Navbar = ({ overHeight, state }) => {
               >
                 {t("menu.about")}
               </Link>
+              <Link
+                onClick={() => setVisible(false)}
+                href={`/${router?.query?.Lang?.toLowerCase()}#news`}
+                className={
+                  router.asPath.includes(
+                    `/${router?.query?.Lang?.toLowerCase()}#news`
+                  )
+                    ? styles.active
+                    : styles.link
+                }
+              >
+                {t("menu.our_news")}
+              </Link>
+
               <Link
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}#programs`}
@@ -470,6 +483,7 @@ const Navbar = ({ overHeight, state }) => {
                           layout={"fill"}
                           objectFit={"contain"}
                           alt={"user"}
+                          loading="lazy"
                         />
                       </button>
                     )}

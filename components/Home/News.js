@@ -19,7 +19,6 @@ const News = ({ styles, Lang }) => {
   const dispatch = useDispatch();
   const { allNews } = useSelector((state) => state.NewsSlice);
 
-  console.log(allNews);
 
   useEffect(() => {
     dispatch(getAllNews(1));

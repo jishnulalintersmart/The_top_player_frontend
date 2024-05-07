@@ -28,6 +28,7 @@ const NewsBox = ({ imageUrl, Lang, news }) => {
           alt="news"
           layout="fill"
           objectFit="cover"
+          loading="lazy"
         />
       </div>
       <div className={styles.cntWrap}>

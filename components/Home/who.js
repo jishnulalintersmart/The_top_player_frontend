@@ -25,8 +25,6 @@ const Who = ({ styles, Lang }) => {
 
   const { counts } = useSelector((state) => state.WhoSlice);
 
-  console.log(counts);
-
   useEffect(() => {
     dispatch(getCounts());
   }, []);
@@ -34,21 +32,16 @@ const Who = ({ styles, Lang }) => {
   return (
     <div className={styles.who_section} id={"about"}>
       <div className={styles.dElmt_1}>
-        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
       </div>
       <div className="container">
         <div className={styles.dFlx}>
           <div className={styles.w_100}>
             <div className={styles.cntWrap}>
               <div className={"tleWrap center"}>
-                <h2 className={"mTle"}>
-                  {Lang === "ar" ? counts[0]?.head_ar : counts[0]?.head}
-                </h2>
+                <h2 className={"mTle"}>{Lang === "ar" ? counts[0]?.head_ar : counts[0]?.head}</h2>
               </div>
-              <p className={styles.who_p}>
-                {" "}
-                {Lang === "ar" ? counts[0]?.subhead_ar : counts[0]?.subhead}
-              </p>
+              <p className={styles.who_p}> {Lang === "ar" ? counts[0]?.subhead_ar : counts[0]?.subhead}</p>
             </div>
           </div>
           <div className={styles.lftSd}>
@@ -61,7 +54,7 @@ const Who = ({ styles, Lang }) => {
               <Player fluid playsInline={true} key={counts[0]?.id} autoPlay loop muted>
                 <source src={`${process.env.customKey}/who_we_videos/${counts[0]?.videoUrl}`} />
                 <ControlBar>
-                  <FullscreenToggle className="ToogelFull" />
+                  <FullscreenToggle />
                   <ReplayControl seconds={10} order={1.1} />
                   <ForwardControl seconds={10} order={1.2} />
                   <CurrentTimeDisplay order={4.1} />
@@ -77,18 +70,35 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image
+                      src={"/images/dElmt-countBg-1.svg"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image
+                      src={"/images/dElmt-countBg-2.png"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-exp.svg"} alt="exp" layout="fill" objectFit="contain" />
+                    <Image src={"/images/icon-exp.svg"} alt="exp" layout="fill" objectFit="contain" loading="lazy" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span className={`${styles.counter} counter`} data-target={"14"}>
-                        <CountUp enableScrollSpy={true} start={0} end={counts[0] && counts[0]?.experience} />
+                        <CountUp
+                          enableScrollSpy={true}
+                          start={0}
+                          end={parseInt(counts[0]?.experience) || 0}
+                          key={"experience-count"}
+                        />
                       </span>
                     </h3>
                     <div className={styles.txt}>{t("who.experience")}</div>
@@ -98,18 +108,35 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image
+                      src={"/images/dElmt-countBg-1.svg"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image
+                      src={"/images/dElmt-countBg-2.png"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-users.svg"} alt="exp" layout="fill" objectFit="contain" />
+                    <Image src={"/images/icon-users.svg"} alt="exp" layout="fill" objectFit="contain" loading="lazy" />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span className={`${styles.counter} counter`} data-target={"10"}>
-                        <CountUp enableScrollSpy={true} start={0} end={counts[0] && counts[0]?.users} />
+                        <CountUp
+                          enableScrollSpy={true}
+                          start={0}
+                          end={parseInt(counts[0]?.users) || 0}
+                          key={"users-count"}
+                        />
                       </span>
                       K+
                     </h3>
@@ -120,18 +147,41 @@ const Who = ({ styles, Lang }) => {
               <div className={styles.item}>
                 <div className={styles.countBx}>
                   <div className={styles.dElmt_1}>
-                    <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image
+                      src={"/images/dElmt-countBg-1.svg"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </div>
                   <div className={styles.dElmt_2}>
-                    <Image src={"/images/dElmt-countBg-2.png"} layout="fill" alt="bg" objectFit="contain" />
+                    <Image
+                      src={"/images/dElmt-countBg-2.png"}
+                      layout="fill"
+                      alt="bg"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-courses.svg"} alt="exp" layout="fill" objectFit="contain" />
+                    <Image
+                      src={"/images/icon-courses.svg"}
+                      alt="exp"
+                      layout="fill"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
                       <span className={`${styles.counter} counter`} data-target={"10"}>
-                        <CountUp enableScrollSpy={true} start={0} end={counts[0] && counts[0]?.courses} />
+                        <CountUp
+                          enableScrollSpy={true}
+                          start={0}
+                          end={parseInt(counts[0]?.courses) || 0}
+                          key={"courses-count"}
+                        />
                       </span>
                       %
                     </h3>

@@ -20,6 +20,7 @@ import {
   TimeDivider,
   VolumeMenuButton,
   FullscreenToggle,
+  BigPlayButton,
 } from "video-react";
 import Image from "next/image";
 const VideoShow = ({
@@ -169,9 +170,8 @@ const VideoShow = ({
         {/* <source src="http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4" /> */}
 
         <ControlBar>
-          {/* <PlayToggle onClick={handlePlayPause} /> */}
-          {/* <SeekBar />  */}
-          <FullscreenToggle className="ToogelFull" />
+        <BigPlayButton position="center" />
+          <FullscreenToggle />
           <ReplayControl seconds={10} order={1.1} />
           <ForwardControl seconds={10} order={1.2} />
           <CurrentTimeDisplay order={4.1} />
