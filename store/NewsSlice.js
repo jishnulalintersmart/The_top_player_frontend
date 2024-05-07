@@ -55,7 +55,6 @@ export const getNewsById = createAsyncThunk(
           },
         })
         .then((res) => res.data);
-        console.log(result);
         return result;
       } catch (err) {
       console.log(err);

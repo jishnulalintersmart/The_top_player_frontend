@@ -12,13 +12,18 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTestimonials, getTestimonialById } from "@/store/TestimonialSlice";
+import {
+  getAllTestimonials,
+  getTestimonialById,
+} from "@/store/TestimonialSlice";
 
 const Testimonials = ({ Lang, programId }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const testimonials = useSelector((state) => state.TestimonialSlice.testimonialById);
+  const testimonials = useSelector(
+    (state) => state.TestimonialSlice.testimonialById
+  );
 
   useEffect(() => {
     dispatch(getTestimonialById(programId));
@@ -31,7 +36,7 @@ const Testimonials = ({ Lang, programId }) => {
           <div className={"mTle"}>{t("testimonials")}</div>
         </div>
       </div>
-      <Swiper
+      {/* <Swiper
         loop={true}
         dir={Lang === "ar" ? "rtl" : "ltr"}
         key={Lang}
@@ -47,6 +52,48 @@ const Testimonials = ({ Lang, programId }) => {
         }}
         modules={[Autoplay, Pagination]}
         className={"testiSlide"}
+      > */}
+
+      <Swiper
+        loop={false}
+        rewind={true}
+        dir={Lang === "ar" ? "rtl" : "ltr"}
+        key={Lang}
+        centeredSlides={true}
+        spaceBetween={10}
+        slidesPerView={1}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay, Pagination]}
+        pagination={{
+          clickable: true,
+        }}
+        className={"testiSlide"}
+        initialSlide={1}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1551: {
+            slidesPerView: 4,
+            spaceBetween: 25,
+          },
+        }}
       >
         {testimonials?.map((testimonial) => (
           <SwiperSlide key={testimonial?.id}>
@@ -61,7 +108,11 @@ const Testimonials = ({ Lang, programId }) => {
                 />
               </div>
               <div className={styles.cntWrap}>
-                <p>{Lang === "ar" ? testimonial?.comment_ar : testimonial?.comment_en}</p>
+                <p>
+                  {Lang === "ar"
+                    ? testimonial?.comment_ar
+                    : testimonial?.comment_en}
+                </p>
               </div>
               <div className={styles.infoWrap}>
                 <div className={styles.tle}>{testimonial?.user_name}</div>

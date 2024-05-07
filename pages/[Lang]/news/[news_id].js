@@ -35,8 +35,7 @@ const NewsDetail = () => {
           <div className={styles.news_detail_section}>
             <div className={"container"}>
               <div className={styles.cntWrap}>
-                {/* <h2>{Lang === "ar" ? news?.title_ar : news?.title_en}</h2> */}
-                <h2>{t("news.heading")}</h2>
+                <h2>{Lang === "ar" ? news?.title_ar : news?.title_en}</h2>
                 <div className={styles.info}>
                   {" "}
                   {t("news.postdate")} : {news?.createdAt && format(new Date(news?.createdAt), "dd MMMM yyyy")}
@@ -45,7 +44,7 @@ const NewsDetail = () => {
                 <Swiper
                   dir={Lang === "ar" ? "rtl" : "ltr"}
                   key={Lang}
-                  loop={false}
+                  loop={true}
                   spaceBetween={10}
                   slidesPerView={1}
                   autoplay={{
@@ -69,6 +68,7 @@ const NewsDetail = () => {
                           objectFit: "cover",
                         }}
                         layout="responsive"
+                        loading="lazy"
                       />
                     </SwiperSlide>
                   ))}

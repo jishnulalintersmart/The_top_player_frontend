@@ -2,51 +2,43 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export const getAllTestimonials = createAsyncThunk(
-  "Testimonial/alltestimonials",
-  async (_, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+export const getAllTestimonials = createAsyncThunk("Testimonial/alltestimonials", async (_, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
 
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/testimonial`, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": Cookies.get("UT"),
-          },
-        })
-        .then((res) => res.data);
-      console.log(result);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/testimonial`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+        },
+      })
+      .then((res) => res.data);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
+});
 
-export const getTestimonialById = createAsyncThunk(
-  "Testimonial/testimonialById",
-  async (testimonialId, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+export const getTestimonialById = createAsyncThunk("Testimonial/testimonialById", async (testimonialId, thunkAPI) => {
+  const { rejectWithValue } = thunkAPI;
 
-    try {
-      const result = await axios
-        .get(`${process.env.customKey}/testimonial/${testimonialId}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": Cookies.get("UT"),
-          },
-        })
-        .then((res) => res.data.testimonials);
-      console.log(result);
-      return result;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
+  try {
+    const result = await axios
+      .get(`${process.env.customKey}/testimonial/${testimonialId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": Cookies.get("UT"),
+        },
+      })
+      .then((res) => res.data.testimonials);
+    return result;
+  } catch (err) {
+    return rejectWithValue(err);
   }
-);
+});
 
 const TestimonialSlice = createSlice({
   name: "Testimonial",

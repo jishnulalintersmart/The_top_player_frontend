@@ -19,7 +19,6 @@ const News = ({ styles, Lang }) => {
   const dispatch = useDispatch();
   const { allNews } = useSelector((state) => state.NewsSlice);
 
-  console.log(allNews);
 
   useEffect(() => {
     dispatch(getAllNews(1));
@@ -65,7 +64,7 @@ const News = ({ styles, Lang }) => {
           dir={Lang === "ar" ? "rtl" : "ltr"}
           key={Lang}
           // dir="ltr"
-          loop={false}
+          loop={true}
           spaceBetween={10}
           slidesPerView={1}
           pagination={false}

@@ -28,6 +28,19 @@
   padding: 20px 0;
 }
 
+
+@media (max-width: 991.98px) {
+  .Login {
+    min-height: calc(60vh - var(--header-y));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .Login {
+    min-height: calc(50vh - var(--header-y));
+  }
+}
+
 .Image_bottom_left {
   position: absolute;
   width: 437px;

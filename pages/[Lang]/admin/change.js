@@ -130,7 +130,7 @@ const Change = ({ Lang }) => {
               <div className="inputFormik">
                 <label htmlFor="code">{t("auth.code")} </label>
                 <InputText
-                  placeholder="12345"
+                  placeholder="Enter OTP code"
                   name="code"
                   className={classNames({
                     "p-invalid": isFormFieldInvalid("code"),

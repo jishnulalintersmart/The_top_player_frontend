@@ -7,7 +7,6 @@ import LangWrap from "../layouts/LangWarp";
 
 const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
   const { t } = useTranslation();
-  console.log("programDetails", programDetails);
   return (
     // <LangWrap Lang={Lang}>
     <div className={styles.fitness_section}>
@@ -124,6 +123,7 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
                   height={520}
                   layout="responsive"
                   objectFit="contain"
+                  loading="lazy"
                 />
               </div>
               <div className={styles.info_price}>
