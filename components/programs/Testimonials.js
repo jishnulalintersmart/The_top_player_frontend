@@ -35,8 +35,7 @@ const Testimonials = ({ Lang, programId }) => {
         <div className={"tleWrap center"}>
           <div className={"mTle"}>{t("testimonials")}</div>
         </div>
-      </div>
-      {/* <Swiper
+        {/* <Swiper
         loop={true}
         dir={Lang === "ar" ? "rtl" : "ltr"}
         key={Lang}
@@ -54,74 +53,75 @@ const Testimonials = ({ Lang, programId }) => {
         className={"testiSlide"}
       > */}
 
-      <Swiper
-        loop={false}
-        rewind={true}
-        dir={Lang === "ar" ? "rtl" : "ltr"}
-        key={Lang}
-        centeredSlides={true}
-        spaceBetween={10}
-        slidesPerView={1}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        modules={[Autoplay, Pagination]}
-        pagination={{
-          clickable: true,
-        }}
-        className={"testiSlide"}
-        initialSlide={1}
-        breakpoints={{
-          320: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          480: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 15,
-          },
-          992: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          1551: {
-            slidesPerView: 3,
-            spaceBetween: 25,
-          },
-        }}
-      >
-        {testimonials?.map((testimonial) => (
-          <SwiperSlide key={testimonial?.id}>
-            <div className={styles.testiBx}>
-              <div className={styles.iconWrap}>
-                <Rating
-                  initialValue={testimonial?.rating}
-                  readonly
-                  rtl={Lang === "ar" ? true : false}
-                  size={16}
-                  fillColor={"#FCA34A"}
-                />
+        <Swiper
+          loop={false}
+          rewind={true}
+          dir={Lang === "ar" ? "rtl" : "ltr"}
+          key={Lang}
+          centeredSlides={true}
+          spaceBetween={10}
+          slidesPerView={1}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay, Pagination]}
+          pagination={{
+            clickable: true,
+          }}
+          className={"testiSlide"}
+          // initialSlide={1}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            480: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 15,
+            },
+            992: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1551: {
+              slidesPerView: 3,
+              spaceBetween: 25,
+            },
+          }}
+        >
+          {testimonials?.map((testimonial) => (
+            <SwiperSlide key={testimonial?.id}>
+              <div className={styles.testiBx}>
+                <div className={styles.iconWrap}>
+                  <Rating
+                    initialValue={testimonial?.rating}
+                    readonly
+                    rtl={Lang === "ar" ? true : false}
+                    size={16}
+                    fillColor={"#FCA34A"}
+                  />
+                </div>
+                <div className={styles.cntWrap}>
+                  <p>
+                    {Lang === "ar"
+                      ? testimonial?.comment_ar
+                      : testimonial?.comment_en}
+                  </p>
+                </div>
+                <div className={styles.infoWrap}>
+                  <div className={styles.tle}>{testimonial?.user_name}</div>
+                  <div className={styles.sTle}>{testimonial?.role}</div>
+                </div>
               </div>
-              <div className={styles.cntWrap}>
-                <p>
-                  {Lang === "ar"
-                    ? testimonial?.comment_ar
-                    : testimonial?.comment_en}
-                </p>
-              </div>
-              <div className={styles.infoWrap}>
-                <div className={styles.tle}>{testimonial?.user_name}</div>
-                <div className={styles.sTle}>{testimonial?.role}</div>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };
