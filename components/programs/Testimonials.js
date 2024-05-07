@@ -90,7 +90,7 @@ const Testimonials = ({ Lang, programId }) => {
             spaceBetween: 20,
           },
           1551: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 25,
           },
         }}
