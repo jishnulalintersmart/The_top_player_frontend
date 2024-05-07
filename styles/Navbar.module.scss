@@ -600,10 +600,12 @@
   font-weight: 500;
   color: var(--white_color);
   text-transform: capitalize;
+  width: 100%;
   position: relative;
   z-index: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   column-gap: 6px;
   @media (max-width: 991.98px) {
     font-size: 15px;
