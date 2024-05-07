@@ -30,7 +30,6 @@ const Navbar = ({ overHeight, state }) => {
   const { user_info } = useSelector((state) => state.AuthSlice);
   const toggleRef = useRef(null);
 
-
   useEffect(() => {
     Cookies.get("UT") && dispatch(getUserInfo());
   }, [Cookies.get("UT")]);
@@ -470,7 +469,7 @@ const Navbar = ({ overHeight, state }) => {
                 <div className={styles.item}>
                   <div className={`${styles.userWrap} userWrap`}>
                     <span className="name">
-                      {user_info && user_info?.username}
+                      {user_info && user_info?.username?.split(" ")[0]}
                     </span>
                     {Cookies.get("UT") && (
                       <button
