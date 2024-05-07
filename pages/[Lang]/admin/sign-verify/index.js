@@ -128,6 +128,8 @@ const SignVerify = ({ Lang }) => {
   };
   return (
     <LangWrap Lang={Lang}>
+        <Toast ref={toast} />
+
       <div
         className={styles.Login}
         style={{
@@ -143,7 +145,6 @@ const SignVerify = ({ Lang }) => {
           objectFit="contain"
         />
       </div>
-        <Toast ref={toast} />
 
         <div className={styles.Login_card}>
           <h1>{t("auth.code_title")}</h1>

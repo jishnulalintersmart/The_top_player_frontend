@@ -144,22 +144,16 @@ const Login = ({ Lang }) => {
   };
   return (
     <LangWrap Lang={Lang}>
+      <Toast ref={toast} />
       <div
         className={styles.Login}
         style={{
           direction: Lang === "ar" ? "rtl" : "ltr",
         }}
       >
-        
-      <div className={styles.dElmt_1}>
-        <Image
-          src={"/images/dElmt-countBg-1.svg"}
-          layout="fill"
-          alt="bg"
-          objectFit="contain"
-        />
-      </div>
-        <Toast ref={toast} />
+        <div className={styles.dElmt_1}>
+          <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+        </div>
         {/* <div className={styles.Image_bottom_left}>
         <Image
           src={"/images/login.png"}

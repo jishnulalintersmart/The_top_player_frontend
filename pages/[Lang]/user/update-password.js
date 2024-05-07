@@ -83,26 +83,22 @@ const UpdatePassword = ({ Lang }) => {
       // detail: formik.values.value,
     });
   };
-  const isFormFieldInvalid = (name) =>
-    !!(formik.touched[name] && formik.errors[name]);
+  const isFormFieldInvalid = (name) => !!(formik.touched[name] && formik.errors[name]);
 
   const getFormErrorMessage = (name) => {
-    return isFormFieldInvalid(name) ? (
-      <small className="p-error">{formik.errors[name]}</small>
-    ) : (
-      ""
-    );
+    return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : "";
   };
 
   return (
     <LangWrap Lang={Lang}>
+      <Toast ref={toast} />
+
       <div
         className={styles.Login}
         style={{
           direction: Lang === "ar" ? "rtl" : "ltr",
         }}
       >
-        <Toast ref={toast} />
         <div className={styles.Login_card}>
           <h1>{t("auth.change_pass")}</h1>
 
