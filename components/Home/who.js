@@ -1,8 +1,10 @@
 import { getCounts } from "@/store/WhoSlice";
+import { current } from "@reduxjs/toolkit";
 import Image from "next/legacy/image";
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { Button } from "react-bootstrap";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,40 +27,79 @@ const Who = ({ styles, Lang }) => {
 
   const { counts } = useSelector((state) => state.WhoSlice);
 
+  const playerref = useRef(null);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    return;
+  };
+
   useEffect(() => {
     dispatch(getCounts());
   }, []);
+
+  const playerOptns = {
+    userActions: {
+      doubleClick: false,
+    },
+  };
+
   return (
     <div className={styles.who_section} id={"about"}>
       <div className={styles.dElmt_1}>
-        <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" loading="lazy" />
+        <Image
+          src={"/images/dElmt-countBg-1.svg"}
+          layout="fill"
+          alt="bg"
+          objectFit="contain"
+          loading="lazy"
+        />
       </div>
       <div className="container">
         <div className={styles.dFlx}>
           <div className={styles.w_100}>
             <div className={styles.cntWrap}>
               <div className={"tleWrap center"}>
-                <h2 className={"mTle"}>{Lang === "ar" ? counts[0]?.head_ar : counts[0]?.head}</h2>
+                <h2 className={"mTle"}>
+                  {Lang === "ar" ? counts[0]?.head_ar : counts[0]?.head}
+                </h2>
               </div>
-              <p className={styles.who_p}> {Lang === "ar" ? counts[0]?.subhead_ar : counts[0]?.subhead}</p>
+              <p className={styles.who_p}>
+                {" "}
+                {Lang === "ar" ? counts[0]?.subhead_ar : counts[0]?.subhead}
+              </p>
             </div>
           </div>
           <div className={styles.lftSd}>
-            <div className={styles.imgWrap}>
+            <div className={styles.imgWrap} onDoubleClick={handleClick}>
               {/* <video muted autoPlay loop playsInline preload="metadata" aria-label="Video player">
                 {counts[0]?.videoUrl && (
                   <source src={`${process.env.customKey}/who_we_videos/${counts[0].videoUrl}`} type="video/mp4" />
                 )}
               </video> */}
-              <Player fluid playsInline={true} key={counts[0]?.id} autoPlay loop muted>
-                <source src={`${process.env.customKey}/who_we_videos/${counts[0]?.videoUrl}`} />
+              <Player
+                ref={playerref}
+                fluid
+                playsInline={true}
+                key={counts[0]?.id}
+                autoPlay
+                loop
+                muted
+              >
+                <source
+                  src={`${process.env.customKey}/who_we_videos/${counts[0]?.videoUrl}`}
+                />
                 <ControlBar>
                   <FullscreenToggle className="ToogelFull" />
                   <ReplayControl seconds={10} order={1.1} />
                   <ForwardControl seconds={10} order={1.2} />
                   <CurrentTimeDisplay order={4.1} />
                   <TimeDivider order={4.2} />
-                  <PlaybackRateMenuButton rates={[5, 2, 1, 0.5, 0.1]} order={7.1} />
+                  <PlaybackRateMenuButton
+                    rates={[5, 2, 1, 0.5, 0.1]}
+                    order={7.1}
+                  />
                   <VolumeMenuButton disabled={false} />
                 </ControlBar>
               </Player>
@@ -87,11 +128,20 @@ const Who = ({ styles, Lang }) => {
                     />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-exp.svg"} alt="exp" layout="fill" objectFit="contain" loading="lazy" />
+                    <Image
+                      src={"/images/icon-exp.svg"}
+                      alt="exp"
+                      layout="fill"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
-                      <span className={`${styles.counter} counter`} data-target={"14"}>
+                      <span
+                        className={`${styles.counter} counter`}
+                        data-target={"14"}
+                      >
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
@@ -125,11 +175,20 @@ const Who = ({ styles, Lang }) => {
                     />
                   </div>
                   <span className={styles.iconWrap}>
-                    <Image src={"/images/icon-users.svg"} alt="exp" layout="fill" objectFit="contain" loading="lazy" />
+                    <Image
+                      src={"/images/icon-users.svg"}
+                      alt="exp"
+                      layout="fill"
+                      objectFit="contain"
+                      loading="lazy"
+                    />
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
-                      <span className={`${styles.counter} counter`} data-target={"10"}>
+                      <span
+                        className={`${styles.counter} counter`}
+                        data-target={"10"}
+                      >
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
@@ -174,7 +233,10 @@ const Who = ({ styles, Lang }) => {
                   </span>
                   <span className={styles.cntWrap}>
                     <h3 className={styles.num} style={{ direction: "ltr" }}>
-                      <span className={`${styles.counter} counter`} data-target={"10"}>
+                      <span
+                        className={`${styles.counter} counter`}
+                        data-target={"10"}
+                      >
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
