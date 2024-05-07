@@ -19,19 +19,20 @@
 }
 
 .Login {
-  min-height: calc(100vh - var(--header-y));
+  min-height: calc(70vh - var(--header-y));
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   margin-top: var(--header-y);
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 
 @media (max-width: 991.98px) {
   .Login {
     min-height: calc(60vh - var(--header-y));
+    padding: 20px 0;
   }
 }
 
