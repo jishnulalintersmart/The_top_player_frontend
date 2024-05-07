@@ -28,7 +28,6 @@ const Who = ({ styles, Lang }) => {
   useEffect(() => {
     dispatch(getCounts());
   }, []);
-
   return (
     <div className={styles.who_section} id={"about"}>
       <div className={styles.dElmt_1}>
