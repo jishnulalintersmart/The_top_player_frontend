@@ -54,7 +54,7 @@ const Who = ({ styles, Lang }) => {
               <Player fluid playsInline={true} key={counts[0]?.id} autoPlay loop muted>
                 <source src={`${process.env.customKey}/who_we_videos/${counts[0]?.videoUrl}`} />
                 <ControlBar>
-                  <FullscreenToggle />
+                  <FullscreenToggle className="ToogelFull" />
                   <ReplayControl seconds={10} order={1.1} />
                   <ForwardControl seconds={10} order={1.2} />
                   <CurrentTimeDisplay order={4.1} />

@@ -1,5 +1,5 @@
 import styles from "@/styles/Login.module.css";
-// import Image from "next/legacy/image";
+import Image from "next/legacy/image";
 // import { Password } from "primereact/password";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
@@ -134,6 +134,15 @@ const SignVerify = ({ Lang }) => {
           direction: Lang === "ar" ? "rtl" : "ltr",
         }}
       >
+        
+      <div className={styles.dElmt_1}>
+        <Image
+          src={"/images/dElmt-countBg-1.svg"}
+          layout="fill"
+          alt="bg"
+          objectFit="contain"
+        />
+      </div>
         <Toast ref={toast} />
 
         <div className={styles.Login_card}>

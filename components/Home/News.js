@@ -80,7 +80,7 @@ const News = ({ styles, Lang }) => {
             320: {
               slidesPerView: 1,
               spaceBetween: 10,
-              autoplay: false,
+              // autoplay: false,
             },
             480: {
               slidesPerView: 1,

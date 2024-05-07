@@ -43,7 +43,7 @@ const News = () => {
           <div className={styles.news_list_section}>
             <div className={"container"}>
               <div className={`${styles.tleWrap} tleWrap`}>
-                <h2 className={"mTle"}>{t("news.heading")}</h2>
+                {/* <h2 className={"mTle"}>{t("news.heading")}</h2> */}
               </div>
               <div className={styles.dFlx}>
                 {allNews?.news?.map((news) => (

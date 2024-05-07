@@ -106,6 +106,14 @@ const Signup = ({ Lang }) => {
           direction: Lang === "ar" ? "rtl" : "ltr",
         }}
       >
+      <div className={styles.dElmt_1}>
+        <Image
+          src={"/images/dElmt-countBg-1.svg"}
+          layout="fill"
+          alt="bg"
+          objectFit="contain"
+        />
+      </div>
         <div className="card flex justify-content-center">
           <Toast ref={toast} />
         </div>
