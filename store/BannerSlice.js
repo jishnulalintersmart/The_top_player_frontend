@@ -4,8 +4,8 @@ import axios from "axios";
 export const getAllBanners = createAsyncThunk(
   "Banner/allbanners",
   async (_, thunkAPI) => {
-    const { rejectWithValue} = thunkAPI;
-     
+    const { rejectWithValue } = thunkAPI;
+
     try {
       const result = await axios
         .get(`${process.env.customKey}/banner`, {
@@ -14,7 +14,11 @@ export const getAllBanners = createAsyncThunk(
             Accept: "application/json",
           },
         })
-        .then((res) => res.data);
+        .then((res) => {
+          console.log("res.data", res.data);
+          return res.data;
+        });
+      // console.log(result);
       return result;
     } catch (err) {
       return rejectWithValue(err);
@@ -35,6 +39,7 @@ const BannerSlice = createSlice({
       state.initialloading = true;
     });
     builder.addCase(getAllBanners.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.banners = action.payload;
       state.initialloading = false;
     });
