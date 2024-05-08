@@ -55,6 +55,8 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   const weeksFinished = CoursecArr?.subCourses[0]?.finished_weeks?.length * 2;
   const AllDays_finished = daysFinished + weeksFinished;
 
+  console.log("CoursecArr==>", CoursecArr);
+
   return (
     <LangWrap Lang={Lang}>
       <InnerBanner
@@ -62,8 +64,8 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
         imageUrl={`${process.env.customKey}/courseImages/${CourseByIdArray?.bannerUrl}`}
         title={Lang === "en" ? CourseByIdArray?.name : CourseByIdArray?.name_arabic}
       />
-      {/* {CoursecArr?.subCourses?.length > 1 && (
-          <div className={styles.sub_course}>
+      {CoursecArr?.subCourses?.length > 1 && (
+          <div className={styles.sub_course} style={{marginTop:"15px"}}>
             {CoursecArr?.subCourses.map((ele) => {
               return (
                 <Link
@@ -78,7 +80,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
               );
             })}
           </div>
-        )} */}
+        )}
 
      {!CoursecArr && <ProgramCard
         programDetails={CourseByIdArray}

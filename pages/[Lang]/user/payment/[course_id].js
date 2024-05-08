@@ -17,8 +17,10 @@ import { useTranslation } from "react-i18next";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import LangWrap from "@/components/layouts/LangWarp";
+import axios from "axios";
 
-const Payment = ({ course_id, Lang }) => {
+const Payment = ({ course_id, Lang, CourseByIdArray }) => {
+  console.log("CourseByIdArray", CourseByIdArray);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const router = useRouter();
@@ -54,7 +56,7 @@ const Payment = ({ course_id, Lang }) => {
               <div className="row">
                 <div className="col-12">
                   <div className={styles.Order_summery}>
-                    {parseInt(course_id) === 1 && (
+                    {/* {parseInt(course_id) === 1 && ( */}
                       <div className={styles.summer_header} onClick={() => setShow(!show)}>
                         <h1>
                           {t("payment.summary")}
@@ -62,33 +64,11 @@ const Payment = ({ course_id, Lang }) => {
                             <MdArrowDropDown />
                           </span>
                         </h1>
-                        <h3 className="En_num">$80.00</h3>
+                        <h3 className="En_num">${CourseByIdArray?.offerAmount}</h3>
                       </div>
-                    )}
-                    {parseInt(course_id) === 2 && (
-                      <div className={styles.summer_header} onClick={() => setShow(!show)}>
-                        <h1>
-                          {t("payment.summary")}
-                          <span>
-                            <MdArrowDropDown />
-                          </span>
-                        </h1>
-                        <h3 className="En_num">$105.00</h3>
-                      </div>
-                    )}
-                    {parseInt(course_id) === 3 && (
-                      <div className={styles.summer_header} onClick={() => setShow(!show)}>
-                        <h1>
-                          {t("payment.summary")}
-                          <span>
-                            <MdArrowDropDown />
-                          </span>
-                        </h1>
-                        <h3 className="En_num">$80.00</h3>
-                      </div>
-                    )}
+                    {/* )} */}
 
-                    {show && parseInt(course_id) === 1 && (
+                    {show &&  (
                       <div className={styles.summer_content}>
                         <div className={styles.package}>
                           <div className="d-flex align-items-center">
@@ -109,96 +89,20 @@ const Payment = ({ course_id, Lang }) => {
                             </div>
                             <h4>{t("payment.fitness")}</h4>
                           </div>
-                          <p className="En_num">$80.00</p>
+                          <p className="En_num">${CourseByIdArray?.offerAmount}</p>
                         </div>
                         <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Subtotal")}</p>
-                          <p className="En_num">$105.00</p>
+                          <p className="En_num">${CourseByIdArray?.amount}</p>
                         </div>
                         <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Discount")}</p>
-                          <p className="En_num">-$25.00</p>
+                          <p className="En_num">-{CourseByIdArray?.offerPercentage}%</p>
                         </div>
                         <hr />
                         <div className={`${styles.package} ${styles.package_total}`}>
                           <p>{t("payment.Total")}</p>
-                          <p className="En_num">$80.00</p>
-                        </div>
-                      </div>
-                    )}
-                    {show && parseInt(course_id) === 2 && (
-                      <div className={styles.summer_content}>
-                        <div className={styles.package}>
-                          <div className="d-flex align-items-center">
-                            <div
-                              className={styles.package_image}
-                              style={{
-                                marginRight: Lang === "ar" ? "0" : "10px",
-                                marginLeft: Lang === "ar" ? "10px" : "0",
-                              }}
-                            >
-                              <Image
-                                src={"/images/2.png"}
-                                alt="package"
-                                layout="fill"
-                                objectFit="contain"
-                                loading="lazy"
-                              />
-                            </div>
-                            <h4>{t("payment.fitness_football")}</h4>
-                          </div>
-                          <p className="En_num">$105.00</p>
-                        </div>
-                        <div className={`${styles.package} ${styles.package_sub}`}>
-                          <p>{t("payment.Subtotal")}</p>
-                          <p className="En_num">$210.00</p>
-                        </div>
-                        <div className={`${styles.package} ${styles.package_sub}`}>
-                          <p>{t("payment.Discount")}</p>
-                          <p className="En_num">-$105.00</p>
-                        </div>
-                        <hr />
-                        <div className={`${styles.package} ${styles.package_total}`}>
-                          <p>{t("payment.Total")}</p>
-                          <p className="En_num">$105.00</p>
-                        </div>
-                      </div>
-                    )}
-                    {show && parseInt(course_id) === 3 && (
-                      <div className={styles.summer_content}>
-                        <div className={styles.package}>
-                          <div className="d-flex align-items-center">
-                            <div
-                              className={styles.package_image}
-                              style={{
-                                marginRight: Lang === "ar" ? "0" : "10px",
-                                marginLeft: Lang === "ar" ? "10px" : "0",
-                              }}
-                            >
-                              <Image
-                                src={"/images/3.png"}
-                                alt="package"
-                                layout="fill"
-                                objectFit="contain"
-                                loading="lazy"
-                              />
-                            </div>
-                            <h4>{t("payment.football")}</h4>
-                          </div>
-                          <p className="En_num">$80.00</p>
-                        </div>
-                        <div className={`${styles.package} ${styles.package_sub}`}>
-                          <p>{t("payment.Subtotal")}</p>
-                          <p className="En_num">$105.00</p>
-                        </div>
-                        <div className={`${styles.package} ${styles.package_sub}`}>
-                          <p>{t("payment.Discount")}</p>
-                          <p className="En_num">-$25.00</p>
-                        </div>
-                        <hr />
-                        <div className={`${styles.package} ${styles.package_total}`}>
-                          <p>{t("payment.Total")}</p>
-                          <p className="En_num">$80.00</p>
+                          <p className="En_num">${CourseByIdArray?.offerAmount}</p>
                         </div>
                       </div>
                     )}
@@ -221,11 +125,36 @@ const Payment = ({ course_id, Lang }) => {
 };
 
 export default Payment;
-export async function getServerSideProps({ params }) {
-  return {
-    props: {
-      course_id: params.course_id,
-      Lang: params.Lang.toLowerCase(),
-    },
-  };
+
+export async function getServerSideProps({ req, params }) {
+  try {
+    const result2 = await axios
+      .get(`${process.env.customKey}/courseById/${parseInt(params.course_id)}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": req.cookies.UT,
+        },
+      })
+      .then((res) => res.data.course)
+      .catch((err) => {
+        console.log(err);
+        return null;
+      });
+    return {
+      props: {
+        course_id: params.course_id,
+        Lang: params.Lang.toLowerCase(),
+        CourseByIdArray: result2,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        course_id: params.course_id,
+        Lang: params.Lang.toLowerCase(),
+        CourseByIdArray: null,
+      },
+    };
+  }
 }
