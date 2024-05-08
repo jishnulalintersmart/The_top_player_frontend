@@ -95,7 +95,7 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       Lang: params.Lang,
-      MainBanner: result.data,
+      MainBanner: result?.data || null,
     },
   };
 }

@@ -62,7 +62,7 @@ const CheckoutForm = ({ course_id, Lang }) => {
   return (
     <div>
       <Toast ref={toast} />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{padding:"20px"}}> 
         <PaymentElement  />
         <button disabled={!stripe} className={`submit-button ${disabel && "LoadingButton"}`}>
           Submit
