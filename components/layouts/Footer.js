@@ -94,8 +94,10 @@ const Footer = () => {
               <div className={styles.logoWrap}>
                 <Image
                   src={"/images/logo-light.svg"}
-                  layout="fill"
                   alt="bg"
+                  width={218}
+                  height={60}
+                  layout="responsive"
                   objectFit="contain"
                   loading="lazy"
                 />

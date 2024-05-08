@@ -1,6 +1,6 @@
 .footer {
   background: #262626;
-  padding: 50px 10px 10px;
+  padding: 40px 10px 10px;
   color: rgb(245 255 255 / 80%);
 }
 
@@ -21,8 +21,8 @@
 }
 
 .logoWrap {
-  width: 220px;
-  height: 60px;
+  width: 210px;
+  height: auto;
   margin-bottom: 50px;
   position: relative;
   z-index: 0;
@@ -30,14 +30,14 @@
 
 @media (max-width: 991.98px) {
   .logoWrap {
-    width: 220px;
-    height: 50px;
+    width: 160px;
     margin-bottom: 30px;
   }
 }
 
 @media (max-width: 575.98px) {
   .logoWrap {
+    width: 140px;
     margin-bottom: 15px;
   }
 }

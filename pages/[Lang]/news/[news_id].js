@@ -13,6 +13,10 @@ import { Pagination, Navigation, Autoplay, EffectFade } from "swiper/modules";
 import LangWrap from "@/components/layouts/LangWarp";
 import LangChange from "@/components/layouts/LangChange";
 
+
+import "swiper/css";
+import "swiper/css/navigation";
+
 const NewsDetail = () => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -103,7 +107,7 @@ const NewsDetail = () => {
                     spaceBetween: 10,
                   },
                   480: {
-                    slidesPerView: 1,
+                    slidesPerView: 2,
                     spaceBetween: 10,
                   },
                   640: {

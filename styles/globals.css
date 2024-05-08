@@ -1007,7 +1007,9 @@ a {
 .newsSlide {
   padding: 0;
 }
-
+.swiper-button-lock{
+  display: none !important;
+}
 .newsSlide .swiper-button-prev,
 .newsSlide .swiper-button-next {
   width: 35px;

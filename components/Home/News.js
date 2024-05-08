@@ -63,15 +63,13 @@ const News = ({ styles, Lang }) => {
         <Swiper
           dir={Lang === "ar" ? "rtl" : "ltr"}
           key={Lang}
-          // dir="ltr"
           loop={true}
           spaceBetween={10}
           slidesPerView={1}
           pagination={false}
           navigation={true}
-          initialSlide={1}
           autoplay={{
-            delay: 5000,
+            delay: 4000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
