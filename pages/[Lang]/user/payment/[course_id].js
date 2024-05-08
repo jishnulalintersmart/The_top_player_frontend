@@ -9,7 +9,7 @@ import { MdArrowDropDown } from "react-icons/md";
 //   "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
 // );
 const stripePromise = loadStripe(
-  "pk_test_51JfnclSB3xgpz68UfpbbOI6c1bFLFPSc06z33jeu1M3HOAysByRg5P74gRqx17UBxQCF5GtA6olGyjcPx1kkU2Rg00PAyC9qZs"
+  "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
 );
 import { useDispatch, useSelector } from "react-redux";
 import { PayReducer } from "@/store/AuthSlice";
@@ -55,10 +55,7 @@ const Payment = ({ course_id, Lang }) => {
                 <div className="col-12">
                   <div className={styles.Order_summery}>
                     {parseInt(course_id) === 1 && (
-                      <div
-                        className={styles.summer_header}
-                        onClick={() => setShow(!show)}
-                      >
+                      <div className={styles.summer_header} onClick={() => setShow(!show)}>
                         <h1>
                           {t("payment.summary")}
                           <span>
@@ -69,10 +66,7 @@ const Payment = ({ course_id, Lang }) => {
                       </div>
                     )}
                     {parseInt(course_id) === 2 && (
-                      <div
-                        className={styles.summer_header}
-                        onClick={() => setShow(!show)}
-                      >
+                      <div className={styles.summer_header} onClick={() => setShow(!show)}>
                         <h1>
                           {t("payment.summary")}
                           <span>
@@ -83,10 +77,7 @@ const Payment = ({ course_id, Lang }) => {
                       </div>
                     )}
                     {parseInt(course_id) === 3 && (
-                      <div
-                        className={styles.summer_header}
-                        onClick={() => setShow(!show)}
-                      >
+                      <div className={styles.summer_header} onClick={() => setShow(!show)}>
                         <h1>
                           {t("payment.summary")}
                           <span>
@@ -120,22 +111,16 @@ const Payment = ({ course_id, Lang }) => {
                           </div>
                           <p className="En_num">$80.00</p>
                         </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Subtotal")}</p>
                           <p className="En_num">$105.00</p>
                         </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Discount")}</p>
                           <p className="En_num">-$25.00</p>
                         </div>
                         <hr />
-                        <div
-                          className={`${styles.package} ${styles.package_total}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_total}`}>
                           <p>{t("payment.Total")}</p>
                           <p className="En_num">$80.00</p>
                         </div>
@@ -164,22 +149,16 @@ const Payment = ({ course_id, Lang }) => {
                           </div>
                           <p className="En_num">$105.00</p>
                         </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Subtotal")}</p>
                           <p className="En_num">$210.00</p>
                         </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Discount")}</p>
                           <p className="En_num">-$105.00</p>
                         </div>
                         <hr />
-                        <div
-                          className={`${styles.package} ${styles.package_total}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_total}`}>
                           <p>{t("payment.Total")}</p>
                           <p className="En_num">$105.00</p>
                         </div>
@@ -208,22 +187,16 @@ const Payment = ({ course_id, Lang }) => {
                           </div>
                           <p className="En_num">$80.00</p>
                         </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Subtotal")}</p>
                           <p className="En_num">$105.00</p>
                         </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Discount")}</p>
                           <p className="En_num">-$25.00</p>
                         </div>
                         <hr />
-                        <div
-                          className={`${styles.package} ${styles.package_total}`}
-                        >
+                        <div className={`${styles.package} ${styles.package_total}`}>
                           <p>{t("payment.Total")}</p>
                           <p className="En_num">$80.00</p>
                         </div>
