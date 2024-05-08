@@ -91,7 +91,7 @@ const Suspense = ({ styles, Lang }) => {
                   )}
                 </span>
               </h4>
-              <p>{Lang === "ar" ? banners.para_ar : banners.para}</p>
+              <p>{Lang === "ar" ? banners?.para_ar : banners?.para}</p>
               {/* <p>{t("suspens.intro4")}</p> */}
             </div>
           </div>

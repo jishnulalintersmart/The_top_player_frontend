@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    customKey: "https://crm.intersmarthosting.in/topplayer",
+    // customKey: "https://crm.intersmarthosting.in/topplayer",
     // customKey: "http://localhost:7700",
-    // customKey: "https://backend.thetopplayer.com",
+    customKey: "https://backend.thetopplayer.com/beta/",
     // customKey: "https://crm.intersmarthosting.in/topplayer",
     // webDomain: "https://interregionall.vercel.app",
     // webDomain: "https://www.thetopplayer.com",
     // webDomain: "https://the-top-player-frontend-2.onrender.com",
-    webDomain: "http://localhost:4000",
+    // webDomain: "http://localhost:4000",
+    webDomain: "http://www.staging.thetopplayer.com",
     googleAnalytics: "G-E1W5ELK5TZ",
   },
   swcMinify: true,
@@ -16,8 +17,8 @@ const nextConfig = {
   images: {
     minimumCacheTTL: 60,
     deviceSizes: [
-      256, 320, 492, 512, 640, 768, 896, 1024, 1152, 1280, 1408, 1536, 1664, 1792, 1920, 2048, 2176, 2304, 2432, 2560,
-      2688, 2944,
+      256, 320, 492, 512, 640, 768, 896, 1024, 1152, 1280, 1408, 1536, 1664,
+      1792, 1920, 2048, 2176, 2304, 2432, 2560, 2688, 2944,
     ],
     imageSizes: [32, 64, 96, 112, 128, 144, 160, 176, 192, 240],
     // formats: ["image/webp"],
@@ -30,6 +31,11 @@ const nextConfig = {
       {
         protocol: "http", // Set the protocol as a string
         hostname: "localhost", // Set the hostname as a string
+        pathname: "**",
+      },
+      {
+        protocol: "https", // Set the protocol as a string
+        hostname: "backend.thetopplayer.com", // Set the hostname as a string
         pathname: "**",
       },
     ],
