@@ -86,7 +86,7 @@ function App({ Component, pageProps, canonical, Path }) {
       </Script>
       <Head>
         <title>The Top Player</title>
-        <link
+        {/* <link
           rel="apple-touch-icon"
           sizes="57x57"
           href="/apple-icon-57x57.png"
@@ -155,47 +155,67 @@ function App({ Component, pageProps, canonical, Path }) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
+        <link rel="manifest" href="/manifest.json" /> */}
+
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="manifest" href="/manifest.json" />
+
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
 
       {/* <ErrorBoundary> */}
-        <Provider store={store}>
-          {loading && <Loading />}
+      <Provider store={store}>
+        {loading && <Loading />}
 
-          <div
-            className={`${bodyHeight && "overHeight"}`}
-            style={{
-              overflow: "hidden",
-              position: "relative",
-            }}
-            onContextMenu={(e) => e.preventDefault()}
-            onKeyDown={handleKeyPress}
-            onKeyUp={(e) => {
-              if (e.keyCode == 44) {
-                e.preventDefault();
-                alert("Not allow to take screen schoot");
-              } else {
-                e.preventDefault();
-              }
-            }}
-            onKeyUpCapture={(e) => e.preventDefault()}
-            onKeyPress={(e) => {
-              if (e.keyCode == 44) {
-                e.preventDefault();
-                alert("Not allow to take screen schoot");
-              }
-            }}
-            tabIndex={0}
-          >
-            <Navbar state={bodyHeight} overHeight={(e) => setBodyHeight(e)} />
-            <Component {...pageProps} />
-            <Footer />
-            <SocialMedia to={Path} />
-          </div>
-        </Provider>
+        <div
+          className={`${bodyHeight && "overHeight"}`}
+          style={{
+            overflow: "hidden",
+            position: "relative",
+          }}
+          onContextMenu={(e) => e.preventDefault()}
+          onKeyDown={handleKeyPress}
+          onKeyUp={(e) => {
+            if (e.keyCode == 44) {
+              e.preventDefault();
+              alert("Not allow to take screen schoot");
+            } else {
+              e.preventDefault();
+            }
+          }}
+          onKeyUpCapture={(e) => e.preventDefault()}
+          onKeyPress={(e) => {
+            if (e.keyCode == 44) {
+              e.preventDefault();
+              alert("Not allow to take screen schoot");
+            }
+          }}
+          tabIndex={0}
+        >
+          <Navbar state={bodyHeight} overHeight={(e) => setBodyHeight(e)} />
+          <Component {...pageProps} />
+          <Footer />
+          <SocialMedia to={Path} />
+        </div>
+      </Provider>
       {/* </ErrorBoundary> */}
     </>
   );
@@ -204,7 +224,7 @@ function App({ Component, pageProps, canonical, Path }) {
 App.getInitialProps = async ({ ctx }) => {
   const { asPath } = ctx;
   // const base = "https://thetopplayer.com/";
-  const base = "https://the-top-player-frontend-2.onrender.com"
+  const base = "https://the-top-player-frontend-2.onrender.com";
   const canonical = base + asPath;
   return {
     Path: asPath,
