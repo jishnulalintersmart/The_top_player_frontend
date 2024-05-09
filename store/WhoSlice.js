@@ -27,6 +27,8 @@ const WhoSlice = createSlice({
   initialState: {
     initialloading: false,
     counts: [],
+    unit: null,
+    count:null,
     error: null,
   },
   reducers: {},
@@ -36,6 +38,8 @@ const WhoSlice = createSlice({
     });
     builder.addCase(getCounts.fulfilled, (state, action) => {
       state.counts = action.payload.data;
+      state.count = action.payload.counts;
+      state.unit = action.payload.units;
       state.initialloading = false;
     });
     builder.addCase(getCounts.rejected, (state, action) => {

@@ -19,6 +19,7 @@ import "@/styles/globals.css";
 import Loading from "@/components/layouts/Loading";
 import dynamic from "next/dynamic";
 import ErrorBoundary from "@/components/ErrorBoundary/eb";
+import axios from "axios";
 const Navbar = dynamic(() => import("@/components/layouts/Navbar"), {
   loading: () => <Loading />,
   ssr: false,
@@ -43,6 +44,24 @@ function App({ Component, pageProps, canonical, Path }) {
       event.preventDefault();
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${process.env.customKey}/visited`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        // Process the data as needed
+        console.log("Visited data:", data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     window.addEventListener(`contextmenu`, (e) => e.preventDefault());
