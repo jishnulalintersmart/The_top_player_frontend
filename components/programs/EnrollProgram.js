@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
   const { t } = useTranslation();
 
-  console.log(CourseByIdArray);
   return (
     <div className={styles.enrollProgram_section}>
       <div className={"container"}>
@@ -16,7 +15,9 @@ const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
             <div className={`${styles.tleWrap} tleWrap`}>
               <div className={styles.dElmt}></div>
               <div className={"mTle"}>{t("enroll_to_our_program")}</div>
-              <div className={styles.txt}>{Lang === "ar" ? CourseByIdArray?.enroll_text_ar : CourseByIdArray?.enroll_text}</div>
+              <div className={styles.txt}>
+                {Lang === "ar" ? CourseByIdArray?.enroll_text_ar : CourseByIdArray?.enroll_text}
+              </div>
             </div>
           </div>
           <div className={styles.rgtWrap}>
@@ -30,11 +31,7 @@ const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
                   <span>{t("join_now")}</span>
                 </Link>
               ) : (
-                <Link
-                  href={"#!"}
-                  className={"baseBtn hoveranim"}
-                  aria-label="view all button"
-                >
+                <Link href={"#!"} className={"baseBtn hoveranim"} aria-label="view all button">
                   <span>YALLA !</span>
                 </Link>
               )}

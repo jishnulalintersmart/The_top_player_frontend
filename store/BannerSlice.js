@@ -34,7 +34,6 @@ const BannerSlice = createSlice({
       state.initialloading = true;
     });
     builder.addCase(getAllBanners.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.banners = action.payload;
       state.initialloading = false;
     });

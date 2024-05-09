@@ -19,7 +19,6 @@ const Testimonials = ({ Lang, programId }) => {
   const dispatch = useDispatch();
 
   const testimonials = useSelector((state) => state.TestimonialSlice.testimonialById);
-  console.log("testimonials=>", testimonials);
 
   useEffect(() => {
     dispatch(getTestimonialById(programId));
