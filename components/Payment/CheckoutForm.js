@@ -63,7 +63,7 @@ const CheckoutForm = ({ course_id, Lang }) => {
     <div>
       <Toast ref={toast} />
       <form onSubmit={handleSubmit} style={{padding:"20px"}}> 
-        <PaymentElement paymentMethods={['applepay']} />
+        <PaymentElement  />
         <button disabled={!stripe} className={`submit-button ${disabel && "LoadingButton"}`}>
           Submit
         </button>
