@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
   const { t } = useTranslation();
 
+  console.log(CourseByIdArray);
   return (
     <div className={styles.enrollProgram_section}>
       <div className={"container"}>

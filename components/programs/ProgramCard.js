@@ -20,7 +20,7 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
                     ? programDetails?.name
                     : programDetails?.name_arabic}
                 </h2>
-                <div className={"sTle"}>{t("programs_details.contain")}</div>
+                {/* <div className={"sTle"}>{t("programs_details.contain")}</div> */}
               </div>
               <div className={styles.list_bx}>
                 {
