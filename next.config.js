@@ -1,15 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    customKey: "https://crm.intersmarthosting.in/topplayer",
-    // customKey: "http://localhost:7700",
-    // customKey: "https://backend.thetopplayer.com/beta/",
+    customKey: "https://backend.thetopplayer.com/beta/",
     // customKey: "https://crm.intersmarthosting.in/topplayer",
-    // webDomain: "https://interregionall.vercel.app",
-    // webDomain: "https://www.thetopplayer.com",
+    // customKey: "http://localhost:7700",
+    webDomain: "https://www.thetopplayer.com",
     // webDomain: "https://the-top-player-frontend-2.onrender.com",
     // webDomain: "http://localhost:4000",
-    webDomain: "http://www.staging.thetopplayer.com",
+    // webDomain: "http://www.staging.thetopplayer.com",
     googleAnalytics: "G-E1W5ELK5TZ",
   },
   swcMinify: true,
