@@ -42,7 +42,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  
+
   // useEffect(() => {
   //   if (error_status === 401) {
   //     Cookies.remove("UT");
@@ -55,8 +55,6 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   const weeksFinished = CoursecArr?.subCourses[0]?.finished_weeks?.length * 2;
   const AllDays_finished = daysFinished + weeksFinished;
 
-  console.log("CoursecArr==>", CoursecArr);
-
   return (
     <LangWrap Lang={Lang}>
       <InnerBanner
@@ -65,30 +63,34 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
         title={Lang === "en" ? CourseByIdArray?.name : CourseByIdArray?.name_arabic}
       />
       {CoursecArr?.subCourses?.length > 1 && (
-          <div className={styles.sub_course} style={{marginTop:"15px"}}>
-            {CoursecArr?.subCourses.map((ele) => {
-              return (
-                <Link
-                  key={ele.id}
-                  className={`${ele.id === CoursecArr?.subCourses[0].id ? styles.active : ""} ${Lang === "ar" ? styles.Ar_subCourses_Link : styles.En_subCourses_Link}`}
-                  href={`/${Lang}/user/programs/details/${CoursecArr.id}/sub/${ele.id}`}
-                >
-                  {Lang === "en" && ele.name}
-                  {Lang === "ar" && ele.name === "fitness Program" && "برنامج اللياقة"}
-                  {Lang === "ar" && ele.name === "football Program" && "برنامج كرة القدم"}
-                </Link>
-              );
-            })}
-          </div>
-        )}
+        <div className={styles.sub_course} style={{ marginTop: "15px" }}>
+          {CoursecArr?.subCourses.map((ele) => {
+            return (
+              <Link
+                key={ele.id}
+                className={`${ele.id === CoursecArr?.subCourses[0].id ? styles.active : ""} ${
+                  Lang === "ar" ? styles.Ar_subCourses_Link : styles.En_subCourses_Link
+                }`}
+                href={`/${Lang}/user/programs/details/${CoursecArr.id}/sub/${ele.id}`}
+              >
+                {Lang === "en" && ele.name}
+                {Lang === "ar" && ele.name === "fitness Program" && "برنامج اللياقة"}
+                {Lang === "ar" && ele.name === "football Program" && "برنامج كرة القدم"}
+              </Link>
+            );
+          })}
+        </div>
+      )}
 
-     {!CoursecArr && <ProgramCard
-        programDetails={CourseByIdArray}
-        styles={styles}
-        Lang={Lang}
-        CoursecArr={CoursecArr}
-        programsId={programs_id}
-      />}
+      {!CoursecArr && (
+        <ProgramCard
+          programDetails={CourseByIdArray}
+          styles={styles}
+          Lang={Lang}
+          CoursecArr={CoursecArr}
+          programsId={programs_id}
+        />
+      )}
 
       {/* {CoursecArr?.subCourses?.length < 2 && (
         <>

@@ -46,7 +46,6 @@ export default Terms;
 export async function getServerSideProps({ req, params }) {
   try {
     const { data } = await axios.get(`${process.env.customKey}/terms`);
-    console.log(data);
     return {
       props: {
         data,
