@@ -25,7 +25,7 @@ const Who = ({ styles, Lang }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const { counts } = useSelector((state) => state.WhoSlice);
+  const { counts, count, unit } = useSelector((state) => state.WhoSlice);
 
   const playerref = useRef(null);
 
@@ -192,11 +192,11 @@ const Who = ({ styles, Lang }) => {
                         <CountUp
                           enableScrollSpy={true}
                           start={0}
-                          end={parseInt(counts[0]?.users) || 0}
+                          end={parseInt(count ? count : 0) || 0}
                           key={"users-count"}
                         />
                       </span>
-                      K+
+                      {unit ? unit : ""}+
                     </h3>
                     <div className={styles.txt}>{t("who.users")}</div>
                   </span>
