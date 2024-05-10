@@ -1,5 +1,5 @@
 import CheckoutForm from "@/components/Payment/CheckoutForm";
-import { Elements } from "@stripe/react-stripe-js";
+import { Elements, PaymentRequestButtonElement } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import styles from "@/styles/Profile.module.scss";
 import Image from "next/legacy/image";
@@ -57,18 +57,18 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                 <div className="col-12">
                   <div className={styles.Order_summery}>
                     {/* {parseInt(course_id) === 1 && ( */}
-                      <div className={styles.summer_header} onClick={() => setShow(!show)}>
-                        <h1>
-                          {t("payment.summary")}
-                          <span>
-                            <MdArrowDropDown />
-                          </span>
-                        </h1>
-                        <h3 className="En_num">${CourseByIdArray?.offerAmount}</h3>
-                      </div>
+                    <div className={styles.summer_header} onClick={() => setShow(!show)}>
+                      <h1>
+                        {t("payment.summary")}
+                        <span>
+                          <MdArrowDropDown />
+                        </span>
+                      </h1>
+                      <h3 className="En_num">${CourseByIdArray?.offerAmount}</h3>
+                    </div>
                     {/* )} */}
 
-                    {show &&  (
+                    {show && (
                       <div className={styles.summer_content}>
                         <div className={styles.package}>
                           <div className="d-flex align-items-center">
@@ -111,6 +111,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                 <div className="col-12">
                   {stripePromise && clientSecret && (
                     <Elements stripe={stripePromise} options={options}>
+                      <PaymentRequestButtonElement />
                       <CheckoutForm course_id={course_id} Lang={Lang} />
                     </Elements>
                   )}
