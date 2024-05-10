@@ -66,6 +66,13 @@ const VideoShow = ({
   const videoRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      const { paused } = videoRef.current.getState().player;
+      paused ? videoRef.current.play() : videoRef.current.pause();
+    }
+  };
+
   // useEffect(() => {
   //   const video = videoRef.current;
 
@@ -197,9 +204,7 @@ const VideoShow = ({
         <div
           className={`watermark-logo`}
           style={{ fontSize: "20px" }}
-          onClick={(e) => {
-            videoRef && videoRef?.current.play();
-          }}
+          onClick={togglePlayPause}
         >
           {/* <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} /> */}
           <Image
