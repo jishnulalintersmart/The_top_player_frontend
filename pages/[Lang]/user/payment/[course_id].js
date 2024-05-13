@@ -37,8 +37,22 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
       });
   }, [dispatch, course_id, router, Lang]);
   // console.log(clientSecret);
+  const appearance = {
+    // theme: "night",
+    // variables: {
+    //   colorPrimary: "#0570de",
+    //   colorBackground: "#ffffff",
+    //   colorText: "#30313d",
+    //   colorDanger: "#df1b41",
+    //   fontFamily: "Ideal Sans, system-ui, sans-serif",
+    //   spacingUnit: "2px",
+    //   borderRadius: "4px",
+    //   // See all possible variables below
+    // },
+  };
   const options = {
     clientSecret: clientSecret,
+    appearance,
   };
 
   const [show, setShow] = useState(false);
@@ -57,18 +71,18 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                 <div className="col-12">
                   <div className={styles.Order_summery}>
                     {/* {parseInt(course_id) === 1 && ( */}
-                      <div className={styles.summer_header} onClick={() => setShow(!show)}>
-                        <h1>
-                          {t("payment.summary")}
-                          <span>
-                            <MdArrowDropDown />
-                          </span>
-                        </h1>
-                        <h3 className="En_num">${CourseByIdArray?.offerAmount}</h3>
-                      </div>
+                    <div className={styles.summer_header} onClick={() => setShow(!show)}>
+                      <h1>
+                        {t("payment.summary")}
+                        <span>
+                          <MdArrowDropDown />
+                        </span>
+                      </h1>
+                      <h3 className="En_num">${CourseByIdArray?.offerAmount}</h3>
+                    </div>
                     {/* )} */}
 
-                    {show &&  (
+                    {show && (
                       <div className={styles.summer_content}>
                         <div className={styles.package}>
                           <div className="d-flex align-items-center">
@@ -80,14 +94,14 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                               }}
                             >
                               <Image
-                                src={"/images/1.png"}
+                                src={`${process.env.customKey}/courseImages/${CourseByIdArray?.imageUrl}`}
                                 alt="package"
                                 layout="fill"
                                 objectFit="contain"
                                 loading="lazy"
                               />
                             </div>
-                            <h4>{t("payment.fitness")}</h4>
+                            <h4>{CourseByIdArray?.name}</h4>
                           </div>
                           <p className="En_num">${CourseByIdArray?.offerAmount}</p>
                         </div>
