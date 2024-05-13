@@ -1198,7 +1198,6 @@
 .FAQ_info {
   display: flex;
   align-items: center;
-  /* flex-basis: 80%; */
 }
 
 /* .FAQ_info svg {
@@ -1247,9 +1246,6 @@
 }
 
 @media (max-width: 991.98px) {
-  .FAQ_info {
-    justify-content: space-around;
-  }
 
   .FAQ_info h2 {
     flex-basis: 95%;

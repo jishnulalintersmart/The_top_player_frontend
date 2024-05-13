@@ -103,7 +103,7 @@ const Suspense = ({ styles, Lang }) => {
               slidesPerView={1}
               pagination={false}
               navigation={false}
-              initialSlide={1}
+              initialSlide={0}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,
