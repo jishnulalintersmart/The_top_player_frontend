@@ -4,9 +4,21 @@ import { useTranslation } from "react-i18next";
 import styles from "@/styles/Program.module.scss";
 import Cookies from "js-cookie";
 import LangWrap from "../layouts/LangWarp";
+import { useRouter } from "next/router";
 
 const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    if (Cookies.get("UT")) {
+      router.push(`/${Lang}/user/payment/${programsId}`);
+    } else {
+      sessionStorage.setItem("courseId", programsId);
+      router.push(`/${Lang}/admin/login`);
+    }
+  };
+
   return (
     // <LangWrap Lang={Lang}>
     <div className={styles.fitness_section}>
@@ -37,12 +49,9 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
               </div>
               <div className={styles.btnWrap}>
                 {!CoursecArr && (
-                  <Link
-                    href={
-                      Cookies.get("UT")
-                        ? `/${Lang}/user/payment/${programsId}`
-                        : `/${Lang}/admin/login`
-                    }
+                  <button
+                  
+                    onClick={handleRedirect}
                     className={"baseBtn hoveranim"}
                     aria-label="view all button"
                   >
@@ -74,7 +83,7 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
                         </defs>
                       </svg>
                     </span>
-                  </Link>
+                  </button>
                 )}
                 {CoursecArr && (
                   <button className={"baseBtn hoveranim"} disabled={true}>
