@@ -58,7 +58,7 @@ const EnrollProgram = ({
                   className={"baseBtn hoveranim"}
                   aria-label="view all button"
                 >
-                  <span>Renew !</span>
+                    <span>{t("renew")}</span>
                 </button>
               ) : (
                 <button
