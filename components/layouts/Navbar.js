@@ -130,6 +130,8 @@ const Navbar = ({ overHeight, state }) => {
                   router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}#news`) ? styles.active : styles.link
                 }
               >
+                {t("menu.our_news")}
+                &nbsp;
                 <span className={styles.icon}>
                   <svg
                     height="512"
@@ -148,8 +150,6 @@ const Navbar = ({ overHeight, state }) => {
                     </g>
                   </svg>
                 </span>
-                &nbsp;
-                {t("menu.our_news")}
               </Link>
 
               <Link
