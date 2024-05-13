@@ -36,23 +36,9 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
         }
       });
   }, [dispatch, course_id, router, Lang]);
-  // console.log(clientSecret);
-  const appearance = {
-    // theme: "night",
-    // variables: {
-    //   colorPrimary: "#0570de",
-    //   colorBackground: "#ffffff",
-    //   colorText: "#30313d",
-    //   colorDanger: "#df1b41",
-    //   fontFamily: "Ideal Sans, system-ui, sans-serif",
-    //   spacingUnit: "2px",
-    //   borderRadius: "4px",
-    //   // See all possible variables below
-    // },
-  };
+
   const options = {
     clientSecret: clientSecret,
-    appearance,
   };
 
   const [show, setShow] = useState(false);
