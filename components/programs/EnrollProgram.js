@@ -3,9 +3,27 @@ import { useTranslation } from "react-i18next";
 import styles from "@/styles/Program.module.scss";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
-const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
+const EnrollProgram = ({
+  Lang,
+  programId,
+  CoursecArr,
+  CourseByIdArray,
+  expired,
+}) => {
   const { t } = useTranslation();
+
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    if (Cookies.get("UT")) {
+      router.push(`/${Lang}/user/payment/${programId}`);
+    } else {
+      sessionStorage.setItem("courseId", programId);
+      router.push(`/${Lang}/admin/login`);
+    }
+  };
 
   return (
     <div className={styles.enrollProgram_section}>
@@ -14,26 +32,42 @@ const EnrollProgram = ({ Lang, programId, CoursecArr, CourseByIdArray }) => {
           <div className={styles.lftWrap}>
             <div className={`${styles.tleWrap} tleWrap`}>
               <div className={styles.dElmt}></div>
-              <div className={"mTle"}>{t("enroll_to_our_program")}</div>
+              <div className={"mTle"}>
+                {t(expired ? "renew_program" : "enroll_to_our_program")}
+              </div>
               <div className={styles.txt}>
-                {Lang === "ar" ? CourseByIdArray?.enroll_text_ar : CourseByIdArray?.enroll_text}
+                {Lang === "ar"
+                  ? CourseByIdArray?.enroll_text_ar
+                  : CourseByIdArray?.enroll_text}
               </div>
             </div>
           </div>
           <div className={styles.rgtWrap}>
             <div className={styles.btnWrap}>
               {!CoursecArr ? (
-                <Link
-                  href={Cookies.get("UT") ? `/${Lang}/user/payment/${programId}` : `/${Lang}/admin/login`}
+                <button
+                  onClick={handleRedirect}
                   className={"baseBtn hoveranim"}
                   aria-label="view all button"
                 >
                   <span>{t("join_now")}</span>
-                </Link>
+                </button>
+              ) : expired ? (
+                <button
+                  onClick={handleRedirect}
+                  className={"baseBtn hoveranim"}
+                  aria-label="view all button"
+                >
+                    <span>{t("renew")}</span>
+                </button>
               ) : (
-                <Link href={"#!"} className={"baseBtn hoveranim"} aria-label="view all button">
+                <button
+                  href={"#!"}
+                  className={"baseBtn hoveranim"}
+                  aria-label="view all button"
+                >
                   <span>YALLA !</span>
-                </Link>
+                </button>
               )}
             </div>
           </div>

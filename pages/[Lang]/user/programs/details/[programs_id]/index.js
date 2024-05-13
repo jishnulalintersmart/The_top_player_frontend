@@ -18,6 +18,7 @@ import TrainingVideo from "@/components/programs/TrainingVideo";
 import Testimonials from "@/components/programs/Testimonials";
 import EnrollProgram from "@/components/programs/EnrollProgram";
 import { courseById } from "@/store/CourcesSlice";
+import isExpired from "@/helpers/checkExpired";
 const FitnessProgram = dynamic(() => import("@/components/programs/Fitness"), {
   loading: () => <></>,
   ssr: false,
@@ -26,22 +27,39 @@ const ProgramCard = dynamic(() => import("@/components/programs/ProgramCard"), {
   loading: () => <></>,
   ssr: false,
 });
-const FitnessFottball = dynamic(() => import("@/components/programs/FitnessFootball"), {
-  loading: () => <></>,
-  ssr: false,
-});
-const FootballProgram = dynamic(() => import("@/components/programs/Football"), {
-  loading: () => <></>,
-  ssr: false,
-});
+const FitnessFottball = dynamic(
+  () => import("@/components/programs/FitnessFootball"),
+  {
+    loading: () => <></>,
+    ssr: false,
+  }
+);
+const FootballProgram = dynamic(
+  () => import("@/components/programs/Football"),
+  {
+    loading: () => <></>,
+    ssr: false,
+  }
+);
 const Personlized = dynamic(() => import("@/components/programs/Personlized"), {
   loading: () => <></>,
   ssr: false,
 });
-const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Text, CourseByIdArray }) => {
+const Fitness = ({
+  programs_id,
+  Lang,
+  CoursecArr,
+  error,
+  error_status,
+  error_Text,
+  CourseByIdArray,
+}) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  const expired = CoursecArr ? isExpired(CoursecArr?.endDate) : false;
+  console.log(expired);
 
   // useEffect(() => {
   //   if (error_status === 401) {
@@ -60,7 +78,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
       <InnerBanner
         // imageUrl={"/images/banner-program.jpg"}
         imageUrl={`${process.env.customKey}/courseImages/${CourseByIdArray?.bannerUrl}`}
-        title={Lang === "en" ? CourseByIdArray?.name : CourseByIdArray?.name_arabic}
+        title={
+          Lang === "en" ? CourseByIdArray?.name : CourseByIdArray?.name_arabic
+        }
       />
       {CoursecArr?.subCourses?.length > 1 && (
         <div className={styles.sub_course} style={{ marginTop: "15px" }}>
@@ -68,14 +88,22 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
             return (
               <Link
                 key={ele.id}
-                className={`${ele.id === CoursecArr?.subCourses[0].id ? styles.active : ""} ${
-                  Lang === "ar" ? styles.Ar_subCourses_Link : styles.En_subCourses_Link
+                className={`${
+                  ele.id === CoursecArr?.subCourses[0].id ? styles.active : ""
+                } ${
+                  Lang === "ar"
+                    ? styles.Ar_subCourses_Link
+                    : styles.En_subCourses_Link
                 }`}
                 href={`/${Lang}/user/programs/details/${CoursecArr.id}/sub/${ele.id}`}
               >
                 {Lang === "en" && ele.name}
-                {Lang === "ar" && ele.name === "fitness Program" && "برنامج اللياقة"}
-                {Lang === "ar" && ele.name === "football Program" && "برنامج كرة القدم"}
+                {Lang === "ar" &&
+                  ele.name === "fitness Program" &&
+                  "برنامج اللياقة"}
+                {Lang === "ar" &&
+                  ele.name === "football Program" &&
+                  "برنامج كرة القدم"}
               </Link>
             );
           })}
@@ -108,26 +136,42 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
       <Personlized Lang={Lang} />
 
-      {!CoursecArr && <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />}
+      {!CoursecArr || expired ? (
+        <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
+      ) : null}
 
-      {CoursecArr && (
+      {CoursecArr && !expired && (
         <div className={styles.enrolled_section}>
           <div className={"container"}>
             <div className={styles.days}>
-              <div className={`${styles.day_finish} ${Lang === "ar" ? styles.Ar_day_finish : ""}`}>
-                {CoursecArr && <h3>{AllDays_finished}/28</h3>}
+              <div
+                className={`${styles.day_finish} ${
+                  Lang === "ar" ? styles.Ar_day_finish : ""
+                }`}
+              >
+                {CoursecArr && <h3>{AllDays_finished || 0}/28</h3>}
                 <p>{t("programs_details.finish")}</p>
               </div>
-              {CoursecArr && <h3 className="En_num">{parseInt((AllDays_finished / 28) * 100)}%</h3>}
+              {CoursecArr && !expired && (
+                <h3 className="En_num">
+                  {parseInt((AllDays_finished / 28) * 100) || 0}%
+                </h3>
+              )}
             </div>
 
             {CoursecArr && (
-              <div className={`${styles.progress_week_grid} ${Lang === "ar" ? styles.Ar_rotate : ""}`}>
+              <div
+                className={`${styles.progress_week_grid} ${
+                  Lang === "ar" ? styles.Ar_rotate : ""
+                }`}
+              >
                 <div className={styles.progress_week}>
                   <div className={styles.line}>
                     <div
                       className={`${
-                        CoursecArr?.subCourses[0]?.finished_days.includes(5) ? styles.circel : styles.not_circel
+                        CoursecArr?.subCourses[0]?.finished_days.includes(5)
+                          ? styles.circel
+                          : styles.not_circel
                       }`}
                     >
                       <FaStar />
@@ -146,7 +190,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/1/1/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(1) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(1)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           1
@@ -157,7 +203,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/1/2/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(2) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(2)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           2
@@ -168,7 +216,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/1/3/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(3) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(3)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           3
@@ -178,7 +228,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/1/4/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(4) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(4)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           4
@@ -189,7 +241,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/1/5/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(5) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(5)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           5
@@ -199,7 +253,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         </span>
                         <span
                           className={`${styles.cup} ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(5) ? styles.cup_active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(5)
+                              ? styles.cup_active
+                              : styles.not_active
                           } `}
                         >
                           <GiTrophyCup />
@@ -220,7 +276,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                   <div className={styles.line}>
                     <div
                       className={`${
-                        CoursecArr?.subCourses[0]?.finished_days.includes(10) ? styles.circel : styles.not_circel
+                        CoursecArr?.subCourses[0]?.finished_days.includes(10)
+                          ? styles.circel
+                          : styles.not_circel
                       }`}
                     >
                       <FaStar />
@@ -241,7 +299,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/2/6/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(6) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(6)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           1
@@ -252,7 +312,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/2/7/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(7) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(7)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           2
@@ -263,7 +325,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/2/8/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(8) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(8)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           3
@@ -273,7 +337,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/2/9/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(9) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(9)
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           4
@@ -284,7 +350,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/2/10/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(10) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              10
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           5
@@ -294,7 +364,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         </span>
                         <span
                           className={`${styles.cup} ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(10)
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              10
+                            )
                               ? styles.cup_active
                               : styles.not_active
                           } `}
@@ -316,7 +388,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                   <div className={styles.line}>
                     <div
                       className={`${
-                        CoursecArr?.subCourses[0]?.finished_days.includes(15) ? styles.circel : styles.not_circel
+                        CoursecArr?.subCourses[0]?.finished_days.includes(15)
+                          ? styles.circel
+                          : styles.not_circel
                       }`}
                     >
                       <FaStar />
@@ -336,7 +410,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/3/11/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(11) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              11
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           1
@@ -347,7 +425,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/3/12/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(12) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              12
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           2
@@ -358,7 +440,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/3/13/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(13) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              13
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           3
@@ -368,7 +454,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/3/14/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(14) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              14
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           4
@@ -379,7 +469,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/3/15/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(15) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              15
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           5
@@ -389,7 +483,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         </span>
                         <span
                           className={`${styles.cup} ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(15)
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              15
+                            )
                               ? styles.cup_active
                               : styles.not_active
                           } `}
@@ -410,7 +506,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                   <div className={styles.line}>
                     <div
                       className={`${
-                        CoursecArr?.subCourses[0]?.finished_days.includes(20) ? styles.circel : styles.not_circel
+                        CoursecArr?.subCourses[0]?.finished_days.includes(20)
+                          ? styles.circel
+                          : styles.not_circel
                       }`}
                     >
                       <FaStar />
@@ -430,7 +528,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/4/16/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(16) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              16
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           1
@@ -441,7 +543,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/4/17/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(17) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              17
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           2
@@ -452,7 +558,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/4/18/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(18) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              18
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           3
@@ -462,7 +572,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/4/19/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(19) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              19
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           4
@@ -473,7 +587,11 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         <Link
                           href={`/${Lang}/user/programs/${CoursecArr?.name}/4/20/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                           className={` ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(20) ? styles.active : styles.not_active
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              20
+                            )
+                              ? styles.active
+                              : styles.not_active
                           } `}
                         >
                           5
@@ -483,7 +601,9 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
                         </span>
                         <span
                           className={`${styles.cup} ${
-                            CoursecArr?.subCourses[0]?.finished_days.includes(20)
+                            CoursecArr?.subCourses[0]?.finished_days.includes(
+                              20
+                            )
                               ? styles.cup_active
                               : styles.not_active
                           } `}
@@ -508,8 +628,24 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
 
       <Testimonials Lang={Lang} programId={programs_id} />
 
-      {!CoursecArr && (
-        <EnrollProgram Lang={Lang} programId={programs_id} CoursecArr={CoursecArr} CourseByIdArray={CourseByIdArray} />
+      {!CoursecArr ? (
+        <EnrollProgram
+          Lang={Lang}
+          programId={programs_id}
+          CoursecArr={CoursecArr}
+          expired={expired}
+          CourseByIdArray={CourseByIdArray}
+        />
+      ) : expired ? (
+        <EnrollProgram
+          Lang={Lang}
+          programId={programs_id}
+          CoursecArr={CoursecArr}
+          expired={expired}
+          CourseByIdArray={CourseByIdArray}
+        />
+      ) : (
+        ""
       )}
     </LangWrap>
   );
@@ -520,13 +656,16 @@ export default Fitness;
 export async function getServerSideProps({ req, params }) {
   try {
     const result2 = await axios
-      .get(`${process.env.customKey}/courseById/${parseInt(params.programs_id)}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "X-Access-Token": req.cookies.UT,
-        },
-      })
+      .get(
+        `${process.env.customKey}/courseById/${parseInt(params.programs_id)}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": req.cookies.UT,
+          },
+        }
+      )
       .then((res) => res.data.course)
       .catch((err) => {
         console.log(err);
@@ -566,7 +705,10 @@ export async function getServerSideProps({ req, params }) {
         Lang: params.Lang.toLowerCase(),
         error: true,
         error_status: err?.response?.status,
-        error_Text: err?.response?.data?.message === undefined ? null : err?.response?.data?.message,
+        error_Text:
+          err?.response?.data?.message === undefined
+            ? null
+            : err?.response?.data?.message,
       },
     };
   }

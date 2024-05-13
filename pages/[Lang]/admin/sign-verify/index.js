@@ -19,10 +19,17 @@ import LangWrap from "@/components/layouts/LangWarp";
 const SignVerify = ({ Lang }) => {
   const [disabel, setDisabed] = useState(false);
   const [disabelResend, setDisabedResend] = useState(false);
+
+  const [courseId, setCourseid] = useState(null);
+
   // const router = useRouter()
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
+  useEffect(() => {
+    const id = sessionStorage.getItem("courseId");
+    setCourseid(id);
+  }, []);
   // console.log(router);
   // const [device_id, setDevice_id] = useState("");
 
@@ -60,12 +67,17 @@ const SignVerify = ({ Lang }) => {
             Cookies.set("UT", res.accessToken, {
               secure: true,
               sameSite: "strict",
-               expires: 90
+              expires: 90,
             });
             show(t("auth.succ_login"));
             formik.resetForm();
             setDisabed(false);
-            router.push(`/${Lang}`);
+            if (courseId) {
+              sessionStorage.removeItem("courseId");
+              return router.push(`/${Lang}/user/payment/${courseId}`);
+            } else {
+              router.push(`/${Lang}`);
+            }
           })
           .catch((err) => {
             setDisabed(false);
@@ -100,7 +112,9 @@ const SignVerify = ({ Lang }) => {
   const getFormErrorMessage = (name) => {
     return isFormFieldInvalid(name) ? (
       <small className="p-error">{formik.errors[name]}</small>
-    ) : "" ;
+    ) : (
+      ""
+    );
   };
 
   const Resend = () => {
@@ -128,7 +142,7 @@ const SignVerify = ({ Lang }) => {
   };
   return (
     <LangWrap Lang={Lang}>
-        <Toast ref={toast} />
+      <Toast ref={toast} />
 
       <div
         className={styles.Login}
@@ -136,15 +150,14 @@ const SignVerify = ({ Lang }) => {
           direction: Lang === "ar" ? "rtl" : "ltr",
         }}
       >
-        
-      <div className={styles.dElmt_1}>
-        <Image
-          src={"/images/dElmt-countBg-1.svg"}
-          layout="fill"
-          alt="bg"
-          objectFit="contain"
-        />
-      </div>
+        <div className={styles.dElmt_1}>
+          <Image
+            src={"/images/dElmt-countBg-1.svg"}
+            layout="fill"
+            alt="bg"
+            objectFit="contain"
+          />
+        </div>
 
         <div className={styles.Login_card}>
           <h1>{t("auth.code_title")}</h1>
