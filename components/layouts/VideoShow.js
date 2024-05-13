@@ -66,6 +66,13 @@ const VideoShow = ({
   const videoRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      const { paused } = videoRef.current.getState().player;
+      paused ? videoRef.current.play() : videoRef.current.pause();
+    }
+  };
+
   // useEffect(() => {
   //   const video = videoRef.current;
 
@@ -160,9 +167,18 @@ const VideoShow = ({
   };
   return (
     <div className="video_relative">
-      <Player fluid poster={video_image} playsInline={true} key={key} onEnded={handleVideoEnded}>
+      <Player
+        ref={videoRef}
+        fluid
+        poster={video_image}
+        playsInline={true}
+        key={key}
+        onEnded={handleVideoEnded}
+      >
         <source
-          src={`${process.env.customKey}/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
+          src={`${
+            process.env.customKey
+          }/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
           // onEnded={() => {
 
           // }}
@@ -170,7 +186,7 @@ const VideoShow = ({
         {/* <source src="http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4" /> */}
 
         <ControlBar>
-        <BigPlayButton position="center" />
+          <BigPlayButton position="center" />
           <FullscreenToggle />
           <ReplayControl seconds={10} order={1.1} />
           <ForwardControl seconds={10} order={1.2} />
@@ -185,10 +201,20 @@ const VideoShow = ({
         {/* <div className={`watermark`} style={{ fontSize: "16px" }}>
           User ID: {user_info?.id}
         </div> */}
-
-        <div className={`watermark-logo`} style={{ fontSize: "20px" }}>
+        <div
+          className={`watermark-logo`}
+          style={{ fontSize: "20px" }}
+          onClick={togglePlayPause}
+        >
           {/* <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} /> */}
-          <Image src={"/images/logo-light.svg"} objectFit={"contain"} alt={"logo"} priority width={150} height={50} />
+          <Image
+            src={"/images/logo-light.svg"}
+            objectFit={"contain"}
+            alt={"logo"}
+            priority
+            width={150}
+            height={50}
+          />
           <p>User ID: {user_info?.id}</p>
         </div>
       </Player>
@@ -347,7 +373,8 @@ const VideoShow = ({
             direction: Lang === "ar" ? "rtl" : "ltr",
           }}
         >
-          {t("vidoe.congrats1")} <span className="En_num2">{week_id}!</span> {t("vidoe.congrats2")}
+          {t("vidoe.congrats1")} <span className="En_num2">{week_id}!</span>{" "}
+          {t("vidoe.congrats2")}
         </h2>
       </Dialog>
     </div>
