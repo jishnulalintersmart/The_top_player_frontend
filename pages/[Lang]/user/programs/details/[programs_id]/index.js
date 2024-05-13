@@ -18,6 +18,7 @@ import TrainingVideo from "@/components/programs/TrainingVideo";
 import Testimonials from "@/components/programs/Testimonials";
 import EnrollProgram from "@/components/programs/EnrollProgram";
 import { courseById } from "@/store/CourcesSlice";
+import isExpired from "@/helpers/checkExpired";
 const FitnessProgram = dynamic(() => import("@/components/programs/Fitness"), {
   loading: () => <></>,
   ssr: false,
@@ -56,6 +57,9 @@ const Fitness = ({
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  const expired = CoursecArr ? isExpired(CoursecArr?.endDate) : false;
+  console.log(expired);
 
   // useEffect(() => {
   //   if (error_status === 401) {
@@ -132,11 +136,11 @@ const Fitness = ({
 
       <Personlized Lang={Lang} />
 
-      {!CoursecArr && (
+      {!CoursecArr || expired ? (
         <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
-      )}
+      ) : null}
 
-      {CoursecArr && (
+      {CoursecArr && !expired && (
         <div className={styles.enrolled_section}>
           <div className={"container"}>
             <div className={styles.days}>
@@ -145,12 +149,12 @@ const Fitness = ({
                   Lang === "ar" ? styles.Ar_day_finish : ""
                 }`}
               >
-                {CoursecArr && <h3>{AllDays_finished}/28</h3>}
+                {CoursecArr && <h3>{AllDays_finished || 0}/28</h3>}
                 <p>{t("programs_details.finish")}</p>
               </div>
-              {CoursecArr && (
+              {CoursecArr && !expired && (
                 <h3 className="En_num">
-                  {parseInt((AllDays_finished / 28) * 100)}%
+                  {parseInt((AllDays_finished / 28) * 100) || 0}%
                 </h3>
               )}
             </div>
@@ -624,13 +628,24 @@ const Fitness = ({
 
       <Testimonials Lang={Lang} programId={programs_id} />
 
-      {!CoursecArr && (
+      {!CoursecArr ? (
         <EnrollProgram
           Lang={Lang}
           programId={programs_id}
           CoursecArr={CoursecArr}
+          expired={expired}
           CourseByIdArray={CourseByIdArray}
         />
+      ) : expired ? (
+        <EnrollProgram
+          Lang={Lang}
+          programId={programs_id}
+          CoursecArr={CoursecArr}
+          expired={expired}
+          CourseByIdArray={CourseByIdArray}
+        />
+      ) : (
+        ""
       )}
     </LangWrap>
   );

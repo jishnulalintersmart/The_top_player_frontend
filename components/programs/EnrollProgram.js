@@ -52,6 +52,14 @@ const EnrollProgram = ({
                 >
                   <span>{t("join_now")}</span>
                 </button>
+              ) : expired ? (
+                <button
+                  onClick={handleRedirect}
+                  className={"baseBtn hoveranim"}
+                  aria-label="view all button"
+                >
+                  <span>Renew !</span>
+                </button>
               ) : (
                 <button
                   href={"#!"}

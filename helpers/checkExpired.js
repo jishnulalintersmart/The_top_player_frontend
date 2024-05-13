@@ -1,14 +1,8 @@
-const isExpired = (course) => {
- 
-
-  const startDate = new Date(course.startDate);
-  const endDate = new Date(startDate);
-  endDate.setMonth(endDate.getMonth() + course.duration); // Add course duration in months
-
-  // Get the current date
+const isExpired = (date) => {
   const currentDate = new Date();
+  // const endDate = new Date(date);
+  const endDate = new Date("2025-01-01");
 
-  // Compare current date with expiration date
   return currentDate > endDate;
 };
 
