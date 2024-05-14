@@ -250,7 +250,7 @@ const CourcesSlice = createSlice({
         state.subscribedCourseArr = action.payload;
       })
       .addCase(getsubscribedCourse.rejected, (state, action) => {
-        // You can handle rejection logic here if needed
+        console.log(action);
       })
       .addCase(videos_in_days.pending, (state, action) => {
         state.allVideoLoading = true;

@@ -15,12 +15,21 @@ import Image from "next/legacy/image";
 import Cookies from "js-cookie";
 import { ClearToken } from "@/store/CourcesSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { ClearSecret, getUserInfo } from "@/store/AuthSlice";
+import { ClearSecret, getUserInfo, LogOutReducer } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
 import LangWrap from "./LangWarp";
+import { Toast } from "primereact/toast";
 
 const Navbar = ({ overHeight, state }) => {
   const [show, setShow] = useState(false);
+
+  const showMsg = (msg) => {
+    toast.current.show({
+      severity: "success",
+      summary: msg,
+      // detail: formik.values.value,
+    });
+  };
   const [toggle, setToggle] = useState(false);
   const [visible, setVisible] = useState(false);
   const router = useRouter();
@@ -29,6 +38,7 @@ const Navbar = ({ overHeight, state }) => {
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
   const { user_info } = useSelector((state) => state.AuthSlice);
   const toggleRef = useRef(null);
+  const toast = useRef(null);
 
   useEffect(() => {
     Cookies.get("UT") && dispatch(getUserInfo());
@@ -65,7 +75,14 @@ const Navbar = ({ overHeight, state }) => {
     };
   }, []);
   return (
-    <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en"}>
+    <LangWrap
+      Lang={
+        router?.query?.Lang?.toLowerCase()
+          ? router?.query?.Lang?.toLowerCase()
+          : "en"
+      }
+    >
+      <Toast ref={toast} />
       <div
         className={`${styles.navbar} ${
           router.pathname.includes("/admin/login") ||
@@ -278,7 +295,9 @@ const Navbar = ({ overHeight, state }) => {
                 className={`${styles.out_side}  ${
                   router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
                 }`}
-                onClick={() => {
+                onClick={async () => {
+                  const result = await dispatch(LogOutReducer()).unwrap();
+                  showMsg(result?.message);
                   setVisible(false);
                   Cookies.remove("UT");
                   dispatch(ClearToken());
@@ -398,7 +417,9 @@ const Navbar = ({ overHeight, state }) => {
                 </div>
                 <div className={styles.item}>
                   <div className={`${styles.userWrap} userWrap`}>
-                    <div className="name">{user_info && user_info?.username?.split(" ")[0]}</div>
+                    <div className="name">
+                      {user_info && user_info?.username?.split(" ")[0]}
+                    </div>
                     {Cookies.get("UT") && (
                       <button className={styles.toogle_menu} onClick={() => setToggle(!toggle)}>
                         <IoPersonCircleOutline />
@@ -478,7 +499,11 @@ const Navbar = ({ overHeight, state }) => {
                         {Cookies.get("UT") && (
                           <Link
                             href={`/${router?.query?.Lang?.toLowerCase()}`}
-                            onClick={() => {
+                            onClick={async () => {
+                              const result = await dispatch(
+                                LogOutReducer()
+                              ).unwrap();
+                              showMsg(result?.message);
                               setToggle(false);
                               Cookies.remove("UT");
                               dispatch(ClearToken());

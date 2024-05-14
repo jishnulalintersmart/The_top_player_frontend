@@ -40,6 +40,27 @@ export const LoginReducer = createAsyncThunk(
     }
   }
 );
+
+export const LogOutReducer = createAsyncThunk(
+  "Auth/LogOutReducer",
+  async (_, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const result = await axios
+        .get(`${process.env.customKey}/admin/logout`, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": Cookies.get("UT"),
+          },
+        })
+        .then((res) => res.data);
+      return result;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
 // VerifyEmail
 export const VerifyEmail = createAsyncThunk(
   "Auth/VerifyEmail",

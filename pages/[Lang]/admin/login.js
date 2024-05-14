@@ -119,7 +119,7 @@ const Login = ({ Lang }) => {
             setDisabed(false);
             // console.log(err.response.data.verified)
 
-            if (err.response.data.verified === false) {
+            if (err?.response?.data?.verified === false) {
               // router.push({
               //   pathname: `/${Lang}/admin/reverification`,
               // });
