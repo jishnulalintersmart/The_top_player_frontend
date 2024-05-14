@@ -110,7 +110,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                 </div>
                 <div className="col-12">
                   {stripePromise && clientSecret && (
-                    <Elements stripe={stripePromise} options={options}>
+                    <Elements stripe={stripePromise} options={options} allow="payment">
                       <CheckoutForm course_id={course_id} Lang={Lang} />
                     </Elements>
                   )}
