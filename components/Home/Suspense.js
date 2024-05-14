@@ -99,13 +99,15 @@ const Suspense = ({ styles, Lang }) => {
             <Swiper
               // effect={"fade"}
               dir={Lang === "ar" ? "rtl" : "ltr"}
-              key={Lang}
+              key={"gallerySwiper"}
               loop={true}
               spaceBetween={0}
               slidesPerView={1}
               pagination={false}
               navigation={false}
               initialSlide={0}
+              preventClicksPropagation={false}
+              preventClicks={false}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,

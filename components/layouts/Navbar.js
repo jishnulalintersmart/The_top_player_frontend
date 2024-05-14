@@ -61,9 +61,7 @@ const Navbar = ({ overHeight, state }) => {
   const isSticky = (e) => {
     const header = document.querySelector(".header");
     const scrollTop = window.scrollY;
-    scrollTop >= 250
-      ? header.classList.add("is-sticky")
-      : header.classList.remove("is-sticky");
+    scrollTop >= 250 ? header.classList.add("is-sticky") : header.classList.remove("is-sticky");
   };
   useEffect(() => {
     function handleClickOutside(event) {
@@ -106,9 +104,7 @@ const Navbar = ({ overHeight, state }) => {
         } header`}
       >
         <Sidebar
-          position={
-            router?.query?.Lang?.toLowerCase() === "ar" ? "right" : "left"
-          }
+          position={router?.query?.Lang?.toLowerCase() === "ar" ? "right" : "left"}
           visible={visible}
           onHide={() => setVisible(false)}
           showCloseIcon={false}
@@ -117,31 +113,21 @@ const Navbar = ({ overHeight, state }) => {
           <div
             className={styles.side_menu}
             style={{
-              direction:
-                router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
+              direction: router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
             }}
           >
             <div
               className={`${styles.Links_side}  ${
-                router?.query?.Lang?.toLowerCase() === "en"
-                  ? styles.ar_lang
-                  : styles.en_lang
+                router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
               }`}
             >
-              <button
-                className={styles.close_side}
-                onClick={() => setVisible(false)}
-              >
+              <button className={styles.close_side} onClick={() => setVisible(false)}>
                 <IoClose />
               </button>
               <Link
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}`}
-                className={`${
-                  router.asPath === router.query.Lang
-                    ? styles.active
-                    : styles.link
-                }`}
+                className={`${router.asPath === router.query.Lang ? styles.active : styles.link}`}
               >
                 {t("menu.home")}
               </Link>
@@ -149,11 +135,7 @@ const Navbar = ({ overHeight, state }) => {
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}#about`}
                 className={
-                  router.asPath.includes(
-                    `/${router?.query?.Lang?.toLowerCase()}#about`
-                  )
-                    ? styles.active
-                    : styles.link
+                  router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}#about`) ? styles.active : styles.link
                 }
               >
                 {t("menu.about")}
@@ -162,23 +144,36 @@ const Navbar = ({ overHeight, state }) => {
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}#news`}
                 className={
-                  router.asPath.includes(
-                    `/${router?.query?.Lang?.toLowerCase()}#news`
-                  )
-                    ? styles.active
-                    : styles.link
+                  router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}#news`) ? styles.active : styles.link
                 }
               >
                 {t("menu.our_news")}
+                &nbsp;
+                <span className={styles.icon}>
+                  <svg
+                    height="512"
+                    viewBox="0 0 24 24"
+                    width="512"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    id="fi_6797554"
+                  >
+                    <clipPath id="clip0_246_1849">
+                      <path d="m0 0h24v24h-24z"></path>
+                    </clipPath>
+                    <g clipPath="url(#clip0_246_1849)" clipRule="evenodd" fillRule="evenodd">
+                      <path d="m23.7071 5.29289c.3905.39053.3905 1.02369 0 1.41422l-9.5 9.49999c-.3905.3905-1.0237.3905-1.4142 0l-4.2929-4.2929-6.79289 6.7929c-.39053.3905-1.023693.3905-1.414217 0-.3905241-.3905-.3905241-1.0237 0-1.4142l7.499997-7.50001c.39053-.39052 1.02369-.39052 1.41422 0l4.29289 4.29291 8.7929-8.79291c.3905-.39052 1.0237-.39052 1.4142 0z"></path>
+                      <path d="m16 6c0-.55228.4477-1 1-1h6c.5523 0 1 .44772 1 1v6c0 .5523-.4477 1-1 1s-1-.4477-1-1v-5h-5c-.5523 0-1-.44772-1-1z"></path>
+                    </g>
+                  </svg>
+                </span>
               </Link>
 
               <Link
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}#programs`}
                 className={
-                  router.asPath.includes(
-                    `/${router?.query?.Lang?.toLowerCase()}#programs`
-                  )
+                  router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}#programs`)
                     ? styles.active
                     : styles.link
                 }
@@ -190,11 +185,7 @@ const Navbar = ({ overHeight, state }) => {
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}#faq`}
                 className={
-                  router.asPath.includes(
-                    `/${router?.query?.Lang?.toLowerCase()}#faq`
-                  )
-                    ? styles.active
-                    : styles.link
+                  router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}#faq`) ? styles.active : styles.link
                 }
               >
                 {t("menu.faq")}
@@ -203,41 +194,31 @@ const Navbar = ({ overHeight, state }) => {
                 onClick={() => setVisible(false)}
                 href={`/${router?.query?.Lang?.toLowerCase()}#contact`}
                 className={
-                  router.asPath.includes(
-                    `/${router?.query?.Lang?.toLowerCase()}#contact`
-                  )
-                    ? styles.active
-                    : styles.link
+                  router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}#contact`) ? styles.active : styles.link
                 }
               >
                 {t("menu.contact")}
               </Link>
               <hr />
-              {Cookies.get("UT") &&
-                subscribedCourseArr &&
-                subscribedCourseArr.length > 0 && (
-                  <Link
-                    href={`/${router?.query?.Lang?.toLowerCase()}/user/payment-program`}
-                    onClick={() => setVisible(false)}
-                    className={
-                      router.asPath.includes(
-                        `/${router?.query?.Lang?.toLowerCase()}/user/payment-program`
-                      )
-                        ? styles.active
-                        : styles.link
-                    }
-                  >
-                    {t("menu.payments")}
-                  </Link>
-                )}
+              {Cookies.get("UT") && subscribedCourseArr && subscribedCourseArr.length > 0 && (
+                <Link
+                  href={`/${router?.query?.Lang?.toLowerCase()}/user/payment-program`}
+                  onClick={() => setVisible(false)}
+                  className={
+                    router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}/user/payment-program`)
+                      ? styles.active
+                      : styles.link
+                  }
+                >
+                  {t("menu.payments")}
+                </Link>
+              )}
               {Cookies.get("UT") && (
                 <Link
                   href={`/${router?.query?.Lang?.toLowerCase()}/user/profile`}
                   onClick={() => setVisible(false)}
                   className={
-                    router.asPath.includes(
-                      `/${router?.query?.Lang?.toLowerCase()}/user/profile`
-                    )
+                    router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}/user/profile`)
                       ? styles.active
                       : styles.link
                   }
@@ -250,9 +231,7 @@ const Navbar = ({ overHeight, state }) => {
                   href={`/${router?.query?.Lang?.toLowerCase()}/user/update-password`}
                   onClick={() => setVisible(false)}
                   className={
-                    router.asPath.includes(
-                      `/${router?.query?.Lang?.toLowerCase()}/user/update-password`
-                    )
+                    router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}/user/update-password`)
                       ? styles.active
                       : styles.link
                   }
@@ -265,9 +244,7 @@ const Navbar = ({ overHeight, state }) => {
                   onClick={() => setVisible(false)}
                   href={`/${router?.query?.Lang?.toLowerCase()}/user/programs`}
                   className={
-                    router.asPath.includes(
-                      `/${router?.query?.Lang?.toLowerCase()}/user/programs`
-                    )
+                    router.asPath.includes(`/${router?.query?.Lang?.toLowerCase()}/user/programs`)
                       ? styles.active
                       : styles.link
                   }
@@ -280,22 +257,14 @@ const Navbar = ({ overHeight, state }) => {
                 <Link
                   href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
                   className={`${styles.sign_side}  ${
-                    router?.query?.Lang?.toLowerCase() === "en"
-                      ? styles.ar_lang
-                      : styles.en_lang
+                    router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
                   }`}
                   onClick={() => setVisible(false)}
                 >
                   <IoPersonCircleOutline
                     style={{
-                      marginRight:
-                        router?.query?.Lang?.toLowerCase() === "ar"
-                          ? "0"
-                          : "10px",
-                      marginLeft:
-                        router?.query?.Lang?.toLowerCase() === "ar"
-                          ? "10px"
-                          : "0",
+                      marginRight: router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
+                      marginLeft: router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
                     }}
                   />
                   {t("menu.login")}
@@ -306,22 +275,14 @@ const Navbar = ({ overHeight, state }) => {
                 <Link
                   href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
                   className={`${styles.sign_side}  ${
-                    router?.query?.Lang?.toLowerCase() === "en"
-                      ? styles.ar_lang
-                      : styles.en_lang
+                    router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
                   }`}
                   onClick={() => setVisible(false)}
                 >
                   <IoPersonCircleOutline
                     style={{
-                      marginRight:
-                        router?.query?.Lang?.toLowerCase() === "ar"
-                          ? "0"
-                          : "10px",
-                      marginLeft:
-                        router?.query?.Lang?.toLowerCase() === "ar"
-                          ? "10px"
-                          : "0",
+                      marginRight: router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
+                      marginLeft: router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
                     }}
                   />
                   {t("menu.signup")}
@@ -332,9 +293,7 @@ const Navbar = ({ overHeight, state }) => {
               <Link
                 href={`/${router?.query?.Lang?.toLowerCase()}`}
                 className={`${styles.out_side}  ${
-                  router?.query?.Lang?.toLowerCase() === "en"
-                    ? styles.ar_lang
-                    : styles.en_lang
+                  router?.query?.Lang?.toLowerCase() === "en" ? styles.ar_lang : styles.en_lang
                 }`}
                 onClick={async () => {
                   const result = await dispatch(LogOutReducer()).unwrap();
@@ -347,14 +306,8 @@ const Navbar = ({ overHeight, state }) => {
               >
                 <CiLogout
                   style={{
-                    marginRight:
-                      router?.query?.Lang?.toLowerCase() === "ar"
-                        ? "0"
-                        : "10px",
-                    marginLeft:
-                      router?.query?.Lang?.toLowerCase() === "ar"
-                        ? "10px"
-                        : "0",
+                    marginRight: router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
+                    marginLeft: router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
                   }}
                 />
                 {t("menu.logout")}
@@ -365,8 +318,7 @@ const Navbar = ({ overHeight, state }) => {
         <div
           className="container"
           style={{
-            direction:
-              router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
+            direction: router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
           }}
         >
           <div className={styles.mainNav}>
@@ -391,9 +343,7 @@ const Navbar = ({ overHeight, state }) => {
                 <div className={styles.item}>
                   <button
                     className={`${styles.menu_button} ${styles.image_lang} ${
-                      router?.query?.Lang?.toLowerCase() === "ar"
-                        ? styles.ar_lang
-                        : styles.en_lang
+                      router?.query?.Lang?.toLowerCase() === "ar" ? styles.ar_lang : styles.en_lang
                     } lang_btn`}
                     aria-label="menu"
                     name="menu"
@@ -403,10 +353,7 @@ const Navbar = ({ overHeight, state }) => {
                       const currentUrl = window.location.href;
                       const currentLang = router?.query?.Lang?.toLowerCase();
                       const newLang = currentLang === "ar" ? "en" : "ar";
-                      const newUrl = currentUrl.replace(
-                        `/${currentLang}`,
-                        `/${newLang}/`
-                      );
+                      const newUrl = currentUrl.replace(`/${currentLang}`, `/${newLang}/`);
                       history.pushState(null, "", newUrl);
                       i18n.changeLanguage(newLang);
                       window.location.reload();
@@ -437,22 +384,10 @@ const Navbar = ({ overHeight, state }) => {
                 }}
               >
                 <span className="logoLight">
-                  <Image
-                    src={"/images/logo-light.svg"}
-                    layout={"fill"}
-                    objectFit={"contain"}
-                    alt={"logo"}
-                    priority
-                  />
+                  <Image src={"/images/logo-light.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority />
                 </span>
                 <span className="logoDark">
-                  <Image
-                    src={"/images/logo.svg"}
-                    layout={"fill"}
-                    objectFit={"contain"}
-                    alt={"logo"}
-                    priority
-                  />
+                  <Image src={"/images/logo.svg"} layout={"fill"} objectFit={"contain"} alt={"logo"} priority />
                 </span>
               </div>
             </div>
@@ -486,10 +421,7 @@ const Navbar = ({ overHeight, state }) => {
                       {user_info && user_info?.username?.split(" ")[0]}
                     </div>
                     {Cookies.get("UT") && (
-                      <button
-                        className={styles.toogle_menu}
-                        onClick={() => setToggle(!toggle)}
-                      >
+                      <button className={styles.toogle_menu} onClick={() => setToggle(!toggle)}>
                         <IoPersonCircleOutline />
                         <Image
                           src={"/images/icon-user.svg"}
@@ -505,14 +437,8 @@ const Navbar = ({ overHeight, state }) => {
                       <div
                         className={styles.drop_men}
                         style={{
-                          right:
-                            router?.query?.Lang?.toLowerCase() === "ar"
-                              ? "unset"
-                              : "0",
-                          left:
-                            router?.query?.Lang?.toLowerCase() === "ar"
-                              ? "0"
-                              : "unset",
+                          right: router?.query?.Lang?.toLowerCase() === "ar" ? "unset" : "0",
+                          left: router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "unset",
                         }}
                         ref={toggleRef}
                       >
@@ -542,19 +468,15 @@ const Navbar = ({ overHeight, state }) => {
                             {t("menu.my_programs")}
                           </Link>
                         )}
-                        {Cookies.get("UT") &&
-                          subscribedCourseArr &&
-                          subscribedCourseArr.length > 0 && <hr />}
-                        {Cookies.get("UT") &&
-                          subscribedCourseArr &&
-                          subscribedCourseArr.length > 0 && (
-                            <Link
-                              href={`/${router?.query?.Lang?.toLowerCase()}/user/payment-program`}
-                              onClick={() => setToggle(false)}
-                            >
-                              {t("menu.payments")}
-                            </Link>
-                          )}
+                        {Cookies.get("UT") && subscribedCourseArr && subscribedCourseArr.length > 0 && <hr />}
+                        {Cookies.get("UT") && subscribedCourseArr && subscribedCourseArr.length > 0 && (
+                          <Link
+                            href={`/${router?.query?.Lang?.toLowerCase()}/user/payment-program`}
+                            onClick={() => setToggle(false)}
+                          >
+                            {t("menu.payments")}
+                          </Link>
+                        )}
                         {Cookies.get("UT") && <hr />}
                         {Cookies.get("UT") && (
                           <Link
