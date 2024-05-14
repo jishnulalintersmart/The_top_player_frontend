@@ -32,7 +32,7 @@ const EnrollProgram = ({
           <div className={styles.lftWrap}>
             <div className={`${styles.tleWrap} tleWrap`}>
               <div className={styles.dElmt}></div>
-              <div className={"mTle"}>
+              <div className={`${styles.mTle} mTle `}>
                 {t(expired ? "renew_program" : "enroll_to_our_program")}
               </div>
               <div className={styles.txt}>

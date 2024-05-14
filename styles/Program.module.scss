@@ -786,7 +786,14 @@
     .tleWrap {
       margin: 0;
       position: relative;
-      z-index: 0;
+      z-index: 0;      
+      @media (max-width: 575.98px) {
+        text-align: center;
+      }
+      .mTle{
+        display: block;
+        width: 100%;
+      }
       .dElmt {
         width: 300px;
         height: 80px;
@@ -808,6 +815,7 @@
         }
         @media (max-width: 575.98px) {
           height: 60px;
+          opacity: 0.15;
         }
       }
       .txt {
@@ -821,6 +829,12 @@
         @media (max-width: 575.98px) {
           font-size: 14px;
         }
+      }
+    }
+    .btnWrap{      
+      @media (max-width: 575.98px) {
+        display: flex;
+        justify-content: center;
       }
     }
   }

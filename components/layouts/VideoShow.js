@@ -23,6 +23,7 @@ import {
   BigPlayButton,
 } from "video-react";
 import Image from "next/image";
+import { ZIndexUtils } from "primereact/utils";
 const VideoShow = ({
   video_id,
   courseId,
@@ -167,18 +168,9 @@ const VideoShow = ({
   };
   return (
     <div className="video_relative">
-      <Player
-        ref={videoRef}
-        fluid
-        poster={video_image}
-        playsInline={true}
-        key={key}
-        onEnded={handleVideoEnded}
-      >
+      <Player ref={videoRef} fluid poster={video_image} playsInline={true} key={key} onEnded={handleVideoEnded}>
         <source
-          src={`${
-            process.env.customKey
-          }/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
+          src={`${process.env.customKey}/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
           // onEnded={() => {
 
           // }}
@@ -201,20 +193,9 @@ const VideoShow = ({
         {/* <div className={`watermark`} style={{ fontSize: "16px" }}>
           User ID: {user_info?.id}
         </div> */}
-        <div
-          className={`watermark-logo`}
-          style={{ fontSize: "20px" }}
-          onClick={togglePlayPause}
-        >
+        <div className={`watermark-logo`} style={{ fontSize: "20px" }} onClick={togglePlayPause}>
           {/* <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} /> */}
-          <Image
-            src={"/images/logo-light.svg"}
-            objectFit={"contain"}
-            alt={"logo"}
-            priority
-            width={150}
-            height={50}
-          />
+          <Image src={"/images/logo-light.svg"} objectFit={"contain"} alt={"logo"} priority width={150} height={50} />
           <p>User ID: {user_info?.id}</p>
         </div>
       </Player>
@@ -373,8 +354,7 @@ const VideoShow = ({
             direction: Lang === "ar" ? "rtl" : "ltr",
           }}
         >
-          {t("vidoe.congrats1")} <span className="En_num2">{week_id}!</span>{" "}
-          {t("vidoe.congrats2")}
+          {t("vidoe.congrats1")} <span className="En_num2">{week_id}!</span> {t("vidoe.congrats2")}
         </h2>
       </Dialog>
     </div>

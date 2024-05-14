@@ -62,7 +62,7 @@ const News = ({ styles, Lang }) => {
 
         <Swiper
           dir={Lang === "ar" ? "rtl" : "ltr"}
-          key={Lang}
+          key={"newsSwiper"}
           loop={true}
           spaceBetween={10}
           slidesPerView={1}

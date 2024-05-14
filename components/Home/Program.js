@@ -101,11 +101,13 @@ const Program = ({ styles, Lang }) => {
             >
               <Swiper
                 dir={Lang === "ar" ? "rtl" : "ltr"}
-                key={Lang}
-                loop={true}
+                key={"courseSwiper"}
+                loop={false}
                 spaceBetween={10}
                 slidesPerView={1}
                 modules={[Pagination, Navigation]}
+                preventClicksPropagation={false}
+                preventClicks={false}
                 pagination={pagination}
                 navigation={{
                   nextEl: `#${item?.categoryName?.replace(/\s/g, "")}_next`,
