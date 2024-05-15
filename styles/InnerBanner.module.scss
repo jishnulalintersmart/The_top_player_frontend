@@ -9,12 +9,12 @@
     padding: 60px 0;
   }
   @media (max-width: 991.98px) {
-    height: 320px;
-    padding: 60px 0;
-  }
-  @media (max-width: 575.98px) {
     height: 268px;
     padding: 40px 0;
+  }
+  @media (max-width: 575.98px) {
+    height: 190px;
+    padding: 20px 0;
   }
   &::after {
     content: "";
