@@ -32,6 +32,12 @@ const Login = ({ Lang }) => {
   }, []);
 
   useEffect(() => {
+    if (Cookies.get("UT")) {
+      router.push(`/${Lang}`);
+    }
+  }, [Cookies.get("UT")]);
+
+  useEffect(() => {
     // Generate device fingerprint using fingerprintjs2
     Fingerprint2.get({}, function (components) {
       const fingerprint = Fingerprint2.x64hash128(components.map((pair) => pair.value).join(), 31);
