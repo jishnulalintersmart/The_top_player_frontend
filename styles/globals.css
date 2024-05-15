@@ -1794,10 +1794,6 @@ video:-moz-full-screen {
   padding: 0 !important;
 }
 
-.video-react.video-react-fullscreen{
-  height: 100lvh !important;
-}
-
 .video-react .video-react-big-play-button {
   top: 50% !important;
   left: 50% !important;
