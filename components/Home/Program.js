@@ -194,10 +194,13 @@ const Program = ({ styles, Lang }) => {
                         )}
 
                         <div
-                          className={`${styles.price_offer} ${
-                            Lang === "ar" ? styles.rightPrice : styles.leftPrice
-                          }`}
+                          className={`${styles.price_offer} ${styles.leftPrice
+                          } dir-lft`}
                         >
+                          {/* <div className={`${styles.price_offer} ${
+                            Lang === "ar" ? styles.rightPrice : styles.leftPrice
+                          } dir-lft`}
+                        > */}
                           <h5>{course?.offerAmount}</h5>
                           <h6>
                             <del>{course?.amount} </del>

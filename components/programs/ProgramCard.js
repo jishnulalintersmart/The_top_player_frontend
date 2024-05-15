@@ -135,7 +135,7 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
                   loading="lazy"
                 />
               </div>
-              <div className={styles.info_price}>
+              <div className={`${styles.info_price} dir-lft`}>
                 <span>
                   {" "}
                   <sup>$</sup>

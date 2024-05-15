@@ -144,6 +144,11 @@ a {
   text-decoration: none;
 }
 
+.dir-lft{
+  direction: ltr;
+  text-align: start;
+}
+
 .English_lang{
   direction: ltr;
 }

@@ -104,7 +104,7 @@ const FitnessProgram = ({ Lang }) => {
                   loading="lazy"
                 />
               </div>
-              <div className={styles.info_price}>
+              <div className={`${styles.info_price} dir-lft`}>
                 <span>
                   {" "}
                   <sup>$</sup>80
