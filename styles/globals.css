@@ -428,7 +428,7 @@ a {
 .mTle {
   font-size: clamp(22px, 3vw, 40px);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.7;
   text-transform: uppercase;
   background: linear-gradient(269deg, #262626 -29.76%, #c08450 95.61%);
   background-clip: text;
