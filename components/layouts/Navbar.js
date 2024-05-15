@@ -75,13 +75,7 @@ const Navbar = ({ overHeight, state }) => {
     };
   }, []);
   return (
-    <LangWrap
-      Lang={
-        router?.query?.Lang?.toLowerCase()
-          ? router?.query?.Lang?.toLowerCase()
-          : "en"
-      }
-    >
+    <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en"}>
       <Toast ref={toast} />
       <div
         className={`${styles.navbar} ${
@@ -90,7 +84,7 @@ const Navbar = ({ overHeight, state }) => {
           router.pathname.includes("/admin/forget") ||
           router.pathname.includes("/terms") ||
           router.pathname.includes("/admin/change") ||
-          router.pathname.includes("/admin/change") ||
+          router.pathname.includes("/user/forget") ||
           router.pathname.includes("/update-password") ||
           router.pathname.includes("/user/programs") ||
           router.pathname.includes("/user/profile") ||
@@ -404,6 +398,7 @@ const Navbar = ({ overHeight, state }) => {
                       }
                       onClick={() => {
                         setToggle(false);
+                        sessionStorage.removeItem("courseId");
                       }}
                       className={`${styles.navBtn} hoveranim`}
                     >
@@ -417,9 +412,7 @@ const Navbar = ({ overHeight, state }) => {
                 </div>
                 <div className={styles.item}>
                   <div className={`${styles.userWrap} userWrap`}>
-                    <div className="name">
-                      {user_info && user_info?.username?.split(" ")[0]}
-                    </div>
+                    <div className="name">{user_info && user_info?.username?.split(" ")[0]}</div>
                     {Cookies.get("UT") && (
                       <button className={styles.toogle_menu} onClick={() => setToggle(!toggle)}>
                         <IoPersonCircleOutline />
@@ -445,7 +438,10 @@ const Navbar = ({ overHeight, state }) => {
                         {!Cookies.get("UT") && (
                           <Link
                             href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
-                            onClick={() => setToggle(false)}
+                            onClick={() => {
+                              setToggle(false);
+                              sessionStorage.removeItem("courseId");
+                            }}
                           >
                             {t("menu.login")}
                           </Link>
@@ -454,7 +450,10 @@ const Navbar = ({ overHeight, state }) => {
                         {!Cookies.get("UT") && (
                           <Link
                             href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
-                            onClick={() => setToggle(false)}
+                            onClick={() => {
+                              setToggle(false);
+                              sessionStorage.removeItem("courseId");
+                            }}
                           >
                             {t("menu.signup")}
                           </Link>
@@ -500,9 +499,7 @@ const Navbar = ({ overHeight, state }) => {
                           <Link
                             href={`/${router?.query?.Lang?.toLowerCase()}`}
                             onClick={async () => {
-                              const result = await dispatch(
-                                LogOutReducer()
-                              ).unwrap();
+                              const result = await dispatch(LogOutReducer()).unwrap();
                               showMsg(result?.message);
                               setToggle(false);
                               Cookies.remove("UT");

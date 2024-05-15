@@ -160,7 +160,7 @@ const UpdatePassword = ({ Lang }) => {
                 }}
               >
                 {t("auth.forget")}
-                <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
+                <Link href={`/${Lang}/user/forget`}>{t("auth.change")}</Link>
               </p>
             </div>
           </form>
