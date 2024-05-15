@@ -6,7 +6,13 @@ import Cookies from "js-cookie";
 import LangWrap from "../layouts/LangWarp";
 import { useRouter } from "next/router";
 
-const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
+const ProgramCard = ({
+  Lang,
+  programDetails,
+  CoursecArr,
+  programsId,
+  expired,
+}) => {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -50,7 +56,6 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
               <div className={styles.btnWrap}>
                 {!CoursecArr && (
                   <button
-                  
                     onClick={handleRedirect}
                     className={"baseBtn hoveranim"}
                     aria-label="view all button"
@@ -87,7 +92,7 @@ const ProgramCard = ({ Lang, programDetails, CoursecArr, programsId }) => {
                 )}
                 {CoursecArr && (
                   <button className={"baseBtn hoveranim"} disabled={true}>
-                    <span>{t("yalla")}</span>
+                    <span>{t(expired ? "renew" : "yalla")}</span>
                     <span className={"icon"}>
                       <svg
                         width="22"
