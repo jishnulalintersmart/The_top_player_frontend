@@ -6,7 +6,7 @@ const nextConfig = {
     customKey: "https://backend.thetopplayer.com/beta/",
     // customKey: "https://crm.intersmarthosting.in/topplayer",
     // webDomain: "https://interregionall.vercel.app",
-    // webDomain: "https://www.thetopplayer.com",
+    webDomain: "https://www.thetopplayer.com",
     // webDomain: "https://the-top-player-frontend-2.onrender.com",
     webDomain: "http://localhost:4000",
     // webDomain: "http://www.thetopplayer.com",

@@ -110,10 +110,11 @@ const Fitness = ({
         </div>
       )}
 
-      {!CoursecArr && (
+      {(!CoursecArr || expired) && (
         <ProgramCard
           programDetails={CourseByIdArray}
           styles={styles}
+          expired={expired}
           Lang={Lang}
           CoursecArr={CoursecArr}
           programsId={programs_id}
