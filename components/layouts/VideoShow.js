@@ -168,7 +168,7 @@ const VideoShow = ({
   };
   return (
     <div className="video_relative">
-      <Player ref={videoRef} fluid poster={video_image} playsInline={true} key={key} onEnded={handleVideoEnded}>
+      <Player ref={videoRef} fluid poster={video_image} playsInline={false} key={key} onEnded={handleVideoEnded}>
         <source
           src={`${process.env.customKey}/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
           // onEnded={() => {
