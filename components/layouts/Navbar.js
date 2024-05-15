@@ -41,6 +41,18 @@ const Navbar = ({ overHeight, state }) => {
   const toast = useRef(null);
 
   useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [visible]);
+
+  useEffect(() => {
     Cookies.get("UT") && dispatch(getUserInfo());
   }, [Cookies.get("UT")]);
 
@@ -74,6 +86,7 @@ const Navbar = ({ overHeight, state }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en"}>
       <Toast ref={toast} />
