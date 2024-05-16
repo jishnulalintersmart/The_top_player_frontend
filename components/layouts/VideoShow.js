@@ -77,26 +77,29 @@ const VideoShow = ({
   };
 
   useEffect(() => {
+    const video = videoRef.current;
     const handleFullscreenChange = () => {
       setIsFullscreen(videoRef?.current?.getState()?.player?.isFullscreen);
       if (videoRef?.current?.getState()?.player?.isFullscreen) {
+        video.body.style.overflow = "hidden";
         document.body.style.overflow = "hidden";
         handle.enter
       } else {
+        video.body.style.overflow = "unset";
         document.body.style.overflow = "unset";
       }
     };
 
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
-    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    video.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    video.addEventListener("MSFullscreenChange", handleFullscreenChange);
+    video.addEventListener("fullscreenchange", handleFullscreenChange);
 
     return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
-      document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
-      document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
+      video.removeEventListener("fullscreenchange", handleFullscreenChange);
+      video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
   }, [videoRef]);
 
