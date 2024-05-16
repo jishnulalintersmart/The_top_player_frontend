@@ -2,7 +2,7 @@
 const nextConfig = {
   env: {
     // customKey: "https://crm.intersmarthosting.in/topplayer",
-    // customKey: "http://localhost:7700",
+    // customKey: "http://localhost:7700/",
     customKey: "https://backend.thetopplayer.com/beta/",
     // customKey: "https://crm.intersmarthosting.in/topplayer",
     // webDomain: "https://interregionall.vercel.app",

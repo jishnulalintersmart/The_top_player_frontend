@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 // import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import Link from "next/link";
-import {  changePassword } from "@/store/AuthSlice";
+import { VerifyEmail, changePassword } from "@/store/AuthSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -80,17 +80,45 @@ const Change = ({ Lang }) => {
   const show = () => {
     toast.current.show({
       severity: "success",
-      summary: t("auth.succ_login"),
+      summary: t("auth.password_reset"),
       // detail: formik.values.value,
     });
   };
-  const isFormFieldInvalid = (name) =>
-    !!(formik.touched[name] && formik.errors[name]);
+
+  const show1 = () => {
+    toast.current.show({
+      severity: "success",
+      summary: "Please check your email !",
+      // detail: formik.values.value,
+    });
+  };
+  const isFormFieldInvalid = (name) => !!(formik.touched[name] && formik.errors[name]);
 
   const getFormErrorMessage = (name) => {
-    return isFormFieldInvalid(name) ? (
-      <small className="p-error">{formik.errors[name]}</small>
-    ) : "" ;
+    return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : "";
+  };
+
+  const handleResendOtp = (e) => {
+    e.preventDefault()
+    const result = {
+      email: router.query.email,
+      symbol: Lang,
+    };
+    console.log("triggered");
+    dispatch(VerifyEmail(result))
+      .unwrap()
+      .then((res) => {
+        // alert("Please check your email!");
+        show1(t("auth.check"));
+        // show(t("Please check your mail"));
+      })
+      .catch((err) => {
+        if (err?.response?.data?.message) {
+          EMptyInput(err.response.data.message);
+        } else {
+          EMptyInput(t("auth.wrong"));
+        }
+      });
   };
 
   return (
@@ -102,14 +130,9 @@ const Change = ({ Lang }) => {
           direction: Lang === "ar" ? "rtl" : "ltr",
         }}
       >
-      <div className={styles.dElmt_1}>
-        <Image
-          src={"/images/dElmt-countBg-1.svg"}
-          layout="fill"
-          alt="bg"
-          objectFit="contain"
-        />
-      </div>
+        <div className={styles.dElmt_1}>
+          <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+        </div>
         <div className={styles.Login_card}>
           <h1>{t("auth.change_pass")}</h1>
 
@@ -159,6 +182,20 @@ const Change = ({ Lang }) => {
             >
               {t("auth.send")}
             </button>
+
+            <div className={styles.have_account}>
+              <p
+                style={{
+                  marginRight: Lang === "ar" ? "0" : "10px",
+                  marginLeft: Lang === "ar" ? "10px" : "0",
+                }}
+              >
+                {t("auth.didn't_receive")}
+              </p>
+              <Link href={`#`} onClick={handleResendOtp}>
+                {t("auth.send_again")}
+              </Link>
+            </div>
 
             <div className={styles.have_account}>
               <p
