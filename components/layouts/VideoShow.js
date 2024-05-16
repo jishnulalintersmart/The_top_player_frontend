@@ -81,13 +81,13 @@ const VideoShow = ({
     const handleFullscreenChange = () => {
       setIsFullscreen(videoRef?.current?.getState()?.player?.isFullscreen);
       if (videoRef?.current?.getState()?.player?.isFullscreen) {
-        console.log("hidden");
+        // console.log("hidden");
         document.body.style.overflow = "hidden";
         document.body.style.overflow = "hidden";
         handle.enter
         console.log(handle.active);
       } else {
-        console.log("unset");
+        // console.log("unset");
         document.body.style.overflow = "unset";
         document.body.style.overflow = "unset";
         handle.exit

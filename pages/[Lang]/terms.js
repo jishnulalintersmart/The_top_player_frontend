@@ -6,9 +6,6 @@ const Terms = ({ data }) => {
     return <div>No data available</div>;
   }
 
-  console.log(data[0].content);
-  console.log(data[0].content_ar);
-
   // const parsedDataEng = htmlParser(data[0].content);
   // const parsedDataAr = htmlParser(data[0].content_ar);
   return (
