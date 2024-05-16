@@ -81,25 +81,29 @@ const VideoShow = ({
     const handleFullscreenChange = () => {
       setIsFullscreen(videoRef?.current?.getState()?.player?.isFullscreen);
       if (videoRef?.current?.getState()?.player?.isFullscreen) {
-        video.body.style.overflow = "hidden";
+        console.log("hidden");
+        document.body.style.overflow = "hidden";
         document.body.style.overflow = "hidden";
         handle.enter
+        console.log(handle.active);
       } else {
-        video.body.style.overflow = "unset";
+        console.log("unset");
         document.body.style.overflow = "unset";
+        document.body.style.overflow = "unset";
+        handle.exit
       }
     };
 
-    video.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    video.addEventListener("mozfullscreenchange", handleFullscreenChange);
-    video.addEventListener("MSFullscreenChange", handleFullscreenChange);
-    video.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
 
     return () => {
-      video.removeEventListener("fullscreenchange", handleFullscreenChange);
-      video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
-      video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
-      video.removeEventListener("MSFullscreenChange", handleFullscreenChange);
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
   }, [videoRef]);
 
