@@ -22,33 +22,24 @@ const FAQs = ({ styles, Lang }) => {
             className={`title ${styles.title}`}
             style={{
               lineHeight: Lang === "ar" ? "normal" : "38px",
+              textTransform: "none",
             }}
           >
             {t("faqs.title")}
           </h2>
 
-          <div
-            className={`${styles.FaqAcc}  ${
-              Lang === "ar" ? "AR_FaqAcc" : "EN_FaqAcc"
-            }`}
-          >
+          <div className={`${styles.FaqAcc}  ${Lang === "ar" ? "AR_FaqAcc" : "EN_FaqAcc"}`}>
             <Accordion>
               {faqs && faqs.length > 0 ? (
                 faqs.map((faq, i) => (
                   <Accordion.Item eventKey={i} key={faq?.id}>
                     <Accordion.Header>
                       <div className={`${styles.FAQ_info} FAQ_info_ar`}>
-                        <h6>
-                          {" "}
-                          {Lang === "en" ? faq?.question_en : faq?.question_ar}
-                        </h6>
+                        <h6> {Lang === "en" ? faq?.question_en : faq?.question_ar}</h6>
                       </div>
                     </Accordion.Header>
                     <Accordion.Body>
-                      <p className={styles.FAQ_P}>
-                        {" "}
-                        {Lang === "en" ? faq?.answer_en : faq?.answer_ar}
-                      </p>
+                      <p className={styles.FAQ_P}> {Lang === "en" ? faq?.answer_en : faq?.answer_ar}</p>
                     </Accordion.Body>
                   </Accordion.Item>
                 ))

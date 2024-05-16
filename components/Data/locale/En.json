@@ -5,7 +5,7 @@
     "our_programs": "Our Programs",
     "our_news": "Trending News",
     "contact": "Contact Us",
-    "faq": "FAQ'S",
+    "faq": "FAQ's",
     "signup": "Sign Up",
     "login": "Login",
     "logout": "Logout",
@@ -137,7 +137,7 @@
     "email": "Email",
     "message": "Message",
     "send": "Send",
-    "wrong": "Something went wrong tray again later",
+    "wrong": "Something went wrong try again later",
     "req_name": "Name is required.",
     "req_email": "Email is required.",
     "req_messag": "Message is required.",
@@ -145,7 +145,7 @@
     "success": "Successfully Send"
   },
   "faqs": {
-    "title": "FREQUENTLY ASKED QUESTIONS (FAQ'S)",
+    "title": "FREQUENTLY ASKED QUESTIONS (FAQ's)",
     "faq1": "Do you guarantee the benefits if I stick to the training ?",
     "ans1": " Yes, we guarantee the benefits when you stick to the training plan presented.",
     "faq2": "How long can I train for untill I see the results ?",

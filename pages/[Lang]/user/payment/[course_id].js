@@ -20,7 +20,7 @@ import LangWrap from "@/components/layouts/LangWarp";
 import axios from "axios";
 
 const Payment = ({ course_id, Lang, CourseByIdArray }) => {
-  console.log("CourseByIdArray", CourseByIdArray);
+  // console.log("CourseByIdArray", CourseByIdArray);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const router = useRouter();
