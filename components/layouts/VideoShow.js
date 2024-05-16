@@ -68,11 +68,32 @@ const VideoShow = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const togglePlayPause = () => {
+    console.log("toggled");
     if (videoRef.current) {
       const { paused } = videoRef.current.getState().player;
       paused ? videoRef.current.play() : videoRef.current.pause();
+
+      console.log("paused", paused);
     }
   };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(videoRef?.current?.getState()?.player?.isFullscreen);
+      if (videoRef?.current?.getState()?.player?.isFullscreen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "unset";
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, [videoRef]);
+
 
   // useEffect(() => {
   //   const video = videoRef.current;
@@ -168,7 +189,7 @@ const VideoShow = ({
   };
   return (
     <div className="video_relative">
-      <Player ref={videoRef} fluid poster={video_image} playsInline={false} key={key} onEnded={handleVideoEnded}>
+      <Player ref={videoRef} fluid poster={video_image} playsInline={true} key={key} onEnded={handleVideoEnded}>
         <source
           src={`${process.env.customKey}/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
           // onEnded={() => {
@@ -193,7 +214,7 @@ const VideoShow = ({
         {/* <div className={`watermark`} style={{ fontSize: "16px" }}>
           User ID: {user_info?.id}
         </div> */}
-        <div className={`watermark-logo`} style={{ fontSize: "20px" }} onClick={togglePlayPause}>
+        <div className={`watermark-logo`} style={{ fontSize: "20px", cursor: "pointer" }} onClick={togglePlayPause}>
           {/* <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} /> */}
           <Image src={"/images/logo-light.svg"} objectFit={"contain"} alt={"logo"} priority width={150} height={50} />
           <p>User ID: {user_info?.id}</p>
