@@ -84,10 +84,16 @@ const VideoShow = ({
       }
     };
 
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
     document.addEventListener("fullscreenchange", handleFullscreenChange);
 
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      video.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      video.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
   }, [videoRef]);
 

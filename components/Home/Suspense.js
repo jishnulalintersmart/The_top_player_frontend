@@ -50,8 +50,6 @@ const Suspense = ({ styles, Lang }) => {
 
   const { banners } = useSelector((state) => state.BannerSlice);
 
-  console.log(banners);
-
   useEffect(() => {
     dispatch(getAllBanners());
   }, [dispatch]);
