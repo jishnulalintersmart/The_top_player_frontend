@@ -629,7 +629,7 @@ const Fitness = ({
 
       <Testimonials Lang={Lang} programId={programs_id} />
 
-      {!CoursecArr ? (
+      {(!CoursecArr || expired) && (
         <EnrollProgram
           Lang={Lang}
           programId={programs_id}
@@ -637,16 +637,6 @@ const Fitness = ({
           expired={expired}
           CourseByIdArray={CourseByIdArray}
         />
-      ) : expired ? (
-        <EnrollProgram
-          Lang={Lang}
-          programId={programs_id}
-          CoursecArr={CoursecArr}
-          expired={expired}
-          CourseByIdArray={CourseByIdArray}
-        />
-      ) : (
-        ""
       )}
     </LangWrap>
   );

@@ -23,6 +23,8 @@ const Login = ({ Lang }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
+
+  console.log(router.asPath);
   const [device_id, setDevice_id] = useState("");
   const [courseId, setCourseid] = useState(null);
 
@@ -276,8 +278,6 @@ const Login = ({ Lang }) => {
 
 export default Login;
 export async function getServerSideProps({ params }) {
-  // Fetch data from external API or CMS using params.id
-
   return {
     props: {
       Lang: params.Lang.toLowerCase(),

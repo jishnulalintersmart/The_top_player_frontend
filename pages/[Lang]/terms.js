@@ -6,26 +6,27 @@ const Terms = ({ data }) => {
     return <div>No data available</div>;
   }
 
-  const parsedDataEng = htmlParser(data[0].content);
-  const parsedDataAr = htmlParser(data[0].content_ar);
+  console.log(data[0].content);
+  console.log(data[0].content_ar);
+
+  // const parsedDataEng = htmlParser(data[0].content);
+  // const parsedDataAr = htmlParser(data[0].content_ar);
   return (
     <div className="Terms padding_all">
       <div className="container">
-        <div className="En_terms">
-          {parsedDataEng.map((items) => (
-            <>
-              <h2 className="title">{items.title}</h2>
-              <ol>
-                {items?.values.map((points) => (
-                  <li key={items.title}>{points}</li>
-                ))}
-              </ol>
-            </>
-          ))}
-        </div>
+        <div
+          className="En_terms"
+          dangerouslySetInnerHTML={{ __html: data[0].content }}
+        />
+
         <hr />
         <div className="Ar_terms">
-          {parsedDataAr.map((items) => (
+          <div
+            className="En_terms"
+            dangerouslySetInnerHTML={{ __html: data[0].content_ar }}
+          />
+
+          {/* {parsedDataAr.map((items) => (
             <>
               <h2 className="title">{items.title}</h2>
               <ol>
@@ -34,7 +35,7 @@ const Terms = ({ data }) => {
                 ))}
               </ol>
             </>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
