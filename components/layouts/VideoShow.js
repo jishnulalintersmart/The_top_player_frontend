@@ -68,12 +68,9 @@ const VideoShow = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const togglePlayPause = () => {
-    console.log("toggled");
     if (videoRef.current) {
       const { paused } = videoRef.current.getState().player;
       paused ? videoRef.current.play() : videoRef.current.pause();
-
-      console.log("paused", paused);
     }
   };
 
@@ -93,7 +90,6 @@ const VideoShow = ({
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, [videoRef]);
-
 
   // useEffect(() => {
   //   const video = videoRef.current;
@@ -151,7 +147,6 @@ const VideoShow = ({
 
   // const [videoPlay, setVideoPlay] = useState(false);
   // const playerRef = useRef(null);
-  console.log(day_time);
   const handleVideoEnded = () => {
     if (list === video_key + 1 && parseInt(day_time) === 0) {
       setDialogVisible(true);
