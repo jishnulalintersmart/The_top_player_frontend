@@ -27,7 +27,7 @@ export const LoginReducer = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const result = await axios
-        .post(`${process.env.customKey}admin/login`, data, {
+        .post(`${process.env.customKey}/admin/login`, data, {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
@@ -47,7 +47,7 @@ export const LogOutReducer = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const result = await axios
-        .get(`${process.env.customKey}admin/logout`, {
+        .get(`${process.env.customKey}/admin/logout`, {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
