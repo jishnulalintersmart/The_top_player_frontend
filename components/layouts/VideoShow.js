@@ -82,11 +82,12 @@ const VideoShow = ({
       setIsFullscreen(videoRef?.current?.getState()?.player?.isFullscreen);
       if (videoRef?.current?.getState()?.player?.isFullscreen) {
         // console.log("hidden");
-        document.body.style.overflow = "hidden";
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "unset";
+        document.body.style.overflow = "unset";
         handle.enter
         console.log(handle.active);
       } else {
+        console.log("visible");
         // console.log("unset");
         document.body.style.overflow = "unset";
         document.body.style.overflow = "unset";
@@ -106,6 +107,7 @@ const VideoShow = ({
       document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
   }, [videoRef]);
+  console.log(videoRef.current);
 
   // useEffect(() => {
   //   const video = videoRef.current;
