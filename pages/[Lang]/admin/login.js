@@ -162,6 +162,14 @@ const Login = ({ Lang }) => {
   const getFormErrorMessage = (name) => {
     return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : "";
   };
+
+  const handleKeyPress = (event) => {
+    console.log("enter key pressed");
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default form submission behavior
+      formik.handleSubmit(); // Manually submit the form
+    }
+  };
   return (
     <LangWrap Lang={Lang}>
       <Toast ref={toast} />
@@ -193,7 +201,7 @@ const Login = ({ Lang }) => {
         </div> */}
           <h1>{t("auth.login_title")}</h1>
 
-          <form onSubmit={formik.handleSubmit} className="grid  gap-2">
+          <form onSubmit={formik.handleSubmit} className="grid  gap-2" onKeyDown={handleKeyPress}>
             <div className="col-12">
               <div className="inputFormik">
                 <label htmlFor="email">{t("auth.email")} </label>
