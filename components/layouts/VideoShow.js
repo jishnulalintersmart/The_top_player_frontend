@@ -76,38 +76,79 @@ const VideoShow = ({
     }
   };
 
-  useEffect(() => {
-    const video = videoRef.current;
-    const handleFullscreenChange = () => {
-      setIsFullscreen(videoRef?.current?.getState()?.player?.isFullscreen);
-      if (videoRef?.current?.getState()?.player?.isFullscreen) {
-        // console.log("hidden");
-        document.body.style.overflow = "unset";
-        document.body.style.overflow = "unset";
-        handle.enter
-        console.log(handle.active);
-      } else {
-        console.log("visible");
-        // console.log("unset");
-        document.body.style.overflow = "unset";
-        document.body.style.overflow = "unset";
-        handle.exit
-      }
-    };
 
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
-    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
+  // NEW FULLSCREEN CHECKING CODE
+  document.addEventListener("fullscreenchange", onFullScreenChange);
+  document.addEventListener("webkitfullscreenchange", onFullScreenChange); // For Safari
+  document.addEventListener("mozfullscreenchange", onFullScreenChange); // For Firefox
+  document.addEventListener("MSFullscreenChange", onFullScreenChange); // For IE/Edge
 
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
-      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
-      document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
-      document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
-    };
-  }, [videoRef]);
-  console.log(videoRef.current);
+  function onFullScreenChange() {
+    if (
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement
+    ) {
+      document.body.style.overflow = "hidden";
+      console.log("Player is in full-screen mode 1");
+      // Add your logic here for when the player enters full-screen mode
+    } else {
+      document.body.style.overflow = "unset";
+      console.log("Player is not in full-screen mode 1");
+      // Add your logic here for when the player exits full-screen mode
+    }
+  }
+
+  // Optionally, you can check the initial state
+  function isFullScreen() {
+    return (
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement
+    );
+  }
+
+  if (isFullScreen()) {
+    document.body.style.overflow = "hidden";
+    console.log("Player is in full-screen mode 2");
+  } else {
+    document.body.style.overflow = "unset";
+    console.log("Player is not in full-screen mode 2");
+  }
+
+  // useEffect(() => {
+  //   const video = videoRef.current;
+  //   const handleFullscreenChange = () => {
+  //     setIsFullscreen(videoRef?.current?.getState()?.player?.isFullscreen);
+  //     if (videoRef?.current?.getState()?.player?.isFullscreen) {
+  //       // console.log("hidden");
+  //       document.body.style.overflow = "hidden";
+  //       document.body.style.overflow = "hidden";
+  //       handle.enter
+  //       console.log(handle.active);
+  //     } else {
+  //       console.log("visible");
+  //       // console.log("unset");
+  //       document.body.style.overflow = "unset";
+  //       document.body.style.overflow = "unset";
+  //       handle.exit
+  //     }
+  //   };
+
+  //   document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+  //   document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+  //   document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+  //   document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+  //   return () => {
+  //     document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  //     document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+  //     document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+  //     document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
+  //   };
+  // }, [videoRef]);
 
   // useEffect(() => {
   //   const video = videoRef.current;
@@ -203,9 +244,18 @@ const VideoShow = ({
   return (
     <FullScreen handle={handle}>
       <div className="video_relative">
-        <Player ref={videoRef} fluid poster={video_image} playsInline={true} key={key} onEnded={handleVideoEnded} >
+        <Player
+          ref={videoRef}
+          fluid
+          poster={video_image}
+          playsInline={true}
+          key={key}
+          onEnded={handleVideoEnded}
+        >
           <source
-            src={`${process.env.customKey}/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
+            src={`${
+              process.env.customKey
+            }/video/${video_id}/${courseId}/${Cookies.get("UT")}`}
             // onEnded={() => {
 
             // }}
@@ -228,9 +278,20 @@ const VideoShow = ({
           {/* <div className={`watermark`} style={{ fontSize: "16px" }}>
           User ID: {user_info?.id}
         </div> */}
-          <div className={`watermark-logo`} style={{ fontSize: "20px", cursor: "pointer" }} onClick={togglePlayPause}>
+          <div
+            className={`watermark-logo`}
+            style={{ fontSize: "20px", cursor: "pointer" }}
+            onClick={togglePlayPause}
+          >
             {/* <Image src={"/ms-icon-70x70.png"} alt="icon" objectFit="contain" width={70} height={70} /> */}
-            <Image src={"/images/logo-light.svg"} objectFit={"contain"} alt={"logo"} priority width={150} height={50} />
+            <Image
+              src={"/images/logo-light.svg"}
+              objectFit={"contain"}
+              alt={"logo"}
+              priority
+              width={150}
+              height={50}
+            />
             <p>User ID: {user_info?.id}</p>
           </div>
         </Player>
@@ -389,7 +450,8 @@ const VideoShow = ({
               direction: Lang === "ar" ? "rtl" : "ltr",
             }}
           >
-            {t("vidoe.congrats1")} <span className="En_num2">{week_id}!</span> {t("vidoe.congrats2")}
+            {t("vidoe.congrats1")} <span className="En_num2">{week_id}!</span>{" "}
+            {t("vidoe.congrats2")}
           </h2>
         </Dialog>
       </div>
