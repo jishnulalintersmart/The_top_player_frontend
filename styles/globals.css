@@ -144,6 +144,10 @@ a {
   text-decoration: none;
 }
 
+body:has(>* .video-react-fullscreen){
+  overflow: hidden !important;
+}
+
 .dir-lft{
   direction: ltr;
   text-align: start;
