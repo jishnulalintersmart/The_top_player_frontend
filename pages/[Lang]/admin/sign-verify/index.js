@@ -72,6 +72,7 @@ const SignVerify = ({ Lang }) => {
             show(t("auth.succ_login"));
             formik.resetForm();
             setDisabed(false);
+            console.log("Here");
             if (courseId) {
               sessionStorage.removeItem("courseId");
               return router.push(`/${Lang}/user/payment/${courseId}`);
