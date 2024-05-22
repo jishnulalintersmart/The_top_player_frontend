@@ -24,7 +24,6 @@ const Login = ({ Lang }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  console.log(router.asPath);
   const [device_id, setDevice_id] = useState("");
   const [courseId, setCourseid] = useState(null);
 
@@ -34,7 +33,7 @@ const Login = ({ Lang }) => {
   }, []);
 
   useEffect(() => {
-    if (Cookies.get("UT")) {
+    if (Cookies.get("UT") && !courseId) {
       router.push(`/${Lang}`);
     }
   }, [Cookies.get("UT")]);
@@ -42,7 +41,10 @@ const Login = ({ Lang }) => {
   useEffect(() => {
     // Generate device fingerprint using fingerprintjs2
     Fingerprint2.get({}, function (components) {
-      const fingerprint = Fingerprint2.x64hash128(components.map((pair) => pair.value).join(), 31);
+      const fingerprint = Fingerprint2.x64hash128(
+        components.map((pair) => pair.value).join(),
+        31
+      );
       setDevice_id(fingerprint);
     });
   }, []);
@@ -55,7 +57,9 @@ const Login = ({ Lang }) => {
       let errors = {};
       if (!data.email) {
         errors.email = t("auth.req_email");
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)
+      ) {
         errors.email = t("auth.invalid_email");
       }
       if (!data.password) {
@@ -80,12 +84,8 @@ const Login = ({ Lang }) => {
             });
             show();
 
-            if (courseId) {
-              sessionStorage.removeItem("courseId");
-              return router.push(`/${Lang}/user/payment/${courseId}`);
-            }
-
             if (!res.verified) {
+              console.log("here 2");
               router.push({
                 pathname: `/${Lang}/admin/sign-verify`,
                 query: { email: data.email },
@@ -93,18 +93,18 @@ const Login = ({ Lang }) => {
             }
             dispatch(getsubscribedCourse(res.accessToken))
               .unwrap()
-              .then((res) => {
-                if (res.length > 0) {
-                  formik.resetForm();
-                  // router.back();
-                  router.push(`/${Lang}`);
+              .then(() => {
+                formik.resetForm();
+                if (courseId) {
+                  sessionStorage.removeItem("courseId");
+                  router.push(`/${Lang}/user/payment/${courseId}`);
                   setDisabed(false);
+                  return;
+                  console.log("here 3");
                 } else {
-                  formik.resetForm();
                   router.push(`/${Lang}`);
                   setDisabed(false);
                 }
-                // console.log(res.length);
               })
               .catch((err) => {
                 setDisabed(false);
@@ -157,15 +157,20 @@ const Login = ({ Lang }) => {
       // detail: formik.values.value,
     });
   };
-  const isFormFieldInvalid = (name) => !!(formik.touched[name] && formik.errors[name]);
+  const isFormFieldInvalid = (name) =>
+    !!(formik.touched[name] && formik.errors[name]);
 
   const getFormErrorMessage = (name) => {
-    return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : "";
+    return isFormFieldInvalid(name) ? (
+      <small className="p-error">{formik.errors[name]}</small>
+    ) : (
+      ""
+    );
   };
 
   const handleKeyPress = (event) => {
     console.log("enter key pressed");
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       event.preventDefault(); // Prevent default form submission behavior
       formik.handleSubmit(); // Manually submit the form
     }
@@ -180,7 +185,12 @@ const Login = ({ Lang }) => {
         }}
       >
         <div className={styles.dElmt_1}>
-          <Image src={"/images/dElmt-countBg-1.svg"} layout="fill" alt="bg" objectFit="contain" />
+          <Image
+            src={"/images/dElmt-countBg-1.svg"}
+            layout="fill"
+            alt="bg"
+            objectFit="contain"
+          />
         </div>
         {/* <div className={styles.Image_bottom_left}>
         <Image
@@ -201,7 +211,11 @@ const Login = ({ Lang }) => {
         </div> */}
           <h1>{t("auth.login_title")}</h1>
 
-          <form onSubmit={formik.handleSubmit} className="grid  gap-2" onKeyDown={handleKeyPress}>
+          <form
+            onSubmit={formik.handleSubmit}
+            className="grid  gap-2"
+            onKeyDown={handleKeyPress}
+          >
             <div className="col-12">
               <div className="inputFormik">
                 <label htmlFor="email">{t("auth.email")} </label>
@@ -253,7 +267,8 @@ const Login = ({ Lang }) => {
                   marginLeft: Lang === "ar" ? "10px" : "0",
                 }}
               >
-                {t("auth.forget")} <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
+                {t("auth.forget")}{" "}
+                <Link href={`/${Lang}/admin/forget`}>{t("auth.change")}</Link>
               </p>
             </div>
             <div className={styles.have_account}>

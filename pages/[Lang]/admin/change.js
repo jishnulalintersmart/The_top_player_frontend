@@ -22,7 +22,13 @@ const Change = ({ Lang }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
+  const [courseId, setCourseid] = useState(null);
   const [deviceId, setDeviceId] = useState("");
+
+  useEffect(() => {
+    const id = sessionStorage.getItem("courseId");
+    setCourseid(id);
+  }, []);
 
   useEffect(() => {
     // Generate device fingerprint using fingerprintjs2
@@ -72,7 +78,12 @@ const Change = ({ Lang }) => {
             show("Success");
             formik.resetForm();
             setDisabed(false);
-            router.push(`/${Lang}`);
+            if (courseId) {
+              sessionStorage.removeItem("courseId");
+              router.push(`/${Lang}/user/payment/${courseId}`);
+            } else {
+              router.push(`/${Lang}`);
+            }
           })
           .catch((err) => {
             console.log(err);
