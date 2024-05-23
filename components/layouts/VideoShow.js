@@ -241,8 +241,26 @@ const VideoShow = ({
         });
     }
   };
+
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      body:has(>* .video-react-fullscreen) {
+        overflow: hidden !important;
+      }
+    `;
+    // Append the style to the head
+    document.head.appendChild(style);
+
+    // Cleanup function to remove the style when the component unmounts
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []); // Empty dependency array to run once on mount
+
+
   return (
-    <FullScreen handle={handle}>
+    // <FullScreen handle={handle}>
       <div className="video_relative">
         <Player
           ref={videoRef}
@@ -455,7 +473,7 @@ const VideoShow = ({
           </h2>
         </Dialog>
       </div>
-    </FullScreen>
+    // </FullScreen>
   );
 };
 
