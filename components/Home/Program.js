@@ -157,12 +157,15 @@ const Program = ({ styles, Lang }) => {
                     80 $ - <del>105 $</del>
                   </p>
                 </div> */}
-                      <div className={styles.filnal_price}>
-                        <p>
-                          {course?.offerPercentage}%
-                          <span>{t("programs.off")}</span>
-                        </p>
-                      </div>
+
+                      {course?.offerPercentage && (
+                        <div className={styles.filnal_price}>
+                          <p>
+                            {course?.offerPercentage}%
+                            <span>{t("programs.off")}</span>
+                          </p>
+                        </div>
+                      )}
                       <div className={styles.card_image}>
                         <Image
                           src={`${process.env.customKey}/courseImages/${course?.imageUrl}`}
@@ -192,8 +195,7 @@ const Program = ({ styles, Lang }) => {
                         )}
 
                         <div
-                          className={`${styles.price_offer} ${styles.leftPrice
-                          } dir-lft`}
+                          className={`${styles.price_offer} ${styles.leftPrice} dir-lft`}
                         >
                           {/* <div className={`${styles.price_offer} ${
                             Lang === "ar" ? styles.rightPrice : styles.leftPrice
