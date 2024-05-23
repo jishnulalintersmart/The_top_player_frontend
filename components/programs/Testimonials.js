@@ -12,13 +12,20 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTestimonials, getTestimonialById } from "@/store/TestimonialSlice";
+import {
+  getAllTestimonials,
+  getTestimonialById,
+} from "@/store/TestimonialSlice";
 
 const Testimonials = ({ Lang, programId }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const testimonials = useSelector((state) => state.TestimonialSlice.testimonialById);
+  const testimonials = useSelector(
+    (state) => state.TestimonialSlice.testimonialById
+  );
+
+  console.log(testimonials);
 
   useEffect(() => {
     dispatch(getTestimonialById(programId));
@@ -28,7 +35,9 @@ const Testimonials = ({ Lang, programId }) => {
     <div className={styles.testimonials_section}>
       <div className={"container"}>
         <div className={"tleWrap center"}>
-          {testimonials && testimonials.length != 0 && <div className={"mTle"}>{t("testimonials")}</div>}
+          {testimonials && testimonials.length != 0 && (
+            <div className={"mTle"}>{t("testimonials")}</div>
+          )}
         </div>
         {/* <Swiper
         loop={true}
@@ -102,11 +111,23 @@ const Testimonials = ({ Lang, programId }) => {
                   />
                 </div>
                 <div className={styles.cntWrap}>
-                  <p>{Lang === "ar" ? testimonial?.comment_ar : testimonial?.comment_en}</p>
+                  <p>
+                    {Lang === "ar"
+                      ? testimonial?.comment_ar
+                      : testimonial?.comment_en}
+                  </p>
                 </div>
                 <div className={styles.infoWrap}>
-                  <div className={styles.tle}>{testimonial?.user_name}</div>
-                  <div className={styles.sTle}>{testimonial?.role}</div>
+                  <div className={styles.tle}>
+                    {Lang === "ar"
+                      ? testimonial?.user_name_ar
+                      : testimonial?.user_name}
+                  </div>
+                  <div className={styles.sTle}>
+                    {Lang === "ar"
+                      ? testimonial?.course?.name_arabic
+                      : testimonial?.role}
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
