@@ -268,7 +268,11 @@ const Fitness = ({
                         // onClick={() => router.push("/user/programs/fitness/1/1/1")}
                       >
                         {" "}
-                        {t("programs_details.start")}
+                        {t(
+                          CoursecArr?.subCourses[0]?.finished_weeks.includes(1)
+                            ? "programs_details.completed"
+                            : "programs_details.start"
+                        )}
                       </Link>
                     </div>
                   </div>
@@ -380,7 +384,11 @@ const Fitness = ({
                         href={`/${Lang}/user/programs/${CoursecArr?.name}/2/6/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                       >
                         {" "}
-                        {t("programs_details.start")}
+                        {t(
+                          CoursecArr?.subCourses[0]?.finished_weeks.includes(2)
+                            ? "programs_details.completed"
+                            : "programs_details.start"
+                        )}
                       </Link>
                     </div>
                   </div>
@@ -498,7 +506,11 @@ const Fitness = ({
                         className={styles.start_btn}
                         href={`/${Lang}/user/programs/${CoursecArr?.name}/3/11/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                       >
-                        {t("programs_details.start")}
+                        {t(
+                          CoursecArr?.subCourses[0]?.finished_weeks.includes(3)
+                            ? "programs_details.completed"
+                            : "programs_details.start"
+                        )}
                       </Link>
                     </div>
                   </div>
@@ -616,7 +628,11 @@ const Fitness = ({
                         className={styles.start_btn}
                         href={`/${Lang}/user/programs/${CoursecArr?.name}/4/16/${CoursecArr?.id}/${CoursecArr?.subCourses?.[0]?.id}`}
                       >
-                        {t("programs_details.start")}
+                        {t(
+                          CoursecArr?.subCourses[0]?.finished_weeks.includes(4)
+                            ? "programs_details.completed"
+                            : "programs_details.start"
+                        )}
                       </Link>
                     </div>
                   </div>
