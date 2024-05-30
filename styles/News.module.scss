@@ -80,6 +80,9 @@
     .news_img_wrap{
       img{
         min-height: 210px;
+        @media (max-width: 500px) {
+          min-height:420px;
+        }
       }
     }
     h1,

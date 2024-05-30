@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay, EffectFade } from "swiper/modules";
 import LangWrap from "@/components/layouts/LangWarp";
 import LangChange from "@/components/layouts/LangChange";
+import { useMediaQuery } from "react-responsive";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -22,6 +23,8 @@ const NewsDetail = () => {
   const { news_id, Lang } = router.query;
   const { news } = useSelector((state) => state.NewsSlice.singleNews);
   const allnews = useSelector((state) => state.NewsSlice.allNews.news);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 500px)" });
 
   useEffect(() => {
     if (news_id) {
@@ -65,11 +68,13 @@ const NewsDetail = () => {
                     padding: 0,
                   }}
                 >
-                  {news?.images?.map((item) => (
+                  {(isMobile ? news?.mobile : news?.images)?.map((item) => (
                     <SwiperSlide key={item?.id}>
                       <div className={styles.news_img_wrap}>
                         <Image
-                          src={`${process.env.customKey}/newsImages/${item?.imageUrl}`}
+                          src={`${process.env.customKey}/${
+                            isMobile ? "newsMobileImages" : "newsImages"
+                          }/${item?.imageUrl}`}
                           alt="news"
                           width={1200}
                           height={520}

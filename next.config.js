@@ -2,14 +2,15 @@
 const nextConfig = {
   env: {
     // customKey: "https://crm.intersmarthosting.in/topplayer",
-    customKey: "http://localhost:7700",
-    // customKey: "https://backend.thetopplayer.com",
+    // customKey: "http://192.168.29.154:7700",
+    // customKey: "http://localhost:7700",
+    customKey: "https://backend.thetopplayer.com",
     // customKey: "https://crm.intersmarthosting.in/topplayer",
     // webDomain: "https://interregionall.vercel.app",
     // webDomain: "https://www.thetopplayer.com",
     // webDomain: "https://the-top-player-frontend-2.onrender.com",
-    webDomain: "http://localhost:4000",
-    // webDomain: "http://www.thetopplayer.com",
+    // webDomain: "http://localhost:4000",
+    webDomain: "http://www.thetopplayer.com",
     googleAnalytics: "G-E1W5ELK5TZ",
   },
   swcMinify: true,
@@ -36,6 +37,11 @@ const nextConfig = {
       {
         protocol: "https", // Set the protocol as a string
         hostname: "backend.thetopplayer.com", // Set the hostname as a string
+        pathname: "**",
+      },
+      {
+        protocol: "http", // Set the protocol as a string
+        hostname: "192.168.29.154",
         pathname: "**",
       },
     ],
