@@ -79,7 +79,7 @@ const NewsDetail = () => {
                           width={1200}
                           height={520}
                           style={{
-                            objectFit: "fill",
+                            objectFit: "cover",
                           }}
                           layout="intrinsic"
                           loading="lazy"
