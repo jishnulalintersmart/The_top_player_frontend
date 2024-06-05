@@ -68,7 +68,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
       />
       {CoursecArr?.subCourses?.length > 1 && (
         <div className={styles.sub_course} style={{ marginTop: "15px" }}>
-          {CoursecArr?.subCourses.map((ele) => {
+          {CoursecArr?.subCourses?.map((ele) => {
             return (
               <Link
                 key={ele.id}
