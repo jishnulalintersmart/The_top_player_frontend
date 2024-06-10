@@ -46,6 +46,7 @@ const Program = ({ styles, Lang }) => {
   //   (ele) => ele.courseId === 2
   // );
   // const Football = subscribedCourseArr?.find((ele) => ele.courseId === 3);
+
   return (
     <div className={`${styles.program_section}`} id="programs">
       <div className="container">
@@ -141,7 +142,11 @@ const Program = ({ styles, Lang }) => {
                       style={{
                         direction: Lang === "ar" ? "rtl" : "ltr",
                       }}
-                      href={`/${Lang}/user/programs/details/${course?.id}`}
+                      href={
+                        item?.isCamp
+                          ? `/${Lang}/user/camps/details/${course?.id}`
+                          : `/${Lang}/user/programs/details/${course?.id}`
+                      }
                       // href={
                       //   // Fitness
                       //   // ? `/${Lang}/user/programs/details/${course?.id}` :
