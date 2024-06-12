@@ -50,7 +50,7 @@ const Program = ({ styles, Lang }) => {
   return (
     <div className={`${styles.program_section}`} id="programs">
       <div className="container">
-        <div className={"tleWrap"}>
+        <div className={"center"}>
           <h2 className={"mTle"}>{t("programs.title")}</h2>
         </div>
         {CoursecArr?.courses?.map((item) => (
