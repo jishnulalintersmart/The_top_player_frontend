@@ -40,6 +40,9 @@ const Navbar = ({ overHeight, state }) => {
   const toggleRef = useRef(null);
   const toast = useRef(null);
 
+  const courseId = sessionStorage.getItem("courseId");
+  const tamaraId = sessionStorage.getItem("tamaraId");
+
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = "hidden";
@@ -321,9 +324,8 @@ const Navbar = ({ overHeight, state }) => {
                       : styles.en_lang
                   }`}
                   onClick={() => {
-                    if (sessionStorage.getItem("courseId")) {
-                      sessionStorage.removeItem("courseId");
-                    }
+                    courseId && sessionStorage.removeItem("courseId");
+                    tamaraId && sessionStorage.removeItem("tamaraId");
                     setVisible(false);
                   }}
                 >
@@ -352,9 +354,8 @@ const Navbar = ({ overHeight, state }) => {
                       : styles.en_lang
                   }`}
                   onClick={() => {
-                    if (sessionStorage.getItem("courseId")) {
-                      sessionStorage.removeItem("courseId");
-                    }
+                    courseId && sessionStorage.removeItem("courseId");
+                    tamaraId && sessionStorage.removeItem("tamaraId");
                     setVisible(false);
                   }}
                 >
@@ -515,7 +516,8 @@ const Navbar = ({ overHeight, state }) => {
                       }
                       onClick={() => {
                         setToggle(false);
-                        sessionStorage.removeItem("courseId");
+                        courseId && sessionStorage.removeItem("courseId");
+                        tamaraId && sessionStorage.removeItem("tamaraId");
                       }}
                       className={`${styles.navBtn} hoveranim`}
                     >
@@ -568,8 +570,8 @@ const Navbar = ({ overHeight, state }) => {
                             href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
                             onClick={() => {
                               setToggle(false);
-                              console.log("Here");
-                              sessionStorage.removeItem("courseId");
+                              courseId && sessionStorage.removeItem("courseId");
+                              tamaraId && sessionStorage.removeItem("tamaraId");
                             }}
                           >
                             {t("menu.login")}
@@ -581,7 +583,8 @@ const Navbar = ({ overHeight, state }) => {
                             href={`/${router?.query?.Lang?.toLowerCase()}/admin/signup`}
                             onClick={() => {
                               setToggle(false);
-                              sessionStorage.removeItem("courseId");
+                              courseId && sessionStorage.removeItem("courseId");
+                              tamaraId && sessionStorage.removeItem("tamaraId");
                             }}
                           >
                             {t("menu.signup")}

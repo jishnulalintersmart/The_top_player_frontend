@@ -21,6 +21,7 @@ const SignVerify = ({ Lang }) => {
   const [disabelResend, setDisabedResend] = useState(false);
 
   const [courseId, setCourseid] = useState(null);
+  const [tamaraId, setTamaraid] = useState(null);
 
   // const router = useRouter()
   const { t } = useTranslation();
@@ -28,7 +29,9 @@ const SignVerify = ({ Lang }) => {
   const router = useRouter();
   useEffect(() => {
     const id = sessionStorage.getItem("courseId");
+    const tamId = sessionStorage.getItem("tamaraId");
     setCourseid(id);
+    setTamaraid(tamId);
   }, []);
   // console.log(router);
   // const [device_id, setDevice_id] = useState("");
@@ -76,6 +79,9 @@ const SignVerify = ({ Lang }) => {
             if (courseId) {
               sessionStorage.removeItem("courseId");
               return router.push(`/${Lang}/user/payment/${courseId}`);
+            } else if (tamaraId) {
+              sessionStorage.removeItem("tamaraId");
+              return router.push(`/${Lang}/user/payment/tamara/${tamaraId}`);
             } else {
               router.push(`/${Lang}`);
             }

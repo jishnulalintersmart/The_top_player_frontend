@@ -135,9 +135,9 @@ const Fitness = ({
 
       <Personlized Lang={Lang}  />
 
-      {!CoursecArr || expired ? (
+      {/* {!CoursecArr || expired ? (
         <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
-      ) : null}
+      ) : null} */}
 
       {/* {CoursecArr && (
         <div className={styles.enrolled_section}>
@@ -644,7 +644,7 @@ const Fitness = ({
 
       {/* <Testimonials Lang={Lang} programId={programs_id} /> */}
 
-      {(!CoursecArr || expired) && (
+      {(CoursecArr || expired) && (
         <EnrollProgram
           Lang={Lang}
           programId={programs_id}

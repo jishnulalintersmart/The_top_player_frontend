@@ -15,13 +15,29 @@ const ProgramCard = ({
 }) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const currentPath = router.pathname;
+  const wordToCheck = "camps";
+  const regex = new RegExp(`\\b${wordToCheck}\\b`);
 
   const handleRedirect = () => {
-    if (Cookies.get("UT")) {
-      router.push(`/${Lang}/user/payment/${programsId}`);
+
+    console.log("Here");
+
+    const isTamaraPath = regex.test(currentPath);
+    const hasUTCookie = Cookies.get("UT");
+    const userPath = `/${Lang}/user/payment/${
+      isTamaraPath ? "tamara/" : ""
+    }${programsId}`;
+    const adminLoginPath = `/${Lang}/admin/login`;
+
+    if (hasUTCookie) {
+      router.push(userPath);
     } else {
-      sessionStorage.setItem("courseId", programsId);
-      router.push(`/${Lang}/admin/login`);
+      sessionStorage.setItem(
+        isTamaraPath ? "tamaraId" : "courseId",
+        programsId
+      );
+      router.push(adminLoginPath);
     }
   };
 
@@ -91,7 +107,11 @@ const ProgramCard = ({
                   </button>
                 )}
                 {CoursecArr && (
-                  <button className={"baseBtn hoveranim"} disabled={true}>
+                  <button
+                    className={"baseBtn hoveranim"}
+                    disabled={true}
+                    onClick={handleRedirect}
+                  >
                     <span>{t(expired ? "renew" : "yalla")}</span>
                     <span className={"icon"}>
                       <svg

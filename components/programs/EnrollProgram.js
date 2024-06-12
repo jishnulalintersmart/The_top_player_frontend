@@ -15,13 +15,25 @@ const EnrollProgram = ({
   const { t } = useTranslation();
 
   const router = useRouter();
+  const currentPath = router.pathname;
+  const wordToCheck = "camps";
+  const regex = new RegExp(`\\b${wordToCheck}\\b`);
 
   const handleRedirect = () => {
-    if (Cookies.get("UT")) {
-      router.push(`/${Lang}/user/payment/${programId}`);
+    if (regex.test(currentPath)) {
+      if (Cookies.get("UT")) {
+        router.push(`/${Lang}/user/payment/tamara/${programId}`);
+      } else {
+        sessionStorage.setItem("tamaraId", programId);
+        router.push(`/${Lang}/admin/login`);
+      }
     } else {
-      sessionStorage.setItem("courseId", programId);
-      router.push(`/${Lang}/admin/login`);
+      if (Cookies.get("UT")) {
+        router.push(`/${Lang}/user/payment/${programId}`);
+      } else {
+        sessionStorage.setItem("courseId", programId);
+        router.push(`/${Lang}/admin/login`);
+      }
     }
   };
 
@@ -33,7 +45,9 @@ const EnrollProgram = ({
             <div className={`${styles.tleWrap} tleWrap`}>
               <div className={styles.dElmt}></div>
               <div className={`${styles.mTle} mTle `}>
-                {t(expired ? "renew_program" : "enroll_to_our_program")}
+                {regex.test(currentPath)
+                  ? t(CoursecArr ? "joined_the_camp" : "join_to_our_camp")
+                  : t(expired ? "renew_program" : "enroll_to_our_program")}
               </div>
               <div className={styles.txt}>
                 {Lang === "ar"
@@ -58,7 +72,7 @@ const EnrollProgram = ({
                   className={"baseBtn hoveranim"}
                   aria-label="view all button"
                 >
-                    <span>{t("renew")}</span>
+                  <span>{t("renew")}</span>
                 </button>
               ) : (
                 <button

@@ -23,11 +23,14 @@ const Change = ({ Lang }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [courseId, setCourseid] = useState(null);
+  const [tamaraId, setTamaraid] = useState(null);
   const [deviceId, setDeviceId] = useState("");
 
   useEffect(() => {
     const id = sessionStorage.getItem("courseId");
+    const tamId = sessionStorage.getItem("tamaraId");
     setCourseid(id);
+    setTamaraid(tamId);
   }, []);
 
   useEffect(() => {
@@ -81,6 +84,9 @@ const Change = ({ Lang }) => {
             if (courseId) {
               sessionStorage.removeItem("courseId");
               router.push(`/${Lang}/user/payment/${courseId}`);
+            } else if (tamaraId) {
+              sessionStorage.removeItem("tamaraId");
+              router.push(`/${Lang}/user/payment/tamara/${tamaraId}`);
             } else {
               router.push(`/${Lang}`);
             }

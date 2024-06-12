@@ -26,14 +26,17 @@ const Login = ({ Lang }) => {
 
   const [device_id, setDevice_id] = useState("");
   const [courseId, setCourseid] = useState(null);
+  const [tamraId, setTamaraid] = useState(null);
 
   useEffect(() => {
-    const id = sessionStorage.getItem("courseId");
-    setCourseid(id);
+    const courseId = sessionStorage.getItem("courseId");
+    const tamaraId = sessionStorage.getItem("tamaraId");
+    setCourseid(courseId);
+    setTamaraid(tamaraId);
   }, []);
 
   useEffect(() => {
-    if (Cookies.get("UT") && !courseId) {
+    if (Cookies.get("UT") && !courseId && !tamraId) {
       router.push(`/${Lang}`);
     }
   }, [Cookies.get("UT")]);
@@ -100,7 +103,11 @@ const Login = ({ Lang }) => {
                   router.push(`/${Lang}/user/payment/${courseId}`);
                   setDisabed(false);
                   return;
-                  console.log("here 3");
+                } else if (tamraId) {
+                  sessionStorage.removeItem("tamaraId");
+                  router.push(`/${Lang}/user/payment/tamara/${tamraId}`);
+                  setDisabed(false);
+                  return;
                 } else {
                   router.push(`/${Lang}`);
                   setDisabed(false);

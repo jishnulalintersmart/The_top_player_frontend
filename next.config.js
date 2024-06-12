@@ -10,6 +10,7 @@ const nextConfig = {
     // webDomain: "https://www.thetopplayer.com",
     // webDomain: "https://the-top-player-frontend-2.onrender.com",
     webDomain: "http://localhost:4000",
+    tamraPublicKey: "a916b2ef-bb66-4e5b-84d9-5bbae98db825",
     // webDomain: "http://www.thetopplayer.com",
     googleAnalytics: "G-E1W5ELK5TZ",
   },
