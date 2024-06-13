@@ -13,14 +13,16 @@ const nextConfig = {
     tamraPublicKey: "a916b2ef-bb66-4e5b-84d9-5bbae98db825",
     // webDomain: "http://www.thetopplayer.com",
     googleAnalytics: "G-E1W5ELK5TZ",
+    tamaraPrivateKey:
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50SWQiOiI0ZmUxNDU1MC1jZTUzLTRhNmYtYWIyMi05MDkxOThkNmUxNmEiLCJ0eXBlIjoibWVyY2hhbnQiLCJzYWx0IjoiODcxZjY3OGM0MjAwYzg4YWQxZTM0YTIxMTExN2IyYjYiLCJyb2xlcyI6WyJST0xFX01FUkNIQU5UIl0sImlhdCI6MTcxNzY1OTc3NCwiaXNzIjoiVGFtYXJhIn0.xDxkOqZsPt65OGuy0rDfrrjKL6hWLP2EL4ynnxQynK5lr6kMQn2dUlvLACIZc1Bx4wo5vlCcqn5L4h1zQWkFTZXDkVjaiuRh6lyLZmVkGi6KfCdZLjMmve6n3tQhuJT6c4BYcS_7Y1BS4HMCOPpwPu5ZiaYNlGYVmrhM2rdtIq9gd3yWD_8oAFO9qoF0CmdA48LNHVoAXutxR-kNlVk62MQfOD4rf2yxNuzvSj9xywiaXGrleoayEJxF9uw3ANYNVE1fGBjR_uL_dR5EJI6p16oa5NBdZtX29Tn05bx4dsjH_13xSq58hGVpEHIRjZF8NLcwSxvdBeK1zuu7DDU1CA",
   },
   swcMinify: true,
 
   images: {
     minimumCacheTTL: 60,
     deviceSizes: [
-      256, 320, 492, 512, 640, 768, 896, 1024, 1152, 1280, 1408, 1536, 1664,
-      1792, 1920, 2048, 2176, 2304, 2432, 2560, 2688, 2944,
+      256, 320, 492, 512, 640, 768, 896, 1024, 1152, 1280, 1408, 1536, 1664, 1792, 1920, 2048, 2176, 2304, 2432, 2560,
+      2688, 2944,
     ],
     imageSizes: [32, 64, 96, 112, 128, 144, 160, 176, 192, 240],
     // formats: ["image/webp"],
