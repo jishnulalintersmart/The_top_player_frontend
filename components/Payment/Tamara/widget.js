@@ -1,13 +1,6 @@
 import { useEffect } from "react";
 
-const TamaraWidget = ({
-  Lang,
-  country,
-  publicKey,
-  customCss,
-  fontSize,
-  badgeRatio,
-}) => {
+const TamaraWidget = ({ Lang, country, publicKey, customCss, fontSize, badgeRatio, amount }) => {
   console.log(Lang);
 
   useEffect(() => {
@@ -37,7 +30,14 @@ const TamaraWidget = ({
 
   return (
     <div>
-      <tamara-widget type="tamara-summary"></tamara-widget>
+      {/* <tamara-widget type="tamara-summary"></tamara-widget> */}
+      <tamara-widget
+        type="tamara-summary"
+        amount={amount}
+        inline-type="3"
+        inline-variant="outlined"
+        config='{"badgePosition":"right","showExtraContent":""}'
+      ></tamara-widget>
     </div>
   );
 };

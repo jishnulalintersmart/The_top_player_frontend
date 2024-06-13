@@ -4,7 +4,7 @@ const nextConfig = {
     // customKey: "https://crm.intersmarthosting.in/topplayer",
     // customKey: "http://192.168.29.154:7700",
     customKey: "http://localhost:7700",
-    // customKey: "https://backend.thetopplayer.com",
+    // customKey: "https://backend.thetopplayer.com/staging",
     // customKey: "https://crm.intersmarthosting.in/topplayer",
     // webDomain: "https://interregionall.vercel.app",
     // webDomain: "https://www.thetopplayer.com",
