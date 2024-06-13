@@ -37,7 +37,7 @@ const TamaraWidget = ({
 
   return (
     <div>
-      <tamara-widget type="tamara-summary"></tamara-widget>
+      <tamara-widget  type="tamara-summary"></tamara-widget>
     </div>
   );
 };
