@@ -133,7 +133,7 @@ const Fitness = ({
         <>{parseInt(CoursecArr.subCourses[0].id) === 2 && <FitnessProgram styles={styles} Lang={Lang} />}</>
       )} */}
 
-      <Personlized Lang={Lang}  />
+      <Personlized Lang={Lang} />
 
       {/* {!CoursecArr || expired ? (
         <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
@@ -643,8 +643,7 @@ const Fitness = ({
       )} */}
 
       {/* <Testimonials Lang={Lang} programId={programs_id} /> */}
-
-      {(CoursecArr || expired) && (
+      {(!CoursecArr || expired) && (
         <EnrollProgram
           Lang={Lang}
           programId={programs_id}
