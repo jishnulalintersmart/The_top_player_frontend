@@ -36,6 +36,7 @@ const EnrollProgram = ({
       }
     }
   };
+
   return (
     <div className={styles.enrollProgram_section}>
       <div className={"container"}>
@@ -45,7 +46,7 @@ const EnrollProgram = ({
               <div className={styles.dElmt}></div>
               <div className={`${styles.mTle} mTle `}>
                 {regex.test(currentPath)
-                  ? t(expired ? "renew_camp" : "join_to_our_camp")
+                  ? t(CoursecArr ? "joined_the_camp" : "join_to_our_camp")
                   : t(expired ? "renew_program" : "enroll_to_our_program")}
               </div>
               <div className={styles.txt}>
