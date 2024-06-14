@@ -17,7 +17,7 @@ const Personlized = ({ Lang }) => {
           <h2 className={"mTle"}>{t("programs_details.personal")}</h2>
         </div>
         <div className={styles.dFlx}>
-          <div className={styles.lftSd}>
+          <div className={styles.lftSd} style={{display:'flex', alignItems:'center'}}>
             <div
               className={`${styles.wkBoxDFlx} ${
                 Lang === "ar" ? styles.ar : styles.en
@@ -260,19 +260,10 @@ const Personlized = ({ Lang }) => {
                   src="https://backend.thetopplayer.com/courseImages/video-1715945249482.mov"
                   type="video/mp4"
                 />
-                {/* <source src="/videos/programVideo.mp4" type="video/mp4" /> */}
               </video>
             </div>
           </div>
         </div>
-        {/* <div className={Lang === "ar" ? "progrss_ar" : "progrss_en"}>
-          <div className={styles.Personlized}>
-            <h2 className="title">{t("programs_details.personal")}</h2>
-            <div
-              className={`${styles.progress_bar} ${
-                Lang === "ar" ? styles.Ar_progress_bar : ""
-              }`}
-            > */}
       </div>
     </div>
   );

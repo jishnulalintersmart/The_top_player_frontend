@@ -6,12 +6,12 @@ import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
-// const stripePromise = loadStripe(
-//   "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
-// );
 const stripePromise = loadStripe(
   "pk_test_51O7Z2SBIK7a01kKzeBhiuYUF4wDVbSRIQSaaNoXDH6EesdBEDX4q68oABlFwYwmVheThQKBGENfalCW39yNhHh6f00Ge8Zrzhq"
 );
+// const stripePromise = loadStripe(
+//   "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
+// );
 import { useDispatch, useSelector } from "react-redux";
 import { PayReducer } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
@@ -19,6 +19,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import LangWrap from "@/components/layouts/LangWarp";
 import axios from "axios";
+import { Button } from "react-bootstrap";
+import TamaraWidget from "@/components/Payment/Tamara/widget";
 
 const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   // console.log("CourseByIdArray", CourseByIdArray);
@@ -26,6 +28,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { clientSecret } = useSelector((state) => state.AuthSlice);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     dispatch(PayReducer(course_id))
       .unwrap()
@@ -40,6 +43,34 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
 
   const options = {
     clientSecret: clientSecret,
+  };
+
+  const initiateTamaraPayment = () => {
+    setIsLoading(true);
+    console.log("tamara initiated", Cookies.get("UT"));
+    axios
+      .post(
+        `${process.env.customKey}/create-tamara-payment`,
+        { courseId: course_id, lang: Lang, amount: CourseByIdArray?.offerAmount },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": Cookies.get("UT"),
+          },
+        }
+      )
+      .then((res) => {
+        console.log("res===>", res.data);
+        setIsLoading(false);
+        if (res?.data?.data?.checkoutUrl) {
+          window.location.href = res?.data?.data?.checkoutUrl;
+        }
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(err);
+      });
   };
 
   const [show, setShow] = useState(false);
@@ -115,6 +146,28 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                       <CheckoutForm course_id={course_id} Lang={Lang} />
                     </Elements>
                   )}
+                  {/* <tamara-widget type="tamara-summary" inline-type="2" amount="400"></tamara-widget> */}
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "20px",
+                      padding: "10px",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ width: "100% !important" }}>
+                      <TamaraWidget Lang={Lang} />
+                    </div>
+                    <Button
+                      variant="success"
+                      onClick={initiateTamaraPayment}
+                      disabled={isLoading}
+                      style={{ width: "50% !important", margin: "0", padding: "20px" }}
+                    >
+                      Pay With EMI
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

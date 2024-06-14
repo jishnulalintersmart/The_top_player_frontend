@@ -105,7 +105,7 @@
 
 .price_offer h6::before,
 .price_offer h5::before {
-  content: "$";
+  content: "AED";
   position: absolute;
   left: -5px;
   top: -5px;

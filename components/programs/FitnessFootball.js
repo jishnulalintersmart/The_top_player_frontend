@@ -109,10 +109,10 @@ const FitnessFottball = ({ Lang }) => {
                 <div className={`${styles.info_price} dir-lft`}>
                   <span>
                     {" "}
-                    <sup>$</sup>80
+                    <sup>AED</sup>80
                   </span>
                   <span className={styles.old_price}>
-                    <sup>$</sup>
+                    <sup>AED</sup>
                     <span>105</span>
                   </span>
                 </div>
