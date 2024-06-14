@@ -147,25 +147,12 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                     </Elements>
                   )}
                   {/* <tamara-widget type="tamara-summary" inline-type="2" amount="400"></tamara-widget> */}
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "20px",
-                      padding: "10px",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div style={{ width: "100% !important" }}>
+                  <div className="tamara-widget">
+                    <div className="tamara-wrapper">
                       <TamaraWidget Lang={Lang} />
                     </div>
-                    <Button
-                      variant="success"
-                      onClick={initiateTamaraPayment}
-                      disabled={isLoading}
-                      style={{ width: "50% !important", margin: "0", padding: "20px" }}
-                    >
-                      Pay With EMI
+                    <Button variant="success" onClick={initiateTamaraPayment} disabled={isLoading}>
+                      Pay With Tamara
                     </Button>
                   </div>
                 </div>
