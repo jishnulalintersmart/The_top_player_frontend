@@ -163,11 +163,11 @@ const ProgramCard = ({
               <div className={`${styles.info_price} dir-lft`}>
                 <span>
                   {" "}
-                  <sup>$</sup>
+                  <sup>AED</sup>
                   {programDetails?.offerAmount || 0}
                 </span>
                 <span className={styles.old_price}>
-                  <sup>$</sup>
+                  <sup>AED</sup>
                   <span>{programDetails?.amount}</span>
                 </span>
               </div>

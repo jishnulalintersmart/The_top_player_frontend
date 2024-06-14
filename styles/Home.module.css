@@ -702,11 +702,11 @@
 
 .price_offer h6::before,
 .price_offer h5::before {
-  content: "$";
+  content: "AED";
   position: absolute;
-  left: -5px;
+  left: -15px;
   top: -5px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: bold;
   z-index: 2;
 }
