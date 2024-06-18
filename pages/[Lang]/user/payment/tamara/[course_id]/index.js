@@ -51,7 +51,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
     axios
       .post(
         `${process.env.customKey}/create-tamara-payment`,
-        { courseId: course_id, lang: Lang, amount: CourseByIdArray?.offerAmount },
+        { courseId: course_id, lang: Lang, amount: CourseByIdArray?.offerAmount, type: "camps", },
         {
           headers: {
             "Content-Type": "application/json",
