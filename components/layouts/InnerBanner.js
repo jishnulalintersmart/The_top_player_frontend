@@ -1,7 +1,7 @@
 import Image from "next/legacy/image";
 import styles from "/styles/InnerBanner.module.scss";
 
-const InnerBanner = ({ imageUrl, title }) => {
+const InnerBanner = ({ imageUrl, title, title_ar, Lang }) => {
   return (
     <div className={styles.inner_banner}>
       <div className={styles.bgImg}>
@@ -19,7 +19,11 @@ const InnerBanner = ({ imageUrl, title }) => {
       <div className={styles.container}>
         <div className={styles.dFlx}>
           <div className={styles.cntWrap}>
-            <h1 className={styles.mHd}>{title}</h1>
+            {Lang === "en" ? (
+              <h1 className={styles.mHd}>{title?.toUpperCase()}</h1>
+            ) : (
+              <h1 className={styles.mHd}>{title_ar}</h1>
+            )}
           </div>
         </div>
       </div>

@@ -20,9 +20,6 @@ const ProgramCard = ({
   const regex = new RegExp(`\\b${wordToCheck}\\b`);
 
   const handleRedirect = () => {
-
-    console.log("Here");
-
     const isTamaraPath = regex.test(currentPath);
     const hasUTCookie = Cookies.get("UT");
     const userPath = `/${Lang}/user/payment/${

@@ -8,7 +8,10 @@ import { getAllNews, getNewsCount } from "@/store/NewsSlice";
 import { t } from "i18next";
 import LangWrap from "@/components/layouts/LangWarp";
 import LangChange from "@/components/layouts/LangChange";
-const News = () => {
+import axios from "axios";
+const News = ({ banner }) => {
+  const { banner_text, banner_text_ar } = banner;
+
   const router = useRouter();
   const { Lang } = router.query;
 
@@ -37,8 +40,10 @@ const News = () => {
       <LangChange Lang={Lang.toLowerCase()}>
         <div className={styles.program_page}>
           <InnerBanner
-            imageUrl={"/images/banner-news.jpg"}
-            title={t("news.heading")}
+            imageUrl={`${process.env.customKey}/news-banner-images/${banner?.imageUrl}`}
+            title={banner_text}
+            title_ar={banner_text_ar}
+            Lang={Lang}
           />
           <div className={styles.news_list_section}>
             <div className={"container"}>
@@ -79,3 +84,36 @@ const News = () => {
 };
 
 export default News;
+
+export async function getServerSideProps({ req, params }) {
+  try {
+    const response = await axios.get(`${process.env.customKey}/news-image`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Access-Token": req.cookies.UT,
+      },
+    });
+
+    const data = response.data.data;
+
+    return {
+      props: {
+        banner: data[0],
+        Lang: params.Lang.toLowerCase(),
+        error: false,
+        error_status: null,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      props: {
+        Lang: params.Lang.toLowerCase(),
+        error: true,
+        error_status: err?.response?.status,
+        error_Text: err?.response?.data?.message || null,
+      },
+    };
+  }
+}
