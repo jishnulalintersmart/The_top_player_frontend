@@ -39,12 +39,22 @@ const News = ({ banner }) => {
     <LangWrap Lang={Lang.toLowerCase()}>
       <LangChange Lang={Lang.toLowerCase()}>
         <div className={styles.program_page}>
-          <InnerBanner
-            imageUrl={`${process.env.customKey}/news-banner-images/${banner?.imageUrl}`}
-            title={banner_text}
-            title_ar={banner_text_ar}
-            Lang={Lang}
-          />
+          {banner ? (
+            <InnerBanner
+              imageUrl={`${process.env.customKey}/news-banner-images/${banner?.imageUrl}`}
+              title={banner_text}
+              title_ar={banner_text_ar}
+              Lang={Lang}
+            />
+          ) : (
+            <InnerBanner
+              imageUrl={"/images/banner-news.jpg"}
+              title={"Trending news"}
+              title_ar={"آخر الحصريات"}
+              Lang={Lang}
+            />
+          )}
+
           <div className={styles.news_list_section}>
             <div className={"container"}>
               <div className={`${styles.tleWrap} tleWrap`}>
