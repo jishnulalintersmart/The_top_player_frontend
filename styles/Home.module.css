@@ -705,7 +705,7 @@
   content: "AED";
   position: absolute;
   left: -15px;
-  top: -5px;
+  bottom: -7px;
   font-size: 12px;
   font-weight: bold;
   z-index: 2;
@@ -713,7 +713,7 @@
 
 .price_offer h6::before {
   left: -10px;
-  top: -10px;
+  bottom: -10px;
 }
 
 .info_card button {

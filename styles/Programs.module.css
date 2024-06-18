@@ -108,7 +108,7 @@
   content: "AED";
   position: absolute;
   left: -5px;
-  top: -5px;
+  bottom: -5px;
   font-size: 18px;
   font-weight: bold;
   z-index: 2;

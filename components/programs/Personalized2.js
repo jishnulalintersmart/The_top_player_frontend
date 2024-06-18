@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import styles from "@/styles/Program.module.scss";
+import styles from "@/styles/Programs2.module.scss";
 
-const Personlized2 = ({ Lang }) => {
+const Personlized = ({ Lang }) => {
   const { t } = useTranslation();
   return (
     <div className={styles.personlized_section}>
@@ -24,7 +24,6 @@ const Personlized2 = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="contain"
-                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -47,7 +46,6 @@ const Personlized2 = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
-                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title1")}</h5>
@@ -67,7 +65,6 @@ const Personlized2 = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="contain"
-                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -90,7 +87,6 @@ const Personlized2 = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
-                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title2")}</h5>
@@ -110,7 +106,6 @@ const Personlized2 = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="contain"
-                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -133,11 +128,11 @@ const Personlized2 = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
-                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title3")}</h5>
                   <p>{t("programs_details.weeks.description3")}</p>
+                  {console.log(t("programs_details.weeks.title3"))}
                 </div>
               </div>
             </div>
@@ -153,7 +148,6 @@ const Personlized2 = ({ Lang }) => {
                     height={40}
                     layout="responsive"
                     objectFit="cover"
-                    loading="lazy"
                   />
                 </div>
                 <div className={styles.tle}>
@@ -176,7 +170,6 @@ const Personlized2 = ({ Lang }) => {
                       height={520}
                       layout="responsive"
                       objectFit="contain"
-                      loading="lazy"
                     />
                   </div>
                   <h5>{t("programs_details.weeks.title4")}</h5>
@@ -199,4 +192,4 @@ const Personlized2 = ({ Lang }) => {
   );
 };
 
-export default Personlized2;
+export default Personlized;
