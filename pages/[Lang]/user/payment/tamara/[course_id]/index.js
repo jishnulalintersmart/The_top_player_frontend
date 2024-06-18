@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
 const stripePromise = loadStripe(
-  "pk_test_51O7Z2SBIK7a01kKzeBhiuYUF4wDVbSRIQSaaNoXDH6EesdBEDX4q68oABlFwYwmVheThQKBGENfalCW39yNhHh6f00Ge8Zrzhq"
+  "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
 );
 // const stripePromise = loadStripe(
-//   "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
+//   "pk_test_51O7Z2SBIK7a01kKzeBhiuYUF4wDVbSRIQSaaNoXDH6EesdBEDX4q68oABlFwYwmVheThQKBGENfalCW39yNhHh6f00Ge8Zrzhq"
 // );
 import { useDispatch, useSelector } from "react-redux";
 import { PayReducer } from "@/store/AuthSlice";
@@ -51,7 +51,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
     axios
       .post(
         `${process.env.customKey}/create-tamara-payment`,
-        { courseId: course_id, lang: Lang, amount: CourseByIdArray?.offerAmount },
+        { courseId: course_id, lang: Lang, amount: CourseByIdArray?.offerAmount, type: "camps", },
         {
           headers: {
             "Content-Type": "application/json",
