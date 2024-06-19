@@ -19,6 +19,7 @@ import Testimonials from "@/components/programs/Testimonials";
 import EnrollProgram from "@/components/programs/EnrollProgram";
 import { courseById } from "@/store/CourcesSlice";
 import isExpired from "@/helpers/checkExpired";
+
 const FitnessProgram = dynamic(() => import("@/components/programs/Fitness"), {
   loading: () => <></>,
   ssr: false,
@@ -45,15 +46,11 @@ const Personlized = dynamic(() => import("@/components/programs/Personlized"), {
   loading: () => <></>,
   ssr: false,
 });
-const Fitness = ({
-  programs_id,
-  Lang,
-  CoursecArr,
-  error,
-  error_status,
-  error_Text,
-  CourseByIdArray,
-}) => {
+const Personlized2 = dynamic(() => import("@/components/programs/Personalized2"), {
+  loading: () => <></>,
+  ssr: false,
+});
+const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Text, CourseByIdArray }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -121,7 +118,7 @@ const Fitness = ({
         />
       )}
 
-      {(!CoursecArr || expired) && <Personlized Lang={Lang} />}
+      {!CoursecArr || expired ? <Personlized Lang={Lang} /> : <Personlized2 Lang={Lang} styles={styles} />}
 
       {/* {!CoursecArr || expired ? (
         <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
