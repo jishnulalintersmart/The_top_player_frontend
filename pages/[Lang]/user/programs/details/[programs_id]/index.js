@@ -118,7 +118,7 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
         />
       )}
 
-      {!CoursecArr || expired ? <Personlized Lang={Lang} /> : <Personlized2 Lang={Lang} styles={styles} />}
+      {!CoursecArr || expired ? <Personlized Lang={Lang} videoUrl={CourseByIdArray?.videoUrl} /> : <Personlized2 Lang={Lang} styles={styles} />}
 
       {/* {!CoursecArr || expired ? (
         <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import styles from "@/styles/Program.module.scss";
 import { useRouter } from "next/router";
 
-const Personlized = ({ Lang }) => {
+const Personlized = ({ Lang, videoUrl }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const currentPath = router.pathname;
@@ -17,12 +17,8 @@ const Personlized = ({ Lang }) => {
           <h2 className={"mTle"}>{t("programs_details.personal")}</h2>
         </div>
         <div className={styles.dFlx}>
-          <div className={styles.lftSd} style={{display:'flex', alignItems:'center'}}>
-            <div
-              className={`${styles.wkBoxDFlx} ${
-                Lang === "ar" ? styles.ar : styles.en
-              }`}
-            >
+          <div className={styles.lftSd} style={{ display: "flex", alignItems: "center" }}>
+            <div className={`${styles.wkBoxDFlx} ${Lang === "ar" ? styles.ar : styles.en}`}>
               <div className={styles.item}>
                 <div className={styles.wkBox}>
                   <div className={styles.tleWrap}>
@@ -198,7 +194,7 @@ const Personlized = ({ Lang }) => {
                   </div>
                 </div>
               )}
-             
+
               {!regex.test(currentPath) && (
                 <div className={styles.item}>
                   <div className={styles.wkBox}>
@@ -248,18 +244,8 @@ const Personlized = ({ Lang }) => {
           </div>
           <div className={styles.rgtSd}>
             <div className={styles.imgWrap}>
-              <video
-                muted
-                autoPlay
-                loop
-                playsInline
-                preload="metadata"
-                aria-label="video player"
-              >
-                <source
-                  src="https://backend.thetopplayer.com/courseImages/video-1715945249482.mov"
-                  type="video/mp4"
-                />
+              <video muted autoPlay loop playsInline preload="metadata" aria-label="video player">
+                <source src={`https://backend.thetopplayer.com/courseImages/${videoUrl}`} type="video/mp4" />
               </video>
             </div>
           </div>
