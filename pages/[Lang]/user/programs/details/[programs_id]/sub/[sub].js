@@ -24,10 +24,13 @@ const FitnessProgram = dynamic(() => import("@/components/programs/Fitness"), {
   ssr: false,
 });
 
-const FootballProgram = dynamic(() => import("@/components/programs/Football"), {
-  loading: () => <></>,
-  ssr: false,
-});
+const FootballProgram = dynamic(
+  () => import("@/components/programs/Football"),
+  {
+    loading: () => <></>,
+    ssr: false,
+  }
+);
 const Personlized = dynamic(() => import("@/components/programs/Personlized"), {
   loading: () => <></>,
   ssr: false,
@@ -70,17 +73,25 @@ const Fitness = ({
         <InnerBanner
           // imageUrl={"/images/banner-program.jpg"}
           imageUrl={`${process.env.customKey}/courseImages/${CourseByIdArray?.bannerUrl}`}
-          title={Lang === "en" ? CourseByIdArray?.name : CourseByIdArray?.name_arabic}
+          title={CourseByIdArray?.name}
+          title_ar={CourseByIdArray?.name_arabic}
+          Lang={Lang}
         />
         {CoursecArr?.subCourses?.length > 1 && (
-          <div className={styles.sub_course} style={{marginTop:"15px"}}>
+          <div className={styles.sub_course} style={{ marginTop: "15px" }}>
             {CoursecArr?.subCourses?.map((ele) => {
               return (
                 <Link
                   key={ele.id}
-                  className={`${ele.id === parseInt(sub_id) ? styles.active : ""}
+                  className={`${
+                    ele.id === parseInt(sub_id) ? styles.active : ""
+                  }
                   
-                  ${Lang === "ar" ? styles.Ar_subCourses_Link : styles.En_subCourses_Link}`}
+                  ${
+                    Lang === "ar"
+                      ? styles.Ar_subCourses_Link
+                      : styles.En_subCourses_Link
+                  }`}
                   href={`/${Lang}/user/programs/details/${programs_id}/sub/${ele.id}
                   
                   `}
@@ -91,8 +102,12 @@ const Fitness = ({
                     ? "برنامج اللياقة"
                     : "برنامج كرة القدم"} */}
                   {Lang === "en" && ele.name}
-                  {Lang === "ar" && ele.name === "fitness Program" && "برنامج اللياقة"}
-                  {Lang === "ar" && ele.name === "football Program" && "برنامج كرة القدم"}
+                  {Lang === "ar" &&
+                    ele.name === "fitness Program" &&
+                    "برنامج اللياقة"}
+                  {Lang === "ar" &&
+                    ele.name === "football Program" &&
+                    "برنامج كرة القدم"}
                 </Link>
               );
             })}
@@ -102,19 +117,38 @@ const Fitness = ({
         <Personlized Lang={Lang} styles={styles} />
 
         <div className={styles.days}>
-          <div className={`${styles.day_finish} ${Lang === "ar" ? styles.Ar_day_finish : ""}`}>
+          <div
+            className={`${styles.day_finish} ${
+              Lang === "ar" ? styles.Ar_day_finish : ""
+            }`}
+          >
             {/* <h3>0/20</h3> */}
             {SubCourseArr && <h3>{AllDays_finished}/28</h3>}
             <p>{t("programs_details.finish")}</p>
           </div>
-          {SubCourseArr && <h3 className="En_num"> {parseInt((AllDays_finished / 28) * 100)}%</h3>}
+          {SubCourseArr && (
+            <h3 className="En_num">
+              {" "}
+              {parseInt((AllDays_finished / 28) * 100)}%
+            </h3>
+          )}
         </div>
 
         {SubCourseArr && (
-          <div className={`${styles.progress_week_grid} ${Lang === "ar" ? styles.Ar_rotate : ""}`}>
+          <div
+            className={`${styles.progress_week_grid} ${
+              Lang === "ar" ? styles.Ar_rotate : ""
+            }`}
+          >
             <div className={styles.progress_week}>
               <div className={styles.line}>
-                <div className={` ${SubCourseArr.finished_days.includes(5) ? styles.circel : styles.not_circel} `}>
+                <div
+                  className={` ${
+                    SubCourseArr.finished_days.includes(5)
+                      ? styles.circel
+                      : styles.not_circel
+                  } `}
+                >
                   <FaStar />
                 </div>
                 <span></span>
@@ -133,7 +167,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/1/1/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(1) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(1)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       1
                     </Link>
@@ -142,7 +180,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/1/2/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(2) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(2)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       2
                     </Link>
@@ -151,7 +193,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/1/3/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(3) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(3)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       3
                     </Link>
@@ -159,7 +205,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/1/4/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(4) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(4)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       4
                     </Link>
@@ -168,7 +218,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/1/5/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(5) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(5)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       5
                     </Link>
@@ -177,7 +231,9 @@ const Fitness = ({
                     </span>
                     <span
                       className={`${styles.cup} ${
-                        SubCourseArr.finished_days.includes(5) ? styles.cup_active : styles.not_active
+                        SubCourseArr.finished_days.includes(5)
+                          ? styles.cup_active
+                          : styles.not_active
                       } `}
                     >
                       <GiTrophyCup />
@@ -194,7 +250,13 @@ const Fitness = ({
             </div>
             <div className={styles.progress_week}>
               <div className={styles.line}>
-                <div className={` ${SubCourseArr.finished_days.includes(10) ? styles.circel : styles.not_circel} `}>
+                <div
+                  className={` ${
+                    SubCourseArr.finished_days.includes(10)
+                      ? styles.circel
+                      : styles.not_circel
+                  } `}
+                >
                   <FaStar />
                 </div>
                 <span></span>
@@ -214,7 +276,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/2/6/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(6) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(6)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       1
                     </Link>
@@ -223,7 +289,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/2/7/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(7) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(7)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       2
                     </Link>
@@ -232,7 +302,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/2/8/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(8) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(8)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       3
                     </Link>
@@ -240,7 +314,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/2/9/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(9) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(9)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       4
                     </Link>
@@ -249,7 +327,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/2/10/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(10) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(10)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       5
                     </Link>
@@ -258,7 +340,9 @@ const Fitness = ({
                     </span>
                     <span
                       className={`${styles.cup} ${
-                        SubCourseArr.finished_days.includes(10) ? styles.cup_active : styles.not_active
+                        SubCourseArr.finished_days.includes(10)
+                          ? styles.cup_active
+                          : styles.not_active
                       } `}
                     >
                       <GiTrophyCup />
@@ -276,7 +360,13 @@ const Fitness = ({
             </div>
             <div className={styles.progress_week}>
               <div className={styles.line}>
-                <div className={` ${SubCourseArr.finished_days.includes(15) ? styles.circel : styles.not_circel} `}>
+                <div
+                  className={` ${
+                    SubCourseArr.finished_days.includes(15)
+                      ? styles.circel
+                      : styles.not_circel
+                  } `}
+                >
                   <FaStar />
                 </div>
                 <span></span>
@@ -296,7 +386,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/3/11/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(11) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(11)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       1
                     </Link>
@@ -305,7 +399,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/3/12/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(12) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(12)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       2
                     </Link>
@@ -314,7 +412,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/3/13/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(13) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(13)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       3
                     </Link>
@@ -322,7 +424,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/3/14/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(14) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(14)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       4
                     </Link>
@@ -331,7 +437,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/3/15/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(15) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(15)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       5
                     </Link>
@@ -340,7 +450,9 @@ const Fitness = ({
                     </span>
                     <span
                       className={`${styles.cup} ${
-                        SubCourseArr.finished_days.includes(15) ? styles.cup_active : styles.not_active
+                        SubCourseArr.finished_days.includes(15)
+                          ? styles.cup_active
+                          : styles.not_active
                       } `}
                     >
                       <GiTrophyCup />
@@ -358,7 +470,13 @@ const Fitness = ({
             </div>
             <div className={styles.progress_week}>
               <div className={styles.line}>
-                <div className={` ${SubCourseArr.finished_days.includes(20) ? styles.circel : styles.not_circel} `}>
+                <div
+                  className={` ${
+                    SubCourseArr.finished_days.includes(20)
+                      ? styles.circel
+                      : styles.not_circel
+                  } `}
+                >
                   <FaStar />
                 </div>
                 <span></span>
@@ -377,7 +495,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/4/16/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(16) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(16)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       1
                     </Link>
@@ -386,7 +508,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/4/17/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(17) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(17)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       2
                     </Link>
@@ -395,7 +521,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/4/18/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(18) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(18)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       3
                     </Link>
@@ -403,7 +533,11 @@ const Fitness = ({
                   <div className={styles.days_number}>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/4/19/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(19) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(19)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       4
                     </Link>
@@ -412,7 +546,11 @@ const Fitness = ({
                     </span>
                     <Link
                       href={`/${Lang}/user/programs/${CoursecArr?.name}/4/20/${CoursecArr?.id}/${SubCourseArr?.id}`}
-                      className={` ${SubCourseArr.finished_days.includes(20) ? styles.active : styles.not_active} `}
+                      className={` ${
+                        SubCourseArr.finished_days.includes(20)
+                          ? styles.active
+                          : styles.not_active
+                      } `}
                     >
                       5
                     </Link>
@@ -421,7 +559,9 @@ const Fitness = ({
                     </span>
                     <span
                       className={`${styles.cup} ${
-                        SubCourseArr.finished_days.includes(20) ? styles.cup_active : styles.not_active
+                        SubCourseArr.finished_days.includes(20)
+                          ? styles.cup_active
+                          : styles.not_active
                       } `}
                     >
                       <GiTrophyCup />
@@ -440,8 +580,7 @@ const Fitness = ({
           </div>
         )}
 
-      <Testimonials Lang={Lang} programId={programs_id} />
-
+        <Testimonials Lang={Lang} programId={programs_id} />
       </div>
     </LangWrap>
   );
@@ -461,23 +600,31 @@ export async function getServerSideProps({ req, params }) {
       .then((res) => res.data);
 
     const data = await axios
-      .get(`${process.env.customKey}/subcourse/${parseInt(params.programs_id)}/${parseInt(params.sub)}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "X-Access-Token": req.cookies.UT,
-        },
-      })
+      .get(
+        `${process.env.customKey}/subcourse/${parseInt(
+          params.programs_id
+        )}/${parseInt(params.sub)}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": req.cookies.UT,
+          },
+        }
+      )
       .then((res) => res.data);
 
     const result2 = await axios
-      .get(`${process.env.customKey}/courseById/${parseInt(params.programs_id)}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "X-Access-Token": req.cookies.UT,
-        },
-      })
+      .get(
+        `${process.env.customKey}/courseById/${parseInt(params.programs_id)}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": req.cookies.UT,
+          },
+        }
+      )
       .then((res) => res.data.course)
       .catch((err) => {
         console.log(err);
@@ -505,7 +652,10 @@ export async function getServerSideProps({ req, params }) {
         sub_id: params.sub,
         error: true,
         error_status: err?.response?.status,
-        error_Text: err?.response?.data?.message === undefined ? null : err?.response?.data?.message,
+        error_Text:
+          err?.response?.data?.message === undefined
+            ? null
+            : err?.response?.data?.message,
       },
     };
   }

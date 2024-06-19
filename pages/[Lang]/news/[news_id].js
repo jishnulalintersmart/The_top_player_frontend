@@ -16,8 +16,9 @@ import { useMediaQuery } from "react-responsive";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import axios from "axios";
 
-const NewsDetail = () => {
+const NewsDetail = ({ banner }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { news_id, Lang } = router.query;
@@ -38,8 +39,10 @@ const NewsDetail = () => {
       <LangChange Lang={Lang.toLowerCase()}>
         <div className={styles.news_detail_page}>
           <InnerBanner
-            imageUrl={"/images/banner-news.jpg"}
-            title={t("news.heading")}
+            imageUrl={`${process.env.customKey}/news-banner-images/${banner?.imageUrl}`}
+            title={""}
+            title_ar={""}
+            Lang={Lang}
           />
           <div className={styles.news_detail_section}>
             <div className={"container"}>
@@ -163,3 +166,36 @@ const NewsDetail = () => {
 };
 
 export default NewsDetail;
+
+export async function getServerSideProps({ req, params }) {
+  try {
+    const response = await axios.get(`${process.env.customKey}/news-image`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Access-Token": req.cookies.UT,
+      },
+    });
+
+    const data = response.data.data;
+
+    return {
+      props: {
+        banner: data[0],
+        Lang: params.Lang.toLowerCase(),
+        error: false,
+        error_status: null,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      props: {
+        Lang: params.Lang.toLowerCase(),
+        error: true,
+        error_status: err?.response?.status,
+        error_Text: err?.response?.data?.message || null,
+      },
+    };
+  }
+}
