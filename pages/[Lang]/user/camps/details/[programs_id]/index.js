@@ -27,33 +27,19 @@ const ProgramCard = dynamic(() => import("@/components/programs/ProgramCard"), {
   loading: () => <></>,
   ssr: false,
 });
-const FitnessFottball = dynamic(
-  () => import("@/components/programs/FitnessFootball"),
-  {
-    loading: () => <></>,
-    ssr: false,
-  }
-);
-const FootballProgram = dynamic(
-  () => import("@/components/programs/Football"),
-  {
-    loading: () => <></>,
-    ssr: false,
-  }
-);
+const FitnessFottball = dynamic(() => import("@/components/programs/FitnessFootball"), {
+  loading: () => <></>,
+  ssr: false,
+});
+const FootballProgram = dynamic(() => import("@/components/programs/Football"), {
+  loading: () => <></>,
+  ssr: false,
+});
 const Personlized = dynamic(() => import("@/components/programs/Personlized"), {
   loading: () => <></>,
   ssr: false,
 });
-const Fitness = ({
-  programs_id,
-  Lang,
-  CoursecArr,
-  error,
-  error_status,
-  error_Text,
-  CourseByIdArray,
-}) => {
+const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Text, CourseByIdArray }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -86,22 +72,14 @@ const Fitness = ({
             return (
               <Link
                 key={ele.id}
-                className={`${
-                  ele.id === CoursecArr?.subCourses[0].id ? styles.active : ""
-                } ${
-                  Lang === "ar"
-                    ? styles.Ar_subCourses_Link
-                    : styles.En_subCourses_Link
+                className={`${ele.id === CoursecArr?.subCourses[0].id ? styles.active : ""} ${
+                  Lang === "ar" ? styles.Ar_subCourses_Link : styles.En_subCourses_Link
                 }`}
                 href={`/${Lang}/user/programs/details/${CoursecArr.id}/sub/${ele.id}`}
               >
                 {Lang === "en" && ele.name}
-                {Lang === "ar" &&
-                  ele.name === "fitness Program" &&
-                  "برنامج اللياقة"}
-                {Lang === "ar" &&
-                  ele.name === "football Program" &&
-                  "برنامج كرة القدم"}
+                {Lang === "ar" && ele.name === "fitness Program" && "برنامج اللياقة"}
+                {Lang === "ar" && ele.name === "football Program" && "برنامج كرة القدم"}
               </Link>
             );
           })}
@@ -133,7 +111,7 @@ const Fitness = ({
         <>{parseInt(CoursecArr.subCourses[0].id) === 2 && <FitnessProgram styles={styles} Lang={Lang} />}</>
       )} */}
 
-      <Personlized Lang={Lang} />
+      <Personlized Lang={Lang} videoUrl={CourseByIdArray?.videoUrl} />
 
       {/* {!CoursecArr || expired ? (
         <TrainingVideo Lang={Lang} CourseByIdArray={CourseByIdArray} />
@@ -662,16 +640,13 @@ export default Fitness;
 export async function getServerSideProps({ req, params }) {
   try {
     const result2 = await axios
-      .get(
-        `${process.env.customKey}/courseById/${parseInt(params.programs_id)}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "X-Access-Token": req.cookies.UT,
-          },
-        }
-      )
+      .get(`${process.env.customKey}/courseById/${parseInt(params.programs_id)}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Access-Token": req.cookies.UT,
+        },
+      })
       .then((res) => res.data.course)
       .catch((err) => {
         console.log(err);
@@ -711,10 +686,7 @@ export async function getServerSideProps({ req, params }) {
         Lang: params.Lang.toLowerCase(),
         error: true,
         error_status: err?.response?.status,
-        error_Text:
-          err?.response?.data?.message === undefined
-            ? null
-            : err?.response?.data?.message,
+        error_Text: err?.response?.data?.message === undefined ? null : err?.response?.data?.message,
       },
     };
   }
