@@ -99,7 +99,7 @@ const Fitness = ({
           </div>
         )}
 
-        <Personlized Lang={Lang} styles={styles} />
+        <Personlized Lang={Lang} styles={styles} videoUrl={CourseByIdArray?.videoUrl}  />
 
         <div className={styles.days}>
           <div className={`${styles.day_finish} ${Lang === "ar" ? styles.Ar_day_finish : ""}`}>
