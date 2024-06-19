@@ -63,7 +63,7 @@ const Program = ({ styles, Lang }) => {
                 <div
                   className={styles.cSlideNav}
                   style={{
-                    flexDirection: Lang === "ar" ? "row-reverse" : "row",
+                    flexDirection: "row",
                   }}
                 >
                   <button
