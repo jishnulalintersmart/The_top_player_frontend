@@ -76,9 +76,9 @@ const Fitness = ({
       <InnerBanner
         // imageUrl={"/images/banner-program.jpg"}
         imageUrl={`${process.env.customKey}/courseImages/${CourseByIdArray?.bannerUrl}`}
-        title={
-          Lang === "en" ? CourseByIdArray?.name : CourseByIdArray?.name_arabic
-        }
+        title={CourseByIdArray?.name}
+        title_ar={CourseByIdArray?.name_arabic}
+        Lang={Lang}
       />
       {CoursecArr?.subCourses?.length > 1 && (
         <div className={styles.sub_course} style={{ marginTop: "15px" }}>
