@@ -52,51 +52,52 @@ const NewsDetail = ({ banner }) => {
                 <h2>{Lang === "ar" ? news?.title_ar : news?.title_en}</h2>
                 <div className={styles.info}>
                   {" "}
-                  {t("news.postdate")} :{" "}
-                  {news?.createdAt &&
-                    format(new Date(news?.createdAt), "dd MMMM yyyy")}
+                  {t("news.postdate")} : {news?.createdAt && format(new Date(news?.createdAt), "dd MMMM yyyy")}
                 </div>
 
-                <Swiper
-                  dir={Lang === "ar" ? "rtl" : "ltr"}
-                  key={Lang}
-                  loop={true}
-                  spaceBetween={10}
-                  slidesPerView={1}
-                  autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                  }}
-                  modules={[EffectFade, Autoplay]}
-                  initialSlide={1}
-                  style={{
-                    padding: 0,
-                  }}
-                >
-                  {(isMobile ? news?.mobile : news?.images)?.map((item) => (
-                    <SwiperSlide key={item?.id}>
-                      <div className={styles.news_img_wrap}>
-                        <Image
-                          src={`${process.env.customKey}/${
-                            isMobile ? "newsMobileImages" : "newsImages"
-                          }/${item?.imageUrl}`}
-                          alt="news"
-                          width={1200}
-                          height={520}
-                          style={{
-                            objectFit: "cover",
-                          }}
-                          layout="intrinsic"
-                          loading="lazy"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                <div className={styles.imageWrap}>
+                  <p>{Lang === "ar" ? news?.description_ar : news?.description_en}</p>
 
-                <p>
-                  {Lang === "ar" ? news?.description_ar : news?.description_en}
-                </p>
+                  <div className={styles.swiperNewsWrapper}>
+                    <Swiper
+                      dir={Lang === "ar" ? "rtl" : "ltr"}
+                      key={Lang}
+                      loop={true}
+                      spaceBetween={10}
+                      slidesPerView={1}
+                      autoplay={{
+                        delay: 2500,
+                        disableOnInteraction: false,
+                      }}
+                      modules={[EffectFade, Autoplay]}
+                      initialSlide={1}
+                      style={{
+                        padding: 0,
+                      }}
+                    >
+                      {news?.mobile?.map((item) => (
+                        <SwiperSlide key={item?.id}>
+                          <div className={styles.news_img_wrap}>
+                            <Image
+                              // src={`${process.env.customKey}/${isMobile ? "newsMobileImages" : "newsImages"}/${
+                              //   item?.imageUrl
+                              // }`}
+                              src={`${process.env.customKey}/newsMobileImages/${item?.imageUrl}`}
+                              alt="news"
+                              width={1200}
+                              height={320}
+                              style={{
+                                objectFit: "cover",
+                              }}
+                              layout="intrinsic"
+                              loading="lazy"
+                            />
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -146,15 +147,10 @@ const NewsDetail = ({ banner }) => {
                 {allnews &&
                   allnews
                     ?.filter((item) => item.id != news_id)
-                    ?.sort(
-                      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-                    )
+                    ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                     ?.slice(0, 3)
                     ?.map((news) => (
-                      <SwiperSlide
-                        key={news.id}
-                        onClick={() => router.push(`/${Lang}/news/${news?.id}`)}
-                      >
+                      <SwiperSlide key={news.id} onClick={() => router.push(`/${Lang}/news/${news?.id}`)}>
                         <NewsBox Lang={Lang} news={news} />
                       </SwiperSlide>
                     ))}
