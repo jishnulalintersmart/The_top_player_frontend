@@ -97,7 +97,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                           <MdArrowDropDown />
                         </span>
                       </h1>
-                      <h3 className="En_num">${CourseByIdArray?.offerAmount}</h3>
+                      <h3 className="En_num">AED {CourseByIdArray?.offerAmount}</h3>
                     </div>
                     {/* )} */}
 
@@ -122,11 +122,11 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                             </div>
                             <h4>{CourseByIdArray?.name}</h4>
                           </div>
-                          <p className="En_num">${CourseByIdArray?.offerAmount}</p>
+                          <p className="En_num">AED {CourseByIdArray?.offerAmount}</p>
                         </div>
                         <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Subtotal")}</p>
-                          <p className="En_num">${CourseByIdArray?.amount}</p>
+                          <p className="En_num">AED {CourseByIdArray?.amount}</p>
                         </div>
                         <div className={`${styles.package} ${styles.package_sub}`}>
                           <p>{t("payment.Discount")}</p>
@@ -135,7 +135,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         <hr />
                         <div className={`${styles.package} ${styles.package_total}`}>
                           <p>{t("payment.Total")}</p>
-                          <p className="En_num">${CourseByIdArray?.offerAmount}</p>
+                          <p className="En_num">AED {CourseByIdArray?.offerAmount}</p>
                         </div>
                       </div>
                     )}
