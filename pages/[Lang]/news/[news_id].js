@@ -19,6 +19,8 @@ import "swiper/css/navigation";
 import axios from "axios";
 
 const NewsDetail = ({ banner }) => {
+  const { banner_text, banner_text_ar } = banner;
+
   const dispatch = useDispatch();
   const router = useRouter();
   const { news_id, Lang } = router.query;
@@ -40,8 +42,8 @@ const NewsDetail = ({ banner }) => {
         <div className={styles.news_detail_page}>
           <InnerBanner
             imageUrl={`${process.env.customKey}/news-banner-images/${banner?.imageUrl}`}
-            title={""}
-            title_ar={""}
+            title={banner_text}
+            title_ar={banner_text_ar}
             Lang={Lang}
           />
           <div className={styles.news_detail_section}>
