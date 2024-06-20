@@ -31,7 +31,7 @@ const FootballProgram = dynamic(
     ssr: false,
   }
 );
-const Personlized = dynamic(() => import("@/components/programs/Personlized"), {
+const Personlized = dynamic(() => import("@/components/programs/Personalized2"), {
   loading: () => <></>,
   ssr: false,
 });
