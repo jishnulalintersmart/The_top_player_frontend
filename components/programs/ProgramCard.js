@@ -106,7 +106,7 @@ const ProgramCard = ({
                 {CoursecArr && (
                   <button
                     className={"baseBtn hoveranim"}
-                    disabled={true}
+                    disabled={expired ? false : true}
                     onClick={handleRedirect}
                   >
                     <span>{t(expired ? "renew" : "yalla")}</span>
