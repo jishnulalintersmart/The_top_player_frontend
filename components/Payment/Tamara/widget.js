@@ -24,7 +24,7 @@ const TamaraWidget = ({ Lang, country, publicKey, customCss, fontSize, badgeRati
 
     // Cleanup the script when the component unmounts
     return () => {
-      document.body.removeChild(script);
+      document.head.removeChild(script);
     };
   }, [Lang, country, publicKey, customCss, fontSize, badgeRatio]);
 
