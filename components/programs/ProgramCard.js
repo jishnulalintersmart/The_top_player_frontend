@@ -70,10 +70,15 @@ const ProgramCard = ({
                 {!CoursecArr && (
                   <button
                     onClick={handleRedirect}
-                    className={"baseBtn hoveranim"}
+                    disabled={programDetails?.isFull}
+                    className={
+                      programDetails?.isFull ? "baseBtn" : "baseBtn hoveranim"
+                    }
                     aria-label="view all button"
                   >
-                    <span>{t("join_now")}</span>
+                    <span>
+                      {programDetails?.isFull ? t("camp_full") : t("join_now")}
+                    </span>
                     <span
                       className={"icon"}
                       style={{

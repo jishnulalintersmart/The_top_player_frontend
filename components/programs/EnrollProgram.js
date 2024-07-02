@@ -61,10 +61,15 @@ const EnrollProgram = ({
               {!CoursecArr ? (
                 <button
                   onClick={handleRedirect}
-                  className={"baseBtn hoveranim"}
+                  className={
+                    CourseByIdArray?.isFull ? "baseBtn" : "baseBtn hoveranim"
+                  }
                   aria-label="view all button"
+                  disabled={CourseByIdArray?.isFull}
                 >
-                  <span>{t("join_now")}</span>
+                  <span>
+                    {CourseByIdArray?.isFull ? t("camp_full") : t("join_now")}
+                  </span>
                 </button>
               ) : expired ? (
                 <button
