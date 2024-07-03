@@ -8,6 +8,7 @@ import BannerSlice from "./BannerSlice";
 import TestimonialSlice from "./TestimonialSlice";
 import WhoSlice from "./WhoSlice";
 import HeaderSlice from "./HeaderSlice";
+import CurrencySlice from "./CurrencySlice";
 export default configureStore({
   reducer: {
     AuthSlice,
@@ -17,7 +18,8 @@ export default configureStore({
     BannerSlice,
     HeaderSlice,
     TestimonialSlice,
-    WhoSlice
+    WhoSlice,
+    CurrencySlice,
   },
   //   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

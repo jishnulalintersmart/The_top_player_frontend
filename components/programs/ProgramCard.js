@@ -5,6 +5,7 @@ import styles from "@/styles/Program.module.scss";
 import Cookies from "js-cookie";
 import LangWrap from "../layouts/LangWarp";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const ProgramCard = ({
   Lang,
@@ -18,6 +19,7 @@ const ProgramCard = ({
   const currentPath = router.pathname;
   const wordToCheck = "camps";
   const regex = new RegExp(`\\b${wordToCheck}\\b`);
+  const { currentcurrency } = useSelector((state) => state.CurrencySlice);
 
   const handleRedirect = () => {
     const isTamaraPath = regex.test(currentPath);
@@ -165,12 +167,14 @@ const ProgramCard = ({
               <div className={`${styles.info_price} dir-lft`}>
                 <span>
                   {" "}
-                  <sup>AED</sup>
-                  {programDetails?.offerAmount || 0}
+                  <sup>{currentcurrency && currentcurrency?.currency_code}</sup>
+                  {programDetails?.offerAmount * currentcurrency?.currency_rate}
                 </span>
                 <span className={styles.old_price}>
-                  <sup>AED</sup>
-                  <span>{programDetails?.amount}</span>
+                  <sup>{currentcurrency && currentcurrency?.currency_code}</sup>
+                  <span>
+                    {programDetails?.amount * currentcurrency?.currency_rate}
+                  </span>
                 </span>
               </div>
             </div>

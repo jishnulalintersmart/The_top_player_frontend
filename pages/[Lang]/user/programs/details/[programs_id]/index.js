@@ -56,7 +56,6 @@ const Fitness = ({ programs_id, Lang, CoursecArr, error, error_status, error_Tex
   const { t } = useTranslation();
 
   const expired = CoursecArr ? isExpired(CoursecArr?.endDate) : false;
-  console.log(expired);
 
   // useEffect(() => {
   //   if (error_status === 401) {

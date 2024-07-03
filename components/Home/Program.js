@@ -15,6 +15,8 @@ const Program = ({ styles, Lang }) => {
   const { subscribedCourseArr, CoursecArr } = useSelector(
     (state) => state.CourcesSlice
   );
+
+  const { currentcurrency } = useSelector((state) => state.CurrencySlice);
   // console.log(subscribedCourseArr);
   useEffect(() => {
     dispatch(allCourses());
@@ -206,9 +208,14 @@ const Program = ({ styles, Lang }) => {
                             Lang === "ar" ? styles.rightPrice : styles.leftPrice
                           } dir-lft`}
                         > */}
-                          <h5>{course?.offerAmount}</h5>
+                          <h5>
+                            {course?.offerAmount *
+                              currentcurrency?.currency_rate}
+                          </h5>
                           <h6>
-                            <del>{course?.amount} </del>
+                            <del>
+                              {course?.amount * currentcurrency?.currency_rate}{" "}
+                            </del>
                           </h6>
                         </div>
 
@@ -223,6 +230,8 @@ const Program = ({ styles, Lang }) => {
                             (obj) => obj.courseId == course?.id
                           )
                             ? t("programs.yalla")
+                            : course?.isFull
+                            ? t("camp_full")
                             : t("programs.join")}
                         </button>
                       </div>

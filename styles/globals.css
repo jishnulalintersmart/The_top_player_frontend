@@ -533,7 +533,8 @@ body:has(> * .video-react-fullscreen) {
 }
 
 .header.is-sticky .lang_btn,
-.header.spHeader .lang_btn {
+.header.is-sticky .currencyBtn,
+.header.spHeader .lang_btn  {
   color: var(--black_color);
 }
 

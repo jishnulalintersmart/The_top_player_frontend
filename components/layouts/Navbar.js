@@ -19,6 +19,7 @@ import { ClearSecret, getUserInfo, LogOutReducer } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
 import LangWrap from "./LangWarp";
 import { Toast } from "primereact/toast";
+import { getAllCurrencies, setCurrency } from "@/store/CurrencySlice";
 
 const Navbar = ({ overHeight, state }) => {
   const [show, setShow] = useState(false);
@@ -31,17 +32,28 @@ const Navbar = ({ overHeight, state }) => {
     });
   };
   const [toggle, setToggle] = useState(false);
+  const [langDrop, setlangDrop] = useState(false);
   const [visible, setVisible] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const { subscribedCourseArr } = useSelector((state) => state.CourcesSlice);
   const { user_info } = useSelector((state) => state.AuthSlice);
+  const { currencies } = useSelector((state) => state.CurrencySlice);
+  const { currentcurrency } = useSelector((state) => state.CurrencySlice);
   const toggleRef = useRef(null);
   const toast = useRef(null);
 
   const courseId = sessionStorage.getItem("courseId");
   const tamaraId = sessionStorage.getItem("tamaraId");
+
+  useEffect(() => {
+    dispatch(getAllCurrencies());
+  }, []);
+
+  const handleCurrencyChange = (currency) => {
+    dispatch(setCurrency(currency));
+  };
 
   useEffect(() => {
     if (visible) {
@@ -91,6 +103,10 @@ const Navbar = ({ overHeight, state }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleToggle = () => {
+    setlangDrop(!langDrop);
+  };
 
   return (
     <LangWrap
@@ -528,6 +544,24 @@ const Navbar = ({ overHeight, state }) => {
                       )}
                     </Link>
                   )}
+                </div>
+                <div className={styles.item}>
+                  <button
+                    className={`${styles.navCurrencyBtn} currencyBtn`}
+                    onClick={handleToggle}
+                  >
+                    {currentcurrency && currentcurrency.currency_name}
+                    {langDrop && (
+                      <div className={`${styles.navCurrencyBtnDropDwon}`}>
+                        {currencies &&
+                          currencies.map((item) => (
+                            <p onClick={() => handleCurrencyChange(item)}>
+                              {item.currency_name}
+                            </p>
+                          ))}
+                      </div>
+                    )}
+                  </button>
                 </div>
                 <div className={styles.item}>
                   <div className={`${styles.userWrap} userWrap`}>

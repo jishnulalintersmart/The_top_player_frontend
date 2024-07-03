@@ -6,12 +6,12 @@ import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 
-const stripePromise = loadStripe(
-  "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
-);
 // const stripePromise = loadStripe(
-//   "pk_test_51O7Z2SBIK7a01kKzeBhiuYUF4wDVbSRIQSaaNoXDH6EesdBEDX4q68oABlFwYwmVheThQKBGENfalCW39yNhHh6f00Ge8Zrzhq"
+//   "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
 // );
+const stripePromise = loadStripe(
+  "pk_test_51O7Z2SBIK7a01kKzeBhiuYUF4wDVbSRIQSaaNoXDH6EesdBEDX4q68oABlFwYwmVheThQKBGENfalCW39yNhHh6f00Ge8Zrzhq"
+);
 import { useDispatch, useSelector } from "react-redux";
 import { PayReducer } from "@/store/AuthSlice";
 import { useTranslation } from "react-i18next";
@@ -28,19 +28,22 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { clientSecret } = useSelector((state) => state.AuthSlice);
+  const { currentcurrency } = useSelector((state) => state.CurrencySlice);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(PayReducer(course_id))
-      .unwrap()
-      .then(() => {})
-      .catch((err) => {
-        if (err?.response?.status === 401) {
-          Cookies.remove("UT");
-          router.push(`/${Lang}`);
-        }
-      });
-  }, [dispatch, course_id, router, Lang]);
+    if (course_id && currentcurrency) {
+      dispatch(PayReducer({ course_id, currentcurrency }))
+        .unwrap()
+        .then(() => {})
+        .catch((err) => {
+          if (err?.response?.status === 401) {
+            Cookies.remove("UT");
+            router.push(`/${Lang}`);
+          }
+        });
+    }
+  }, [dispatch, course_id, router, Lang, currentcurrency]);
 
   const options = {
     clientSecret: clientSecret,
@@ -52,7 +55,12 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
     axios
       .post(
         `${process.env.customKey}/create-tamara-payment`,
-        { courseId: course_id, lang: Lang, type: "programs", amount: CourseByIdArray?.offerAmount },
+        {
+          courseId: course_id,
+          lang: Lang,
+          type: "programs",
+          amount: CourseByIdArray?.offerAmount,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -90,14 +98,21 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                 <div className="col-12">
                   <div className={styles.Order_summery}>
                     {/* {parseInt(course_id) === 1 && ( */}
-                    <div className={styles.summer_header} onClick={() => setShow(!show)}>
+                    <div
+                      className={styles.summer_header}
+                      onClick={() => setShow(!show)}
+                    >
                       <h1>
                         {t("payment.summary")}
                         <span>
                           <MdArrowDropDown />
                         </span>
                       </h1>
-                      <h3 className="En_num">AED {CourseByIdArray?.offerAmount}</h3>
+                      <h3 className="En_num">
+                        {currentcurrency && currentcurrency?.currency_code}{" "}
+                        {CourseByIdArray?.offerAmount *
+                          currentcurrency?.currency_rate}
+                      </h3>
                     </div>
                     {/* )} */}
 
@@ -122,20 +137,34 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                             </div>
                             <h4>{CourseByIdArray?.name}</h4>
                           </div>
-                          <p className="En_num">AED {CourseByIdArray?.offerAmount}</p>
+                          <p className="En_num">
+                            AED {CourseByIdArray?.offerAmount}
+                          </p>
                         </div>
-                        <div className={`${styles.package} ${styles.package_sub}`}>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
                           <p>{t("payment.Subtotal")}</p>
-                          <p className="En_num">AED {CourseByIdArray?.amount}</p>
+                          <p className="En_num">
+                            AED {CourseByIdArray?.amount}
+                          </p>
                         </div>
-                        <div className={`${styles.package} ${styles.package_sub}`}>
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
                           <p>{t("payment.Discount")}</p>
-                          <p className="En_num">-{CourseByIdArray?.offerPercentage}%</p>
+                          <p className="En_num">
+                            -{CourseByIdArray?.offerPercentage}%
+                          </p>
                         </div>
                         <hr />
-                        <div className={`${styles.package} ${styles.package_total}`}>
+                        <div
+                          className={`${styles.package} ${styles.package_total}`}
+                        >
                           <p>{t("payment.Total")}</p>
-                          <p className="En_num">AED {CourseByIdArray?.offerAmount}</p>
+                          <p className="En_num">
+                            AED {CourseByIdArray?.offerAmount}
+                          </p>
                         </div>
                       </div>
                     )}
@@ -143,7 +172,11 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                 </div>
                 <div className="col-12">
                   {stripePromise && clientSecret && (
-                    <Elements stripe={stripePromise} options={options} allow="payment">
+                    <Elements
+                      stripe={stripePromise}
+                      options={options}
+                      allow="payment"
+                    >
                       <CheckoutForm course_id={course_id} Lang={Lang} />
                     </Elements>
                   )}
@@ -151,7 +184,11 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                     <div className="tamara-wrapper">
                       <TamaraWidget Lang={Lang} />
                     </div>
-                    <Button variant="success" onClick={initiateTamaraPayment} disabled={isLoading}>
+                    <Button
+                      variant="success"
+                      onClick={initiateTamaraPayment}
+                      disabled={isLoading}
+                    >
                       Pay With Tamara
                     </Button>
                   </div>
@@ -170,13 +207,16 @@ export default Payment;
 export async function getServerSideProps({ req, params }) {
   try {
     const result2 = await axios
-      .get(`${process.env.customKey}/courseById/${parseInt(params.course_id)}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "X-Access-Token": req.cookies.UT,
-        },
-      })
+      .get(
+        `${process.env.customKey}/courseById/${parseInt(params.course_id)}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Access-Token": req.cookies.UT,
+          },
+        }
+      )
       .then((res) => res.data.course)
       .catch((err) => {
         console.log(err);

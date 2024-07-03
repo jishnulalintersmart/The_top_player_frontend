@@ -238,14 +238,19 @@ export const subscribeReducer = createAsyncThunk(
 );
 export const PayReducer = createAsyncThunk(
   "Auth/PayReducer",
-  async (id, thunkAPI) => {
+  async (params, thunkAPI) => {
+    const { course_id } = params;
+    const { currency_code, currency_rate } = params.currentcurrency;
+
     const { rejectWithValue } = thunkAPI;
     try {
       const result = await axios
         .post(
           `${process.env.customKey}/create-payment-intent`,
           {
-            courseId: id,
+            courseId: course_id,
+            currency_code,
+            currency_rate,
           },
           {
             headers: {
