@@ -555,7 +555,7 @@ const Navbar = ({ overHeight, state }) => {
                       <div className={`${styles.navCurrencyBtnDropDwon}`}>
                         {currencies &&
                           currencies.map((item) => (
-                            <p onClick={() => handleCurrencyChange(item)}>
+                            <p onClick={() => handleCurrencyChange(item)} key={item?.id}>
                               {item.currency_name}
                             </p>
                           ))}
