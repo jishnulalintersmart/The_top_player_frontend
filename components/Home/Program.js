@@ -209,12 +209,27 @@ const Program = ({ styles, Lang }) => {
                           } dir-lft`}
                         > */}
                           <h5>
-                            {course?.offerAmount *
-                              currentcurrency?.currency_rate}
+                            <span className={styles.currency}>
+                              {currentcurrency?.currency_code}
+                            </span>
+                            {Math.ceil(
+                              (
+                                course?.offerAmount *
+                                currentcurrency?.currency_rate
+                              ).toFixed(2)
+                            )}
                           </h5>
                           <h6>
+                            <span className={styles.currency}>
+                              {currentcurrency?.currency_code}
+                            </span>
                             <del>
-                              {course?.amount * currentcurrency?.currency_rate}{" "}
+                              {Math.ceil(
+                                (
+                                  course?.amount *
+                                  currentcurrency?.currency_rate
+                                ).toFixed(2)
+                              )}{" "}
                             </del>
                           </h6>
                         </div>

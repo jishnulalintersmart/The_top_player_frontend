@@ -168,12 +168,21 @@ const ProgramCard = ({
                 <span>
                   {" "}
                   <sup>{currentcurrency && currentcurrency?.currency_code}</sup>
-                  {programDetails?.offerAmount * currentcurrency?.currency_rate}
+                  {Math.ceil(
+                    (
+                      programDetails?.offerAmount *
+                      currentcurrency?.currency_rate
+                    ).toFixed(2)
+                  )}
                 </span>
                 <span className={styles.old_price}>
                   <sup>{currentcurrency && currentcurrency?.currency_code}</sup>
                   <span>
-                    {programDetails?.amount * currentcurrency?.currency_rate}
+                    {Math.ceil(
+                      (
+                        programDetails?.amount * currentcurrency?.currency_rate
+                      ).toFixed(2)
+                    )}
                   </span>
                 </span>
               </div>

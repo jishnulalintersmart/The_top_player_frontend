@@ -138,7 +138,7 @@
   .navCurrencyBtn {
     border: none;
     position: relative;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1;
     color: var(--white_color);
@@ -150,6 +150,7 @@
     background: transparent;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     display: flex;
     @media (max-width: 1551.98px) {
       font-size: 16px;
@@ -191,7 +192,7 @@
       width: 140px;
     }
     p {
-      font-size: 15px;
+      font-size: 10px;
       line-height: 1;
       text-align: center;
       font-weight: 400;

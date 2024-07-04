@@ -21,6 +21,7 @@ import LangWrap from "@/components/layouts/LangWarp";
 import axios from "axios";
 import TamaraWidget from "@/components/Payment/Tamara/widget";
 import { Button } from "react-bootstrap";
+import { courseById } from "@/store/CourcesSlice";
 
 const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   // console.log("CourseByIdArray", CourseByIdArray);
@@ -30,6 +31,8 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const { clientSecret } = useSelector((state) => state.AuthSlice);
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
   const [isLoading, setIsLoading] = useState(false);
+
+  const tamaraSupportCurrencies = ["SA", "KW", "AE"];
 
   useEffect(() => {
     if (course_id && currentcurrency) {
@@ -110,8 +113,12 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                       </h1>
                       <h3 className="En_num">
                         {currentcurrency && currentcurrency?.currency_code}{" "}
-                        {CourseByIdArray?.offerAmount *
-                          currentcurrency?.currency_rate}
+                        {Math.ceil(
+                          (
+                            CourseByIdArray?.offerAmount *
+                            currentcurrency?.currency_rate
+                          ).toFixed(2)
+                        )}
                       </h3>
                     </div>
                     {/* )} */}
@@ -138,7 +145,8 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                             <h4>{CourseByIdArray?.name}</h4>
                           </div>
                           <p className="En_num">
-                            AED {CourseByIdArray?.offerAmount}
+                            {currentcurrency?.currency_code}{" "}
+                            {CourseByIdArray?.offerAmount}
                           </p>
                         </div>
                         <div
@@ -146,7 +154,13 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         >
                           <p>{t("payment.Subtotal")}</p>
                           <p className="En_num">
-                            AED {CourseByIdArray?.amount}
+                            {currentcurrency?.currency_code}{" "}
+                            {Math.ceil(
+                              (
+                                CourseByIdArray?.amount *
+                                currentcurrency?.currency_rate
+                              ).toFixed(2)
+                            )}
                           </p>
                         </div>
                         <div
@@ -154,7 +168,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         >
                           <p>{t("payment.Discount")}</p>
                           <p className="En_num">
-                            -{CourseByIdArray?.offerPercentage}%
+                            {CourseByIdArray?.offerPercentage}%
                           </p>
                         </div>
                         <hr />
@@ -163,14 +177,20 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         >
                           <p>{t("payment.Total")}</p>
                           <p className="En_num">
-                            AED {CourseByIdArray?.offerAmount}
+                            {currentcurrency?.currency_code}{" "}
+                            {Math.ceil(
+                              (
+                                CourseByIdArray?.offerAmount *
+                                currentcurrency?.currency_rate
+                              ).toFixed(2)
+                            )}
                           </p>
                         </div>
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="col-12">
+                <div className="col-12 text-center">
                   {stripePromise && clientSecret && (
                     <Elements
                       stripe={stripePromise}
@@ -180,18 +200,24 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                       <CheckoutForm course_id={course_id} Lang={Lang} />
                     </Elements>
                   )}
-                  <div className="tamara-widget">
-                    <div className="tamara-wrapper">
-                      <TamaraWidget Lang={Lang} />
+                  {tamaraSupportCurrencies.includes(
+                    currentcurrency?.currency_flag
+                  ) ? (
+                    <div className="tamara-widget">
+                      <div className="tamara-wrapper">
+                        <TamaraWidget Lang={Lang} />
+                      </div>
+                      <Button
+                        variant="success"
+                        onClick={initiateTamaraPayment}
+                        disabled={isLoading}
+                      >
+                        Pay With Tamara
+                      </Button>
                     </div>
-                    <Button
-                      variant="success"
-                      onClick={initiateTamaraPayment}
-                      disabled={isLoading}
-                    >
-                      Pay With Tamara
-                    </Button>
-                  </div>
+                  ) : (
+                    <p>{t("payment.payment_not_supported")}</p>
+                  )}
                 </div>
               </div>
             </div>

@@ -534,35 +534,40 @@
   height: 190px;
   overflow-y: auto;
 }
+
 @media (max-width: 1399.98px) {
   .info_card ul {
     height: 245px;
   }
-  
+
 }
+
 @media (max-width: 1199.98px) {
   .info_card ul {
     height: 270px;
   }
-  
+
 }
+
 @media (max-width: 991.98px) {
   .info_card ul {
     height: 180px;
   }
-  
+
 }
+
 @media (max-width: 575.98px) {
   .info_card ul {
     height: 160px;
   }
-  
+
 }
+
 @media (max-width: 375.98px) {
   .info_card ul {
     height: 140px;
   }
-  
+
 }
 
 .info_card ul::-webkit-scrollbar {
@@ -578,7 +583,7 @@
 .info_card ul::-webkit-scrollbar-thumb {
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  background: #a1a1a1; 
+  background: #a1a1a1;
 }
 
 .info_card ul li {
@@ -651,6 +656,7 @@
   text-align: center;
   color: #9E6439;
   position: relative;
+  z-index: 0;
 }
 
 @media (max-width: 991.98px) {
@@ -684,6 +690,7 @@
   font-weight: 600;
   color: #9e9999;
   position: relative;
+  z-index: 0;
 }
 
 @media (max-width: 991.98px) {
@@ -702,20 +709,26 @@
   font-size: 12px;
 }
 
-.price_offer h6::before,
-.price_offer h5::before {
-  content: "AED";
+.price_offer h5 .currency {
+  color: #9E6439;
+}
+
+.price_offer h6 .currency,
+.price_offer h5 .currency {
   position: absolute;
-  left: -15px;
-  bottom: -7px;
+  left: -14px;
+  bottom: -8px;
   font-size: 12px;
   font-weight: bold;
   z-index: 2;
 }
 
-.price_offer h6::before {
-  left: -10px;
-  bottom: -10px;
+@media (max-width: 991.98px) {
+
+  .price_offer h6 .currency,
+  .price_offer h5 .currency {
+    bottom: -10px;
+  }
 }
 
 .info_card button {

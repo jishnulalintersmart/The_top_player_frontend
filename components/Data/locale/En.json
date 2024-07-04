@@ -21,7 +21,7 @@
   "testimonials": "TESTIMONIALS",
   "yalla": "Yalla !",
   "join_now": "Join now",
-  "camp_full":"Registration Full",
+  "camp_full": "Registration Full",
   "renew": "Renew",
   "renew_camp": "Renew your camp",
   "enroll_to_our_program": "ENROLL TO OUR PROGRAM",
@@ -231,7 +231,7 @@
     "personal": "YOUR PERSONLIZED PROGRAM",
     "finish": "Days Finished",
     "start": "Start Now",
-    "completed":"Completed",
+    "completed": "Completed",
     "join": "Join Now",
     "yalla": "Yalla !",
     "fitness": {
@@ -286,7 +286,8 @@
     "courseId": "Course",
     "amount": "Price",
     "stripeId": "Invoice Id",
-    "title": "Payments"
+    "title": "Payments",
+    "payment_not_supported": "Tamra payments not supported in selected currency."
   },
   "vidoe": {
     "week": "Week",

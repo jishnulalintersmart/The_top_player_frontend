@@ -551,13 +551,23 @@ const Navbar = ({ overHeight, state }) => {
                     onClick={handleToggle}
                   >
                     {currentcurrency && currentcurrency.currency_name}
+                    <img
+                      src={`https://flagsapi.com/${currentcurrency?.currency_flag}/shiny/32.png`}
+                    ></img>
                     {langDrop && (
                       <div className={`${styles.navCurrencyBtnDropDwon}`}>
                         {currencies &&
                           currencies.map((item) => (
-                            <p onClick={() => handleCurrencyChange(item)} key={item?.id}>
-                              {item.currency_name}
-                            </p>
+                            <div
+                              onClick={() => handleCurrencyChange(item)}
+                              key={item?.id}
+                              className=""
+                            >
+                              <img
+                                src={`https://flagsapi.com/${item?.currency_flag}/shiny/32.png`}
+                              ></img>
+                              <p>{item.currency_name}</p>
+                            </div>
                           ))}
                       </div>
                     )}
