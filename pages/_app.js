@@ -29,7 +29,7 @@ const Footer = dynamic(() => import("@/components/layouts/Footer"), {
   ssr: false,
 });
 
-function App({ Component, pageProps}) {
+function App({ Component, pageProps, canonical, Path }) {
   const handleKeyPress = (event) => {
     if (
       (event.ctrlKey && event.key.toLowerCase() === "u") ||
@@ -232,7 +232,7 @@ function App({ Component, pageProps}) {
           <Navbar state={bodyHeight} overHeight={(e) => setBodyHeight(e)} />
           <Component {...pageProps} />
           <Footer />
-          {/* <SocialMedia to={Path} /> */}
+          <SocialMedia to={Path} />
         </div>
       </Provider>
       {/* </ErrorBoundary> */}
@@ -240,13 +240,13 @@ function App({ Component, pageProps}) {
   );
 }
 
-// App.getInitialProps = async ({ ctx }) => {
-//   const { asPath } = ctx;
-//   const base = "https://thetopplayer.com/";
-//   const canonical = base + asPath;
-//   return {
-//     Path: asPath,
-//     canonical,
-//   };
-// };
+App.getInitialProps = async ({ ctx }) => {
+  const { asPath } = ctx;
+  const base = "https://thetopplayer.com/";
+  const canonical = base + asPath;
+  return {
+    Path: asPath,
+    canonical,
+  };
+};
 export default App;
