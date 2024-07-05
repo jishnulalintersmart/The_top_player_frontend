@@ -10,7 +10,7 @@ const nextConfig = {
     // webDomain: "https://interregionall.vercel.app",
     // webDomain: "https://www.thetopplayer.com",
     // webDomain: "https://the-top-player-frontend-2.onrender.com",
-    webDomain: "https://the-top-player-frontend-furjqjv5u-vaishnav-vijayan07s-projects.vercel.app/en",
+    webDomain: "https://the-top-player-frontend-git-866954-vaishnav-vijayan07s-projects.vercel.app?_vercel_share=0vGLDQDh4xrmpk2uuPNJqzLkD0O4U5wx",
     // webDomain: "http://localhost:4000",
     tamraPublicKey: "a916b2ef-bb66-4e5b-84d9-5bbae98db825",
     // webDomain: "http://www.thetopplayer.com",
