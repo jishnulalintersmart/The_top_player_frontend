@@ -1,10 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// const detectUserCountryCode = async () => {
+//   try {
+//     const response = await axios.get("https://ipapi.co/json/");
+//     return response.data.country_code; // Default to 'US' if country code is not available
+//   } catch (error) {
+//     console.error("Error fetching the country code:", error);
+//     return "AE"; // Default to 'US' in case of an error
+//   }
+// };
+
 export const getAllCurrencies = createAsyncThunk(
   "Currency/all",
   async (_, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+    const { rejectWithValue, dispatch } = thunkAPI;
+
     try {
       const result = await axios
         .get(`${process.env.customKey}/currency`, {
@@ -14,12 +25,21 @@ export const getAllCurrencies = createAsyncThunk(
           },
         })
         .then((res) => res.data);
+      // dispatch(initializeCurrencyCode());
       return result;
     } catch (err) {
       return rejectWithValue(err);
     }
   }
 );
+
+// export const initializeCurrencyCode = createAsyncThunk(
+//   "currency/initialize",
+//   async () => {
+//     const countryCode = await detectUserCountryCode();
+//     return countryCode;
+//   }
+// );
 
 const CurrencySlice = createSlice({
   name: "Currency",
@@ -35,17 +55,44 @@ const CurrencySlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getAllCurrencies.pending, (state, action) => {
-      state.initialloading = true;
-    });
-    builder.addCase(getAllCurrencies.fulfilled, (state, action) => {
-      state.currencies = action.payload.data;
-      state.currentcurrency = action.payload.data[0]; // Set the first currency as default
-      state.initialloading = false;
-    });
-    builder.addCase(getAllCurrencies.rejected, (state, action) => {
-      state.error = action.payload;
-    });
+    builder
+      .addCase(getAllCurrencies.pending, (state, action) => {
+        state.initialloading = true;
+      })
+      .addCase(getAllCurrencies.fulfilled, (state, action) => {
+        state.currencies = action.payload.data;
+        state.currentcurrency = state.currencies[0];
+        state.initialloading = false;
+      })
+      .addCase(getAllCurrencies.rejected, (state, action) => {
+        state.error = action.payload;
+      });
+    // .addCase(initializeCurrencyCode.fulfilled, (state, action) => {
+    //   // let currentLocation = action.payload;
+    //   let allCountries = state.currencies;
+
+    //   // const matchingCountry = allCountries.find(
+    //   //   (item) => item.currency_name === currentLocation
+    //   // );
+
+    //   // if (matchingCountry) {
+    //   //   state.currentcurrency = matchingCountry;
+    //   // } else {
+    //   //   let initialCountry = null;
+    //   //   // Try to find a country with the currency code "AE"
+    //   //   const findAed = allCountries.some((item) => {
+    //   //     if (item.currency_code === "AED") {
+    //   //       initialCountry = item;
+    //   //       return true;
+    //   //     }
+    //   //     return false;
+    //   //   });
+
+    //   // state.currentcurrency = findAed ? initialCountry : allCountries[0];
+    // })
+    // .addCase(initializeCurrencyCode.rejected, (state, action) => {
+    //   state.currentcurrency = "US"; // Default to 'US' if initialization fails
+    // });
   },
 });
 export const { setCurrency } = CurrencySlice.actions;

@@ -545,12 +545,14 @@ const Navbar = ({ overHeight, state }) => {
                     </Link>
                   )}
                 </div>
-                <div className={styles.item}>
+
+                {/* Currency button */}
+                {/* <div className={styles.item}>
                   <button
                     className={`${styles.navCurrencyBtn} currencyBtn`}
                     onClick={handleToggle}
                   >
-                    {currentcurrency && currentcurrency.currency_name}
+                    {currentcurrency && currentcurrency.currency_code}
                     <img
                       src={`https://flagsapi.com/${currentcurrency?.currency_flag}/shiny/32.png`}
                     ></img>
@@ -566,13 +568,13 @@ const Navbar = ({ overHeight, state }) => {
                               <img
                                 src={`https://flagsapi.com/${item?.currency_flag}/shiny/32.png`}
                               ></img>
-                              <p>{item.currency_name}</p>
+                              <p>{item.currency_code}</p>
                             </div>
                           ))}
                       </div>
                     )}
                   </button>
-                </div>
+                </div> */}
                 <div className={styles.item}>
                   <div className={`${styles.userWrap} userWrap`}>
                     <div className="name">

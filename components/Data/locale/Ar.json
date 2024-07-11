@@ -278,7 +278,7 @@
     "amount": "التكلفة",
     "stripeId": "رقم الفاتورة",
     "title": "العمليات",
-    "payment_not_supported": "لا تدعم العملات المختارة دفعات تامرا."
+    "payment_not_supported": "الدفعات عبر تامرا مدعومة فقط بعملة AED"
   },
   "vidoe": {
     "week": "الاسبوع",

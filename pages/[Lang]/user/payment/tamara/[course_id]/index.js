@@ -9,6 +9,7 @@ import { MdArrowDropDown } from "react-icons/md";
 const stripePromise = loadStripe(
   "pk_live_51O7Z2SBIK7a01kKz9y6brLLX1SQBrs7OMn4RFfb6GRQuE8Hv7SMSURDJLuJazosoWyLPJv8i4xrVNjwhP89nuDOb00ZDiIGV5U"
 );
+
 // const stripePromise = loadStripe(
 //   "pk_test_51O7Z2SBIK7a01kKzeBhiuYUF4wDVbSRIQSaaNoXDH6EesdBEDX4q68oABlFwYwmVheThQKBGENfalCW39yNhHh6f00Ge8Zrzhq"
 // );
@@ -30,7 +31,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const { clientSecret } = useSelector((state) => state.AuthSlice);
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
 
-  const tamaraSupportCurrencies = ["SA", "KW", "AE"];
+  const tamaraSupportCurrencies = ["AE"];
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -52,7 +53,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const initiateTamaraPayment = () => {
     setIsLoading(true);
     console.log("tamara initiated", Cookies.get("UT"));
-    const { currency_flag, currency_rate, currency_code } = currentcurrency;
+
     axios
       .post(
         `${process.env.customKey}/create-tamara-payment`,
@@ -61,9 +62,6 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
           lang: Lang,
           amount: CourseByIdArray?.offerAmount,
           type: "camps",
-          currency_code,
-          currency_rate,
-          currency_flag,
         },
         {
           headers: {
@@ -74,7 +72,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
         }
       )
       .then((res) => {
-        console.log("res===>", res.data);
+        console.log("res===>", res.data.data);
         setIsLoading(false);
         if (res?.data?.data?.checkoutUrl) {
           window.location.href = res?.data?.data?.checkoutUrl;
@@ -113,7 +111,13 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         </span>
                       </h1>
                       <h3 className="En_num">
-                        ${CourseByIdArray?.offerAmount}
+                        {currentcurrency && currentcurrency?.currency_code}{" "}
+                        {Math.ceil(
+                          (
+                            CourseByIdArray?.offerAmount *
+                            currentcurrency?.currency_rate
+                          ).toFixed(2)
+                        )}
                       </h3>
                     </div>
                     {/* )} */}
@@ -140,21 +144,31 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                             <h4>{CourseByIdArray?.name}</h4>
                           </div>
                           <p className="En_num">
-                            ${CourseByIdArray?.offerAmount}
+                            {currentcurrency?.currency_code}{" "}
+                            {CourseByIdArray?.offerAmount}
                           </p>
                         </div>
                         <div
                           className={`${styles.package} ${styles.package_sub}`}
                         >
                           <p>{t("payment.Subtotal")}</p>
-                          <p className="En_num">${CourseByIdArray?.amount}</p>
+                          <p className="En_num">
+                            {" "}
+                            {currentcurrency?.currency_code}{" "}
+                            {Math.ceil(
+                              (
+                                CourseByIdArray?.amount *
+                                currentcurrency?.currency_rate
+                              ).toFixed(2)
+                            )}
+                          </p>
                         </div>
                         <div
                           className={`${styles.package} ${styles.package_sub}`}
                         >
                           <p>{t("payment.Discount")}</p>
                           <p className="En_num">
-                            -{CourseByIdArray?.offerPercentage}%
+                            {CourseByIdArray?.offerPercentage}%
                           </p>
                         </div>
                         <hr />
@@ -163,14 +177,20 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         >
                           <p>{t("payment.Total")}</p>
                           <p className="En_num">
-                            ${CourseByIdArray?.offerAmount}
+                            {currentcurrency?.currency_code}{" "}
+                            {Math.ceil(
+                              (
+                                CourseByIdArray?.offerAmount *
+                                currentcurrency?.currency_rate
+                              ).toFixed(2)
+                            )}
                           </p>
                         </div>
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="col-12">
+                <div className="col-12 text-center">
                   {stripePromise && clientSecret && (
                     <Elements
                       stripe={stripePromise}

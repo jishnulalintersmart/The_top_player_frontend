@@ -17,7 +17,7 @@ const Program = ({ styles, Lang }) => {
   );
 
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
-  // console.log(subscribedCourseArr);
+
   useEffect(() => {
     dispatch(allCourses());
     dispatch(getsubscribedCourse());
