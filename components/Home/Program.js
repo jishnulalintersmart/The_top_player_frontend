@@ -16,7 +16,9 @@ const Program = ({ styles, Lang }) => {
     (state) => state.CourcesSlice
   );
 
-  const { currentcurrency } = useSelector((state) => state.CurrencySlice);
+  const { currentcurrency, currencyloading } = useSelector(
+    (state) => state.CurrencySlice
+  );
 
   useEffect(() => {
     dispatch(allCourses());
@@ -48,6 +50,17 @@ const Program = ({ styles, Lang }) => {
   //   (ele) => ele.courseId === 2
   // );
   // const Football = subscribedCourseArr?.find((ele) => ele.courseId === 3);
+
+  const handleRedirect = (item, course) => {
+    if (course?.isFull) {
+      return;
+    }
+    if (item?.isCamp) {
+      router.push(`/${Lang}/user/camps/details/${course?.id}`);
+    } else {
+      router.push(`/${Lang}/user/programs/details/${course?.id}`);
+    }
+  };
 
   return (
     <div className={`${styles.program_section}`} id="programs">
@@ -140,31 +153,15 @@ const Program = ({ styles, Lang }) => {
               >
                 {item?.courses?.map((course) => (
                   <SwiperSlide key={course?.id}>
-                    <Link
+                    <div
                       style={{
                         direction: Lang === "ar" ? "rtl" : "ltr",
                       }}
-                      href={
-                        item?.isCamp
-                          ? `/${Lang}/user/camps/details/${course?.id}`
-                          : `/${Lang}/user/programs/details/${course?.id}`
-                      }
-                      // href={
-                      //   // Fitness
-                      //   // ? `/${Lang}/user/programs/details/${course?.id}` :
-                      //   // Cookies.get("UT")
-                      //   // ? `/${Lang}/user/payment/1`
-                      //   `/${Lang}/user/programs/details/${course?.id}`
-                      //   // : `/${Lang}/admin/signup`
-                      // }
                       className={styles.card}
+                      onClick={() => handleRedirect(item, course)}
+                      role="button"
+                      tabIndex={0}
                     >
-                      {/* <div className={styles.filnal_price}>
-                  <p>
-                    80 $ - <del>105 $</del>
-                  </p>
-                </div> */}
-
                       {course?.offerPercentage && (
                         <div className={styles.filnal_price}>
                           <p>
@@ -183,7 +180,6 @@ const Program = ({ styles, Lang }) => {
                         />
                       </div>
                       <div className={styles.info_card}>
-                        {/* <h4>{t("programs.fitness.title")}</h4> */}
                         <h4>
                           {Lang === "ar" ? course?.name_arabic : course?.name}
                         </h4>
@@ -201,44 +197,50 @@ const Program = ({ styles, Lang }) => {
                           ></ul>
                         )}
 
-                        <div
-                          className={`${styles.price_offer} ${styles.leftPrice} dir-lft`}
-                        >
-                          {/* <div className={`${styles.price_offer} ${
+                        {currencyloading ? (
+                          <p>Loading</p>
+                        ) : (
+                          <div
+                            className={`${styles.price_offer} ${styles.leftPrice} dir-lft`}
+                          >
+                            {/* <div className={`${styles.price_offer} ${
                             Lang === "ar" ? styles.rightPrice : styles.leftPrice
                           } dir-lft`}
                         > */}
-                          <h5>
-                            <span className={styles.currency}>
-                              {currentcurrency?.currency_code}
-                            </span>
-                            {Math.ceil(
-                              (
-                                course?.offerAmount *
-                                currentcurrency?.currency_rate
-                              ).toFixed(2)
-                            )}
-                          </h5>
-                          <h6>
-                            <span className={styles.currency}>
-                              {currentcurrency?.currency_code}
-                            </span>
-                            <del>
+                            <h5>
+                              <span className={styles.currency}>
+                                {currentcurrency?.currency_code}
+                              </span>
                               {Math.ceil(
                                 (
-                                  course?.amount *
+                                  course?.offerAmount *
                                   currentcurrency?.currency_rate
                                 ).toFixed(2)
-                              )}{" "}
-                            </del>
-                          </h6>
-                        </div>
+                              )}
+                            </h5>
+                            <h6>
+                              <span className={styles.currency}>
+                                {currentcurrency?.currency_code}
+                              </span>
+                              <del>
+                                {Math.ceil(
+                                  (
+                                    course?.amount *
+                                    currentcurrency?.currency_rate
+                                  ).toFixed(2)
+                                )}{" "}
+                              </del>
+                            </h6>
+                          </div>
+                        )}
 
-                        {/* {
-                          Cookies.get("UT")
-
-                          
-                        } */}
+                        {course?.isFull && (
+                          <img
+                            src={"/images/soldout.png"}
+                            alt="fitness"
+                            loading="lazy"
+                          />
+                        )}
 
                         <button>
                           {subscribedCourseArr?.some(
@@ -250,7 +252,7 @@ const Program = ({ styles, Lang }) => {
                             : t("programs.join")}
                         </button>
                       </div>
-                    </Link>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>

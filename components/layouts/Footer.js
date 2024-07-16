@@ -7,17 +7,26 @@ import Image from "next/legacy/image";
 import { FaTiktok, FaStripe, FaGooglePay, FaApplePay } from "react-icons/fa";
 import { SiVisa } from "react-icons/si";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { subscribeReducer } from "@/store/AuthSlice";
 import { Toast } from "primereact/toast";
 import LangWrap from "./LangWarp";
+import { getFooter } from "@/store/FooterSlice";
 // import Image from "next/legacy/image";
 const Footer = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    dispatch(getFooter());
+  }, []);
+
+  const { footer } = useSelector((state) => state.FooterSlice);
+  console.log(footer);
+
   // const [email, setEmail] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -29,7 +38,9 @@ const Footer = () => {
       let errors = {};
       if (!data.email) {
         errors.email = " Email is required";
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)
+      ) {
         errors.email = "Invalid email";
       }
       return errors;
@@ -70,13 +81,20 @@ const Footer = () => {
   };
 
   return (
-    <LangWrap Lang={router?.query?.Lang?.toLowerCase() ? router?.query?.Lang?.toLowerCase() : "en"}>
+    <LangWrap
+      Lang={
+        router?.query?.Lang?.toLowerCase()
+          ? router?.query?.Lang?.toLowerCase()
+          : "en"
+      }
+    >
       <Toast ref={toast} />
       <div className={styles.footer}>
         <div
           className="container"
           style={{
-            direction: router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
+            direction:
+              router?.query?.Lang?.toLowerCase() === "ar" ? "rtl" : "ltr",
           }}
         >
           <div className="row justify-content-between ">
@@ -93,25 +111,55 @@ const Footer = () => {
                   loading="lazy"
                 />
               </div>
-              <p>{t("footer.about")}</p>
+              {footer?.map((item) => (
+                <p key={item.id}>
+                  {router?.query?.Lang?.toLowerCase() === "ar"
+                    ? item?.footer_ar
+                    : item?.footer_en}
+                </p>
+              ))}
+              {/* <p>{t("footer.about")}</p> */}
             </div>
             <div className={`col-6 col-md-2 ${styles.column}`}>
-              <h3 className={router?.query?.Lang?.toLowerCase() === "ar" ? "mob_right" : "mob_left"}>
+              <h3
+                className={
+                  router?.query?.Lang?.toLowerCase() === "ar"
+                    ? "mob_right"
+                    : "mob_left"
+                }
+              >
                 {t("footer.feature")}
               </h3>
               <div className={styles.Links}>
-                <Link href={`/${router?.query?.Lang?.toLowerCase()}`}>{t("menu.home")}</Link>
-                <Link href={`/${router?.query?.Lang?.toLowerCase()}#about`}>{t("menu.about")}</Link>
-                <Link href={`/${router?.query?.Lang?.toLowerCase()}#news`}>{t("menu.our_news")}</Link>
-                <Link href={`/${router?.query?.Lang?.toLowerCase()}#programs`}>{t("menu.our_programs")}</Link>
-                <Link href={`/${router?.query?.Lang?.toLowerCase()}#faq`}>{t("menu.faq")}</Link>
-                <Link href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}>{t("auth.login")}</Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}`}>
+                  {t("menu.home")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}#about`}>
+                  {t("menu.about")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}#news`}>
+                  {t("menu.our_news")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}#programs`}>
+                  {t("menu.our_programs")}
+                </Link>
+                <Link href={`/${router?.query?.Lang?.toLowerCase()}#faq`}>
+                  {t("menu.faq")}
+                </Link>
+                <Link
+                  href={`/${router?.query?.Lang?.toLowerCase()}/admin/login`}
+                >
+                  {t("auth.login")}
+                </Link>
               </div>
             </div>
             <div className={`col-6 col-md-2 ${styles.column}`}>
               <h3
                 style={{
-                  textAlign: router?.query?.Lang?.toLowerCase() === "ar" ? "right" : "left",
+                  textAlign:
+                    router?.query?.Lang?.toLowerCase() === "ar"
+                      ? "right"
+                      : "left",
                 }}
               >
                 {t("footer.contact")}
@@ -131,7 +179,9 @@ const Footer = () => {
                 </a>
                 <a
                   aria-label="our instagram"
-                  href={"https://www.instagram.com/thetop.player/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"}
+                  href={
+                    "https://www.instagram.com/thetop.player/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.span_div}
@@ -142,7 +192,9 @@ const Footer = () => {
                 </a>
                 <a
                   aria-label="Tiktok"
-                  href={"https://www.tiktok.com/@thetop.player?_t=8i0wA2PQnHc&_r=1"}
+                  href={
+                    "https://www.tiktok.com/@thetop.player?_t=8i0wA2PQnHc&_r=1"
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.span_div}
@@ -156,8 +208,14 @@ const Footer = () => {
               <form onSubmit={formik.handleSubmit} className={styles.form}>
                 <input
                   style={{
-                    marginRight: router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
-                    marginLeft: router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
+                    marginRight:
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "0"
+                        : "10px",
+                    marginLeft:
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "10px"
+                        : "0",
                   }}
                   placeholder={t("footer.enter_email")}
                   // value={email}
@@ -176,8 +234,14 @@ const Footer = () => {
               <div className={styles.Payments}>
                 <span
                   style={{
-                    marginRight: router?.query?.Lang?.toLowerCase() === "ar" ? "0" : "10px",
-                    marginLeft: router?.query?.Lang?.toLowerCase() === "ar" ? "10px" : "0",
+                    marginRight:
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "0"
+                        : "10px",
+                    marginLeft:
+                      router?.query?.Lang?.toLowerCase() === "ar"
+                        ? "10px"
+                        : "0",
                   }}
                 >
                   <FaStripe />
