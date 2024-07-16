@@ -25,8 +25,6 @@ const Footer = () => {
   }, []);
 
   const { footer } = useSelector((state) => state.FooterSlice);
-  console.log(footer);
-
   // const [email, setEmail] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
