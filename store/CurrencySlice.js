@@ -7,7 +7,7 @@ const detectUserCountryCode = async () => {
     return response.data.country_code; // Default to 'US' if country code is not available
   } catch (error) {
     console.error("Error fetching the country code:", error);
-    return "AE"; // Default to 'US' in case of an error
+    return "US"; // Default to 'US' in case of an error
   }
 };
 
@@ -86,7 +86,7 @@ const CurrencySlice = createSlice({
           let initialCountry = null;
           // Try to find a country with the currency code "AE"
           const findAed = allCountries.some((item) => {
-            if (item.currency_code === "AED") {
+            if (item.currency_code === "USD") {
               initialCountry = item;
               return true;
             }
@@ -98,7 +98,7 @@ const CurrencySlice = createSlice({
       })
 
       .addCase(initializeCurrencyCode.rejected, (state, action) => {
-        state.currentcurrency = "AED"; // Default to 'US' if initialization fails
+        state.currentcurrency = "USD"; // Default to 'US' if initialization fails
       });
   },
 });
