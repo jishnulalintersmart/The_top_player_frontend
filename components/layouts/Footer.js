@@ -16,7 +16,6 @@ import { subscribeReducer } from "@/store/AuthSlice";
 import { Toast } from "primereact/toast";
 import LangWrap from "./LangWarp";
 import { getFooter } from "@/store/FooterSlice";
-// import Image from "next/legacy/image";
 const Footer = () => {
   const { t } = useTranslation();
 
@@ -246,6 +245,13 @@ const Footer = () => {
                 </span>
                 <span>
                   <SiVisa />
+                </span>
+                <span style={{objectFit:"contain",padding:"5px"}}>
+                  <img
+                    width={"100%"}
+                    src={"/images/tamara (1).jpeg"}
+                    alt="Tamra Icon"
+                  />
                 </span>
                 <span>
                   <FaGooglePay />
