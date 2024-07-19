@@ -229,31 +229,20 @@ const Footer = () => {
               </form>
               <h3>{t("footer.payment")}</h3>
               <div className={styles.Payments}>
-              <span style={{ objectFit: "contain",padding:"3px"}}>
+                <span style={{ objectFit: "contain", padding: "3px" }}>
                   <img
                     width={"100%"}
                     src={"/images/tamara_logo.png"}
                     alt="Tamra Icon"
                   />
                 </span>
-                <span
-                  style={{
-                    marginRight:
-                      router?.query?.Lang?.toLowerCase() === "ar"
-                        ? "0"
-                        : "10px",
-                    marginLeft:
-                      router?.query?.Lang?.toLowerCase() === "ar"
-                        ? "10px"
-                        : "0",
-                  }}
-                >
+                <span>
                   <FaStripe />
                 </span>
                 <span>
                   <SiVisa />
                 </span>
-                
+
                 <span>
                   <FaGooglePay />
                 </span>
