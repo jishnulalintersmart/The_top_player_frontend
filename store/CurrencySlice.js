@@ -4,6 +4,7 @@ import axios from "axios";
 const detectUserCountryCode = async () => {
   try {
     const response = await axios.get("https://ipapi.co/json/");
+    console.log("RESPONSE FROM LOCATION API", response.data.country_code);
     return response.data.country_code; // Default to 'US' if country code is not available
   } catch (error) {
     console.error("Error fetching the country code:", error);
@@ -73,28 +74,23 @@ const CurrencySlice = createSlice({
         // Default to 'US' if initialization fails
       })
       .addCase(initializeCurrencyCode.fulfilled, (state, action) => {
-        let currentLocation = action.payload;
+        // let currentLocation = action.payload;
+        let currentLocation = "IN";
+        console.log("CURRENT LOCATION:", currentLocation);
         let allCountries = state.currencies;
 
         const matchingCountry = allCountries.find(
-          (item) => item.currency_code == currentLocation
+          (item) => item.currency_flag == currentLocation
         );
-
         if (matchingCountry) {
           state.currentcurrency = matchingCountry;
         } else {
-          let initialCountry = null;
-          // Try to find a country with the currency code "AE"
-          const findAed = allCountries.some((item) => {
-            if (item.currency_code === "USD") {
-              initialCountry = item;
-              return true;
-            }
-            return false;
-          });
-          state.currentcurrency = findAed ? initialCountry : allCountries[0];
+          state.currentcurrency = allCountries.find(
+            (item) => item.currency_code == "USD"
+          );
         }
         state.currencyloading = false;
+        console.log("CURRENT CURRENCY", state.currentcurrency);
       })
 
       .addCase(initializeCurrencyCode.rejected, (state, action) => {
