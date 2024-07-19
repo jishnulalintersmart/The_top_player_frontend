@@ -156,7 +156,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .Payments span {
@@ -189,12 +189,13 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 500px) {
   .Payments span {
-    width: 67px;
+    width: 50px;
     height: 35px;
   }
 }
+
 
 
 
