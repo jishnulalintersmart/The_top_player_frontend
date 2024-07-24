@@ -61,7 +61,7 @@ export default function Home({ Lang, MainBanner }) {
         />
         <meta property="og:url" content="https://thetopplayer.com/" />
         <meta property="og:site_name" content="The Top Player" />
-        <meta property="og:image" content="/android-chrome-32x32.png" />
+        <meta property="og:image" content="/favicon-32x32.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="32" />
         <meta property="og:image:height" content="32" />
