@@ -195,11 +195,6 @@ function App({ Component, pageProps, canonical, Path }) {
         />
         <link rel="manifest" href="/manifest.json" />
 
-        <meta property="og:image" content="/android-chrome-192x192.png" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="192" />
-        <meta property="og:image:height" content="192" />
-
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff"></meta>
