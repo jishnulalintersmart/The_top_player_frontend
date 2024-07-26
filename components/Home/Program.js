@@ -20,6 +20,8 @@ const Program = ({ styles, Lang }) => {
     (state) => state.CurrencySlice
   );
 
+  console.log(currentcurrency);
+
   useEffect(() => {
     dispatch(allCourses());
     dispatch(getsubscribedCourse());
@@ -218,19 +220,21 @@ const Program = ({ styles, Lang }) => {
                                 ).toFixed(2)
                               )}
                             </h5>
-                            <h6>
-                              <span className={styles.currency}>
-                                {currentcurrency?.currency_code}
-                              </span>
-                              <del>
-                                {Math.ceil(
-                                  (
-                                    course?.amount *
-                                    currentcurrency?.currency_rate
-                                  ).toFixed(2)
-                                )}{" "}
-                              </del>
-                            </h6>
+                            {course?.offerPercentage && (
+                              <h6>
+                                <span className={styles.currency}>
+                                  {currentcurrency?.currency_code}
+                                </span>
+                                <del>
+                                  {Math.ceil(
+                                    (
+                                      course?.amount *
+                                      currentcurrency?.currency_rate
+                                    ).toFixed(2)
+                                  )}{" "}
+                                </del>
+                              </h6>
+                            )}
                           </div>
                         )}
 

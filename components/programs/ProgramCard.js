@@ -146,13 +146,15 @@ const ProgramCard = ({
 
           <div className={styles.rgtSd}>
             <div className={styles.img_outer}>
-              <div className={styles.info_offer}>
-                <span>
-                  {programDetails?.offerPercentage}
-                  <span className={styles.sm}>%</span> <br />
-                  <span className={styles.sm}>OFF</span>
-                </span>
-              </div>
+              {programDetails?.offerPercentage && (
+                <div className={styles.info_offer}>
+                  <span>
+                    {programDetails?.offerPercentage}
+                    <span className={styles.sm}>%</span> <br />
+                    <span className={styles.sm}>OFF</span>
+                  </span>
+                </div>
+              )}
               <div className={styles.img_wrap}>
                 <Image
                   src={`${process.env.customKey}/courseImages/${programDetails?.imageUrl}`}
@@ -175,16 +177,21 @@ const ProgramCard = ({
                     ).toFixed(2)
                   )}
                 </span>
-                <span className={styles.old_price}>
-                  <sup>{currentcurrency && currentcurrency?.currency_code}</sup>
-                  <span>
-                    {Math.ceil(
-                      (
-                        programDetails?.amount * currentcurrency?.currency_rate
-                      ).toFixed(2)
-                    )}
+                {programDetails?.offerPercentage && (
+                  <span className={styles.old_price}>
+                    <sup>
+                      {currentcurrency && currentcurrency?.currency_code}
+                    </sup>
+                    <span>
+                      {Math.ceil(
+                        (
+                          programDetails?.amount *
+                          currentcurrency?.currency_rate
+                        ).toFixed(2)
+                      )}
+                    </span>
                   </span>
-                </span>
+                )}
               </div>
             </div>
           </div>
