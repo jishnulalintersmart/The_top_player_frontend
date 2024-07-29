@@ -239,6 +239,8 @@ export const subscribeReducer = createAsyncThunk(
 export const PayReducer = createAsyncThunk(
   "Auth/PayReducer",
   async (params, thunkAPI) => {
+    console.log(params);
+
     const { course_id } = params;
     const { currency_code, currency_rate } = params.currentcurrency;
 

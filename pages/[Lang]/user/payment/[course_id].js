@@ -33,15 +33,16 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
   const { coupon } = useSelector((state) => state.CouponSlice);
 
-  console.log(coupon);
-
   const [isLoading, setIsLoading] = useState(false);
+  const [couponDetails, setCouponDetails] = useState(null);
 
   const tamaraSupportCurrencies = ["AE"];
 
   useEffect(() => {
     if (course_id && currentcurrency) {
-      dispatch(PayReducer({ course_id, currentcurrency }))
+      dispatch(
+        PayReducer({ course_id, currentcurrency, coupon, couponDetails })
+      )
         .unwrap()
         .then(() => {})
         .catch((err) => {
@@ -51,7 +52,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
           }
         });
     }
-  }, [dispatch, course_id, router, Lang, currentcurrency]);
+  }, [dispatch, course_id, router, Lang, currentcurrency,coupon]);
 
   const options = {
     clientSecret: clientSecret,
@@ -182,10 +183,12 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                               <p>{t("payment.Total")}</p>
                               <p className="En_num">
                                 {currentcurrency?.currency_code}{" "}
-                                {Math.ceil(
-                                  coupon?.discountAmount *
-                                    currentcurrency?.currency_rate
-                                )}
+                                {(
+                                  CourseByIdArray?.offerAmount *
+                                    currentcurrency?.currency_rate -
+                                  coupon.discountAmount *
+                                    currentcurrency.currency_rate
+                                ).toFixed(0)}
                               </p>
                             </>
                           ) : (
