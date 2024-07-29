@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import LangWrap from "../layouts/LangWarp";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Coupon from "../layouts/Coupon";
 
 const ProgramCard = ({
   Lang,
@@ -19,6 +20,7 @@ const ProgramCard = ({
   const currentPath = router.pathname;
   const wordToCheck = "camps";
   const regex = new RegExp(`\\b${wordToCheck}\\b`);
+
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
 
   const handleRedirect = () => {
@@ -193,6 +195,7 @@ const ProgramCard = ({
                   </span>
                 )}
               </div>
+              <Coupon courseAmount={programDetails?.amount} />
             </div>
           </div>
         </div>

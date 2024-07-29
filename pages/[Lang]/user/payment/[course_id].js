@@ -22,6 +22,7 @@ import axios from "axios";
 import TamaraWidget from "@/components/Payment/Tamara/widget";
 import { Button } from "react-bootstrap";
 import { courseById } from "@/store/CourcesSlice";
+import Coupon from "@/components/layouts/Coupon";
 
 const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   // console.log("CourseByIdArray", CourseByIdArray);
@@ -30,6 +31,10 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const router = useRouter();
   const { clientSecret } = useSelector((state) => state.AuthSlice);
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
+  const { coupon } = useSelector((state) => state.CouponSlice);
+
+  console.log(coupon);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const tamaraSupportCurrencies = ["AE"];
@@ -100,30 +105,10 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
               <div className="row">
                 <div className="col-12">
                   <div className={styles.Order_summery}>
-                    {/* {parseInt(course_id) === 1 && ( */}
-                    <div
-                      className={styles.summer_header}
-                      onClick={() => setShow(!show)}
-                    >
-                      <h1>
-                        {t("payment.summary")}
-                        <span>
-                          <MdArrowDropDown />
-                        </span>
-                      </h1>
-                      <h3 className="En_num">
-                        {currentcurrency && currentcurrency?.currency_code}{" "}
-                        {Math.ceil(
-                          (
-                            CourseByIdArray?.offerAmount *
-                            currentcurrency?.currency_rate
-                          ).toFixed(2)
-                        )}
-                      </h3>
-                    </div>
-                    {/* )} */}
-
-                    {show && (
+                    <>
+                      <div>
+                        <Coupon courseAmount={CourseByIdArray?.offerAmount} />
+                      </div>
                       <div className={styles.summer_content}>
                         <div className={styles.package}>
                           <div className="d-flex align-items-center">
@@ -146,7 +131,12 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                           </div>
                           <p className="En_num">
                             {currentcurrency?.currency_code}{" "}
-                            {CourseByIdArray?.offerAmount}
+                            {Math.ceil(
+                              (
+                                CourseByIdArray?.offerAmount *
+                                currentcurrency?.currency_rate
+                              ).toFixed(2)
+                            )}
                           </p>
                         </div>
                         <div
@@ -166,28 +156,55 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         <div
                           className={`${styles.package} ${styles.package_sub}`}
                         >
-                          <p>{t("payment.Discount")}</p>
-                          <p className="En_num">
-                            {CourseByIdArray?.offerPercentage}%
-                          </p>
+                          {coupon ? (
+                            <>
+                              <p>{t("payment.Discount")}</p>
+                              <p className="En_num">
+                                {Math.ceil(
+                                  coupon.discountAmount *
+                                    currentcurrency.currency_rate
+                                )}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p>{t("payment.Discount")}</p>
+                              <p className="En_num">0</p>
+                            </>
+                          )}
                         </div>
                         <hr />
                         <div
                           className={`${styles.package} ${styles.package_total}`}
                         >
-                          <p>{t("payment.Total")}</p>
-                          <p className="En_num">
-                            {currentcurrency?.currency_code}{" "}
-                            {Math.ceil(
-                              (
-                                CourseByIdArray?.offerAmount *
-                                currentcurrency?.currency_rate
-                              ).toFixed(2)
-                            )}
-                          </p>
+                          {coupon ? (
+                            <>
+                              <p>{t("payment.Total")}</p>
+                              <p className="En_num">
+                                {currentcurrency?.currency_code}{" "}
+                                {Math.ceil(
+                                  coupon?.discountAmount *
+                                    currentcurrency?.currency_rate
+                                )}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p>{t("payment.Total")}</p>
+                              <p className="En_num">
+                                {currentcurrency?.currency_code}{" "}
+                                {Math.ceil(
+                                  (
+                                    CourseByIdArray?.offerAmount *
+                                    currentcurrency?.currency_rate
+                                  ).toFixed(2)
+                                )}
+                              </p>
+                            </>
+                          )}
                         </div>
                       </div>
-                    )}
+                    </>
                   </div>
                 </div>
                 <div className="col-12 text-center">
