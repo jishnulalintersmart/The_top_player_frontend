@@ -239,9 +239,7 @@ export const subscribeReducer = createAsyncThunk(
 export const PayReducer = createAsyncThunk(
   "Auth/PayReducer",
   async (params, thunkAPI) => {
-    console.log(params);
-
-    const { course_id } = params;
+    const { course_id, coupon_details: coupon_code } = params;
     const { currency_code, currency_rate } = params.currentcurrency;
 
     const { rejectWithValue } = thunkAPI;
@@ -253,6 +251,7 @@ export const PayReducer = createAsyncThunk(
             courseId: course_id,
             currency_code,
             currency_rate,
+            coupon_code,
           },
           {
             headers: {

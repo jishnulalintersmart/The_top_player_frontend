@@ -15,6 +15,7 @@ export const applyCoupon = createAsyncThunk(
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
+            "X-Access-Token": Cookies.get("UT"),
           },
         }
       );
@@ -32,19 +33,25 @@ const CouponSlice = createSlice({
   name: "Coupon",
   initialState: {
     coupon: null,
-    count: 0,
+    coupon_details: null,
     initialLoading: false,
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    resetCoupon: (state) => {
+      state.coupon = null;
+      state.coupon_details = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(applyCoupon.pending, (state, action) => {
         state.loading = true;
       })
       .addCase(applyCoupon.fulfilled, (state, action) => {
-        state.coupon = action.payload;
+        state.coupon = action.payload.discountAmount;
+        state.coupon_details = action.payload.couponExist;
         state.loading = false;
       })
       .addCase(applyCoupon.rejected, (state, action) => {
@@ -53,5 +60,7 @@ const CouponSlice = createSlice({
       });
   },
 });
+
+export const { resetCoupon } = CouponSlice.actions;
 
 export default CouponSlice.reducer;

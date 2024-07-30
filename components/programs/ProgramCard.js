@@ -195,7 +195,6 @@ const ProgramCard = ({
                   </span>
                 )}
               </div>
-              <Coupon courseAmount={programDetails?.amount} />
             </div>
           </div>
         </div>

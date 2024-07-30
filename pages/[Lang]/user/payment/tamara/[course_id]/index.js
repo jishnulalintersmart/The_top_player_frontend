@@ -22,6 +22,7 @@ import LangWrap from "@/components/layouts/LangWarp";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import TamaraWidget from "@/components/Payment/Tamara/widget";
+import Coupon from "@/components/layouts/Coupon";
 
 const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   // console.log("CourseByIdArray", CourseByIdArray);
@@ -30,6 +31,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const router = useRouter();
   const { clientSecret } = useSelector((state) => state.AuthSlice);
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
+  const { coupon, coupon_details } = useSelector((state) => state.CouponSlice);
 
   const tamaraSupportCurrencies = ["AE"];
 
@@ -62,6 +64,8 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
           lang: Lang,
           amount: CourseByIdArray?.offerAmount,
           type: "camps",
+          coupon,
+          coupon_code: coupon_details,
         },
         {
           headers: {
@@ -84,7 +88,6 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
       });
   };
 
-  const [show, setShow] = useState(false);
   return (
     <LangWrap Lang={Lang}>
       <div className={"inner_section_outer"}>
@@ -99,95 +102,86 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
               <div className="row">
                 <div className="col-12">
                   <div className={styles.Order_summery}>
-                    {/* {parseInt(course_id) === 1 && ( */}
-                    <div
-                      className={styles.summer_header}
-                      onClick={() => setShow(!show)}
-                    >
-                      <h1>
-                        {t("payment.summary")}
-                        <span>
-                          <MdArrowDropDown />
-                        </span>
-                      </h1>
-                      <h3 className="En_num">
-                        {currentcurrency && currentcurrency?.currency_code}{" "}
-                        {Math.ceil(
-                          (
-                            CourseByIdArray?.offerAmount *
-                            currentcurrency?.currency_rate
-                          ).toFixed(2)
-                        )}
-                      </h3>
-                    </div>
-                    {/* )} */}
-
-                    {show && (
-                      <div className={styles.summer_content}>
-                        <div className={styles.package}>
-                          <div className="d-flex align-items-center">
-                            <div
-                              className={styles.package_image}
-                              style={{
-                                marginRight: Lang === "ar" ? "0" : "10px",
-                                marginLeft: Lang === "ar" ? "10px" : "0",
-                              }}
-                            >
-                              <Image
-                                src={`${process.env.customKey}/courseImages/${CourseByIdArray?.imageUrl}`}
-                                alt="package"
-                                layout="fill"
-                                objectFit="contain"
-                                loading="lazy"
-                              />
-                            </div>
-                            <h4>{CourseByIdArray?.name}</h4>
+                    <div className={styles.summer_content}>
+                      <div className={styles.package}>
+                        <div className="d-flex align-items-center">
+                          <div
+                            className={styles.package_image}
+                            style={{
+                              marginRight: Lang === "ar" ? "0" : "10px",
+                              marginLeft: Lang === "ar" ? "10px" : "0",
+                            }}
+                          >
+                            <Image
+                              src={`${process.env.customKey}/courseImages/${CourseByIdArray?.imageUrl}`}
+                              alt="package"
+                              layout="fill"
+                              objectFit="contain"
+                              loading="lazy"
+                            />
                           </div>
-                          <p className="En_num">
-                            {currentcurrency?.currency_code}{" "}
-                            {CourseByIdArray?.offerAmount}
-                          </p>
+                          <h4>{CourseByIdArray?.name}</h4>
                         </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
-                          <p>{t("payment.Subtotal")}</p>
-                          <p className="En_num">
-                            {" "}
-                            {currentcurrency?.currency_code}{" "}
-                            {Math.ceil(
-                              (
-                                CourseByIdArray?.amount *
-                                currentcurrency?.currency_rate
-                              ).toFixed(2)
-                            )}
-                          </p>
-                        </div>
-                        <div
-                          className={`${styles.package} ${styles.package_sub}`}
-                        >
-                          <p>{t("payment.Discount")}</p>
-                          <p className="En_num">
-                            {CourseByIdArray?.offerPercentage}%
-                          </p>
-                        </div>
-                        <hr />
-                        <div
-                          className={`${styles.package} ${styles.package_total}`}
-                        >
-                          <p>{t("payment.Total")}</p>
-                          <p className="En_num">
-                            {currentcurrency?.currency_code}{" "}
-                            {Math.ceil(
-                              (
-                                CourseByIdArray?.offerAmount *
-                                currentcurrency?.currency_rate
-                              ).toFixed(2)
-                            )}
-                          </p>
-                        </div>
+                        <p className="En_num">
+                          {currentcurrency?.currency_code}{" "}
+                          {CourseByIdArray?.offerAmount}
+                        </p>
                       </div>
-                    )}
+
+                      <div>
+                        <Coupon courseAmount={CourseByIdArray?.offerAmount} />
+                      </div>
+
+                      <div
+                        className={`${styles.package} ${styles.package_sub}`}
+                      >
+                        <p>{t("payment.Subtotal")}</p>
+                        <p className="En_num">
+                          {" "}
+                          {currentcurrency?.currency_code}{" "}
+                          {Math.ceil(
+                            (
+                              CourseByIdArray?.amount *
+                              currentcurrency?.currency_rate
+                            ).toFixed(2)
+                          )}
+                        </p>
+                      </div>
+                      <div
+                        className={`${styles.package} ${styles.package_sub}`}
+                      >
+                        {coupon ? (
+                          <>
+                            <p>{t("payment.Discount")}</p>
+                            <p className="En_num">
+                              {Math.ceil(
+                                coupon * currentcurrency.currency_rate
+                              )}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p>{t("payment.Discount")}</p>
+                            <p className="En_num">0</p>
+                          </>
+                        )}
+                      </div>
+                      <hr />
+                      <div
+                        className={`${styles.package} ${styles.package_total}`}
+                      >
+                        <p>{t("payment.Total")}</p>
+                        <p className="En_num">
+                          {currentcurrency?.currency_code}{" "}
+                          {Math.ceil(
+                            (
+                              CourseByIdArray?.offerAmount *
+                              currentcurrency?.currency_rate
+                            ).toFixed(2)
+                          )}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="col-12 text-center">

@@ -21,7 +21,7 @@
       -o-border-radius: 5px;
       border: 1px solid #dfdfdf;
       margin-right: 10px;
-      &:focus{
+      &:focus {
         outline: 0;
         border-color: var(--main_color);
       }
@@ -53,12 +53,21 @@
       }
     }
   }
-  .error {
-    color: red;
-    font-size: 0.7rem;
-    position: absolute;
-    top: 100%;
-  }
+}
+
+.error {
+  color: red;
+  font-size: 0.7rem;
+  margin-top: 10px;
+}
+.successWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.successWrap span{
+  color: green;
 }
 
 // .column button {

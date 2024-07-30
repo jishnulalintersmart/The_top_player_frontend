@@ -31,18 +31,15 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const router = useRouter();
   const { clientSecret } = useSelector((state) => state.AuthSlice);
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
-  const { coupon } = useSelector((state) => state.CouponSlice);
+  const { coupon, coupon_details } = useSelector((state) => state.CouponSlice);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [couponDetails, setCouponDetails] = useState(null);
 
   const tamaraSupportCurrencies = ["AE"];
 
   useEffect(() => {
     if (course_id && currentcurrency) {
-      dispatch(
-        PayReducer({ course_id, currentcurrency, coupon, couponDetails })
-      )
+      dispatch(PayReducer({ course_id, currentcurrency, coupon_details }))
         .unwrap()
         .then(() => {})
         .catch((err) => {
@@ -52,7 +49,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
           }
         });
     }
-  }, [dispatch, course_id, router, Lang, currentcurrency,coupon]);
+  }, [dispatch, course_id, router, Lang, currentcurrency, coupon]);
 
   const options = {
     clientSecret: clientSecret,
@@ -69,6 +66,8 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
           lang: Lang,
           type: "programs",
           amount: CourseByIdArray?.offerAmount,
+          coupon,
+          coupon_code: coupon_details,
         },
         {
           headers: {
@@ -91,7 +90,6 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
       });
   };
 
-  const [show, setShow] = useState(false);
   return (
     <LangWrap Lang={Lang}>
       <div className={"inner_section_outer"}>
@@ -140,19 +138,24 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                       <div>
                         <Coupon courseAmount={CourseByIdArray?.offerAmount} />
                       </div>
+
                       <div
                         className={`${styles.package} ${styles.package_sub}`}
                       >
                         <p>{t("payment.Subtotal")}</p>
-                        <p className="En_num"><s className="text-muted">
-                          {currentcurrency?.currency_code}{" "}
-                          {Math.ceil(
-                            (
-                              CourseByIdArray?.amount *
-                              currentcurrency?.currency_rate
-                            ).toFixed(2)
-                          )}
-                        </s>
+                        <p className="En_num">
+                          <s
+                            style={{ textDecoration: "none" }}
+                            className="text-muted"
+                          >
+                            {currentcurrency?.currency_code}{" "}
+                            {Math.ceil(
+                              (
+                                CourseByIdArray?.amount *
+                                currentcurrency?.currency_rate
+                              ).toFixed(2)
+                            )}
+                          </s>
                         </p>
                       </div>
                       <div
@@ -163,8 +166,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                             <p>{t("payment.Discount")}</p>
                             <p className="En_num">
                               {Math.ceil(
-                                coupon.discountAmount *
-                                  currentcurrency.currency_rate
+                                coupon * currentcurrency.currency_rate
                               )}
                             </p>
                           </>
@@ -183,10 +185,12 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                           <>
                             <p>{t("payment.Total")}</p>
                             <p className="En_num">
-                              {currentcurrency?.currency_code}{" "}
                               {Math.ceil(
-                                coupon?.discountAmount *
-                                  currentcurrency?.currency_rate
+                                (
+                                  CourseByIdArray?.offerAmount *
+                                    currentcurrency?.currency_rate -
+                                  coupon * currentcurrency.currency_rate
+                                ).toFixed(0)
                               )}
                             </p>
                           </>
