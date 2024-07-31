@@ -242,6 +242,8 @@ export const PayReducer = createAsyncThunk(
     const { course_id, coupon_details: coupon_code } = params;
     const { currency_code, currency_rate } = params.currentcurrency;
 
+    console.log("HEREEE");
+
     const { rejectWithValue } = thunkAPI;
     try {
       const result = await axios
@@ -262,6 +264,7 @@ export const PayReducer = createAsyncThunk(
           }
         )
         .then((res) => res.data);
+      console.log(result);
       return result;
     } catch (err) {
       return rejectWithValue(err);

@@ -35,7 +35,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const tamaraSupportCurrencies = ["AE"];
+  const tamaraSupportCurrencies = ["AE","KW","SA"];
 
   useEffect(() => {
     if (course_id && currentcurrency) {
@@ -57,7 +57,6 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
 
   const initiateTamaraPayment = () => {
     setIsLoading(true);
-    console.log("tamara initiated", Cookies.get("UT"));
     axios
       .post(
         `${process.env.customKey}/create-tamara-payment`,
@@ -68,6 +67,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
           amount: CourseByIdArray?.offerAmount,
           coupon,
           coupon_code: coupon_details,
+          currentcurrency,
         },
         {
           headers: {
@@ -136,7 +136,11 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                       </div>
 
                       <div>
-                        <Coupon courseAmount={CourseByIdArray?.offerAmount} />
+                        <Coupon
+                          courseAmount={CourseByIdArray?.offerAmount}
+                          Lang={Lang}
+                          currentCurrency={currentcurrency}
+                        />
                       </div>
 
                       <div
@@ -158,17 +162,36 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                           </s>
                         </p>
                       </div>
+
+                      {CourseByIdArray?.amount !==
+                        CourseByIdArray?.offerAmount && (
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.OfferAmount")}</p>
+                          <p className="En_num">
+                            <s
+                              style={{ textDecoration: "none" }}
+                              className="text-muted"
+                            >
+                              {currentcurrency?.currency_code}{" "}
+                              {Math.ceil(
+                                (
+                                  CourseByIdArray?.offerAmount *
+                                  currentcurrency?.currency_rate
+                                ).toFixed(2)
+                              )}
+                            </s>
+                          </p>
+                        </div>
+                      )}
                       <div
                         className={`${styles.package} ${styles.package_sub}`}
                       >
                         {coupon ? (
                           <>
                             <p>{t("payment.Discount")}</p>
-                            <p className="En_num">
-                              {Math.ceil(
-                                coupon * currentcurrency.currency_rate
-                              )}
-                            </p>
+                            <p className="En_num">{coupon}</p>
                           </>
                         ) : (
                           <>
@@ -186,11 +209,9 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                             <p>{t("payment.Total")}</p>
                             <p className="En_num">
                               {Math.ceil(
-                                (
-                                  CourseByIdArray?.offerAmount *
-                                    currentcurrency?.currency_rate -
-                                  coupon * currentcurrency.currency_rate
-                                ).toFixed(0)
+                                CourseByIdArray?.offerAmount *
+                                  currentcurrency?.currency_rate -
+                                  coupon
                               )}
                             </p>
                           </>
@@ -240,6 +261,18 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                   ) : (
                     <p>{t("payment.payment_not_supported")}</p>
                   )}
+                  {/* <div className="tamara-widget">
+                    <div className="tamara-wrapper">
+                      <TamaraWidget Lang={Lang} />
+                    </div>
+                    <Button
+                      variant="success"
+                      onClick={initiateTamaraPayment}
+                      disabled={isLoading}
+                    >
+                      {t("payment.pay_tamara")}
+                    </Button>
+                  </div> */}
                 </div>
               </div>
             </div>

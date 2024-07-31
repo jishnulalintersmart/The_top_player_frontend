@@ -33,20 +33,22 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
   const { coupon, coupon_details } = useSelector((state) => state.CouponSlice);
 
-  const tamaraSupportCurrencies = ["AE"];
+  const tamaraSupportCurrencies = ["AE","KW","SA"];
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    dispatch(PayReducer(course_id))
-      .unwrap()
-      .then(() => {})
-      .catch((err) => {
-        if (err?.response?.status === 401) {
-          Cookies.remove("UT");
-          router.push(`/${Lang}`);
-        }
-      });
-  }, [dispatch, course_id, router, Lang]);
+    if (course_id && currentcurrency) {
+      dispatch(PayReducer(course_id, currentcurrency, coupon_details))
+        .unwrap()
+        .then(() => {})
+        .catch((err) => {
+          if (err?.response?.status === 401) {
+            Cookies.remove("UT");
+            router.push(`/${Lang}`);
+          }
+        });
+    }
+  }, [dispatch, course_id, router, Lang, currentcurrency, coupon]);
 
   const options = {
     clientSecret: clientSecret,
@@ -66,6 +68,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
           type: "camps",
           coupon,
           coupon_code: coupon_details,
+          currentcurrency,
         },
         {
           headers: {
@@ -124,12 +127,21 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         </div>
                         <p className="En_num">
                           {currentcurrency?.currency_code}{" "}
-                          {CourseByIdArray?.offerAmount}
+                          {Math.ceil(
+                            (
+                              CourseByIdArray?.offerAmount *
+                              currentcurrency?.currency_rate
+                            ).toFixed(2)
+                          )}
                         </p>
                       </div>
 
                       <div>
-                        <Coupon courseAmount={CourseByIdArray?.offerAmount} />
+                        <Coupon
+                          courseAmount={CourseByIdArray?.offerAmount}
+                          Lang={Lang}
+                          currentCurrency={currentcurrency}
+                        />
                       </div>
 
                       <div
@@ -147,17 +159,36 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                           )}
                         </p>
                       </div>
+
+                      {CourseByIdArray?.amount !==
+                        CourseByIdArray?.offerAmount && (
+                        <div
+                          className={`${styles.package} ${styles.package_sub}`}
+                        >
+                          <p>{t("payment.OfferAmount")}</p>
+                          <p className="En_num">
+                            <s
+                              style={{ textDecoration: "none" }}
+                              className="text-muted"
+                            >
+                              {currentcurrency?.currency_code}{" "}
+                              {Math.ceil(
+                                (
+                                  CourseByIdArray?.offerAmount *
+                                  currentcurrency?.currency_rate
+                                ).toFixed(2)
+                              )}
+                            </s>
+                          </p>
+                        </div>
+                      )}
                       <div
                         className={`${styles.package} ${styles.package_sub}`}
                       >
                         {coupon ? (
                           <>
                             <p>{t("payment.Discount")}</p>
-                            <p className="En_num">
-                              {Math.ceil(
-                                coupon * currentcurrency.currency_rate
-                              )}
-                            </p>
+                            <p className="En_num">{coupon}</p>
                           </>
                         ) : (
                           <>
@@ -170,16 +201,31 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                       <div
                         className={`${styles.package} ${styles.package_total}`}
                       >
-                        <p>{t("payment.Total")}</p>
-                        <p className="En_num">
-                          {currentcurrency?.currency_code}{" "}
-                          {Math.ceil(
-                            (
-                              CourseByIdArray?.offerAmount *
-                              currentcurrency?.currency_rate
-                            ).toFixed(2)
-                          )}
-                        </p>
+                        {coupon ? (
+                          <>
+                            <p>{t("payment.Total")}</p>
+                            <p className="En_num">
+                              {Math.ceil(
+                                CourseByIdArray?.offerAmount *
+                                  currentcurrency?.currency_rate -
+                                  coupon
+                              )}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <p>{t("payment.Total")}</p>
+                            <p className="En_num">
+                              {currentcurrency?.currency_code}{" "}
+                              {Math.ceil(
+                                (
+                                  CourseByIdArray?.offerAmount *
+                                  currentcurrency?.currency_rate
+                                ).toFixed(2)
+                              )}
+                            </p>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

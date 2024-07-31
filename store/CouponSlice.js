@@ -5,12 +5,12 @@ import Cookies from "js-cookie";
 export const applyCoupon = createAsyncThunk(
   "Coupon/apply_coupon",
   async (data, thunkAPI) => {
-    const { coupon_code, courseAmount } = data;
+    const { coupon_code, courseAmount,currentCurrency } = data;
     const { rejectWithValue } = thunkAPI;
     try {
       const response = await axios.post(
         `${process.env.customKey}/apply_coupon`,
-        { coupon_code, courseAmount },
+        { coupon_code, courseAmount,currentCurrency },
         {
           headers: {
             "Content-Type": "application/json",
