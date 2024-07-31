@@ -29,7 +29,7 @@ const Testimonials = ({ Lang, programId }) => {
 
   useEffect(() => {
     dispatch(getTestimonialById(programId));
-  }, [dispatch]);
+  }, [dispatch,programId]);
 
   return (
     <div className={styles.testimonials_section}>
