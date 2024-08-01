@@ -35,7 +35,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const tamaraSupportCurrencies = ["AE","KW","SA"];
+  const tamaraSupportCurrencies = ["AE", "KW", "SA"];
 
   useEffect(() => {
     if (course_id && currentcurrency) {
@@ -191,12 +191,16 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         {coupon ? (
                           <>
                             <p>{t("payment.Discount")}</p>
-                            <p className="En_num">{coupon}</p>
+                            <p className="En_num">
+                              {currentcurrency?.currency_code} {coupon}
+                            </p>
                           </>
                         ) : (
                           <>
                             <p>{t("payment.Discount")}</p>
-                            <p className="En_num">0</p>
+                            <p className="En_num">
+                              {currentcurrency?.currency_code} 0
+                            </p>
                           </>
                         )}
                       </div>
@@ -208,6 +212,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                           <>
                             <p>{t("payment.Total")}</p>
                             <p className="En_num">
+                              {currentcurrency?.currency_code}{" "}
                               {Math.ceil(
                                 CourseByIdArray?.offerAmount *
                                   currentcurrency?.currency_rate -

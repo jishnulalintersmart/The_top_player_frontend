@@ -33,7 +33,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
   const { currentcurrency } = useSelector((state) => state.CurrencySlice);
   const { coupon, coupon_details } = useSelector((state) => state.CouponSlice);
 
-  const tamaraSupportCurrencies = ["AE","KW","SA"];
+  const tamaraSupportCurrencies = ["AE", "KW", "SA"];
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -193,7 +193,9 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                         ) : (
                           <>
                             <p>{t("payment.Discount")}</p>
-                            <p className="En_num">0</p>
+                            <p className="En_num">
+                              {currentcurrency?.currency_code} 0
+                            </p>
                           </>
                         )}
                       </div>
@@ -205,6 +207,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                           <>
                             <p>{t("payment.Total")}</p>
                             <p className="En_num">
+                              {currentcurrency?.currency_code}{" "}
                               {Math.ceil(
                                 CourseByIdArray?.offerAmount *
                                   currentcurrency?.currency_rate -
