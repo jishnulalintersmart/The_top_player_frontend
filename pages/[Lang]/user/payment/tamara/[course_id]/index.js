@@ -248,7 +248,7 @@ const Payment = ({ course_id, Lang, CourseByIdArray }) => {
                   ) ? (
                     <div className="tamara-widget">
                       <div className="tamara-wrapper">
-                        <TamaraWidget Lang={Lang} />
+                      <TamaraWidget Lang={Lang} />
                       </div>
                       <Button
                         variant="success"

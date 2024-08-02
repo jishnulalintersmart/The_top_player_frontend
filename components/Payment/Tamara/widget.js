@@ -1,6 +1,14 @@
 import { useEffect } from "react";
 
-const TamaraWidget = ({ Lang, country, publicKey, customCss, fontSize, badgeRatio, amount }) => {
+const TamaraWidget = ({
+  Lang,
+  country,
+  publicKey,
+  customCss,
+  fontSize,
+  badgeRatio,
+  amount,
+}) => {
   console.log(Lang);
 
   useEffect(() => {
@@ -9,11 +17,12 @@ const TamaraWidget = ({ Lang, country, publicKey, customCss, fontSize, badgeRati
       lang: Lang,
       country: country || "AE",
       publicKey: "a916b2ef-bb66-4e5b-84d9-5bbae98db825",
-      css: customCss || "",
-      style: {
-        fontSize: fontSize || "16px",
-        badgeRatio: badgeRatio || 1,
-      },
+      css: ".tamara-summary-widget__container .tamara-badge{width:100px;max-height:initial !important;display:inline-block;}",
+      // style: {
+      //   fontSize: "16px",
+      //   margin: "10px",
+      //   badgeRatio: 1.5,
+      // },
     };
 
     // Load the widget script
@@ -35,8 +44,7 @@ const TamaraWidget = ({ Lang, country, publicKey, customCss, fontSize, badgeRati
         type="tamara-summary"
         amount={amount}
         inline-type="3"
-        inline-variant="outlined"
-        config='{"badgePosition":"right","showExtraContent":""}'
+        // inline-variant="outlined"
       ></tamara-widget>
     </div>
   );
