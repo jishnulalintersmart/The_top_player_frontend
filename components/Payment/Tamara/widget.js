@@ -9,15 +9,13 @@ const TamaraWidget = ({
   badgeRatio,
   amount,
 }) => {
-  console.log(Lang);
-
   useEffect(() => {
     // Define the widget configuration
     window.tamaraWidgetConfig = {
       lang: Lang,
       country: country || "AE",
       publicKey: "a916b2ef-bb66-4e5b-84d9-5bbae98db825",
-      css: ".tamara-summary-widget__container .tamara-badge{width:100px;max-height:initial !important;display:inline-block;}",
+      css: ".tamara-summary-widget__container .tamara-badge{width:95px;max-height:initial !important;display:inline-block;}",
       // style: {
       //   fontSize: "16px",
       //   margin: "10px",
