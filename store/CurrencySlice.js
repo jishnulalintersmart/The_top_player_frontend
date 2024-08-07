@@ -100,16 +100,3 @@ const CurrencySlice = createSlice({
 });
 export const { setCurrency } = CurrencySlice.actions;
 export default CurrencySlice.reducer;
-
-
-// {
-//   id: 7,
-//   currency_name: 'AED',
-//   currency_flag: 'AE',
-//   currency_code: 'AED',
-//   isDeleted: false,
-//   isActive: true,
-//   currency_rate: '1.000000',
-//   createdAt: '2024-07-15T11:55:21.000Z',
-//   updatedAt: '2024-07-15T11:55:21.000Z'
-// }
