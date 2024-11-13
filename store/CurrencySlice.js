@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// const detectUserCountryCode = async () => {
-//   try {
-//     const response = await axios.get("https://ipapi.co/json/");
-//     return response.data.country_code; // Default to 'US' if country code is not available
-//   } catch (error) {
-//     console.error("Error fetching the country code:", error);
-//     return "AE"; // Default to 'US' in case of an error
-//   }
-// };
+const detectUserCountryCode = async () => {
+  try {
+    const response = await axios.get("https://ipapi.co/json/");
+    console.log("RESPONSE FROM LOCATION API", response.data.country_code);
+    return response.data.country_code; // Default to 'US' if country code is not available
+  } catch (error) {
+    console.error("Error fetching the country code:", error);
+    return "US"; // Default to 'US' in case of an error
+  }
+};
 
 export const getAllCurrencies = createAsyncThunk(
   "Currency/all",
@@ -25,7 +26,7 @@ export const getAllCurrencies = createAsyncThunk(
           },
         })
         .then((res) => res.data);
-      // dispatch(initializeCurrencyCode());
+      dispatch(initializeCurrencyCode());
       return result;
     } catch (err) {
       return rejectWithValue(err);
@@ -33,18 +34,19 @@ export const getAllCurrencies = createAsyncThunk(
   }
 );
 
-// export const initializeCurrencyCode = createAsyncThunk(
-//   "currency/initialize",
-//   async () => {
-//     const countryCode = await detectUserCountryCode();
-//     return countryCode;
-//   }
-// );
+export const initializeCurrencyCode = createAsyncThunk(
+  "currency/initialize",
+  async () => {
+    const countryCode = await detectUserCountryCode();
+    return countryCode;
+  }
+);
 
 const CurrencySlice = createSlice({
   name: "Currency",
   initialState: {
     initialloading: false,
+    currencyloading: false,
     currencies: [],
     currentcurrency: null,
     error: null,
@@ -66,33 +68,34 @@ const CurrencySlice = createSlice({
       })
       .addCase(getAllCurrencies.rejected, (state, action) => {
         state.error = action.payload;
+      })
+      .addCase(initializeCurrencyCode.pending, (state, action) => {
+        state.currencyloading = true;
+        // Default to 'US' if initialization fails
+      })
+      .addCase(initializeCurrencyCode.fulfilled, (state, action) => {
+        let currentLocation = action.payload;
+        // let currentLocation = "KW";
+        console.log("CURRENT LOCATION:", currentLocation);
+        let allCountries = state.currencies;
+
+        const matchingCountry = allCountries.find(
+          (item) => item.currency_flag == currentLocation
+        );
+        if (matchingCountry) {
+          state.currentcurrency = matchingCountry;
+        } else {
+          state.currentcurrency = allCountries.find(
+            (item) => item.currency_code == "USD"
+          );
+        }
+        state.currencyloading = false;
+        console.log("CURRENT CURRENCY", state.currentcurrency);
+      })
+
+      .addCase(initializeCurrencyCode.rejected, (state, action) => {
+        state.currentcurrency = "USD"; // Default to 'US' if initialization fails
       });
-    // .addCase(initializeCurrencyCode.fulfilled, (state, action) => {
-    //   // let currentLocation = action.payload;
-    //   let allCountries = state.currencies;
-
-    //   // const matchingCountry = allCountries.find(
-    //   //   (item) => item.currency_name === currentLocation
-    //   // );
-
-    //   // if (matchingCountry) {
-    //   //   state.currentcurrency = matchingCountry;
-    //   // } else {
-    //   //   let initialCountry = null;
-    //   //   // Try to find a country with the currency code "AE"
-    //   //   const findAed = allCountries.some((item) => {
-    //   //     if (item.currency_code === "AED") {
-    //   //       initialCountry = item;
-    //   //       return true;
-    //   //     }
-    //   //     return false;
-    //   //   });
-
-    //   // state.currentcurrency = findAed ? initialCountry : allCountries[0];
-    // })
-    // .addCase(initializeCurrencyCode.rejected, (state, action) => {
-    //   state.currentcurrency = "US"; // Default to 'US' if initialization fails
-    // });
   },
 });
 export const { setCurrency } = CurrencySlice.actions;

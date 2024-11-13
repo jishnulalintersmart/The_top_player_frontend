@@ -96,7 +96,7 @@ const Contact = ({ styles, Lang }) => {
                       <HiOutlineMailOpen />
                     </div>
                     <h4>{t("contact.email")}</h4>
-                    <p>Info.thetopplayer@gmail.com</p>
+                    <p>Info@thetopplayer.com</p>
                   </div>
                 </div>
                 <div className="col-6">

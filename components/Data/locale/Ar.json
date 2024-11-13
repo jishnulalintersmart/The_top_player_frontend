@@ -271,14 +271,20 @@
     "fitness_football": "حزمة اللياقة وكرة القدم ",
     "football": "حزمة كرة القدم ",
     "Subtotal": "السعر الأصلي ",
+    "OfferAmount":"قيمة العرض",
     "Discount": "الخصم",
-    "Total": "الإجمالي",
+    "Total": "المبلغ الإجمالي",
     "userId": "رقم العميل",
     "courseId": "الكورس",
     "amount": "التكلفة",
     "stripeId": "رقم الفاتورة",
     "title": "العمليات",
-    "payment_not_supported": "الدفعات عبر تامرا مدعومة فقط بعملة AED"
+    "payment_not_supported": "الدفعات عبر تامرا مدعومة فقط بعملة AED",
+    "add_code":"أضف الرمز الترويجي (اختياري)",
+    "apply":"تطبيق",
+    "remove":"إزالة",
+    "applied":"تم تطبيق القسيمة",
+    "pay_tamara":"ادفع مع تمارا"
   },
   "vidoe": {
     "week": "الاسبوع",

@@ -47,9 +47,11 @@ const Navbar = ({ overHeight, state }) => {
   const courseId = sessionStorage.getItem("courseId");
   const tamaraId = sessionStorage.getItem("tamaraId");
 
+  const getUser = Cookies.get("UT");
+
   useEffect(() => {
     dispatch(getAllCurrencies());
-  }, []);
+  }, [dispatch]); //newly added
 
   const handleCurrencyChange = (currency) => {
     dispatch(setCurrency(currency));
@@ -68,8 +70,8 @@ const Navbar = ({ overHeight, state }) => {
   }, [visible]);
 
   useEffect(() => {
-    Cookies.get("UT") && dispatch(getUserInfo());
-  }, [Cookies.get("UT")]);
+    getUser && dispatch(getUserInfo());
+  }, [getUser, dispatch]);
 
   useEffect(() => {
     if (router?.query?.Lang?.toLowerCase() === "ar") {

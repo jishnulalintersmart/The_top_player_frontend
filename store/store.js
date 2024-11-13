@@ -9,6 +9,8 @@ import TestimonialSlice from "./TestimonialSlice";
 import WhoSlice from "./WhoSlice";
 import HeaderSlice from "./HeaderSlice";
 import CurrencySlice from "./CurrencySlice";
+import FooterSlice from "./FooterSlice";
+import CouponSlice from "./CouponSlice";
 export default configureStore({
   reducer: {
     AuthSlice,
@@ -18,8 +20,10 @@ export default configureStore({
     BannerSlice,
     HeaderSlice,
     TestimonialSlice,
+    FooterSlice,
     WhoSlice,
     CurrencySlice,
+    CouponSlice,
   },
   //   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
