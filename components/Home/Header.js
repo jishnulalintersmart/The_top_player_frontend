@@ -8,7 +8,7 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 
 const Header = ({ styles, Lang, state }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const { state } = useSelector((state) => ({
   //   state: state?.HeaderSlice?.banners[0],
   // }));

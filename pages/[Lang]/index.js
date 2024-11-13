@@ -10,6 +10,8 @@ import stylesSass from "@/styles/Home.module.scss";
 // import LangChange from "@/components/layouts/LangChange";
 import dynamic from "next/dynamic";
 import LangWrap from "@/components/layouts/LangWarp";
+import NewsDetail from "./news/[news_id]";
+import axios from "axios";
 const LangChange = dynamic(() => import("@/components/layouts/LangChange"), {
   loading: () => <></>,
   ssr: false,
@@ -42,7 +44,7 @@ const FAQs = dynamic(() => import("@/components/Home/FAQs"), {
   loading: () => <></>,
   ssr: false,
 });
-export default function Home({ Lang }) {
+export default function Home({ Lang, MainBanner }) {
   return (
     <>
       <Head>
@@ -83,11 +85,24 @@ export default function Home({ Lang }) {
     </>
   );
 }
-
 export async function getServerSideProps({ params }) {
+  const result = await axios
+    .get(`${process.env.customKey}/main_banner`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+    .then((res) => res.data)
+    .catch((err) => {
+      console.log(err);
+      return null;
+    });
+  // return result;
   return {
     props: {
       Lang: params.Lang,
+      MainBanner: result?.data || null,
     },
   };
 }
