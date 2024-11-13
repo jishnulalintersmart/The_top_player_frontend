@@ -1,45 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-@font-face {
-  font-family: "Mont";
-  font-weight: 300;
-  font-style: normal;
-  src: url("/fonts/mont/Mont-Light.otf") format("opentype"), url("/fonts/mont/Mont-Light.woff") format("woff"),
-    url("/fonts/mont/Mont-Light.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Mont";
-  font-weight: 400;
-  font-style: normal;
-  src: url("/fonts/mont/Mont-Regular.otf") format("opentype"), url("/fonts/mont/Mont-Regular.woff") format("woff"),
-    url("/fonts/mont/Mont-Regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Mont";
-  font-weight: 600;
-  font-style: normal;
-  src: url("/fonts/mont/Mont-SemiBold.otf") format("opentype"), url("/fonts/mont/Mont-SemiBold.woff") format("woff"),
-    url("/fonts/mont/Mont-SemiBold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Mont";
-  font-weight: 700;
-  font-style: normal;
-  src: url("/fonts/mont/Mont-Bold.otf") format("opentype"), url("/fonts/mont/Mont-Bold.woff") format("woff"),
-    url("/fonts/mont/Mont-Bold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Mont";
-  font-weight: 900;
-  font-style: normal;
-  src: url("/fonts/mont/Mont-Black.otf") format("opentype"), url("/fonts/mont/Mont-Black.woff") format("woff"),
-    url("/fonts/mont/Mont-Black.woff2") format("woff2");
-}
-
 :root {
   --main_color: #c7a27d;
   --sec_color: #00173c;
@@ -196,7 +156,6 @@ body:has(> * .video-react-fullscreen) {
 .English_lang button,
 .English_lang p,
 .English_lang a {
-  /* font-family: "Mont"; */
   font-family: "Montserrat", sans-serif;
 }
 
@@ -1796,14 +1755,12 @@ video:-moz-full-screen {
 }
 
 .En_num {
-  /* font-family: "Mont" !important; */
   font-family: "Montserrat", sans-serif !important;
   color: inherit !important;
   display: inline !important;
 }
 
 .En_num2 {
-  /* font-family: "Mont" !important; */
   font-family: "Montserrat", sans-serif !important;
 }
 
@@ -1813,7 +1770,6 @@ video:-moz-full-screen {
 }
 
 .video_name {
-  /* font-family: "Mont" !important; */
   font-family: "Montserrat", sans-serif !important;
 }
 
