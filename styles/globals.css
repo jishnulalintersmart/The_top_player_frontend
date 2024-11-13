@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @font-face {
   font-family: "Mont";
   font-weight: 300;
@@ -97,7 +99,7 @@ body {
   font-size: 1rem;
   line-height: 1.4;
   font-weight: 400;
-  font-family: "Mont";
+  font-family: "Montserrat", sans-serif;
   color: var(--black_color);
   overflow-x: hidden;
   overflow-y: auto;
@@ -194,7 +196,8 @@ body:has(> * .video-react-fullscreen) {
 .English_lang button,
 .English_lang p,
 .English_lang a {
-  font-family: "Mont";
+  /* font-family: "Mont"; */
+  font-family: "Montserrat", sans-serif;
 }
 
 .Arabic_lang {
@@ -1793,13 +1796,15 @@ video:-moz-full-screen {
 }
 
 .En_num {
-  font-family: "Mont" !important;
+  /* font-family: "Mont" !important; */
+  font-family: "Montserrat", sans-serif !important;
   color: inherit !important;
   display: inline !important;
 }
 
 .En_num2 {
-  font-family: "Mont" !important;
+  /* font-family: "Mont" !important; */
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .Ar_contact_num {
@@ -1808,7 +1813,8 @@ video:-moz-full-screen {
 }
 
 .video_name {
-  font-family: "Mont" !important;
+  /* font-family: "Mont" !important; */
+  font-family: "Montserrat", sans-serif !important;
 }
 
 @media (min-width: 768px) {

@@ -10,8 +10,6 @@ import stylesSass from "@/styles/Home.module.scss";
 // import LangChange from "@/components/layouts/LangChange";
 import dynamic from "next/dynamic";
 import LangWrap from "@/components/layouts/LangWarp";
-import NewsDetail from "./news/[news_id]";
-import axios from "axios";
 const LangChange = dynamic(() => import("@/components/layouts/LangChange"), {
   loading: () => <></>,
   ssr: false,
@@ -44,7 +42,7 @@ const FAQs = dynamic(() => import("@/components/Home/FAQs"), {
   loading: () => <></>,
   ssr: false,
 });
-export default function Home({ Lang, MainBanner }) {
+export default function Home({ Lang }) {
   return (
     <>
       <Head>
@@ -65,7 +63,7 @@ export default function Home({ Lang, MainBanner }) {
       <main>
         <LangWrap Lang={Lang.toLowerCase()}>
           <LangChange Lang={Lang.toLowerCase()}>
-            <Header styles={stylesSass} className={"sdkjbhd"} Lang={Lang.toLowerCase()} state={MainBanner[0]} />
+            <Header styles={stylesSass} Lang={Lang.toLowerCase()} />
             <Who styles={stylesSass} Lang={Lang.toLowerCase()} />
             <News styles={stylesSass} Lang={Lang.toLowerCase()} />
             <Program styles={styles} Lang={Lang.toLowerCase()} />
@@ -78,24 +76,11 @@ export default function Home({ Lang, MainBanner }) {
     </>
   );
 }
+
 export async function getServerSideProps({ params }) {
-  const result = await axios
-    .get(`${process.env.customKey}/main_banner`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-    .then((res) => res.data)
-    .catch((err) => {
-      console.log(err);
-      return null;
-    });
-  // return result;
   return {
     props: {
       Lang: params.Lang,
-      MainBanner: result?.data || null,
     },
   };
 }
